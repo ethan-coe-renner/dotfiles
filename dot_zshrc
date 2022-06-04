@@ -25,7 +25,7 @@ source $HOME/.config/zsh/antigen.zsh
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle jeffreytse/zsh-vi-mode
-# antigen bundle z-shell/F-Sy-H
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle hlissner/zsh-autopair
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 
