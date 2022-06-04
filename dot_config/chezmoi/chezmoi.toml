@@ -3,4 +3,4 @@
     autoPush = true
 
 [edit]
-	command = "emacs"
+	command = "nvim"
