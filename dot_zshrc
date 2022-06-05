@@ -22,6 +22,8 @@ RPROMPT='%*'
 eval "$(zoxide init zsh)"
 # eval "$(starship init zsh)"
 
+source $HOME/.cargo/env
+
 source $HOME/.config/zsh/aliases.zsh 
 source $HOME/.config/zsh/antigen.zsh
 
