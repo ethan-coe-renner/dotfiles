@@ -605,9 +605,9 @@ Set gui settings, theme, fonts, etc
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (setq inhibit-startup-screen t)
-  
+
   (global-hl-line-mode)
-  
+
   ;; theme
   (use-package doom-themes
     :straight t
@@ -616,7 +616,10 @@ Set gui settings, theme, fonts, etc
     :general
     ("<f5>" 'doom-one-themes-toggle)
     )
-  
+
+  ;; set gnome titlebar to dark
+  (setq default-frame-alist '((undecorated . t)))
+
   ;; dashboard
   (use-package dashboard
     :straight t
@@ -629,15 +632,15 @@ Set gui settings, theme, fonts, etc
     (dashboard-center-content t)
     (dashboard-items '((bookmarks . 5)
                        (projects . 5)))
-  
+
     :config
     (dashboard-setup-startup-hook))
-  
-  
+
+
   ;; font
   (set-face-attribute 'default nil :font "Source Code Pro" :height 120)
   (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height 120)
-  
+
   ;; line numbers
   (setq display-line-numbers 'relative)
   (dolist (mode '(text-mode-hook
@@ -645,7 +648,7 @@ Set gui settings, theme, fonts, etc
                   conf-mode-hook
                   rust-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 1))))
-  
+
   ;; modeline
   (use-package doom-modeline
     :straight t
@@ -653,8 +656,8 @@ Set gui settings, theme, fonts, etc
     (doom-modeline-icon t) ;; fix icons in server
     :init
     (doom-modeline-mode 1))
-  
-  
+
+
   (use-package rainbow-mode
     :straight t)
 #+end_src
