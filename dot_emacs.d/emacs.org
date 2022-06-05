@@ -600,6 +600,9 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
 * GUI
 Set gui settings, theme, fonts, etc
 #+begin_src emacs-lisp
+  ;; set gnome titlebar to dark
+  (setq default-frame-alist '((undecorated . t)))
+
   ;; disabling useless ui elements
   (scroll-bar-mode -1)
   (menu-bar-mode -1)
@@ -617,8 +620,6 @@ Set gui settings, theme, fonts, etc
     ("<f5>" 'doom-one-themes-toggle)
     )
 
-  ;; set gnome titlebar to dark
-  (setq default-frame-alist '((undecorated . t)))
 
   ;; dashboard
   (use-package dashboard
