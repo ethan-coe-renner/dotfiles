@@ -14,6 +14,8 @@ compinit
 
 bindkey '^ ' autosuggest-accept
 
+setopt HIST_IGNORE_SPACE
+
 PS1="[%(?.%F{green}.%F{red})%n@%m%f %F{green}%d%f]%# "
 RPROMPT='%*'
 
