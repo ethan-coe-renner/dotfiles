@@ -1,0 +1,5 @@
+#+title: Ethan Coe-Renner's Configuration Directory
+
+This repository contains my configuration files. It is a very stripped down version of my [[https://github.com/ethan-coe-renner/dotfiles-old][old configuration files]].
+
+I manage these using [[https://www.chezmoi.io][chezmoi]].
