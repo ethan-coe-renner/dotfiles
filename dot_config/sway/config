@@ -81,6 +81,15 @@ output eDP-1 pos 1920 0 res 1920x1080
 
     bindsym $mod+x exec emacsclient -c
 
+
+    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+    bindsym XF86MonBrightnessUp exec light -A 10
+    bindsym XF86MonBrightnessDown exec light -U 10
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -96,6 +105,8 @@ output eDP-1 pos 1920 0 res 1920x1080
 #
 # Moving around:
 #
+
+focus_follows_mouse no
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -206,7 +217,40 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
+
+gaps inner 5
+gaps outer 5
+
+set	$background	#000000
+set	$foreground	#ffffff
+set	$color0	 	#000000	
+set 	$color1	 	#ff8059		
+set 	$color2	 	#44bc44		
+set 	$color3	 	#d0bc00		
+set 	$color4	 	#2fafff		
+set 	$color5	 	#feacd0		
+set 	$color6	 	#00d3d0		
+set	$color7	 	#bfbfbf		
+set	$color8	 	#595959		
+set	$color9	 	#ef8b50		
+set	$color10 	#70b900		
+set	$color11 	#c0c530		
+set	$color12 	#79a8ff		
+set	$color13 	#b6a0ff		
+set	$color14 	#6ae4b9		
+set	$color15 	#ffffff		
+
+# Theme colors
+# class                 border  	backgr. 	text    	indic.  	child_border
+# My colors
+client.background	$background
+
+client.focused         	$foreground	$background	$foreground	$background	$foreground	
+client.unfocused       	$color8		$background	$foreground	$background	$color8
+client.focused_inactive	$color8		$background	$foreground	$background	$color8
+client.urgent		$color8		$background	$foreground	$background	$color8
+client.placeholder	$color8		$background	$foreground	$background	$color8
+		 	
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -218,9 +262,11 @@ bar {
     status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $foreground
+        background $background
+	focused_workspace $color4 $color12 $foreground
+	active_workspace $color12 $color4 $foreground
+	inactive_workspace $color15 $color8 $foreground
     }
 }
 
