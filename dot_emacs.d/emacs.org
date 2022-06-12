@@ -590,6 +590,9 @@ Set gui settings, theme, fonts, etc
     (modus-themes-load-vivendi) 
     :bind ("<f5>" . modus-themes-toggle))
 
+  (straight-use-package
+   '(modus-exporter :type git :host github :repo "polaris64/modus-exporter" :files '("*.el" "exporters")))
+
   ;; dashboard
   (use-package dashboard
     :straight t
