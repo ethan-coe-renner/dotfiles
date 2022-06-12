@@ -596,8 +596,7 @@ Set gui settings, theme, fonts, etc
     (dashboard-set-file-icons t)
     (dashboard-set-init-info t)
     (dashboard-center-content t)
-    (dashboard-items '((bookmarks . 5)
-                       (projects . 5)))
+    (dashboard-items '((projects . 5)))
 
     :config
     (dashboard-setup-startup-hook))
