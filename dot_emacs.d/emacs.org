@@ -348,7 +348,7 @@ setup evil and related packages
     :init (which-key-mode)
     :custom
     (which-key-idle-delay 0.3))
-  
+
   (use-package helpful
     :straight t
     :general
@@ -356,10 +356,11 @@ setup evil and related packages
      "C-h f" 'helpful-callable
      "C-h v" 'helpful-variable
      "C-h k" 'helpful-key
-     "C-c C-h" 'helpful-at-point
      )
+    (leader-key-def
+      "h" 'helpful-at-point)
     )
-  
+
   (use-package define-word
     :straight t
     :general
@@ -402,20 +403,6 @@ Setup for [[https://github.com/skeeto/elfeed][Elfeed]], an RSS reader
     )
 #+end_src
 
-* Music
-#+begin_src emacs-lisp
-  (use-package emms
-    :straight t
-    :custom
-    (emms-source-file-default-directory "~/media/music/")
-    :init
-    (emms-all)
-    (emms-default-players)
-    :general
-    (leader-key-def
-      "m" 'emms
-      ))
-#+end_src
 * Internet
 Set default browser to qutebrowser.
 Currently doesn't work and isn't tangled.
@@ -612,14 +599,21 @@ Set gui settings, theme, fonts, etc
   (global-hl-line-mode)
 
   ;; theme
-  (use-package doom-themes
-    :straight t
+  (use-package modus-themes
+    :ensure
     :init
-    (load-theme 'doom-dracula t)
-    :general
-    ("<f5>" 'doom-one-themes-toggle)
-    )
+    ;; Add all your customizations prior to loading the themes
+    (setq modus-themes-italic-constructs t
+          modus-themes-bold-constructs nil
+          modus-themes-region '(bg-only no-extend)
+          modus-themes-mode-line '(accented borderless))
 
+    ;; Load the theme files before enabling a theme
+    (modus-themes-load-themes)
+    :config
+    ;; Load the theme of your choice:
+    (modus-themes-load-vivendi) ;; OR (modus-themes-load-vivendi)
+    :bind ("<f5>" . modus-themes-toggle))
 
   ;; dashboard
   (use-package dashboard
