@@ -1,21 +1,21 @@
 palette = {
-    'background': '#282a36',
-    'background-alt': '#282a36',
-    'background-attention': '#181920',
-    'border': '#282a36',
-    'current-line': '#44475a',
-    'selection': '#44475a',
-    'foreground': '#f8f8f2',
-    'foreground-alt': '#e0e0e0',
+    'background': '#000000',
+    'background-alt': '#252525',
+    'background-attention': '#000000',
+    'border': '#000000',
+    'current-line': '#595959',
+    'selection': '#595959',
+    'foreground': '#ffffff',
+    'foreground-alt': '#ffffff',
     'foreground-attention': '#ffffff',
-    'comment': '#6272a4',
-    'cyan': '#8be9fd',
-    'green': '#50fa7b',
-    'orange': '#ffb86c',
-    'pink': '#ff79c6',
-    'purple': '#bd93f9',
-    'red': '#ff5555',
-    'yellow': '#f1fa8c'
+    'comment': '#bfbfbf',
+    'cyan': '#00d3d0',
+    'green': '#44bc44',
+    'orange': '#ef8b50',
+    'pink': '#feacd0',
+    'purple': '#b6a0ff',
+    'red': '#ff8059',
+    'yellow': '#d0bc00'
 }
 
 ## Background color of the completion widget category headers.
