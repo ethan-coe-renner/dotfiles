@@ -9,7 +9,8 @@ set $right l
 set $term alacritty
 set $browser qutebrowser
 # Your preferred application launcher
-set $menu bemenu-run
+set $menu bemenu-run -b -l 5 --fn 'Source Code Pro' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#595959' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
+
 
 ### Output configuration
 #
@@ -237,9 +238,9 @@ bar {
     colors {
         statusline $foreground
         background $background
-	focused_workspace $color4 $color12 $foreground
-	active_workspace $color12 $color4 $foreground
-	inactive_workspace $color15 $color8 $foreground
+	focused_workspace $color4 $color4 $foreground
+	active_workspace $color4 $color8 $foreground
+	inactive_workspace $color8 $color8 $foreground
     }
 }
 

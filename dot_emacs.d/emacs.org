@@ -168,7 +168,22 @@ Keybindings should go with their respective packages.
     (embark-collect-mode . consult-preview-at-point-mode))
 #+end_src
 
-* Eshell
+* Terminals
+** Vterm
+Configuration and setup for [[https://github.com/akermu/emacs-libvterm][vterm]].
+#+begin_src emacs-lisp
+  (use-package vterm
+    :straight t
+    :init (use-package vterm-toggle
+            :straight t
+            :after vterm
+            :general
+            (leader-key-def
+              "t" 'vterm-toggle)
+            )
+    )
+#+end_src
+** Eshell
 Configuration and setup for eshell
 #+begin_src emacs-lisp
   (use-package eshell
@@ -179,9 +194,6 @@ Configuration and setup for eshell
       (let ((buf (eshell)))
         (switch-to-buffer (other-buffer buf))
         (switch-to-buffer-other-window buf)))
-    :general
-    (leader-key-def
-      "t" 'eshell-other-window)
     )
 #+end_src
 * Org Mode
@@ -547,7 +559,7 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
            (c-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
     :commands lsp)
-  
+
   (use-package lsp-ui
     :straight t
     :hook (lsp-mode . lsp-ui-mode)
@@ -555,7 +567,11 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
   (use-package lsp-treemacs
     :straight t
     :after lsp-mode
-    :commands lsp-treemacs-errors-list)
+    :commands lsp-treemacs-errors-list
+    :general
+    (leader-key-def
+      "f" 'treemacs
+      ))
 #+end_src
 * GUI
 Set gui settings, theme, fonts, etc
