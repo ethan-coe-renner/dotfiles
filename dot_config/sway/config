@@ -9,7 +9,7 @@ set $right l
 set $term alacritty
 set $browser qutebrowser
 # Your preferred application launcher
-set $menu bemenu-run -b -l 5 --fn 'Source Code Pro' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#595959' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
+set $menu bemenu-run -b -l 5 --fn 'Source Code Pro' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#252525' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
 
 
 ### Output configuration
