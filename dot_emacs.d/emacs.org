@@ -72,8 +72,8 @@ Keybindings should go with their respective packages.
     (use-package all-the-icons-dired
       :straight t
       :hook (dired-mode . all-the-icons-dired-mode))
-  
-  
+
+
     (use-package dired-x
       :after general
       :general
@@ -84,7 +84,6 @@ Keybindings should go with their respective packages.
     :custom
     (dired-listing-switches "-ABDgho --group-directories-first")
     (global-auto-revert-non-file-buffers t)
-    :general
     (
      :keymaps 'dired-mode-map
      "h" 'dired-up-directory
@@ -98,14 +97,14 @@ Keybindings should go with their respective packages.
     :straight t
     :init
     (selectrum-mode +1))
-  
+
   (use-package selectrum-prescient
     :straight t
     :init
     (selectrum-prescient-mode +1)
     (prescient-persist-mode +1)
     )
-  
+
   (use-package consult
     :straight t
     :after selectrum
@@ -113,17 +112,19 @@ Keybindings should go with their respective packages.
     (consult-project-root-function #'projectile-project-root)
     :config
     (autoload 'projectile-project-root "projectile")
-  
+
     :general
+    (:states '(normal visual)
+             "/" 'consult-line)
+
     (leader-key-def
-      "/" 'consult-line
       "b" 'consult-buffer
       "r" 'consult-recent-file
       "i" 'consult-imenu
       "s" 'consult-ripgrep
       )
     )
-  
+
   (use-package marginalia
     :straight t
     :after selectrum
@@ -573,6 +574,7 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
       "f" 'treemacs
       ))
 #+end_src
+
 * GUI
 Set gui settings, theme, fonts, etc
 #+begin_src emacs-lisp
@@ -589,14 +591,17 @@ Set gui settings, theme, fonts, etc
 
   ;; theme
   (use-package modus-themes
-  :straight t
-    :init
+    :straight t
+    :custom
     ;; Add all your customizations prior to loading the themes
-    (setq modus-themes-italic-constructs t
-          modus-themes-bold-constructs t
-          modus-themes-region '(bg-only no-extend)
-          modus-themes-mode-line '(accented borderless))
+    (modus-themes-italic-constructs t)
+    (modus-themes-bold-constructs t)
+    (modus-themes-region '(bg-only no-extend))
+    (modus-themes-lang-checkers '(text-also background straight-underline))
+    (modus-themes-paren-match '(bold))
+    (modus-themes-mode-line '(accented borderless))
 
+    :init
     (modus-themes-load-themes)
     :config
     (modus-themes-load-vivendi) 
@@ -642,6 +647,45 @@ Set gui settings, theme, fonts, etc
   (use-package rainbow-mode
     :straight t)
 #+end_src
+* PDF
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :straight t
+    :init
+    (pdf-loader-install)
+
+    ;; set up background with modus themes
+    (defun my-pdf-tools-backdrop ()
+      (face-remap-add-relative
+       'default
+       `(:background ,(modus-themes-color 'bg-alt))))
+
+    (add-hook 'pdf-tools-enabled-hook #'my-pdf-tools-backdrop)
+    (defun my-pdf-tools-backdrop ()
+      (face-remap-add-relative
+       'default
+       `(:background ,(modus-themes-color 'bg-alt))))
+
+    (defun my-pdf-tools-midnight-mode-toggle ()
+      (when (derived-mode-p 'pdf-view-mode)
+        (if (eq (car custom-enabled-themes) 'modus-vivendi)
+            (pdf-view-midnight-minor-mode 1)
+          (pdf-view-midnight-minor-mode -1))
+        (my-pdf-tools-backdrop)))
+
+    (defun my-pdf-tools-themes-toggle ()
+      (mapc
+       (lambda (buf)
+         (with-current-buffer buf
+           (my-pdf-tools-midnight-mode-toggle)))
+       (buffer-list)))
+
+    (add-hook 'pdf-tools-enabled-hook #'my-pdf-tools-midnight-mode-toggle)
+    (add-hook 'modus-themes-after-load-theme-hook #'my-pdf-tools-themes-toggle)
+    )
+
+#+end_src
+
 * local variables
 ;; Local Variables: 
 ;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 

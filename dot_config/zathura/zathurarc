@@ -1,5 +1,5 @@
 #
-# Dracula color theme
+# Modus color theme
 #
 
 set notification-error-bg       "#ff8059" # Red
@@ -40,14 +40,14 @@ set render-loading-bg           "#ffffff" # Foreground
 # Recolor mode settings
 #
 
-set recolor-lightcolor          "#282a36" # Background
+set recolor-lightcolor          "#000000" # Background
 set recolor-darkcolor           "#ffffff" # Foreground
 
 #
 # Startup options
 #
 set adjust-open width
-# set recolor true
+set recolor true
 
 set font	"Source Code Pro 9"
 set window-title-basename	"true"
