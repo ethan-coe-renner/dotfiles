@@ -24,7 +24,8 @@
 Set seperate custom file so that custom settings don't get overwritten by org-babel-tangle.
 #+begin_src emacs-lisp
   (setq custom-file "~/.emacs.d/custom.el")
-  (load custom-file)
+  (if (file-exists-p custom-file)
+      (load custom-file))
 #+end_src
 
 * Emacs
@@ -89,6 +90,15 @@ Keybindings should go with their respective packages.
      "h" 'dired-up-directory
      "l" 'dired-find-file)
     )
+#+end_src
+
+* Search
+#+begin_src emacs-lisp
+  (use-package deadgrep
+    :straight t
+    :general
+    (leader-key-def
+      "S" 'deadgrep))
 #+end_src
 
 * Minibuffer
