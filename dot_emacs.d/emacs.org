@@ -94,11 +94,6 @@ Keybindings should go with their respective packages.
 
 * Search
 #+begin_src emacs-lisp
-  (use-package deadgrep
-    :straight t
-    :general
-    (leader-key-def
-      "S" 'deadgrep))
 #+end_src
 
 * Minibuffer
@@ -395,27 +390,11 @@ Setup for [[https://github.com/skeeto/elfeed][Elfeed]], an RSS reader
        ))
     :hook
     (elfeed-search-mode . elfeed-update) ;; auto update when opened
-    :config
     )
 #+end_src
 
 * Internet
-Set default browser to qutebrowser.
-Currently doesn't work and isn't tangled.
-#+begin_src emacs-lisp :tangle no
-  (defun browse-url-qutebrowser (url)
-    "Open URL in qutebrowser."
-    (interactive (browse-url-interactive-arg "URL: "))
-    (setq url (browse-url-encode-url url))
-    (start-process (concat "qutebrowser " url) nil
-                   "qutebrowser"
-                   url
-                   ))
-  
-  (setq browse-url-browser-function 'browse-url-qutebrowser)
-#+end_src
-
-For the time being, use eww by default
+Set default browser to eww.
 #+begin_src emacs-lisp
   (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
@@ -462,11 +441,11 @@ non-evil-specific navigation
     :straight t
     :hook (prog-mode . smartscan-mode))
 
-  (use-package rg
-    :defer t
+  (use-package deadgrep
     :straight t
-    :config
-    (rg-enable-default-bindings))
+    :general
+    (leader-key-def
+      "S" 'deadgrep))
 #+end_src
 
 * Formatting
@@ -474,11 +453,10 @@ Automatic formatting
 #+begin_src emacs-lisp
   (use-package aggressive-indent
     :straight t
+    :init
+    (global-aggressive-indent-mode 1)
     )
-  (global-aggressive-indent-mode 1)
-  
-  
-  
+
   (use-package format-all
     :straight t
     :hook
@@ -696,7 +674,6 @@ Set gui settings, theme, fonts, etc
 
 #+end_src
 
-* local variables
-;; Local Variables: 
-;; eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 
-;; End:
+# Local Variables: 
+# eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 
+# End:
