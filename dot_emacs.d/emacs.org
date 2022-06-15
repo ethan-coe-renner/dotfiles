@@ -32,7 +32,8 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
 This section is for miscellaneous settings which do not belong elsewhere, everything should be commented explaining why it was added.
 #+begin_src emacs-lisp
   ;; clean scratch buffer
-  (setq initial-scratch-message nil)
+  (setq initial-scratch-message nil
+        initial-major-mode 'text-mode)
 
   ;; fix sizing errors with tiling window managers
   (setq frame-resize-pixelwise t)
@@ -80,7 +81,6 @@ Keybindings should go with their respective packages.
       :general
       (leader-key-def
         "<SPC>" 'dired-jump
-        "c" '(lambda () (interactive) (find-file "~/.local/share/chezmoi/dot_emacs.d/emacs.org"))
         ))
     :custom
     (dired-listing-switches "-ABDgho --group-directories-first")
@@ -90,10 +90,6 @@ Keybindings should go with their respective packages.
      "h" 'dired-up-directory
      "l" 'dired-find-file)
     )
-#+end_src
-
-* Search
-#+begin_src emacs-lisp
 #+end_src
 
 * Minibuffer

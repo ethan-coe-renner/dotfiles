@@ -10,8 +10,8 @@ c.url.start_pages = c.url.default_page
 
 c.url.searchengines = {
     "DEFAULT":"https://duckduckgo.com/?q={}",
-    "in":
-    "https://invidious.snopyta.org/search?q={}",
+    "yt":
+    "https://www.youtube.com/results?search_query={}",
     "wa":
     "https://www.wolframalpha.com/input/?i={}",
     "aw":
