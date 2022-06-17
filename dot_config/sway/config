@@ -230,6 +230,17 @@ client.placeholder	$color8		$background	$foreground	$background	$color8
 		 	
 # Status Bar:
 #
-exec waybar
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
+    status_command i3status
 
+    colors {
+        statusline $foreground
+        background $background
+	focused_workspace $color4 $color4 $foreground
+	active_workspace $color4 $color8 $foreground
+	inactive_workspace $color8 $color8 $foreground
+    }
+}
 include /etc/sway/config.d/*

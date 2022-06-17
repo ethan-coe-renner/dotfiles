@@ -269,8 +269,8 @@ setup evil and related packages
       (evil-undo-system 'undo-tree)
       (undo-tree-visualizer-diff t)
       (undo-tree-visualizer-timestamps t)
-      :init
-      (global-undo-tree-mode)
+      :hook
+      (evil-local-mode . turn-on-undo-tree-mode)
       )
     (use-package evil-collection
       :straight t
