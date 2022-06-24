@@ -426,22 +426,6 @@ non-evil-specific navigation
     ("C-s" 'avy-goto-char-timer)
     )
 
-  (use-package winum
-    :straight t
-    :general
-    (
-     "M-1" 'winum-select-window-1
-     "M-2" 'winum-select-window-2
-     "M-3" 'winum-select-window-3
-     "M-4" 'winum-select-window-4
-     "M-5" 'winum-select-window-5
-     "M-6" 'winum-select-window-6
-     "M-7" 'winum-select-window-7
-     "M-8" 'winum-select-window-8
-     )
-    :config
-    (winum-mode t))
-
   (use-package smartscan
     :straight t
     :hook (prog-mode . smartscan-mode))
@@ -450,7 +434,10 @@ non-evil-specific navigation
     :straight t
     :general
     (leader-key-def
-      "S" 'deadgrep))
+      "d" 'deadgrep))
+
+  ;; shift+<arrow> to move between windows
+  (windmove-default-keybindings)
 #+end_src
 
 * Formatting
@@ -581,6 +568,11 @@ Set gui settings, theme, fonts, etc
   (setq inhibit-startup-screen t)
 
   (global-hl-line-mode)
+  (use-package pulsar
+    :straight t
+    ;; TODO: customize which functions trigger pulsing
+    :init
+    (pulsar-global-mode 1))
 
   ;; theme
   (use-package modus-themes
@@ -592,7 +584,7 @@ Set gui settings, theme, fonts, etc
     (modus-themes-region '(bg-only no-extend))
     (modus-themes-lang-checkers '(text-also background straight-underline))
     (modus-themes-paren-match '(bold))
-    (modus-themes-mode-line '(accented borderless))
+    (modus-themes-mode-line '(moody accented))
 
     :init
     (modus-themes-load-themes)
@@ -625,8 +617,8 @@ Set gui settings, theme, fonts, etc
 
 
   ;; font
-  (set-face-attribute 'default nil :font "Source Code Pro" :height 120)
-  (set-face-attribute 'fixed-pitch nil :font "Source Code Pro" :height 120)
+  (set-face-attribute 'default nil :font "Fira Code" :height 120)
+  (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 120)
 
   ;; line numbers
   (setq display-line-numbers 'relative)
@@ -637,13 +629,23 @@ Set gui settings, theme, fonts, etc
     (add-hook mode (lambda () (display-line-numbers-mode 1))))
 
   ;; modeline
-  (use-package doom-modeline
+  (use-package moody
     :straight t
-    :custom
-    (doom-modeline-icon t) ;; fix icons in server
     :init
-    (doom-modeline-mode 1))
-
+    (use-package rich-minority
+      :straight t
+      :custom
+      (rm-blacklist "")
+      :init
+      (rich-minority-mode 1)
+      )
+    :custom
+    (x-underline-at-descent-line t)
+    :config
+    (moody-replace-mode-line-buffer-identification)
+    (moody-replace-vc-mode)
+    (moody-replace-eldoc-minibuffer-message-function)
+    )
 
   (use-package rainbow-mode
     :straight t)

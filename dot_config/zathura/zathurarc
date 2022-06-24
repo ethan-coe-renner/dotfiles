@@ -49,6 +49,6 @@ set recolor-darkcolor           "#ffffff" # Foreground
 set adjust-open width
 set recolor true
 
-set font	"Source Code Pro 9"
+set font	"Fira Code 9"
 set window-title-basename	"true"
 set selection-clipboard "clipboard"
