@@ -1,6 +1,6 @@
 LICENSE
 README.*
-*.log
-*.tex
-*.pdf
+**/*.log
+**/*.tex
+**/*.pdf
 .gitignore

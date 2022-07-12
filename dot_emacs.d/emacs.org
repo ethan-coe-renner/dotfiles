@@ -27,6 +27,49 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
       (load custom-file))
 #+end_src
 
+* Theme
+#+begin_src emacs-lisp
+  (use-package modus-themes
+    :straight t
+    :custom
+    ;; Add all your customizations prior to loading the themes
+    (modus-themes-italic-constructs t)
+    (modus-themes-bold-constructs t)
+    (modus-themes-region '(bg-only no-extend))
+    (modus-themes-lang-checkers '(text-also background straight-underline))
+    (modus-themes-paren-match '(bold))
+    (modus-themes-mode-line '(moody accented))
+
+    :init
+    (modus-themes-load-themes)
+    :config
+    (modus-themes-load-vivendi)
+    :bind ("<f5>" . modus-themes-toggle))
+
+  ;; dashboard
+  (use-package dashboard
+    :straight t
+    :init
+    (use-package emacs
+      :custom
+      (recentf-max-menu-items 25)
+      (recentf-max-saved-items 25)
+      :config
+      (recentf-mode 1)
+      )
+    :custom
+    (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+    (dashboard-startup-banner 'official)
+    (dashboard-set-heading-icons t)
+    (dashboard-set-file-icons t)
+    (dashboard-set-init-info t)
+    (dashboard-center-content t)
+    (dashboard-items '((recents . 5)(projects . 5)))
+
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+
 * Emacs
 This section is for miscellaneous settings which do not belong elsewhere, everything should be commented explaining why it was added.
 #+begin_src emacs-lisp
@@ -462,10 +505,27 @@ Setup git integration
   (use-package magit
     :commands magit-status
     :straight t
+    :init
+    (use-package forge
+      :straight t
+      :custom 
+      (forge-add-default-bindings nil)
+      :after magit)
+    (use-package magit-todos
+      :straight t
+      :init
+      (magit-todos-mode 1)
+
+      :after magit)
     :general
     (leader-key-def
       "g" 'magit-status)
     )
+
+  (use-package diff-hl
+    :straight t
+    :init
+    (global-diff-hl-mode))
 #+end_src
 
 * Project Management
@@ -574,46 +634,6 @@ Set gui settings, theme, fonts, etc
     :init
     (pulsar-global-mode 1))
 
-  ;; theme
-  (use-package modus-themes
-    :straight t
-    :custom
-    ;; Add all your customizations prior to loading the themes
-    (modus-themes-italic-constructs t)
-    (modus-themes-bold-constructs t)
-    (modus-themes-region '(bg-only no-extend))
-    (modus-themes-lang-checkers '(text-also background straight-underline))
-    (modus-themes-paren-match '(bold))
-    (modus-themes-mode-line '(moody accented))
-
-    :init
-    (modus-themes-load-themes)
-    :config
-    (modus-themes-load-vivendi)
-    :bind ("<f5>" . modus-themes-toggle))
-
-  ;; dashboard
-  (use-package dashboard
-    :straight t
-    :init
-    (use-package emacs
-      :custom
-      (recentf-max-menu-items 25)
-      (recentf-max-saved-items 25)
-      :config
-      (recentf-mode 1)
-      )
-    :custom
-    (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-    (dashboard-startup-banner 'official)
-    (dashboard-set-heading-icons t)
-    (dashboard-set-file-icons t)
-    (dashboard-set-init-info t)
-    (dashboard-center-content t)
-    (dashboard-items '((recents . 5)(projects . 5)))
-
-    :config
-    (dashboard-setup-startup-hook))
 
 
   ;; font
@@ -649,6 +669,12 @@ Set gui settings, theme, fonts, etc
 
   (use-package rainbow-mode
     :straight t)
+
+  (use-package hl-todo
+    :straight t
+    :hook
+    (prog-mode . hl-todo-mode)
+    )
 #+end_src
 * PDF
 #+begin_src emacs-lisp
