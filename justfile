@@ -7,3 +7,6 @@ crates:
 	cargo install fd-find
 	cargo install just
 	cargo install ripgrep
+	# install dependencies for alacritty
+	dnf install cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
+	cargo install alacritty

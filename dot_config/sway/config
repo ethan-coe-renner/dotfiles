@@ -11,6 +11,8 @@ set $browser qutebrowser
 # Your preferred application launcher
 set $menu bemenu-run -b --fn 'Fira Code' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#252525' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
 
+# set up environment variables
+exec source ~/.env
 
 exec mako
 
