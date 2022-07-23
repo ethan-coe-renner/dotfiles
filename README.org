@@ -1,5 +1,9 @@
 #+title: Ethan Coe-Renner's Configuration Directory
 
+* Archived, moved to [[https://git.sr.ht/~code-runner/dotfiles][sourcehut]]
+
+* dotfiles
 This repository contains my configuration files. It is a very stripped down version of my [[https://github.com/ethan-coe-renner/dotfiles-old][old configuration files]].
 
 I manage these using [[https://www.chezmoi.io][chezmoi]].
+
