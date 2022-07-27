@@ -473,6 +473,7 @@ Setup for [[https://github.com/skeeto/elfeed][Elfeed]], an RSS reader
        ("http://daviddfriedman.blogspot.com/atom.xml" blog)
        ("http://www.econlib.org/feed/indexCaplan_xml" blog)
        ("https://nullprogram.com/feed/" blog)
+       ("https://drewdevault.com/blog/index.xml" blog)
        ("https://feeds.feedburner.com/mrmoneymustache" blog)
        ("https://www.singlelunch.com/feed" blog)
        ("https://www.overcomingbias.com/feed" blog)
@@ -492,7 +493,6 @@ Setup for [[https://github.com/skeeto/elfeed][Elfeed]], an RSS reader
 #+end_src
 
 * Internet
-Set default browser to eww.
 #+begin_src emacs-lisp
   (use-package eww
     :custom
@@ -501,6 +501,9 @@ Set default browser to eww.
     (leader-key-def
       "w" 'eww)
     )
+
+  (use-package simple-httpd
+    :straight t)
 #+end_src
 * Editing
 This section contains packages and settings for

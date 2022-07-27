@@ -3,7 +3,7 @@ from qutebrowser.config.config import ConfigContainer
 
 config.load_autoconfig(False)
 
-c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.enabled = True
 
 c.url.default_page = "~/.config/qutebrowser/startpage/index.html"
 c.url.start_pages = c.url.default_page
