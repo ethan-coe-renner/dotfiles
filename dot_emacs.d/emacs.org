@@ -113,76 +113,7 @@ Keybindings should go with their respective packages.
   (use-package all-the-icons
     :straight t)
 
-  (use-package dirvish
-    :straight t
-    :after all-the-icons
-    :init
-    (dirvish-override-dired-mode)
-    :custom
-    ;; Go back home? Just press `bh'
-    (dirvish-bookmark-entries
-     '(("h" "~/"                          "Home")
-       ("c" "~/.local/share/chezmoi" "Config")))
-    ;; (dirvish-header-line-format '(:left (path) :right (free-space)))
-    (dirvish-mode-line-format ; it's ok to place string inside
-     '(:left (sort file-time " " file-size symlink) :right (omit yank index)))
-    ;; Don't worry, Dirvish is still performant even you enable all these attributes
-    (dirvish-attributes '(all-the-icons file-size collapse subtree-state vc-state git-msg))
-    ;; Maybe the icons are too big to your eyes
-    ;; (dirvish-all-the-icons-height 0.8)
-    ;; In case you want the details at startup like `dired'
-    ;; (dirvish-hide-details nil)
-    :config
-    (dirvish-peek-mode)
-    ;; Dired options are respected except a few exceptions, see *In relation to Dired* section above
-    (setq dired-dwim-target t)
-    (setq delete-by-moving-to-trash t)
-    ;; Enable mouse drag-and-drop files to other applications
-    (setq dired-mouse-drag-files t)                   ; added in Emacs 29
-    (setq mouse-drag-and-drop-region-cross-program t) ; added in Emacs 29
-    ;; Make sure to use the long name of flags when exists
-    ;; eg. use "--almost-all" instead of "-A"
-    ;; Otherwise some commands won't work properly
-    (setq dired-listing-switches
-          "-l --almost-all --human-readable --time-style=long-iso --group-directories-first --no-group")
-
-
-    ;; evil mode override
-    (defun my-dirvish-setup ()
-      (evil-make-overriding-map dirvish-mode-map 'normal)
-      (evil-normalize-keymaps))
-
-    :hook
-    (dirvish-mode . my-dirvish-setup)
-    :general
-    (leader-key-def
-      "<SPC>" 'dirvish
-      "f" 'dirvish-side
-      )
-    (:keymaps 'dirvish-mode-map
-              "h"  'dired-up-directory
-              "j"  'dired-next-line
-              "k"  'dired-previous-line
-              "l"  'dired-find-file
-              "i"  'wdired-change-to-wdired-mode
-              "."  'dired-omit-mode
-              "b"    'dirvish-bookmark-jump
-              "f"    'dirvish-file-info-menu
-              "y"    'dirvish-yank-menu
-              "N"    'dirvish-narrow
-              "^"    'dirvish-history-last
-              "s"    'dirvish-quicksort ; remapped `dired-sort-toggle-or-edit'
-              "?"    'dirvish-dispatch  ; remapped `dired-summary'
-              "TAB"  'dirvish-subtree-toggle
-              "M-n"  'dirvish-history-go-forward
-              "M-p"  'dirvish-history-go-backward
-              "M-l"  'dirvish-ls-switches-menu
-              "M-m"  'dirvish-mark-menu
-              "M-f"  'dirvish-toggle-fullscreen
-              "M-s"  'dirvish-setup-menu
-              "M-e"  'dirvish-emerge-menu
-              )
-    )
+  
 #+end_src
 
 * Minibuffer
