@@ -34,10 +34,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 #=program shortcuts
-alias cd='z'
 alias v='nvim'
 alias e='emacsclient -c'
 alias sn='shutdown now'
 alias rb='reboot'
 alias ch='chezmoi'
-alias tt='toggle_alacritty_theme.sh'

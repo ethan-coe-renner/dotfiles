@@ -16,10 +16,11 @@ exec mako
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/dark_fractal.jpg Fill
+set $wallpapers_path $HOME/Pictures/expanse-walls
+output * bg $(find $wallpapers_path -type f | shuf -n 1) Fill
 
-output HDMI-A-2 pos 0 0 res 1920x1080
-output eDP-1 pos 1920 0 res 1920x1080
+output HDMI-A-2 pos 1920 0 res 1920x1080
+output eDP-1 pos 0 0 res 1920x1080
 
 ### Idle configuration
 #
