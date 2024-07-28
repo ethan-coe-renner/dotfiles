@@ -40,11 +40,8 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
     (modus-themes-paren-match '(bold))
     (modus-themes-mode-line '(moody accented))
 
-    :init
-    (modus-themes-load-themes)
-    :config
-    (modus-themes-load-vivendi)
     :bind ("<f5>" . modus-themes-toggle))
+    (load-theme 'modus-vivendi)
 
   ;; dashboard
   (use-package dashboard
@@ -64,7 +61,7 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
     (dashboard-set-file-icons t)
     (dashboard-set-init-info t)
     (dashboard-center-content t)
-    (dashboard-items '((recents . 5)(projects . 5)))
+    (dashboard-items '((recents . 5)(bookmarks . 10)))
 
     :config
     (dashboard-setup-startup-hook))
@@ -78,7 +75,22 @@ This section is for miscellaneous settings which do not belong elsewhere, everyt
         initial-major-mode 'text-mode)
 
   ;; fix sizing errors with tiling window managers
-  (setq frame-resize-pixelwise t)
+  ;; (setq frame-resize-pixelwise t)
+
+  (setq-default fill-column 80)
+
+  (global-display-fill-column-indicator-mode)
+
+  (setq-default tab-width 4)
+  (defvaralias 'c-basic-offset 'tab-width)
+
+  (setq delete-by-moving-to-trash t)
+  (defun system-move-file-to-trash (filename)
+    (shell-command (concat (if (executable-find "rip") (executable-find "rip") (executable-find "rm")) " " filename)))
+
+  ;; PATH setup
+  (setenv "PATH" (concat (getenv "PATH") ":~/.cargo/bin"))
+  (setq exec-path (append exec-path '("~/.cargo/bin")))
 #+end_src
 
 * Backup
@@ -95,17 +107,29 @@ This section is for miscellaneous settings which do not belong elsewhere, everyt
 This section sets up [[https://github.com/noctuid/general.el][general.el]]. This section should not be used to set keybindings (except for the most general ones).
 Keybindings should go with their respective packages.
 #+begin_src emacs-lisp
-  (use-package general
-    :straight t
-    :config
-    (general-auto-unbind-keys)
-    (general-evil-setup)
+    (use-package general
+      :straight t
+      :config
+      (general-auto-unbind-keys)
+      (general-evil-setup)
 
-    (general-create-definer leader-key-def
-      :keymaps '(normal insert visual emacs)
-      :prefix "SPC"
-      :global-prefix "C-SPC")
+      (general-create-definer leader-key-def
+        :keymaps '(normal insert visual emacs)
+        :prefix "SPC"
+        :global-prefix "C-SPC")
+      )
+
+  (use-package emacs
+    :general
+    (
+     "C-w m" 'maximize-window
+     )
+    (leader-key-def
+      "w" 'ace-window
+      "ff" 'make-frame
+      "fo" 'other-frame)
     )
+
 #+end_src
 
 * Dired
@@ -196,6 +220,7 @@ Keybindings should go with their respective packages.
 
     (leader-key-def
       "b" 'consult-buffer
+      "B" 'consult-bookmark
       "r" 'consult-recent-file
       "i" 'consult-imenu
       "s" 'consult-ripgrep
@@ -243,21 +268,6 @@ Keybindings should go with their respective packages.
     (embark-collect-mode . consult-preview-at-point-mode))
 #+end_src
 
-* Terminals
-** Vterm
-Configuration and setup for [[https://github.com/akermu/emacs-libvterm][vterm]].
-#+begin_src emacs-lisp
-  (use-package vterm
-    :straight t
-    :init (use-package vterm-toggle
-            :straight t
-            :after vterm
-            :general
-            (leader-key-def
-              "t" 'vterm-toggle)
-            )
-    )
-#+end_src
 * Org Mode
 #+begin_src emacs-lisp
   (use-package org
@@ -272,11 +282,14 @@ Configuration and setup for [[https://github.com/akermu/emacs-libvterm][vterm]].
     (org-default-notes-file (concat org-directory "/notes.org"))
 
     (org-capture-bookmark nil)
+    (org-todo-keywords
+     '((sequence "TODO" "INPROGRESS" "|" "DONE")))
+
+    (org-log-repeat nil)
 
 
     :general
     ("C-c c" 'org-capture)
-    ("C-c a" 'org-agenda)
 
     :config
     (org-babel-do-load-languages
@@ -286,7 +299,6 @@ Configuration and setup for [[https://github.com/akermu/emacs-libvterm][vterm]].
 
     (require 'org-tempo)
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-    (add-to-list 'org-agenda-files (concat org-directory "/tasks.org"))
 
     :hook
     (org-mode . org-indent-mode)
@@ -367,10 +379,12 @@ setup evil and related packages
     (general-def
       "C-M-u" 'universal-argument ;; doesn't work with :general for some reason
       )
-    (general-def
-      :states 'motion
-      "j" 'evil-next-visual-line
-      "k" 'evil-previous-visual-line)
+
+    ;; This would make j and k operate on visual lines (wrapped lines), this kinda messes up macros (when the partial execution of a macro causes a wrap, subsequent j/k will do fundamentally different things)
+    ;; (general-def
+    ;;   :states 'motion
+    ;;   "j" 'evil-next-visual-line
+    ;;   "k" 'evil-previous-visual-line)
     )
 #+end_src
 
@@ -402,53 +416,6 @@ setup evil and related packages
     )
 #+end_src
 
-* Elfeed
-Setup for [[https://github.com/skeeto/elfeed][Elfeed]], an RSS reader
-#+begin_src emacs-lisp
-  (use-package elfeed
-    :straight t
-    :general
-    (leader-key-def
-      "r" 'elfeed)
-    :custom 
-    (elfeed-feeds
-     '(
-       ;; Blogs
-       ("http://daviddfriedman.blogspot.com/atom.xml" blog)
-       ("http://www.econlib.org/feed/indexCaplan_xml" blog)
-       ("https://nullprogram.com/feed/" blog)
-       ("https://drewdevault.com/blog/index.xml" blog)
-       ("https://feeds.feedburner.com/mrmoneymustache" blog)
-       ("https://www.singlelunch.com/feed" blog)
-       ("https://www.overcomingbias.com/feed" blog)
-       ("https://protesilaos.com/codelog.xml" blog)
-       ("https://fasterthanli.me/index.xml", blog)
-
-       ;; Fora
-       ("https://www.lesswrong.com/feed.xml?view=curated-rss" forum)
-
-       ;; Comics
-       ("https://xkcd.com/rss.xml" comic)
-       ("https://www.monkeyuser.com/feed.xml" comic)
-       ))
-    :hook
-    (elfeed-search-mode . elfeed-update) ;; auto update when opened
-    )
-#+end_src
-
-* Internet
-#+begin_src emacs-lisp
-  (use-package eww
-    :custom
-    (browse-url-browser-function 'eww-browse-url)
-    :general
-    (leader-key-def
-      "w" 'eww)
-    )
-
-  (use-package simple-httpd
-    :straight t)
-#+end_src
 * Editing
 This section contains packages and settings for
 non-evil specific editing
@@ -478,12 +445,24 @@ non-evil-specific navigation
 
   (use-package deadgrep
     :straight t
+    :custom
+    (deadgrep-executable "~/.cargo/bin/rg")
+  
+
     :general
     (leader-key-def
       "d" 'deadgrep))
 
-  ;; shift+<arrow> to move between windows
-  (windmove-default-keybindings)
+  ;; Which function mode config taken from https://emacsredux.com/blog/2014/04/05/which-function-mode/
+  (which-function-mode)
+  (setq which-func-unknown "n/a")
+  (setq-default header-line-format
+                '((which-func-mode ("" which-func-format " "))))
+  (setq mode-line-misc-info
+        ;; We remove Which Function Mode from the mode line, because it's mostly
+        ;; invisible here anyway.
+        (assq-delete-all 'which-func-mode mode-line-misc-info))
+
 #+end_src
 
 * Formatting
@@ -505,13 +484,16 @@ Automatic formatting
 * Git
 Setup git integration
 #+begin_src emacs-lisp
+  (use-package transient
+    :straight t)
+
   (use-package magit
     :commands magit-status
     :straight t
     :init
     (use-package forge
       :straight t
-      :custom 
+      :custom
       (forge-add-default-bindings nil)
       :after magit)
     (use-package magit-todos
@@ -520,15 +502,131 @@ Setup git integration
       (magit-todos-mode 1)
 
       :after magit)
+
+    :config
+    (progn
+     ;; Use difftastic with magit
+     ;; taken from this blog post: https://tsdh.org/posts/2022-08-01-difftastic-diffing-with-magit.html
+     (defun th/magit--with-difftastic (buffer command)
+       "Run COMMAND with GIT_EXTERNAL_DIFF=difft then show result in BUFFER."
+       (let ((process-environment
+              (cons (concat "GIT_EXTERNAL_DIFF=difft --width="
+                            (number-to-string (frame-width)))
+                    process-environment)))
+         ;; Clear the result buffer (we might regenerate a diff, e.g., for
+         ;; the current changes in our working directory).
+         (with-current-buffer buffer
+           (setq buffer-read-only nil)
+           (erase-buffer))
+         ;; Now spawn a process calling the git COMMAND.
+         (make-process
+          :name (buffer-name buffer)
+          :buffer buffer
+          :command command
+          ;; Don't query for running processes when emacs is quit.
+          :noquery t
+          ;; Show the result buffer once the process has finished.
+          :sentinel (lambda (proc event)
+                      (when (eq (process-status proc) 'exit)
+                        (with-current-buffer (process-buffer proc)
+                          (goto-char (point-min))
+                          (ansi-color-apply-on-region (point-min) (point-max))
+                          (setq buffer-read-only t)
+                          (view-mode)
+                          (end-of-line)
+                          ;; difftastic diffs are usually 2-column side-by-side,
+                          ;; so ensure our window is wide enough.
+                          (let ((width (current-column)))
+                            (while (zerop (forward-line 1))
+                              (end-of-line)
+                              (setq width (max (current-column) width)))
+                            ;; Add column size of fringes
+                            (setq width (+ width
+                                           (fringe-columns 'left)
+                                           (fringe-columns 'right)))
+                            (goto-char (point-min))
+                            (pop-to-buffer
+                             (current-buffer)
+                             `(;; If the buffer is that wide that splitting the frame in
+                               ;; two side-by-side windows would result in less than
+                               ;; 80 columns left, ensure it's shown at the bottom.
+                               ,(when (> 80 (- (frame-width) width))
+                                  #'display-buffer-at-bottom)
+                               (window-width
+                                . ,(min width (frame-width))))))))))))
+
+     (defun th/magit-show-with-difftastic (rev)
+       "Show the result of \"git show REV\" with GIT_EXTERNAL_DIFF=difft."
+       (interactive
+        (list (or
+               ;; If REV is given, just use it.
+               (when (boundp 'rev) rev)
+               ;; If not invoked with prefix arg, try to guess the REV from
+               ;; point's position.
+               (and (not current-prefix-arg)
+                    (or (magit-thing-at-point 'git-revision t)
+                        (magit-branch-or-commit-at-point)))
+               ;; Otherwise, query the user.
+               (magit-read-branch-or-commit "Revision"))))
+       (if (not rev)
+           (error "No revision specified")
+         (th/magit--with-difftastic
+          (get-buffer-create (concat "*git show difftastic " rev "*"))
+          (list "git" "--no-pager" "show" "--ext-diff" rev))))
+
+     (defun th/magit-diff-with-difftastic (arg)
+       "Show the result of \"git diff ARG\" with GIT_EXTERNAL_DIFF=difft."
+       (interactive
+        (list (or
+               ;; If RANGE is given, just use it.
+               (when (boundp 'range) range)
+               ;; If prefix arg is given, query the user.
+               (and current-prefix-arg
+                    (magit-diff-read-range-or-commit "Range"))
+               ;; Otherwise, auto-guess based on position of point, e.g., based on
+               ;; if we are in the Staged or Unstaged section.
+               (pcase (magit-diff--dwim)
+                 ('unmerged (error "unmerged is not yet implemented"))
+                 ('unstaged nil)
+                 ('staged "--cached")
+                 (`(stash . ,value) (error "stash is not yet implemented"))
+                 (`(commit . ,value) (format "%s^..%s" value value))
+                 ((and range (pred stringp)) range)
+                 (_ (magit-diff-read-range-or-commit "Range/Commit"))))))
+       (let ((name (concat "*git diff difftastic"
+                           (if arg (concat " " arg) "")
+                           "*")))
+         (th/magit--with-difftastic
+          (get-buffer-create name)
+          `("git" "--no-pager" "diff" "--ext-diff" ,@(when arg (list arg))))))
+
+     (transient-define-prefix th/magit-aux-commands ()
+       "My personal auxiliary magit commands."
+       ["Auxiliary commands"
+        ("d" "Difftastic Diff (dwim)" th/magit-diff-with-difftastic)
+        ("s" "Difftastic Show" th/magit-show-with-difftastic)])
+
+     (transient-append-suffix 'magit-dispatch "!"
+       '("#" "My Magit Cmds" th/magit-aux-commands))
+
+     (define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands)
+     )
     :general
     (leader-key-def
       "g" 'magit-status)
     )
 
+  ;; needed for magit on mac
+  ;; (use-package sqlite3
+  ;;   :straight t)
+
   (use-package diff-hl
     :straight t
     :init
     (global-diff-hl-mode))
+
+  (use-package git-modes
+    :straight t)
 #+end_src
 
 * Project Management
@@ -542,6 +640,17 @@ Setup git integration
     (leader-key-def
       "p" 'projectile-command-map
       ))
+#+end_src
+
+* Development
+
+#+begin_src emacs-lisp
+  (use-package call-graph
+    :straight t
+    :custom
+    (cg-path-to-global "/opt/homebrew/bin/")
+
+    )
 #+end_src
 
 * Major Modes
@@ -570,6 +679,7 @@ Set up major modes for languages, etc
   (use-package just-mode
     :straight t)
 #+end_src
+
 * Checkers
 Set up checkers, i.e. syntax checking, spell checkers, etc
 #+begin_src emacs-lisp
@@ -604,7 +714,8 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
            (rustic-mode . lsp)
            (c-mode . lsp)
            (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :commands lsp
+    )
 
   (use-package lsp-ui
     :straight t
@@ -620,8 +731,6 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
 * GUI
 Set gui settings, theme, fonts, etc
 #+begin_src emacs-lisp
-  ;; set gnome titlebar to dark
-  (setq default-frame-alist '((undecorated . t)))
 
   ;; disabling useless ui elements
   (scroll-bar-mode -1)
@@ -650,7 +759,7 @@ Set gui settings, theme, fonts, etc
                   rust-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 1))))
 
-  ;; modeline
+  ;;modeline
   (use-package moody
     :straight t
     :init
@@ -720,3 +829,4 @@ Set gui settings, theme, fonts, etc
 # Local Variables: 
 # eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 
 # End:
+

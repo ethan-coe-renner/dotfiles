@@ -1,3 +1,27 @@
 [user]
-	email = e.coerenner@gmail.com
+	email = coerenner1@llnl.gov
 	name = Ethan Coe-Renner
+[credential]
+	helper = store
+[alias]
+	lg = log --oneline --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN <%ae>%Creset' --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+
+# Difftastic
+[diff]
+        external = difft
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+        difftool = true

@@ -24,18 +24,15 @@ ex() {
 }
 
 #=Tool configuration
-alias ls='exa --group-directories-first'
-alias ll='exa --long --grid --git --group-directories-first'
-alias la='exa -a --group-directories-first'
-alias lal='exa -a --long --grid --git --group-directories-first'
-alias cat='bat --theme ansi'
-alias grep='rg'
 alias cp='cp -i'
 alias mv='mv -i'
+alias ls='lsd --group-directories-first'
+alias ll='lsd --long --grid --git --group-directories-first'
+alias la='lsd -a --group-directories-first'
+alias lal='lsd -a --long --grid --git --group-directories-first'
+alias cat='bat --theme ansi'
+alias grep='rg'
+alias cd=z
 
 #=program shortcuts
-alias v='nvim'
-alias e='emacsclient -c'
-alias sn='shutdown now'
-alias rb='reboot'
 alias ch='chezmoi'
