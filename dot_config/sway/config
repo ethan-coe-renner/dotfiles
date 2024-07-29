@@ -9,14 +9,14 @@ set $right l
 set $term alacritty
 set $browser qutebrowser
 # Your preferred application launcher
-set $menu bemenu-run -b --fn 'Fira Code' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#252525' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
+set $menu bemenu-run --fn 'Fira Code' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#252525' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
 
 exec mako
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-set $wallpapers_path $HOME/Pictures/expanse-walls
+set $wallpapers_path $HOME/Pictures/wallpapers
 output * bg $(find $wallpapers_path -type f | shuf -n 1) Fill
 
 output HDMI-A-2 pos 1920 0 res 1920x1080
@@ -59,7 +59,6 @@ output eDP-1 pos 0 0 res 1920x1080
     bindsym XF86Favorites exec $menu
 
     bindsym $mod+x exec emacsclient -c
-
 
     bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
     bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
