@@ -27,9 +27,9 @@ ex() {
 alias cp='cp -i'
 alias mv='mv -i'
 alias ls='lsd --group-directories-first'
-alias ll='lsd --long --grid --git --group-directories-first'
-alias la='lsd -a --group-directories-first'
-alias lal='lsd -a --long --grid --git --group-directories-first'
+alias ll='lsd --long --git --group-directories-first'
+alias la='lsd -A --group-directories-first'
+alias lal='lsd -A --long --grid --git --group-directories-first'
 alias cat='bat --theme ansi'
 alias grep='rg'
 alias cd=z
