@@ -5,7 +5,7 @@ config.load_autoconfig(False)
 
 c.colors.webpage.darkmode.enabled = True
 
-c.url.default_page = "~/.config/qutebrowser/startpage/index.html"
+c.url.default_page = "~/.config/startpage/index.html"
 c.url.start_pages = c.url.default_page
 
 c.url.searchengines = {

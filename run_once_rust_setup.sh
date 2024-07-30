@@ -7,9 +7,4 @@ if [ ! -d "$HOME"/.cargo ]; then
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-cargo install bat
-cargo install lsd
-cargo install fd-find
-cargo install ripgrep
-cargo install starship
-cargo install zoxide
+cargo install bat lsd fd-find ripgrep starship zoxide just difft

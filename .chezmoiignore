@@ -5,3 +5,10 @@ README.*
 **/*.pdf
 .gitignore
 justfile
+
+{{ if ne .chezmoi.os "darwin" }}
+.qutebrowser/config.py
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/qutebrowser/config.py
+{{ end }}
