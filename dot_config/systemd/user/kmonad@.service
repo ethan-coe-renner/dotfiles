@@ -4,7 +4,7 @@ Description=kmonad keyboard config
 [Service]
 Restart=always
 RestartSec=3
-ExecStart=/home/ethan/.local/bin/kmonad /home/ethan/.config/kmonad/t480.kbd
+ExecStart=/home/ethan/.local/bin/kmonad %E/kmonad/%i.kbd
 Nice=-20
 
 [Install]
