@@ -24,3 +24,8 @@ foreground = "#ffffff"
 
 [font.normal]
 family = "Fira Code"
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }
+]
