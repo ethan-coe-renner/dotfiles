@@ -7,8 +7,8 @@ README.*
 justfile
 
 {{ if ne .chezmoi.os "darwin" }}
-.qutebrowser/config.py
+.qutebrowser/
 {{ end }}
 {{ if ne .chezmoi.os "linux" }}
-.config/qutebrowser/config.py
+.config/qutebrowser/
 {{ end }}

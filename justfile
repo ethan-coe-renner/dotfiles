@@ -1,2 +1,5 @@
-packages:
-	sudo dnf install zsh cmake difftastic
+dnf:
+ 	sudo dnf install zsh cmake
+
+brew:
+ 	brew install cmake
