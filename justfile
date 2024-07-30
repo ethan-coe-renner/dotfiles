@@ -1,5 +1,5 @@
 dnf:
- 	sudo dnf install zsh cmake
+ 	sudo dnf install zsh cmake difftastic
 
 brew:
- 	brew install cmake
+ 	brew install cmake difftastic
