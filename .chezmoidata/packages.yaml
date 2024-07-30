@@ -1,0 +1,24 @@
+packages:
+  darwin:
+    brews:
+    - cmake
+    - difftastic
+    - emacs
+    - git
+    casks:
+    - alacritty
+
+  linux:
+    dnf:
+      - zsh
+      - cmake
+      - difftastic
+      - emacs
+
+  cargo:
+    - bat
+    - lsd
+    - fd-find
+    - ripgrep
+    - starship
+    - zoxide
