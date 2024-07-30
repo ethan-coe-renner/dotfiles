@@ -5,6 +5,7 @@ README.*
 **/*.pdf
 .gitignore
 justfile
+bookmarks
 
 {{ if ne .chezmoi.os "darwin" }}
 .qutebrowser/
