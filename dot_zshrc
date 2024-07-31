@@ -16,8 +16,7 @@ bindkey '^ ' autosuggest-accept
 
 setopt HIST_IGNORE_SPACE
 
-export EDITOR="nvim"
-export PATH="$PATH:$HOME/.local/bin"
+source $HOME/.env
 source $HOME/.cargo/env
 source $HOME/.config/zsh/aliases.zsh 
 source $HOME/.config/zsh/antigen.zsh
