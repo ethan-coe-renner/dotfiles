@@ -1,5 +1,5 @@
 {{- $emailchoices := list "e.coerenner@gmail.com" "coerenner1@llnl.gov" -}}
-{{- $email := promptChoice "What is your email address" $emailchoices -}}
+{{- $email := promptChoice "What is your email address" $emailchoices "e.coerenner@gmail.com" -}}
 [edit]
 	command = "nvim"
 
