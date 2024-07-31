@@ -36,3 +36,4 @@ alias cd=z
 
 #=program shortcuts
 alias ch='chezmoi'
+alias v='nvim'
