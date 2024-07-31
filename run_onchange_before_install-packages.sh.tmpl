@@ -13,8 +13,8 @@ EOF
 
 {{ else if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf install \
-{{ range .packages.linux.dnf -}} 
+sudo dnf install --assumeyes \
+	 {{ range .packages.linux.dnf -}} 
 {{ . | quote }} \
 {{ end -}}
 {{ end -}}
