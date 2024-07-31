@@ -1,0 +1,8 @@
+image: fedora/latest
+packages:
+  - tar
+tasks:
+  - setup: |
+      sh -c "$(curl -fsLS get.chezmoi.io)"
+  - init: |
+      chezmoi init --apply https://git.sr.ht/~code-runner/dotfiles

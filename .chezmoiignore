@@ -1,6 +1,7 @@
 LICENSE
 README.*
 .gitignore
+.build.yml
 bookmarks
 
 {{ if ne .chezmoi.os "darwin" }}
