@@ -17,6 +17,7 @@ packages:
       - neovim
 
   cargo:
+    - rage
     - bat
     - lsd
     - fd-find
