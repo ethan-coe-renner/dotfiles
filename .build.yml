@@ -6,6 +6,6 @@ tasks:
   - setup: |
       sh -c "$(curl -fsLS get.chezmoi.io)"
   - init: |
-      chezmoi init --apply https://git.sr.ht/~code-runner/dotfiles
+      chezmoi init --no-tty --apply https://git.sr.ht/~code-runner/dotfiles <<< c
   - emacs: |
       emacs --debug-init --batch -u $USER
