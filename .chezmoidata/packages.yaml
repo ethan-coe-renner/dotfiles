@@ -3,7 +3,6 @@ packages:
     brews:
     - cmake
     - difftastic
-    - emacs
     - git
     casks:
     - alacritty
