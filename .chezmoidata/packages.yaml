@@ -4,6 +4,7 @@ packages:
     - cmake
     - difftastic
     - git
+    - neovim
     casks:
     - alacritty
 
@@ -13,6 +14,7 @@ packages:
       - cmake
       - difftastic
       - emacs
+      - neovim
 
   cargo:
     - bat
