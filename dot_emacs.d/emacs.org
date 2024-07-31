@@ -25,6 +25,10 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
   (setq custom-file "~/.emacs.d/custom.el")
   (if (file-exists-p custom-file)
       (load custom-file))
+
+  ;; set all themes as safe
+  (custom-set-variables
+   '(custom-safe-themes t))
 #+end_src
 
 * Theme
@@ -657,17 +661,6 @@ Setup git integration
     (leader-key-def
       "p" 'projectile-command-map
       ))
-#+end_src
-
-* Development
-
-#+begin_src emacs-lisp
-  (use-package call-graph
-    :straight t
-    :custom
-    (cg-path-to-global "/opt/homebrew/bin/")
-
-    )
 #+end_src
 
 * Major Modes
