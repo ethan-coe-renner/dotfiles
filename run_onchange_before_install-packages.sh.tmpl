@@ -23,7 +23,7 @@ sudo dnf install --assumeyes \
 # Install rust and some crates
 if [ ! -d "$HOME"/.cargo ]; then
 	# Install rust toolchain if not already installed
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
 
 cargo install \
