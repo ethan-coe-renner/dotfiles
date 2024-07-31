@@ -24,6 +24,7 @@ sudo dnf install --assumeyes \
 if [ ! -d "$HOME"/.cargo ]; then
 	# Install rust toolchain if not already installed
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	source "$HOME"/.cargo/env
 fi
 
 cargo install \
