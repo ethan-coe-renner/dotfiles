@@ -5,6 +5,7 @@ packages:
     - difftastic
     - git
     - neovim
+    - hut
     casks:
     - alacritty
 
@@ -15,6 +16,7 @@ packages:
       - difftastic
       - emacs
       - neovim
+      - hut
 
   cargo:
     - rage
