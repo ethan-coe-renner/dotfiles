@@ -1,22 +1,22 @@
 packages:
   darwin:
     brews:
-    - cmake
-    - difftastic
-    - git
-    - neovim
-    - hut
+      - cmake
+      - difftastic
+      - git
+      - hut
+      - neovim
     casks:
-    - kitty
+      - kitty
 
   linux:
     dnf:
-      - zsh
       - cmake
       - difftastic
       - emacs
-      - neovim
       - hut
+      - neovim
+      - zsh
 
   cargo:
     locked:
@@ -25,6 +25,6 @@ packages:
       - zoxide
     unlocked:
       - eza
-      - rage
       - fd-find
+      - rage
       - ripgrep
