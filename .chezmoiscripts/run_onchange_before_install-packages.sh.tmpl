@@ -27,7 +27,7 @@ if [ ! -d "$HOME"/.cargo ]; then
 	source "$HOME"/.cargo/env
 fi
 
-cargo install \
+cargo install --locked \
 {{ range .packages.cargo -}} 
 {{ . | quote }} \
 {{ end -}}
