@@ -4,6 +4,7 @@ README.*
 .build.yml
 bookmarks
 .emacs.d/emacs.org
+ci/
 
 {{ if ne .chezmoi.os "darwin" }}
 .qutebrowser/

@@ -10,4 +10,4 @@ tasks:
   # - emacs: |
   #     emacs --debug-init --batch -u $USER
   - zsh: |
-      zsh
+      $(chezmoi source-path)/ci/test_zsh.sh
