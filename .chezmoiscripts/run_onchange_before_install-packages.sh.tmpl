@@ -14,11 +14,9 @@ EOF
 {{ else if eq .chezmoi.os "linux" }}
 {{   if eq .chezmoi.osRelease.id "fedora" }}
 sudo dnf install --assumeyes \
-	 {{ range .packages.linux.dnf -}} 
-{{ . | quote }} \
-{{ end -}}
-{{ end -}}
-{{ end -}}
+	{{ range .packages.linux.dnf -}} {{ . | quote }} {{ end}}
+{{ end}}
+{{ end}}
 
 # Install rust and some crates
 if [ ! -d "$HOME"/.cargo ]; then
@@ -28,14 +26,7 @@ if [ ! -d "$HOME"/.cargo ]; then
 fi
 
 cargo install \
-{{ range .packages.cargo.unlocked -}} 
-{{ . | quote }} \
-{{ end -}}
+	{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end}}
 
 cargo install --locked \
-{{ range .packages.cargo.locked -}} 
-{{ . | quote }} \
-{{ end -}}
-
-
-
+	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end}}
