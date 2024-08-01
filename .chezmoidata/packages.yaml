@@ -7,7 +7,7 @@ packages:
     - neovim
     - hut
     casks:
-    - alacritty
+    - kitty
 
   linux:
     dnf:
