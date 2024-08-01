@@ -1,10 +1,9 @@
 #!/bin/zsh
 
-# Exit immediately if any command fails
-set -e
-
-# Enable extended debugging to catch warnings and errors
-set -x
+# e: exit on error
+# x: enable extended debugging to catch warnings and errors
+# u: exit on unset variables
+set -exu
 
 # Check configuration
 source ~/.zshrc
