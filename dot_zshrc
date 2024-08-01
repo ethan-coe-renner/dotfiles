@@ -12,6 +12,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+
+thisisnota command
+
 bindkey '^ ' autosuggest-accept
 
 setopt HIST_IGNORE_SPACE
