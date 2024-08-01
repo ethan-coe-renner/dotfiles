@@ -3,7 +3,8 @@
 # e: exit on error
 # x: enable extended debugging to catch warnings and errors
 # u: exit on unset variables
-set -exu
+# o: list set options
+set -exuo
 
 # Check configuration
 source ~/.zshrc
