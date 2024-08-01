@@ -1,5 +1,4 @@
 image: fedora/latest
-shell: true
 packages:
   - tar
 tasks:
