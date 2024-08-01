@@ -2,7 +2,7 @@ image: fedora/latest
 packages:
   - tar
 tasks:
-  - setup: |
+  - install-chezmoi: |
       sh -c "$(curl -fsLS get.chezmoi.io)"
   - init: |
       chezmoi init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
