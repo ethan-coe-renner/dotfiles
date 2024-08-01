@@ -19,10 +19,12 @@ packages:
       - hut
 
   cargo:
-    - rage
-    - bat
-    - eza
-    - fd-find
-    - ripgrep
-    - starship
-    - zoxide
+    locked:
+      - bat
+      - starship
+      - zoxide
+    unlocked:
+      - eza
+      - rage
+      - fd-find
+      - ripgrep
