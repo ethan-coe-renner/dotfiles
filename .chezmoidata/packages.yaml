@@ -27,5 +27,4 @@ packages:
     unlocked:
       - eza
       - fd-find
-      - rage
       - ripgrep
