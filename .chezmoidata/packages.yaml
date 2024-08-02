@@ -15,6 +15,7 @@ packages:
       - difftastic
       - emacs
       - hut
+      - kitty
       - neovim
       - zsh
 
