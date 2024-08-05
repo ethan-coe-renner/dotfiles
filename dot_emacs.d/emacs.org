@@ -151,6 +151,44 @@ Keybindings should go with their respective packages.
 
 #+end_src
 
+* Org Mode
+
+#+begin_src emacs-lisp
+  (use-package org
+    :defer t
+    :custom
+    (org-confirm-babel-evaluate nil)
+    (org-src-window-setup 'current-window)
+    (org-M-RET-may-split-line nil)
+    (org-image-actual-width 400)
+    (org-export-with-author "Ethan Coe-Renner")
+
+    (org-default-notes-file (concat org-directory "/notes.org"))
+
+    (org-capture-bookmark nil)
+    (org-todo-keywords
+     '((sequence "TODO" "INPROGRESS" "|" "DONE")))
+
+    (org-log-repeat nil)
+
+
+    :general
+    ("C-c c" 'org-capture)
+
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       ))
+
+    (require 'org-tempo)
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+
+    :hook
+    (org-mode . org-indent-mode)
+    (org-capture-mode . evil-insert-state)
+    )
+#+end_src
 * Dired
 #+begin_src emacs-lisp
   (use-package all-the-icons
@@ -287,43 +325,6 @@ Keybindings should go with their respective packages.
     (embark-collect-mode . consult-preview-at-point-mode))
 #+end_src
 
-* Org Mode
-#+begin_src emacs-lisp
-  (use-package org
-    :defer t
-    :custom
-    (org-confirm-babel-evaluate nil)
-    (org-src-window-setup 'current-window)
-    (org-M-RET-may-split-line nil)
-    (org-image-actual-width 400)
-    (org-export-with-author "Ethan Coe-Renner")
-
-    (org-default-notes-file (concat org-directory "/notes.org"))
-
-    (org-capture-bookmark nil)
-    (org-todo-keywords
-     '((sequence "TODO" "INPROGRESS" "|" "DONE")))
-
-    (org-log-repeat nil)
-
-
-    :general
-    ("C-c c" 'org-capture)
-
-    :config
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       ))
-
-    (require 'org-tempo)
-    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-
-    :hook
-    (org-mode . org-indent-mode)
-    (org-capture-mode . evil-insert-state)
-    )
-#+end_src
 * Literate Calc
 #+begin_src emacs-lisp
   (use-package literate-calc-mode
@@ -834,6 +835,28 @@ Set gui settings, theme, fonts, etc
     (add-hook 'modus-themes-after-load-theme-hook #'my-pdf-tools-themes-toggle)
     )
 
+#+end_src
+
+* RSS
+#+begin_src emacs-lisp
+  (use-package elfeed
+    :straight t
+    :custom
+    (elfeed-feeds '(
+                    ;; Blogs
+                    "http://nullprogram.com/feed/"
+                    "https://www.astralcodexten.com/feed"
+                    "https://planet.emacslife.com/atom.xml"
+                    "https://feeds.feedburner.com/mrmoneymustache"
+  
+                    ;; Comics
+                    "https://xkcd.com/atom.xml"
+                    ))
+    :general
+    (leader-key-def
+      "r" 'elfeed
+      )
+    )
 #+end_src
 
 # Local Variables: 
