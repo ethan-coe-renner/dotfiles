@@ -14,6 +14,8 @@ compinit
 
 bindkey '^ ' autosuggest-accept
 
+[[ $(tput colors) == 8 ]] && export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
+
 setopt HIST_IGNORE_SPACE
 
 source $HOME/.env
