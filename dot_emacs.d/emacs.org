@@ -844,17 +844,19 @@ Set gui settings, theme, fonts, etc
     :custom
     (elfeed-feeds '(
                     ;; Blogs
-                    "http://nullprogram.com/feed/"
-                    "https://www.astralcodexten.com/feed"
+                    ("http://nullprogram.com/feed/" blog)
+                    ("https://www.astralcodexten.com/feed" blog)
+                    ("https://feeds.feedburner.com/mrmoneymustache" blog)
+
+                    ;; Multi feeds
                     "https://planet.emacslife.com/atom.xml"
-                    "https://feeds.feedburner.com/mrmoneymustache"
-  
+
                     ;; Comics
-                    "https://xkcd.com/atom.xml"
+                    ("https://xkcd.com/atom.xml" comic)
                     ))
     :general
     (leader-key-def
-      "r" 'elfeed
+      "n" 'elfeed
       )
     )
 #+end_src
