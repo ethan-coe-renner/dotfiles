@@ -2,11 +2,11 @@
 
 :root {
     --color-bg: #000000;
-    --color-bg-light: #595959;
-    --color-fg: #000000;
+    --color-bg-light: #4C566A;
+    --color-fg: #A3BE8C;
 
-    --color-link-hover: #44bc44;
-    --color-link: #00d3d0;
+    --color-link-hover: #A3BE8C;
+    --color-link: #5E81AC;
 
     --font-family: "Source Code Pro", monospace;
 }
