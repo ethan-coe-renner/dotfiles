@@ -23,6 +23,8 @@ ex() {
         fi
 }
 
+alias maketags="find . -name '*.[chCH]' -print | etags -"
+
 #=Tool configuration
 alias cp='cp -i'
 alias mv='mv -i'
