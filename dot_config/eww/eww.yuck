@@ -4,7 +4,7 @@
 (defwindow clock
 		   :monitor 1
 		   :geometry (geometry :x "2%"
-							   :y "3.5%"
+							   :y "4%"
 							   :height "100px"
 							   :anchor "top left")
 		   :stacking "bg"
