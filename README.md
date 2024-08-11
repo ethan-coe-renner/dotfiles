@@ -14,3 +14,4 @@ This will do the following:
 - Clone this repository
 - Deploy dotfiles to targets
 - Install packages (listed [here](./.chezmoidata/packages.yaml))
+- Enables included systemd services
