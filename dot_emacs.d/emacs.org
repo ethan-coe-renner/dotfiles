@@ -847,6 +847,8 @@ Set gui settings, theme, fonts, etc
                     ("http://nullprogram.com/feed/" blog)
                     ("https://www.astralcodexten.com/feed" blog)
                     ("https://feeds.feedburner.com/mrmoneymustache" blog)
+                    ("https://sourcehut.org/blog/index.xml" blog)
+                    ("https://drewdevault.com/blog/index.xml" blog)
 
                     ;; Multi feeds
                     "https://planet.emacslife.com/atom.xml"
