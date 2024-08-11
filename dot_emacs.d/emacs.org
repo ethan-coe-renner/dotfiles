@@ -634,14 +634,16 @@ Setup git integration
 * Project Management
 #+begin_src emacs-lisp
   (use-package projectile
-    :straight t
-    :custom
-    (projectile-switch-project-action #'projectile-dired)
-    :config (projectile-mode)
-    :general
-    (leader-key-def
-      "p" 'projectile-command-map
-      ))
+	:straight t
+	:init
+	(projectile-mode +1)
+
+	:custom
+	(projectile-switch-project-action #'projectile-dired)
+	:general
+	(leader-key-def
+	  "p" 'projectile-command-map
+	  ))
 #+end_src
 
 * Major Modes
