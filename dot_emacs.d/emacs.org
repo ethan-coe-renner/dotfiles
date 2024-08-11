@@ -158,26 +158,6 @@ Keybindings should go with their respective packages.
 #+begin_src emacs-lisp
   (use-package all-the-icons
 	:straight t)
-
-  (use-package dired-preview
-	:straight t
-	:custom
-	(dired-preview-delay 0.7)
-	(dired-preview-ignored-extensions-regexp
-	 (concat "\\."
-			 "\\(gz\\|"
-			 "zst\\|"
-			 "tar\\|"
-			 "xz\\|"
-			 "rar\\|"
-			 "zip\\|"
-			 "iso\\|"
-			 "epub"
-			 "\\)"))
-	:general
-	(:keymaps 'dired-mode-map
-			  "C-c p" 'dired-preview-mode)
-	)
 #+end_src
 
 * Eshell
