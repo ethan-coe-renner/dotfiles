@@ -11,14 +11,16 @@ packages:
 
   linux:
     dnf:
-      - cmake
       - difftastic
       - emacs
       - hut
       - kitty
       - neovim
       - zsh
+      - stack
       # dependencies
+      - cmake
+      - gcc-c++
       ## EWW
       - glibc-devel
       - glib2-devel
@@ -30,7 +32,6 @@ packages:
       - gdk-pixbuf2-devel
       - libdbusmenu-gtk3-devel
       - gtk-layer-shell-devel
-      
 
   cargo:
     locked:

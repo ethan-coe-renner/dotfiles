@@ -45,3 +45,11 @@ if [ ! -d "$LOCAL_REPOS/eww" ]; then
 	cargo build --release --no-default-features --features=wayland
 	cp "$LOCAL_REPOS/eww/target/release/eww" "$LOCAL_BIN"
 fi
+
+## KMonad
+if [ ! -d "$LOCAL_REPOS/kmonad" ]; then
+	cd $LOCAL_REPOS
+	git clone https://github.com/kmonad/kmonad
+	cd kmonad
+	stack install
+fi
