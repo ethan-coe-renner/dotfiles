@@ -26,20 +26,6 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
   (setq custom-file "~/.emacs.d/custom.el")
   (if (file-exists-p custom-file)
       (load custom-file))
-
-  ;; set all themes as safe
-  (custom-set-variables
-   '(custom-safe-themes t))
-#+end_src
-
-* Theme
-#+begin_src emacs-lisp
-  (use-package ef-themes
-	:straight t
-
-	:config
-	(ef-themes-select 'ef-bio)
-	)
 #+end_src
 
 * Dashboard
@@ -869,6 +855,23 @@ Set gui settings, theme, fonts, etc
       "n" 'elfeed
       )
     )
+#+end_src
+
+* Theme
+#+begin_src emacs-lisp
+  (use-package ef-themes
+	:straight t
+	:custom
+	(ef-themes-to-toggle '(ef-bio ef-spring))
+	:init
+	;; Disable all other themes to avoid awkward blending:
+	(mapc #'disable-theme custom-enabled-themes)
+
+	(ef-themes-select 'ef-bio)
+
+	:general
+	("C-c t" 'ef-themes-toggle)
+	)
 #+end_src
 
 # Local Variables: 
