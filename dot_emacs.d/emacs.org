@@ -677,6 +677,9 @@ Set up major modes for languages, etc
   (use-package haskell-mode
     :straight t)
 
+  (use-package yuck-mode
+    :straight t)
+
   (use-package just-mode
     :straight t)
 #+end_src
