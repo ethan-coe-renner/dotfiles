@@ -32,15 +32,9 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
 #+begin_src emacs-lisp
   (use-package dashboard
 	:straight t
-	:init
-	(use-package emacs
-	  :custom
-	  (recentf-max-menu-items 25)
-	  (recentf-max-saved-items 25)
-	  :config
-	  (recentf-mode 1)
-	  )
 	:custom
+	(recentf-max-menu-items 25)
+	(recentf-max-saved-items 25)
 	(initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 	(dashboard-startup-banner 'official)
 	(dashboard-set-heading-icons t)
@@ -50,6 +44,7 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
 	(dashboard-items '((recents . 5)(bookmarks . 10)))
 
 	:config
+	(recentf-mode 1)
 	(dashboard-setup-startup-hook))
 #+end_src
 
@@ -163,7 +158,7 @@ Keybindings should go with their respective packages.
 * Eshell
 #+begin_src emacs-lisp
   (use-package eshell
-	:init
+	:config
 	(defun eshell-other-window ()
 	  "Open a `eshell' in a new window."
 	  (interactive)
@@ -184,7 +179,7 @@ Keybindings should go with their respective packages.
     :custom
     (vertico-count 20)
     (vertico-resize t)
-    :init
+    :config
     (vertico-mode)
     )
 
@@ -204,7 +199,7 @@ Keybindings should go with their respective packages.
   (use-package savehist
     :straight t
     :after vertico
-    :init
+    :config
     (savehist-mode))
 
   (use-package orderless
@@ -269,7 +264,7 @@ Keybindings should go with their respective packages.
     :after vertico
     :custom
     (marginalia-annotators '(marginalia-annotators-heavy))
-    :init
+    :config
     (marginalia-mode)
     )
 #+end_src
@@ -315,105 +310,104 @@ Keybindings should go with their respective packages.
 setup evil and related packages
 #+begin_src emacs-lisp
   (use-package evil
-    :straight t
-    :init
-    (global-visual-line-mode 1)
+	:straight t
+	:config
+	;; (global-visual-line-mode 1) TODO: fully remove this and other keybinds related
 
-    (use-package undo-tree :straight t
-      :custom
-      (evil-undo-system 'undo-tree)
-      (undo-tree-visualizer-diff t)
-      (undo-tree-visualizer-timestamps t)
-      (undo-tree-auto-save-history nil)
-      :init
-      (global-undo-tree-mode)
-      )
-    (use-package evil-collection
-      :straight t
-      :after evil
-      :config
-      (evil-collection-init))
+	(use-package undo-tree :straight t
+	  :custom
+	  (evil-undo-system 'undo-tree)
+	  (undo-tree-visualizer-diff t)
+	  (undo-tree-visualizer-timestamps t)
+	  (undo-tree-auto-save-history nil)
+	  :config
+	  (global-undo-tree-mode)
+	  )
+	(use-package evil-collection
+	  :straight t
+	  :after evil
+	  :config
+	  (evil-collection-init))
 
-    (use-package evil-goggles
-      :straight t
-      :config
-      (evil-goggles-mode 1))
+	(use-package evil-goggles
+	  :straight t
+	  :config
+	  (evil-goggles-mode 1))
 
-    (use-package evil-commentary
-      :straight t
-      :config
-      (evil-commentary-mode 1))
+	(use-package evil-commentary
+	  :straight t
+	  :config
+	  (evil-commentary-mode 1))
 
-    (use-package evil-snipe
-      :straight t
-      :init
-      (evil-snipe-mode 1)
-      (evil-snipe-override-mode 1)
-      :custom
-      (evil-snipe-scope 'visible)
-      (evil-snipe-repeat-scope 'visible)
-      :hook (magit-mode . turn-off-evil-snipe-override-mode)
-      )
+	(use-package evil-snipe
+	  :straight t
+	  :config
+	  (evil-snipe-mode 1)
+	  (evil-snipe-override-mode 1)
+	  :custom
+	  (evil-snipe-scope 'visible)
+	  (evil-snipe-repeat-scope 'visible)
+	  :hook (magit-mode . turn-off-evil-snipe-override-mode)
+	  )
 
-    (use-package evil-multiedit
-      :straight t
-      :general
-      (:states '(normal visual)
-               "R" 'evil-multiedit-match-all
-               "M-d" 'evil-multiedit-match-and-next
-               "M-D" 'evil-multiedit-match-and-prev
-               )
-      )
-    (use-package evil-surround
-      :straight t
-      :config
-      (global-evil-surround-mode 1))
+	(use-package evil-multiedit
+	  :straight t
+	  :general
+	  (:states '(normal visual)
+			   "R" 'evil-multiedit-match-all
+			   "M-d" 'evil-multiedit-match-and-next
+			   "M-D" 'evil-multiedit-match-and-prev
+			   )
+	  )
+	(use-package evil-surround
+	  :straight t
+	  :config
+	  (global-evil-surround-mode 1))
 
-    :custom
-    (evil-want-C-u-scroll t)
-    (evil-respect-visual-line-mode t)
-    (evil-want-keybinding nil)
+	(evil-mode 1)
+	(general-def
+	  "C-M-u" 'universal-argument ;; doesn't work with :general for some reason
+	  )
 
-    :config
-    (evil-mode 1)
-    (general-def
-      "C-M-u" 'universal-argument ;; doesn't work with :general for some reason
-      )
+	;; This would make j and k operate on visual lines (wrapped lines), this kinda messes up macros (when the partial execution of a macro causes a wrap, subsequent j/k will do fundamentally different things)
+	;; (general-def
+	;;   :states 'motion
+	;;   "j" 'evil-next-visual-line
+	;;   "k" 'evil-previous-visual-line)
+	:custom
+	(evil-want-C-u-scroll t)
+	(evil-respect-visual-line-mode t)
+	(evil-want-keybinding nil)
 
-    ;; This would make j and k operate on visual lines (wrapped lines), this kinda messes up macros (when the partial execution of a macro causes a wrap, subsequent j/k will do fundamentally different things)
-    ;; (general-def
-    ;;   :states 'motion
-    ;;   "j" 'evil-next-visual-line
-    ;;   "k" 'evil-previous-visual-line)
-    )
+	)
 #+end_src
 
 * Help
 #+begin_src emacs-lisp
   (use-package which-key
-    :defer t
-    :straight t
-    :init (which-key-mode)
-    :custom
-    (which-key-idle-delay 0.3))
+	:straight t
+	:config
+	(which-key-mode)
+	:custom
+	(which-key-idle-delay 0.3))
 
   (use-package helpful
-    :straight t
-    :general
-    (
-     "C-h f" 'helpful-callable
-     "C-h v" 'helpful-variable
-     "C-h k" 'helpful-key
-     )
-    (leader-key-def
-      "h" 'helpful-at-point)
-    )
+	:straight t
+	:general
+	(
+	 "C-h f" 'helpful-callable
+	 "C-h v" 'helpful-variable
+	 "C-h k" 'helpful-key
+	 )
+	(leader-key-def
+	  "h" 'helpful-at-point)
+	)
 
   (use-package define-word
-    :straight t
-    :general
-    ("C-h C-w" 'define-word-at-point)
-    )
+	:straight t
+	:general
+	("C-h C-w" 'define-word-at-point)
+	)
 #+end_src
 
 * Editing
@@ -470,7 +464,7 @@ Automatic formatting
 #+begin_src emacs-lisp
   (use-package aggressive-indent
     :straight t
-    :init
+    :config
     (global-aggressive-indent-mode 1)
     )
 
@@ -485,157 +479,44 @@ Automatic formatting
 Setup git integration
 #+begin_src emacs-lisp
   (use-package transient
-    :straight t)
+	:straight t)
 
   (use-package magit
-    :commands magit-status
-    :straight t
-    :init
-    (use-package forge
-      :straight t
-      :custom
-      (forge-add-default-bindings nil)
-      :after magit)
-    (use-package magit-todos
-      :straight t
-      :init
-      (magit-todos-mode 1)
+	:commands magit-status
+	:straight t
+	:config
+	(use-package magit-todos
+	  :straight t
+	  :config
+	  (magit-todos-mode 1)
 
-      :after magit)
+	  :after magit)
 
-    :config
-    (progn
-      ;; Use difftastic with magit
-      ;; taken from this blog post: https://tsdh.org/posts/2022-08-01-difftastic-diffing-with-magit.html
-      (defun th/magit--with-difftastic (buffer command)
-        "Run COMMAND with GIT_EXTERNAL_DIFF=difft then show result in BUFFER."
-        (let ((process-environment
-               (cons (concat "GIT_EXTERNAL_DIFF=difft --width="
-                             (number-to-string (frame-width)))
-                     process-environment)))
-          ;; Clear the result buffer (we might regenerate a diff, e.g., for
-          ;; the current changes in our working directory).
-          (with-current-buffer buffer
-            (setq buffer-read-only nil)
-            (erase-buffer))
-          ;; Now spawn a process calling the git COMMAND.
-          (make-process
-           :name (buffer-name buffer)
-           :buffer buffer
-           :command command
-           ;; Don't query for running processes when emacs is quit.
-           :noquery t
-           ;; Show the result buffer once the process has finished.
-           :sentinel (lambda (proc event)
-                       (when (eq (process-status proc) 'exit)
-                         (with-current-buffer (process-buffer proc)
-                           (goto-char (point-min))
-                           (ansi-color-apply-on-region (point-min) (point-max))
-                           (setq buffer-read-only t)
-                           (view-mode)
-                           (end-of-line)
-                           ;; difftastic diffs are usually 2-column side-by-side,
-                           ;; so ensure our window is wide enough.
-                           (let ((width (current-column)))
-                             (while (zerop (forward-line 1))
-                               (end-of-line)
-                               (setq width (max (current-column) width)))
-                             ;; Add column size of fringes
-                             (setq width (+ width
-                                            (fringe-columns 'left)
-                                            (fringe-columns 'right)))
-                             (goto-char (point-min))
-                             (pop-to-buffer
-                              (current-buffer)
-                              `(;; If the buffer is that wide that splitting the frame in
-                                ;; two side-by-side windows would result in less than
-                                ;; 80 columns left, ensure it's shown at the bottom.
-                                ,(when (> 80 (- (frame-width) width))
-                                   #'display-buffer-at-bottom)
-                                (window-width
-                                 . ,(min width (frame-width))))))))))))
-
-      (defun th/magit-show-with-difftastic (rev)
-        "Show the result of \"git show REV\" with GIT_EXTERNAL_DIFF=difft."
-        (interactive
-         (list (or
-                ;; If REV is given, just use it.
-                (when (boundp 'rev) rev)
-                ;; If not invoked with prefix arg, try to guess the REV from
-                ;; point's position.
-                (and (not current-prefix-arg)
-                     (or (magit-thing-at-point 'git-revision t)
-                         (magit-branch-or-commit-at-point)))
-                ;; Otherwise, query the user.
-                (magit-read-branch-or-commit "Revision"))))
-        (if (not rev)
-            (error "No revision specified")
-          (th/magit--with-difftastic
-           (get-buffer-create (concat "*git show difftastic " rev "*"))
-           (list "git" "--no-pager" "show" "--ext-diff" rev))))
-
-      (defun th/magit-diff-with-difftastic (arg)
-        "Show the result of \"git diff ARG\" with GIT_EXTERNAL_DIFF=difft."
-        (interactive
-         (list (or
-                ;; If RANGE is given, just use it.
-                (when (boundp 'range) range)
-                ;; If prefix arg is given, query the user.
-                (and current-prefix-arg
-                     (magit-diff-read-range-or-commit "Range"))
-                ;; Otherwise, auto-guess based on position of point, e.g., based on
-                ;; if we are in the Staged or Unstaged section.
-                (pcase (magit-diff--dwim)
-                  ('unmerged (error "unmerged is not yet implemented"))
-                  ('unstaged nil)
-                  ('staged "--cached")
-                  (`(stash . ,value) (error "stash is not yet implemented"))
-                  (`(commit . ,value) (format "%s^..%s" value value))
-                  ((and range (pred stringp)) range)
-                  (_ (magit-diff-read-range-or-commit "Range/Commit"))))))
-        (let ((name (concat "*git diff difftastic"
-                            (if arg (concat " " arg) "")
-                            "*")))
-          (th/magit--with-difftastic
-           (get-buffer-create name)
-           `("git" "--no-pager" "diff" "--ext-diff" ,@(when arg (list arg))))))
-
-      (transient-define-prefix th/magit-aux-commands ()
-        "My personal auxiliary magit commands."
-        ["Auxiliary commands"
-         ("d" "Difftastic Diff (dwim)" th/magit-diff-with-difftastic)
-         ("s" "Difftastic Show" th/magit-show-with-difftastic)])
-
-      (transient-append-suffix 'magit-dispatch "!"
-        '("#" "My Magit Cmds" th/magit-aux-commands))
-
-      (define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands)
-      )
-    :general
-    (leader-key-def
-      "g" 'magit-status)
-    )
-
-  ;; needed for magit on mac
-  (when (eq system-type 'darwin)
-    (use-package sqlite3
-      :straight t)
-    )
+	(when (eq system-type 'darwin)
+	  ;; needed for magit on mac
+	  (use-package sqlite3
+		:straight t)
+	  )
+	:general
+	(leader-key-def
+	  "g" 'magit-status)
+	)
 
   (use-package diff-hl
-    :straight t
-    :init
-    (global-diff-hl-mode))
+	:straight t
+	:config
+	(global-diff-hl-mode))
 
   (use-package git-modes
-    :straight t)
+	:straight t)
 #+end_src
 
 * Project Management
 #+begin_src emacs-lisp
   (use-package projectile
 	:straight t
-	:init
+	:demand t
+	:config
 	(projectile-mode +1)
 
 	:custom
@@ -683,8 +564,7 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
     :straight t
     :custom
     (flycheck-disabled-checkers '(haskell-stack-ghc))
-    :defer t
-    :init (global-flycheck-mode)
+    :config (global-flycheck-mode)
     )
 #+end_src
 * Completion
@@ -726,13 +606,13 @@ Set gui settings, theme, fonts, etc
 			org-agenda-mode-hook
 			proced-mode-hook
 			tabulated-list-mode-hook))
-	:init
+	:config
 	(lin-global-mode 1))
 
   (use-package pulsar
 	:straight t
 	;; TODO: customize which functions trigger pulsing
-	:init
+	:config
 	(pulsar-global-mode 1))
 
   ;; font
@@ -747,19 +627,20 @@ Set gui settings, theme, fonts, etc
 	(add-hook mode (lambda () (setq display-line-numbers 'relative))))
 
   ;;modeline
+  (use-package rich-minority
+	:straight t
+	:custom
+	(rm-blacklist "")
+	:config
+	(rich-minority-mode 1)
+	)
+
   (use-package moody
 	:straight t
-	:init
-	(use-package rich-minority
-	  :straight t
-	  :custom
-	  (rm-blacklist "")
-	  :init
-	  (rich-minority-mode 1)
-	  )
 	:custom
 	(x-underline-at-descent-line t)
 	:config
+	(moody-replace-mode-line-front-space)
 	(moody-replace-mode-line-buffer-identification)
 	(moody-replace-vc-mode)
 	(moody-replace-eldoc-minibuffer-message-function)
@@ -773,44 +654,6 @@ Set gui settings, theme, fonts, etc
 	:hook
 	(prog-mode . hl-todo-mode)
 	)
-#+end_src
-* PDF
-#+begin_src emacs-lisp
-  (use-package pdf-tools
-    :straight t
-    :init
-    (pdf-loader-install)
-
-    ;; set up background with modus themes
-    (defun my-pdf-tools-backdrop ()
-      (face-remap-add-relative
-       'default
-       `(:background ,(modus-themes-color 'bg-alt))))
-
-    (add-hook 'pdf-tools-enabled-hook #'my-pdf-tools-backdrop)
-    (defun my-pdf-tools-backdrop ()
-      (face-remap-add-relative
-       'default
-       `(:background ,(modus-themes-color 'bg-alt))))
-
-    (defun my-pdf-tools-midnight-mode-toggle ()
-      (when (derived-mode-p 'pdf-view-mode)
-        (if (eq (car custom-enabled-themes) 'modus-vivendi)
-            (pdf-view-midnight-minor-mode 1)
-          (pdf-view-midnight-minor-mode -1))
-        (my-pdf-tools-backdrop)))
-
-    (defun my-pdf-tools-themes-toggle ()
-      (mapc
-       (lambda (buf)
-         (with-current-buffer buf
-           (my-pdf-tools-midnight-mode-toggle)))
-       (buffer-list)))
-
-    (add-hook 'pdf-tools-enabled-hook #'my-pdf-tools-midnight-mode-toggle)
-    (add-hook 'modus-themes-after-load-theme-hook #'my-pdf-tools-themes-toggle)
-    )
-
 #+end_src
 
 * RSS
