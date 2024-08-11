@@ -2,10 +2,8 @@ image: fedora/latest
 packages:
   - tar
 tasks:
-  - install-chezmoi: |
-      sh -c "$(curl -fsLS get.chezmoi.io)"
-  - init: |
-      chezmoi init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
+  - chezmoi-init: |
+      sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
   - emacs: |
       emacs --debug-init --batch -u $USER
   - zsh: |
