@@ -737,54 +737,71 @@ Set gui settings, theme, fonts, etc
   (tool-bar-mode -1)
   (setq inhibit-startup-screen t)
 
-  (global-hl-line-mode)
+  (use-package lin
+	:straight t
+	:custom
+	(lin-face 'lin-green)
+	(setq lin-mode-hooks
+		  '(
+			dired-mode-hook
+			elfeed-search-mode-hook
+			git-rebase-mode-hook
+			grep-mode-hook
+			ibuffer-mode-hook
+			ilist-mode-hook
+			log-view-mode-hook
+			magit-log-mode-hook
+			occur-mode-hook
+			org-agenda-mode-hook
+			proced-mode-hook
+			tabulated-list-mode-hook))
+	:init
+	(lin-global-mode 1))
+
   (use-package pulsar
-    :straight t
-    ;; TODO: customize which functions trigger pulsing
-    :init
-    (pulsar-global-mode 1))
-
-
+	:straight t
+	;; TODO: customize which functions trigger pulsing
+	:init
+	(pulsar-global-mode 1))
 
   ;; font
   (set-face-attribute 'default nil :font "Fira Code" :height 120)
   (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 120)
 
   ;; line numbers
-  (setq display-line-numbers 'relative)
   (dolist (mode '(text-mode-hook
-                  prog-mode-hook
-                  conf-mode-hook
-                  rust-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 1))))
+				  prog-mode-hook
+				  conf-mode-hook
+				  rust-mode-hook))
+	(add-hook mode (lambda () (setq display-line-numbers 'relative))))
 
   ;;modeline
   (use-package moody
-    :straight t
-    :init
-    (use-package rich-minority
-      :straight t
-      :custom
-      (rm-blacklist "")
-      :init
-      (rich-minority-mode 1)
-      )
-    :custom
-    (x-underline-at-descent-line t)
-    :config
-    (moody-replace-mode-line-buffer-identification)
-    (moody-replace-vc-mode)
-    (moody-replace-eldoc-minibuffer-message-function)
-    )
+	:straight t
+	:init
+	(use-package rich-minority
+	  :straight t
+	  :custom
+	  (rm-blacklist "")
+	  :init
+	  (rich-minority-mode 1)
+	  )
+	:custom
+	(x-underline-at-descent-line t)
+	:config
+	(moody-replace-mode-line-buffer-identification)
+	(moody-replace-vc-mode)
+	(moody-replace-eldoc-minibuffer-message-function)
+	)
 
   (use-package rainbow-mode
-    :straight t)
+	:straight t)
 
   (use-package hl-todo
-    :straight t
-    :hook
-    (prog-mode . hl-todo-mode)
-    )
+	:straight t
+	:hook
+	(prog-mode . hl-todo-mode)
+	)
 #+end_src
 * PDF
 #+begin_src emacs-lisp
