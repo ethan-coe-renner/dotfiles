@@ -21,6 +21,7 @@ packages:
         - neovim
         - zsh
         - stack
+        - golang
         - cosmic-desktop
         # dependencies
         - cmake
@@ -49,3 +50,6 @@ packages:
       - ripgrep
       - topgrade
       - tealdeer
+
+  go:
+    - github.com/sachaos/viddy@latest

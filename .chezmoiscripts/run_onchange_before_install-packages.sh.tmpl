@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#Ensure that PATH is setup
+source $CHEZMOI_SOURCE_DIR/dot_env
+
 {{ if eq .chezmoi.os "darwin" -}}
 # Install brews
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -33,6 +36,10 @@ cargo install \
 
 cargo install --locked \
 	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end }}
+
+# Install go packages
+go install \
+   {{ range .packages.go -}} {{ . | quote }} {{ end }}
 
 # Manual installations
 LOCAL_BIN="$HOME/.local/bin"
