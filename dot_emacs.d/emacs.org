@@ -144,7 +144,6 @@ Keybindings should go with their respective packages.
 #+end_src
 
 * Org Mode
-
 #+begin_src emacs-lisp
   (use-package org
     :defer t
@@ -177,7 +176,6 @@ Keybindings should go with their respective packages.
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 
     :hook
-    (org-mode . org-indent-mode)
     (org-capture-mode . evil-insert-state)
     )
 #+end_src
