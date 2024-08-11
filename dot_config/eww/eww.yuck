@@ -1,11 +1,16 @@
 (defpoll time :interval "10s"
 		 `date +%H:%M`)
 
+(defwidget clock []
+		   time)
+
 (defwindow clock
 		   :monitor 1
 		   :geometry (geometry :x "2%"
 							   :y "4%"
-							   :height "100px"
 							   :anchor "top left")
 		   :stacking "bg"
-		   time)
+		   (box
+			:class "clock"
+			(clock))
+		   )
