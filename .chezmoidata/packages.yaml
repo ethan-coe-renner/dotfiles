@@ -10,28 +10,32 @@ packages:
       - kitty
 
   linux:
-    dnf:
-      - difftastic
-      - emacs
-      - hut
-      - kitty
-      - neovim
-      - zsh
-      - stack
-      # dependencies
-      - cmake
-      - gcc-c++
-      ## EWW
-      - glibc-devel
-      - glib2-devel
-      - atk-devel
-      - cairo-devel
-      - cairo-gobject-devel
-      - libdbusmenu-devel
-      - pango-devel
-      - gdk-pixbuf2-devel
-      - libdbusmenu-gtk3-devel
-      - gtk-layer-shell-devel
+    fedora:
+      copr:
+        - ryanabx/cosmic-epoch
+      dnf:
+        - difftastic
+        - emacs
+        - hut
+        - kitty
+        - neovim
+        - zsh
+        - stack
+        - cosmic-desktop
+        # dependencies
+        - cmake
+        - gcc-c++
+        ## EWW
+        - glibc-devel
+        - glib2-devel
+        - atk-devel
+        - cairo-devel
+        - cairo-gobject-devel
+        - libdbusmenu-devel
+        - pango-devel
+        - gdk-pixbuf2-devel
+        - libdbusmenu-gtk3-devel
+        - gtk-layer-shell-devel
 
   cargo:
     locked:

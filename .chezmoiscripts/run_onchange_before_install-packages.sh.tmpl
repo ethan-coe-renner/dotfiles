@@ -14,8 +14,10 @@ EOF
 {{ else if eq .chezmoi.os "linux" }}
 # Install linux packages
 {{   if eq .chezmoi.osRelease.id "fedora" }}
+sudo dnf copr enable --assumeyes \
+	{{ range .packages.linux.fedora.copr -}} {{ . | quote }} {{ end }}
 sudo dnf install --assumeyes \
-	{{ range .packages.linux.dnf -}} {{ . | quote }} {{ end }}
+	{{ range .packages.linux.fedora.dnf -}} {{ . | quote }} {{ end }}
 {{ end }}
 {{ end }}
 
