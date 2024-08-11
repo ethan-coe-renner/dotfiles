@@ -30,3 +30,18 @@ cargo install \
 
 cargo install --locked \
 	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end}}
+
+# Special cases
+LOCAL_BIN="$HOME/.local/bin"
+LOCAL_REPOS="$HOME/.local/repos"
+
+mkdir $LOCAL_REPOS
+
+## EWW
+if [ ! -d "$LOCAL_REPOS/eww" ]; then
+	cd $LOCAL_REPOS
+	git clone https://github.com/elkowar/eww
+	cd eww
+	cargo build --release --no-default-features --features=wayland
+	cp "$LOCAL_REPOS/eww/target/release/eww" "$LOCAL_BIN"
+fi

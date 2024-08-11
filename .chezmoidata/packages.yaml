@@ -18,6 +18,19 @@ packages:
       - kitty
       - neovim
       - zsh
+      # dependencies
+      ## EWW
+      - glibc-devel
+      - glib2-devel
+      - atk-devel
+      - cairo-devel
+      - cairo-gobject-devel
+      - libdbusmenu-devel
+      - pango-devel
+      - gdk-pixbuf2-devel
+      - libdbusmenu-gtk3-devel
+      - gtk-layer-shell-devel
+      
 
   cargo:
     locked:
