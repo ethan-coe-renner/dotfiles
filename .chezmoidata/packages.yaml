@@ -42,8 +42,10 @@ packages:
       - bat
       - starship
       - zoxide
+      - bottom
     unlocked:
       - eza
       - fd-find
       - ripgrep
       - topgrade
+      - tealdeer
