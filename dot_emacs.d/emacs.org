@@ -33,19 +33,11 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
 
 * Theme
 #+begin_src emacs-lisp
-  (use-package modus-themes
+  (use-package nordic-night-theme
     :straight t
-    :custom
-    ;; Add all your customizations prior to loading the themes
-    (modus-themes-italic-constructs t)
-    (modus-themes-bold-constructs t)
-    (modus-themes-region '(bg-only no-extend))
-    (modus-themes-lang-checkers '(text-also background straight-underline))
-    (modus-themes-paren-match '(bold))
-    (modus-themes-mode-line '(moody accented))
-
-    :bind ("<f5>" . modus-themes-toggle))
-    (load-theme 'modus-vivendi)
+    :config
+    (load-theme 'nordic-midnight t)
+    )
 
   ;; dashboard
   (use-package dashboard
