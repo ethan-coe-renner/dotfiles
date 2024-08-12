@@ -101,15 +101,13 @@ Keybindings should go with their respective packages.
       )
 
   (use-package emacs
-    :general
-    (
-     "C-w m" 'maximize-window
-     )
-    (leader-key-def
-      "w" 'ace-window
-      "ff" 'make-frame
-      "fo" 'other-frame)
-    )
+	:general
+	(
+	 "C-w m" 'maximize-window
+	 )
+	(leader-key-def
+	  "w" 'ace-window)
+	)
 
 #+end_src
 
@@ -406,6 +404,16 @@ setup evil and related packages
 	:general
 	("C-h C-w" 'define-word-at-point)
 	)
+
+  (use-package devdocs
+	:straight t
+	:general
+	(leader-key-def
+	  "d" 'devdocs-lookup)
+	:hook
+	(c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
+	(python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))
+	)
 #+end_src
 
 * Editing
@@ -439,22 +447,14 @@ non-evil-specific navigation
     :straight t
     :custom
     (deadgrep-executable "~/.cargo/bin/rg")
-  
 
     :general
     (leader-key-def
-      "d" 'deadgrep))
+      "f" 'deadgrep))
 
   ;; Which function mode config taken from https://emacsredux.com/blog/2014/04/05/which-function-mode/
   (which-function-mode)
   (setq which-func-unknown "n/a")
-  (setq-default header-line-format
-                '((which-func-mode ("" which-func-format " "))))
-  (setq mode-line-misc-info
-        ;; We remove Which Function Mode from the mode line, because it's mostly
-        ;; invisible here anyway.
-        (assq-delete-all 'which-func-mode mode-line-misc-info))
-
 #+end_src
 
 * Formatting
