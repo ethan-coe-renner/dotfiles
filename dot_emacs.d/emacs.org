@@ -308,8 +308,6 @@ setup evil and related packages
   (use-package evil
 	:straight t
 	:config
-	;; (global-visual-line-mode 1) TODO: fully remove this and other keybinds related
-
 	(use-package undo-tree :straight t
 	  :custom
 	  (evil-undo-system 'undo-tree)
@@ -365,11 +363,6 @@ setup evil and related packages
 	  "C-M-u" 'universal-argument ;; doesn't work with :general for some reason
 	  )
 
-	;; This would make j and k operate on visual lines (wrapped lines), this kinda messes up macros (when the partial execution of a macro causes a wrap, subsequent j/k will do fundamentally different things)
-	;; (general-def
-	;;   :states 'motion
-	;;   "j" 'evil-next-visual-line
-	;;   "k" 'evil-previous-visual-line)
 	:custom
 	(evil-want-C-u-scroll t)
 	(evil-respect-visual-line-mode t)
