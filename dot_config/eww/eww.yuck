@@ -5,7 +5,7 @@
 		   time)
 
 (defwindow clock
-		   :monitor 1
+		   :monitor 0
 		   :geometry (geometry :x "2%"
 							   :y "4%"
 							   :anchor "top left")
