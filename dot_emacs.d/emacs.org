@@ -684,9 +684,10 @@ Set gui settings, theme, fonts, etc
 #+begin_src emacs-lisp
   (use-package ef-themes
 	:straight t
+	:demand t
 	:custom
 	(ef-themes-to-toggle '(ef-bio ef-spring))
-	:init
+	:config
 	;; Disable all other themes to avoid awkward blending:
 	(mapc #'disable-theme custom-enabled-themes)
 
