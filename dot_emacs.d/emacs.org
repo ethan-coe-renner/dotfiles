@@ -147,11 +147,6 @@ Keybindings should go with their respective packages.
     (org-capture-mode . evil-insert-state)
     )
 #+end_src
-* Dired
-#+begin_src emacs-lisp
-  (use-package all-the-icons
-	:straight t)
-#+end_src
 
 * Eshell
 #+begin_src emacs-lisp
@@ -558,6 +553,7 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
     :config (global-flycheck-mode)
     )
 #+end_src
+
 * Completion
 #+begin_src emacs-lisp
   (use-package company
@@ -572,12 +568,24 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
 * GUI
 Set gui settings, theme, fonts, etc
 #+begin_src emacs-lisp
-
   ;; disabling useless ui elements
   (scroll-bar-mode -1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (setq inhibit-startup-screen t)
+
+  (use-package all-the-icons
+	:straight t
+	:if (display-graphic-p))
+
+  (use-package idle-highlight-mode
+	:straight t
+	:custom
+	(idle-highlight-idle-time 0.2)
+
+	:hook
+	((prog-mode text-mode) . idle-highlight-mode)
+	)
 
   (use-package lin
 	:straight t
@@ -694,4 +702,3 @@ Set gui settings, theme, fonts, etc
 # Local Variables: 
 # eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t) 
 # End:
-
