@@ -148,6 +148,26 @@ Keybindings should go with their respective packages.
     )
 #+end_src
 
+* Denote
+#+begin_src emacs-lisp
+  (use-package denote
+	:straight t
+	:custom
+	(denote-directory "~/notes")
+	(denote-dired-directories (list denote-directory))
+	(denote-dired-directories-include-subdirectories t)
+	:hook
+	(dired-mode . denote-dired-mode-in-directories)
+	:config
+	(denote-rename-buffer-mode 1)
+	:general
+	(leader-key-def
+	  "d" 'denote-open-or-create
+	  "D" 'denote
+	  )
+	)
+#+end_src
+
 * Eshell
 #+begin_src emacs-lisp
   (use-package eshell
@@ -397,7 +417,7 @@ setup evil and related packages
 	:straight t
 	:general
 	(leader-key-def
-	  "d" 'devdocs-lookup)
+	  "l" 'devdocs-lookup)
 	:hook
 	(c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
 	(python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.12"))))
