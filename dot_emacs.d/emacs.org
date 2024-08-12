@@ -156,6 +156,15 @@ Keybindings should go with their respective packages.
 	(denote-directory "~/notes")
 	(denote-dired-directories (list denote-directory))
 	(denote-dired-directories-include-subdirectories t)
+
+	;; TODO: consider more denote keywords
+	(denote-known-keywords '("emacs" "dev"))
+	(denote-sort-keywords t)
+	(denote-infer-keywords nil)
+
+	(denote-date-prompt-use-org-read-date t)
+
+	(denote-backlinks-show-context t)
 	:hook
 	(dired-mode . denote-dired-mode-in-directories)
 	:config
@@ -460,9 +469,19 @@ non-evil-specific navigation
     (leader-key-def
       "f" 'deadgrep))
 
-  ;; Which function mode config taken from https://emacsredux.com/blog/2014/04/05/which-function-mode/
   (which-function-mode)
   (setq which-func-unknown "n/a")
+
+  ;; prefer ripgrep > ugrep > grep for xref
+  (setq xref-search-program
+		(cond
+		 ((or (executable-find "ripgrep")
+			  (executable-find "rg"))
+		  'ripgrep)
+		 ((executable-find "ugrep")
+		  'ugrep)
+		 (t
+		  'grep)))
 #+end_src
 
 * Formatting
