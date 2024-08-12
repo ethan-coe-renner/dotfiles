@@ -41,7 +41,7 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
 	(dashboard-set-file-icons t)
 	(dashboard-set-init-info t)
 	(dashboard-center-content t)
-	(dashboard-items '((recents . 5)(bookmarks . 10)))
+	(dashboard-items '((recents . 5)(bookmarks . 10)(agenda . 5)))
 
 	:config
 	(recentf-mode 1)
@@ -114,38 +114,50 @@ Keybindings should go with their respective packages.
 * Org Mode
 #+begin_src emacs-lisp
   (use-package org
-    :defer t
-    :custom
-    (org-confirm-babel-evaluate nil)
-    (org-src-window-setup 'current-window)
-    (org-M-RET-may-split-line nil)
-    (org-image-actual-width 400)
-    (org-export-with-author "Ethan Coe-Renner")
+	:defer t
+	:custom
+	(org-confirm-babel-evaluate nil)
+	(org-src-window-setup 'current-window)
+	(org-M-RET-may-split-line nil)
+	(org-image-actual-width 400)
+	(org-export-with-author "Ethan Coe-Renner")
 
-    (org-default-notes-file (concat org-directory "/notes.org"))
+	(org-capture-bookmark nil)
+	(org-todo-keywords
+	 '((sequence "TODO" "INPROGRESS" "BLOCKED" "|" "DONE")))
 
-    (org-capture-bookmark nil)
-    (org-todo-keywords
-     '((sequence "TODO" "INPROGRESS" "|" "DONE")))
+	(org-log-repeat nil)
 
-    (org-log-repeat nil)
+	:general
+	("C-c c" 'org-capture)
 
+	:config
+	(setq org-agenda-files '("~/org/todo.org"))
+	(org-babel-do-load-languages
+	 'org-babel-load-languages
+	 '((emacs-lisp . t)
+	   ))
 
-    :general
-    ("C-c c" 'org-capture)
+	(require 'org-tempo)
+	(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 
-    :config
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       ))
+	:general
+	(leader-key-def "a" 'org-agenda)
+	:hook
+	(org-capture-mode . evil-insert-state)
+	)
+  ;; TODO: add org-super-agenda package
 
-    (require 'org-tempo)
-    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-
-    :hook
-    (org-capture-mode . evil-insert-state)
-    )
+  (use-package org-modern
+	;; TODO: continue configuring org-modern
+	:straight t
+	:custom
+	(org-modern-hide-stars nil)
+	:after org
+	:if (display-graphic-p)
+	:config
+	(with-eval-after-load 'org (global-org-modern-mode))
+	)
 #+end_src
 
 * Denote
