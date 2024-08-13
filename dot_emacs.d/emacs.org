@@ -116,11 +116,10 @@ Keybindings should go with their respective packages.
 	(general-auto-unbind-keys)
 	(general-evil-setup)
 
-	;; TODO: the global prefix doesn't work in dired
 	(general-create-definer leader-key-def
-	  :keymaps '(normal insert visual emacs)
+	  :states 'normal
+	  :keymaps 'override
 	  :prefix "SPC"
-	  :global-prefix "C-SPC")
 	)
 
   (use-package emacs
