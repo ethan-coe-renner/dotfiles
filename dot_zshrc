@@ -23,6 +23,9 @@ source $HOME/.cargo/env
 source $HOME/.aliases
 source $HOME/.config/zsh/antigen.zsh
 
+# Don't load antigen or set starship prompt if connected to tramp
+[[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
+
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -31,16 +34,4 @@ antigen bundle hlissner/zsh-autopair
 antigen apply
 
 eval "$(zoxide init zsh)"
-
-# In order for Emacs tramp to work, we can't have starship running
-# Emacs has been configured to have TERM="dumb", so set PS1 to a simple prompt
-# in that case
-case "$TERM" in
-	"dumb")
-		PS1="> "
-		;;
-	*)
-		eval "$(starship init zsh)"
-		export TERM="xterm"
-		;;
-esac
+eval "$(starship init zsh)"

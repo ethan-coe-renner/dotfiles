@@ -142,7 +142,7 @@ Keybindings should go with their respective packages.
   (use-package tramp
 	:custom
 	;; Tell the remote not to give us a fancy prompt
-	(tramp-terminal-type "dumb")
+	(tramp-terminal-type "tramp")
 	)
 #+end_src
 
