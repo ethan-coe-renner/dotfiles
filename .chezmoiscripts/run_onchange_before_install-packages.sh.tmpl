@@ -50,6 +50,7 @@ if [ ! -d "$LOCAL_REPOS" ]; then
 fi
 
 {{ if eq .chezmoi.os "linux" }}
+{{   if eq .chezmoi.osRelease.id "fedora" }}
 # Only build these on linux
 ## KMonad
 if [ ! -d "$LOCAL_REPOS/kmonad" ]; then
@@ -67,4 +68,5 @@ if [ ! -d "$LOCAL_REPOS/eww" ]; then
 	cargo build --release --no-default-features --features=wayland
 	cp "$LOCAL_REPOS/eww/target/release/eww" "$LOCAL_BIN"
 fi
+{{ end }}
 {{ end }}
