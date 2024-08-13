@@ -572,7 +572,14 @@ Setup git integration
 	:straight t)
 
   (use-package git-timemachine
-	:straight t)
+	:straight t
+	:config
+	(eval-after-load 'git-timemachine
+	  '(progn
+		 (evil-make-overriding-map git-timemachine-mode-map 'normal)
+		 ;; force update evil keymaps after git-timemachine-mode loaded
+		 (add-hook 'git-timemachine-mode-hook #'evil-normalize-keymaps)))
+	)
 #+end_src
 
 * Project Management
