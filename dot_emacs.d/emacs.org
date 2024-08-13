@@ -53,7 +53,7 @@ This section is for miscellaneous settings which do not belong elsewhere, everyt
 #+begin_src emacs-lisp
   ;; clean scratch buffer
   (setq initial-scratch-message nil
-        initial-major-mode 'text-mode)
+		initial-major-mode 'text-mode)
 
   ;; fix sizing errors with tiling window managers
   ;; (setq frame-resize-pixelwise t)
@@ -67,11 +67,33 @@ This section is for miscellaneous settings which do not belong elsewhere, everyt
 
   (setq delete-by-moving-to-trash t)
   (defun system-move-file-to-trash (filename)
-    (shell-command (concat (if (executable-find "rip") (executable-find "rip") (executable-find "rm")) " " filename)))
+	(shell-command (concat (if (executable-find "rip") (executable-find "rip") (executable-find "rm")) " " filename)))
 
   ;; PATH setup
   (add-to-list 'exec-path "~/.cargo/bin")
   (add-to-list 'exec-path "~/.local/bin")
+#+end_src
+
+** MacOS
+These are macos specific settings
+#+begin_src emacs-lisp
+  (when (eq system-type 'darwin)
+	(defun set-exec-path-from-shell-PATH ()
+	  "Set up Emacs' `exec-path' and PATH environment variable to match
+	that used by the user's shell.
+
+	This is particularly useful under Mac OS X and macOS, where GUI
+	apps are not started from a shell."
+	  (interactive)
+	  (let ((path-from-shell (replace-regexp-in-string
+							  "[ \t\n]*$" "" (shell-command-to-string
+											  "$SHELL --login -c 'echo $PATH'"
+											  ))))
+		(setenv "PATH" path-from-shell)
+		(setq exec-path (split-string path-from-shell path-separator))))
+
+	(set-exec-path-from-shell-PATH)
+	)
 #+end_src
 
 * Backup
@@ -162,17 +184,19 @@ Keybindings should go with their respective packages.
 
 * Denote
 #+begin_src emacs-lisp
+  ;; TODO: Denote: see if we can customize the link text when running denote-link
+  ;; I'd like the link to say something like "denote:<title>"
   (use-package denote
 	:straight t
 	:custom
 	(denote-directory "~/notes")
 	(denote-dired-directories (list denote-directory))
 	(denote-dired-directories-include-subdirectories t)
+	(denote-rename-buffer-format "Denote:%t")
 
 	;; TODO: consider more denote keywords
 	(denote-known-keywords '("emacs" "dev"))
 	(denote-sort-keywords t)
-	(denote-infer-keywords nil)
 
 	(denote-date-prompt-use-org-read-date t)
 
@@ -545,6 +569,9 @@ Setup git integration
 	(global-diff-hl-mode))
 
   (use-package git-modes
+	:straight t)
+
+  (use-package git-timemachine
 	:straight t)
 #+end_src
 
