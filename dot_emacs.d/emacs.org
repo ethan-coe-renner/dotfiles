@@ -196,6 +196,7 @@ Keybindings should go with their respective packages.
 	(dired-dwim-target t)
 	:hook
 	(dired-mode . dired-hide-details-mode)
+	(dired-mode . dired-omit-mode)
 	)
 #+end_src
 
