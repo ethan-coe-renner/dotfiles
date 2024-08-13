@@ -199,8 +199,6 @@ Keybindings should go with their respective packages.
 
 * Denote
 #+begin_src emacs-lisp
-  ;; TODO: Denote: see if we can customize the link text when running denote-link
-  ;; I'd like the link to say something like "denote:<title>"
   (use-package denote
 	:straight t
 	:custom
