@@ -119,7 +119,7 @@ Keybindings should go with their respective packages.
 	(general-create-definer leader-key-def
 	  :states 'normal
 	  :keymaps 'override
-	  :prefix "SPC"
+	  :prefix "SPC")
 	)
 
   (use-package emacs
