@@ -110,17 +110,18 @@ These are macos specific settings
 This section sets up [[https://github.com/noctuid/general.el][general.el]]. This section should not be used to set keybindings (except for the most general ones).
 Keybindings should go with their respective packages.
 #+begin_src emacs-lisp
-    (use-package general
-      :straight t
-      :config
-      (general-auto-unbind-keys)
-      (general-evil-setup)
+  (use-package general
+	:straight t
+	:config
+	(general-auto-unbind-keys)
+	(general-evil-setup)
 
-      (general-create-definer leader-key-def
-        :keymaps '(normal insert visual emacs)
-        :prefix "SPC"
-        :global-prefix "C-SPC")
-      )
+	;; TODO: the global prefix doesn't work in dired
+	(general-create-definer leader-key-def
+	  :keymaps '(normal insert visual emacs)
+	  :prefix "SPC"
+	  :global-prefix "C-SPC")
+	)
 
   (use-package emacs
 	:general
@@ -138,6 +139,13 @@ Keybindings should go with their respective packages.
   (use-package org
 	:defer t
 	:custom
+	;; styling
+	(org-pretty-entities t)
+	(org-hide-emphasis-markers t)
+	(org-ellipsis "…")
+
+	(org-fold-catch-invisible-edits 'show-and-error)
+
 	(org-confirm-babel-evaluate nil)
 	(org-src-window-setup 'current-window)
 	(org-M-RET-may-split-line nil)
@@ -154,6 +162,8 @@ Keybindings should go with their respective packages.
 	("C-c c" 'org-capture)
 
 	:config
+	(set-face-attribute 'org-ellipsis nil :inherit 'default :box nil)
+
 	(setq org-agenda-files '("~/org/todo.org"))
 	(org-babel-do-load-languages
 	 'org-babel-load-languages
@@ -171,12 +181,10 @@ Keybindings should go with their respective packages.
   ;; TODO: add org-super-agenda package
 
   (use-package org-modern
-	;; TODO: continue configuring org-modern
 	:straight t
 	:custom
 	(org-modern-hide-stars nil)
 	:after org
-	:if (display-graphic-p)
 	:config
 	(with-eval-after-load 'org (global-org-modern-mode))
 	)
@@ -661,7 +669,7 @@ Set gui settings, theme, fonts, etc
 
   (use-package all-the-icons
 	:straight t
-	:if (display-graphic-p))
+	)
 
   (use-package idle-highlight-mode
 	:straight t
