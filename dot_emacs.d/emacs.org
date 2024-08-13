@@ -194,9 +194,17 @@ Keybindings should go with their respective packages.
   (use-package dired
 	:custom
 	(dired-dwim-target t)
+	(dired-listing-switches
+	 "-AGFhlv --group-directories-first --time-style=long-iso")
+	(dired-create-destination-dirs 'ask)
+	(dired-create-destination-dirs-on-trailing-dirsep t)
+	(dired-clean-up-buffers-too t)
+
+	(wdired-allow-to-change-permissions t)
+	(wdired-create-parent-directories t)
+
 	:hook
 	(dired-mode . dired-hide-details-mode)
-	(dired-mode . dired-omit-mode)
 	)
 #+end_src
 
