@@ -15,7 +15,7 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["emacs"]
+disable = ["firmware", "emacs"]
 
 # Do not ask to retry failed steps (default: false)
 no_retry = true
