@@ -137,6 +137,15 @@ Keybindings should go with their respective packages.
 
 #+end_src
 
+* Tramp
+#+begin_src emacs-lisp
+  (use-package tramp
+	:custom
+	;; Tell the remote not to give us a fancy prompt
+	(tramp-terminal-type "dumb")
+	)
+#+end_src
+
 * Org Mode
 #+begin_src emacs-lisp
   (use-package org
