@@ -25,6 +25,7 @@ source $HOME/.config/zsh/antigen.zsh
 
 # Don't load antigen or set starship prompt if connected to tramp
 [[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
+export TERM="xterm"
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle jeffreytse/zsh-vi-mode
