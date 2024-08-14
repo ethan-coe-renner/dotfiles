@@ -252,18 +252,35 @@ Keybindings should go with their respective packages.
 
 * Eshell
 #+begin_src emacs-lisp
-  (use-package eshell
-	:config
-	(defun eshell-other-window ()
-	  "Open a `eshell' in a new window."
-	  (interactive)
-	  (let ((buf (eshell)))
-		(switch-to-buffer (other-buffer buf))
-		(switch-to-buffer-other-window buf)))
-	:general
-	(leader-key-def
-	  "e" 'eshell-other-window
-	  )
+  (setq my/eshell-aliases
+		'((g  . magit)
+		  (gl . magit-log)
+		  (d  . dired)
+		  ))
+
+  (mapc (lambda (alias)
+		  (defalias (car alias) (cdr alias)))
+		my/eshell-aliases)
+
+  (defcustom my/eshell-window-height 15
+	"The height of the eshell window when it is toggled on."
+	:type 'integer
+	:group 'my)
+
+  (defun my/toggle-eshell ()
+	"Toggle an eshell window."
+	(interactive)
+	(let ((eshell-buffer (get-buffer "*eshell*")))
+	  (if eshell-buffer
+		  (if (get-buffer-window eshell-buffer)
+			  (delete-window (get-buffer-window eshell-buffer))
+			(select-window (split-window-vertically (- my/eshell-window-height)))
+			(switch-to-buffer eshell-buffer))
+		(select-window (split-window-vertically (- my/eshell-window-height)))
+		(eshell))))
+
+  (leader-key-def
+	"e" 'my/toggle-eshell
 	)
 #+end_src
 
