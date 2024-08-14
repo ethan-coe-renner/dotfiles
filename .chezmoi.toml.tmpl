@@ -1,7 +1,12 @@
-{{- $emailchoices := list "e.coerenner@gmail.com" "coerenner1@llnl.gov" -}}
-{{- $email := promptChoice "What is your email address" $emailchoices "e.coerenner@gmail.com" -}}
+{{- $tagchoices := list "personal" "work" -}}
+{{- $tag := promptChoice "Select a tag" $tagchoices "personal" -}}
 [edit]
 	command = "nvim"
 
 [data]
-	email = {{- $email | quote -}}
+	tag = {{- $tag | quote -}}
+	{{- if eq $tag "work" }}
+	email = "coerenner1@llnl.gov"
+	{{ else }}
+	email = "e.coerenner@gmail.com"
+	{{ end }}
