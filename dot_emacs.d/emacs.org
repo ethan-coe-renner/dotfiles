@@ -600,13 +600,6 @@ Setup git integration
 	:commands magit-status
 	:straight t
 	:config
-	(use-package magit-todos
-	  :straight t
-	  :config
-	  (magit-todos-mode 1)
-
-	  :after magit)
-
 	(when (eq system-type 'darwin)
 	  ;; needed for magit on mac
 	  (use-package sqlite3
