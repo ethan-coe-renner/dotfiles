@@ -156,6 +156,10 @@ Keybindings should go with their respective packages.
 	(org-hide-emphasis-markers t)
 	(org-ellipsis "…")
 
+	(org-edit-src-content-indentation 0)
+	(org-src-tab-acts-natively t)
+	(org-src-preserve-indentation t)
+
 	(org-fold-catch-invisible-edits 'show-and-error)
 
 	(org-confirm-babel-evaluate nil)
@@ -754,7 +758,7 @@ Set gui settings, theme, fonts, etc
   (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 120)
 
   ;; line numbers
-  (dolist (mode '(text-mode-hook
+  (dolist (mode '(
 				  prog-mode-hook
 				  conf-mode-hook
 				  rust-mode-hook))
