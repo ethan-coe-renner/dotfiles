@@ -2,7 +2,7 @@ image: fedora/latest
 packages:
   - tar
 secrets:
-  - 3e0c09c0-77d5-497e-acfc-16c249b99d0e
+  - 572eda84-1c09-4239-a0f3-0c8d1a8df472
 sources:
   - git@git.sr.ht:~code-runner/dotfiles
 environment:
@@ -17,4 +17,4 @@ tasks:
   - mirror: |
       cd dotfiles
       git push --force --mirror git@codeberg.org:code-runner/dotfiles.git
-      git push --force --mirror git@gitlab.com:code-runner/dotfiles.git
+      git push --force --mirror git@github.com:ethan-coe-renner/dotfiles.git
