@@ -693,12 +693,6 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
   )
 #+end_src
 
-* Debugging
-#+begin_src emacs-lisp
-(use-package realgud
-  :straight t)
-#+end_src
-
 * Completion
 #+begin_src emacs-lisp
 (use-package company
