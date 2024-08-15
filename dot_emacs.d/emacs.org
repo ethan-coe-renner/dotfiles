@@ -354,6 +354,8 @@ Keybindings should go with their respective packages.
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 #+end_src
 
+** Consult
+#+begin_src emacs-lisp
 (use-package consult
   :straight t
   :after vertico
