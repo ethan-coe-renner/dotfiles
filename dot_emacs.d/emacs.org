@@ -693,6 +693,12 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
   )
 #+end_src
 
+* Debugging
+#+begin_src emacs-lisp
+(use-package realgud
+  :straight t)
+#+end_src
+
 * Completion
 #+begin_src emacs-lisp
 (use-package company
@@ -701,6 +707,22 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
   (company-minimum-prefix-length 3)
   :hook
   (after-init . global-company-mode)
+  )
+
+(use-package citre
+  :straight t
+  :custom
+  (citre-tags-in-buffer-backends '(global tags))
+  (citre-peek-fill-fringe nil)
+  (citre-peek-use-dashes-as-horizontal-border t)
+  :general
+  (leader-key-def
+	:keymaps 'c-mode-map
+	"c j" 'citre-jump
+	"c J" 'citre-jump-back
+	"c p" 'citre-ace-peek
+	"c P" 'citre-ace-peek-reference
+	)
   )
 #+end_src
 
