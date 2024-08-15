@@ -3,6 +3,12 @@
 
 This repository contains my dotfiles and other configuration scripts, all managed with [chezmoi](https://www.chezmoi.io/).
 
+Sourcehut: https://sr.ht/~code-runner/dotfiles/
+
+Codeberg mirror: https://codeberg.org/code-runner/dotfiles
+
+GitHub mirror: https://github.com/ethan-coe-renner/dotfiles
+
 ## Install
 Currently supports Fedora and MacOS. 
 
