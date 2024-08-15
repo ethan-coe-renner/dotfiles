@@ -17,3 +17,4 @@ tasks:
   - mirror: |
       cd dotfiles
       git push --force --mirror git@codeberg.org:code-runner/dotfiles.git
+      git push --force --mirror git@gitlab.com:code-runner/dotfiles.git
