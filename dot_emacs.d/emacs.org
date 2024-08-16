@@ -206,7 +206,8 @@ Keybindings should go with their respective packages.
   )
 #+end_src
 
-* Dired
+* File Management
+** Dired
 #+begin_src emacs-lisp
 (use-package dired
   :custom
@@ -223,6 +224,42 @@ Keybindings should go with their respective packages.
   :hook
   (dired-mode . dired-hide-details-mode)
   )
+#+end_src
+
+** Treemacs
+#+begin_src emacs-lisp
+(use-package treemacs
+  :straight t
+  :defer t
+  :custom
+  (treemacs-is-never-other-window t)
+  (treemacs-project-follow-cleanup t)
+  (treemacs-no-png-images t)
+  (treemacs-recenter-after-file-follow t)
+  (treemacs-recenter-after-tag-follow t)
+  (treemacs-recenter-after-project-jump t)
+
+  :config
+  (treemacs-hide-gitignored-files-mode t)
+  
+  :general
+  (leader-key-def
+	"t" 'treemacs
+	"T" 'treemacs-select-window
+	)
+  )
+
+(use-package treemacs-evil
+  :straight t
+  :after (treemacs evil))
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :straight t)
+
+(use-package treemacs-magit
+  :after (treemacs magit)
+  :straight t)
 #+end_src
 
 * Denote
@@ -742,6 +779,12 @@ Set gui settings, theme, fonts, etc
   :straight t
   )
 
+(use-package  color-identifiers-mode
+  :straight t
+  :hook
+  (after-init-hook . global-color-identifiers-mode)
+  )
+
 (use-package idle-highlight-mode
   :straight t
   :custom
@@ -794,7 +837,7 @@ Set gui settings, theme, fonts, etc
           (large
            :default-family "Fira Code"
            :default-height 140)))
-  (fontaine-set-preset 'large)
+  (fontaine-set-preset 'medium)
   :general
   ("C-c f" 'fontaine-set-preset)
   )
@@ -816,6 +859,9 @@ Set gui settings, theme, fonts, etc
   )
 (use-package doom-modeline
   :straight t
+  :custom
+  (doom-modeline-icon t)
+  (doom-modeline-enable-word-count t)
   :hook (after-init . doom-modeline-mode))
 
 (use-package rainbow-mode
