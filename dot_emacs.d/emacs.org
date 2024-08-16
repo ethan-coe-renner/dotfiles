@@ -303,25 +303,13 @@ Keybindings should go with their respective packages.
 		(defalias (car alias) (cdr alias)))
 	  my/eshell-aliases)
 
-(defcustom my/eshell-window-height 15
-  "The height of the eshell window when it is toggled on."
-  :type 'integer
-  :group 'my)
-
-(defun my/toggle-eshell ()
-  "Toggle an eshell window."
-  (interactive)
-  (let ((eshell-buffer (get-buffer "*eshell*")))
-	(if eshell-buffer
-		(if (get-buffer-window eshell-buffer)
-			(delete-window (get-buffer-window eshell-buffer))
-		  (select-window (split-window-vertically (- my/eshell-window-height)))
-		  (switch-to-buffer eshell-buffer))
-	  (select-window (split-window-vertically (- my/eshell-window-height)))
-	  (eshell))))
-
-(leader-key-def
-  "e" 'my/toggle-eshell
+(use-package shell-pop
+  :straight t
+  :custom
+  (shell-pop-shell-type '("eshell" "*eshell*" (lambda nil (eshell))))
+  (shell-pop-full-span t)
+  :general
+  ("C-c t" 'shell-pop)
   )
 #+end_src
 
@@ -912,9 +900,6 @@ Set gui settings, theme, fonts, etc
   (mapc #'disable-theme custom-enabled-themes)
 
   (ef-themes-select 'ef-bio)
-
-  :general
-  ("C-c t" 'ef-themes-toggle)
   )
 #+end_src
 
