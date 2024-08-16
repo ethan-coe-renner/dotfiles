@@ -778,8 +778,25 @@ Set gui settings, theme, fonts, etc
   (pulsar-global-mode 1))
 
 ;; font
-(set-face-attribute 'default nil :font "Fira Code" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 120)
+(use-package fontaine
+  :straight t
+  :demand t
+  :config
+  (setq fontaine-presets
+		'(
+		  (small
+           :default-family "Fira Code"
+           :default-height 90)
+		  (medium
+           :default-family "Fira Code"
+           :default-height 120)
+          (large
+           :default-family "Fira Code"
+           :default-height 140)))
+  (fontaine-set-preset 'large)
+  :general
+  ("C-c f" 'fontaine-set-preset)
+  )
 
 ;; line numbers
 (dolist (mode '(
