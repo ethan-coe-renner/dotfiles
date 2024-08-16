@@ -432,6 +432,7 @@ setup evil and related packages
   :config
   (use-package undo-tree :straight t
 	:custom
+	(evil-echo-state nil)
 	(evil-undo-system 'undo-tree)
 	(undo-tree-visualizer-diff t)
 	(undo-tree-visualizer-timestamps t)
@@ -813,17 +814,9 @@ Set gui settings, theme, fonts, etc
   :config
   (rich-minority-mode 1)
   )
-
-(use-package moody
+(use-package doom-modeline
   :straight t
-  :custom
-  (x-underline-at-descent-line t)
-  :config
-  (moody-replace-mode-line-front-space)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
-  (moody-replace-eldoc-minibuffer-message-function)
-  )
+  :hook (after-init . doom-modeline-mode))
 
 (use-package rainbow-mode
   :straight t)
