@@ -593,6 +593,17 @@ non-evil-specific navigation
   (leader-key-def
     "f" 'deadgrep))
 
+(use-package dumb-jump
+  :straight t
+  :custom
+  (dumb-jump-force-searcher 'rg)
+  (xref-show-definitions-function #'xref-show-definitions-completing-read)
+  (dumb-jump-selector 'completing-read)
+  
+  :hook
+  (xref-backend-functions . dumb-jump-xref-activate)
+  )
+
 (which-function-mode)
 (setq which-func-unknown "n/a")
 
@@ -747,7 +758,7 @@ Set up checkers, i.e. syntax checking, spell checkers, etc
   (leader-key-def
 	:keymaps 'c-mode-map
 	"c j" 'citre-jump
-	"c J" 'citre-jump-back
+	"c b" 'citre-jump-back
 	"c p" 'citre-ace-peek
 	"c P" 'citre-ace-peek-reference
 	)
@@ -770,7 +781,7 @@ Set gui settings, theme, fonts, etc
 (use-package  color-identifiers-mode
   :straight t
   :hook
-  (after-init-hook . global-color-identifiers-mode)
+  (prog-mode . color-identifiers-mode)
   )
 
 (use-package idle-highlight-mode
