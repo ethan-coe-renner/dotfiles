@@ -111,6 +111,17 @@ apps are not started from a shell."
 	  version-control t)
 #+end_src
 
+* Tramp
+#+begin_src emacs-lisp
+(use-package tramp
+  :custom
+  (tramp-allow-unsafe-temporary-files t)
+  ;; Tell the remote not to give us a fancy prompt
+  (tramp-terminal-type "tramp")
+  )
+#+end_src
+
+
 * General
 This section sets up [[https://github.com/noctuid/general.el][general.el]]. This section should not be used to set keybindings (except for the most general ones).
 Keybindings should go with their respective packages.
@@ -134,15 +145,6 @@ Keybindings should go with their respective packages.
    )
   (leader-key-def
 	"w" 'ace-window)
-  )
-#+end_src
-
-* Tramp
-#+begin_src emacs-lisp
-(use-package tramp
-  :custom
-  ;; Tell the remote not to give us a fancy prompt
-  (tramp-terminal-type "tramp")
   )
 #+end_src
 
