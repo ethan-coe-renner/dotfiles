@@ -19,7 +19,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 setopt HIST_IGNORE_SPACE
 
 source $HOME/.env
-source $HOME/.cargo/env
 source $HOME/.aliases
 source $HOME/.config/zsh/antigen.zsh
 
