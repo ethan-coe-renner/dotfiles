@@ -11,9 +11,9 @@ environment:
 tasks:
   - chezmoi-init: |
       sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
-  # These are both broken
-  # - emacs: |
-  #     emacs --debug-init --batch -u $USER
+  - emacs: |
+      emacs --debug-init --batch -u $USER
+  # This is broken
   # - zsh: |
   #     $(chezmoi source-path)/ci/test_zsh.sh
   - mirror: |
