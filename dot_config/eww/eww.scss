@@ -1,8 +1,16 @@
 * {
-	font-family: Fira Code;
-	background-color: rgba(0,0,0,0);
+	font-family: Source Code Pro;
+	color: #93cb42;
 }
+
 .clock {
+	background-color: rgba(0,0,0,0);
 	font-size: 100px;
-	color: rgba(250,100,100,255);
+}
+
+.bar {
+	background-color: rgba(17,17,17);
+	font-size: 15;
+	font-weight: bold;
+	border-radius: 10px;
 }

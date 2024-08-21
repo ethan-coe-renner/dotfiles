@@ -1,3 +1,4 @@
+;; ------ CLOCK ------
 (defpoll time :interval "10s"
 		 `date +%H:%M`)
 
@@ -5,7 +6,7 @@
 		   time)
 
 (defwindow clock
-		   :monitor 0
+		   :monitor 1
 		   :geometry (geometry :x "2%"
 							   :y "4%"
 							   :anchor "top left")
@@ -13,4 +14,24 @@
 		   (box
 			:class "clock"
 			(clock))
+		   )
+
+;; ------- BAR --------
+(defpoll datetime :interval "10s"
+		 `date "+%a %H:%M %m-%d"`)
+
+(defwidget cal []
+		   datetime)
+
+(defwindow bar
+		   :monitor 1
+		   :geometry (geometry :x "0%"
+							   :y "10px"
+							   :width "160px"
+							   :height "30px"
+							   :anchor "top center")
+		   :stacking "fg"
+		   :exclusive true
+		   :focusable false
+		   (cal)
 		   )
