@@ -23,15 +23,29 @@
 (defwidget cal []
 		   datetime)
 
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+
+(defwidget workspace []
+		   current_workspace)
+
 (defwindow bar
 		   :monitor 1
 		   :geometry (geometry :x "0%"
 							   :y "10px"
-							   :width "160px"
+							   ;; :width "180px"
+							   :width "200px"
 							   :height "30px"
 							   :anchor "top center")
 		   :stacking "fg"
 		   :exclusive true
 		   :focusable false
-		   (cal)
+		   (box
+			:spacing 5
+			:space-evenly false
+			:halign "center"
+			:orientation "horizontal"
+			(workspace)
+			"|"
+			(cal)
+			)
 		   )
