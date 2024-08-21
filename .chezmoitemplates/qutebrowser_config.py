@@ -10,6 +10,7 @@ c.url.start_pages = c.url.default_page
 
 c.url.searchengines = {
     "DEFAULT":"https://duckduckgo.com/?q={}",
+    "np": "https://search.nixos.org/packages?type=packages&query={}",
     "yt":
     "https://www.youtube.com/results?search_query={}",
     "wa":
