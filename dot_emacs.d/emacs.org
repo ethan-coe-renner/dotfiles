@@ -36,7 +36,7 @@ Set seperate custom file so that custom settings don't get overwritten by org-ba
   (recentf-max-menu-items 25)
   (recentf-max-saved-items 25)
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-  (dashboard-startup-banner 'official)
+  (dashboard-startup-banner 3)
   (dashboard-set-heading-icons t)
   (dashboard-set-file-icons t)
   (dashboard-set-init-info t)
@@ -775,6 +775,11 @@ Set gui settings, theme, fonts, etc
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
+
+(set-frame-parameter nil 'alpha-background 70)
+
+(add-to-list 'default-frame-alist '(alpha-background . 70))
+
 
 (use-package all-the-icons
   :straight t
