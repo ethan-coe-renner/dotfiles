@@ -18,11 +18,13 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
 setopt HIST_IGNORE_SPACE
 
+[[ -d $HOME/.cargo ]] && source $HOME/.cargo/env
+
 source $HOME/.env
 source $HOME/.aliases
 source $HOME/.config/zsh/antigen.zsh
 
-# Don't load antigen or set starship prompt if connected to tramp
+# Don't continue if connected to tramp
 [[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
 export TERM="xterm"
 
