@@ -1,9 +1,0 @@
-name: deploy
-on: [push]
-jobs:
-  init-and-test:
-    runs-on: macos-latest
-    steps:
-      - run: sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply ${{ github.actor }}
-      - run: emacs --debug-init --batch -u $USER
-      - run: $(chezmoi source-path)/ci/test_zsh.sh
