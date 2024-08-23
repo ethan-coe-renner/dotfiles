@@ -2,6 +2,7 @@ image: nixos/unstable
 packages:
   - nixos.emacs
   - nixos.chezmoi
+  - nixos.zsh
 secrets:
   - 572eda84-1c09-4239-a0f3-0c8d1a8df472
 sources:
@@ -11,10 +12,10 @@ environment:
 tasks:
   - chezmoi-init: |
       chezmoi init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
-  - emacs: |
-      emacs --debug-init --batch -u $USER
   - zsh: |
       $(chezmoi source-path)/ci/test_zsh.sh
+  - emacs: |
+      emacs --debug-init --batch -u $USER
   - mirror: |
       cd dotfiles
       git push --force --mirror git@codeberg.org:code-runner/dotfiles.git
