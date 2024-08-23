@@ -11,7 +11,7 @@ Codeberg mirror: https://codeberg.org/code-runner/dotfiles
 GitHub mirror: https://github.com/ethan-coe-renner/dotfiles
 
 ## Install
-Currently supports Fedora and MacOS. 
+Currently used on NixOS and MacOS. 
 
 Chezmoi makes installation easy, just run the following:
 ```
