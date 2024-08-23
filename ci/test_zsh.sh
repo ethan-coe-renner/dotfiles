@@ -6,7 +6,7 @@
 set -exo
 
 # Check configuration
-source ~/.zshrc
+source $HOME/.zshrc
 
 # In the future we could add some more tests here
 
