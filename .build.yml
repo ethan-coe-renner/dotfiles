@@ -1,8 +1,7 @@
-image: nixos/unstable
+image: fedora/latest
 packages:
-  - nixos.emacs
-  - nixos.chezmoi
-  - nixos.zsh
+  - emacs
+  - tar
 secrets:
   - 572eda84-1c09-4239-a0f3-0c8d1a8df472
 sources:
@@ -11,7 +10,7 @@ environment:
   GIT_SSH_COMMAND: ssh -o StrictHostKeyChecking=no
 tasks:
   - chezmoi-init: |
-      chezmoi init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
+      sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
   - emacs: |
       emacs --debug-init --batch -u $USER
   # - zsh: |
