@@ -25,7 +25,9 @@ packages:
         - zsh
         - stack
         - golang
+        - thefuck
         - cosmic-desktop
+        - fira-code-fonts
         # dependencies
         - cmake
         - gcc-c++

@@ -44,6 +44,7 @@ go install \
 # Manual installations
 LOCAL_BIN="$HOME/.local/bin"
 LOCAL_REPOS="$HOME/.local/repos"
+FONTS="$HOME/.local/share/fonts"
 
 if [ ! -d "$LOCAL_REPOS" ]; then
 	mkdir $LOCAL_REPOS
@@ -67,4 +68,14 @@ if [ ! -d "$LOCAL_REPOS/eww" ]; then
 	cargo build --release --no-default-features --features=wayland
 	cp "$LOCAL_REPOS/eww/target/release/eww" "$LOCAL_BIN"
 fi
+
+## Nerd Fonts
+if [ ! -d "$FONTS/FiraCode" ]; then
+	mkdir -p "$FONTS/FiraCode"
+	cd "$FONTS/FiraCode"
+	curl -OL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz" 
+	xz --decompress FiraCode.tar.xz 
+	tar -xvf FiraCode.tar
+fi
 {{ end }}
+	
