@@ -1,0 +1,70 @@
+#!/bin/sh
+
+#Ensure that PATH is setup
+source $CHEZMOI_SOURCE_DIR/dot_env
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Install brews
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+
+{{ else if eq .chezmoi.os "linux" }}
+# Install linux packages
+{{   if eq .chezmoi.osRelease.id "fedora" }}
+sudo dnf copr enable --assumeyes \
+	{{ range .packages.linux.fedora.copr -}} {{ . | quote }} {{ end }}
+sudo dnf install --assumeyes \
+	{{ range .packages.linux.fedora.dnf -}} {{ . | quote }} {{ end }}
+{{ end }}
+{{ end }}
+
+# Install rustup and some crates
+if [ ! -d "$HOME"/.cargo ]; then
+	# Install rust toolchain if not already installed
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	source "$HOME"/.cargo/env
+fi
+
+cargo install \
+	{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end }}
+
+cargo install --locked \
+	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end }}
+
+# Install go packages
+go install \
+   {{ range .packages.go -}} {{ . | quote }} {{ end }}
+
+# Manual installations
+LOCAL_BIN="$HOME/.local/bin"
+LOCAL_REPOS="$HOME/.local/repos"
+
+if [ ! -d "$LOCAL_REPOS" ]; then
+	mkdir $LOCAL_REPOS
+fi
+
+{{ if (and (eq .chezmoi.os "linux") (eq .tag "personal")) }}
+# Only build these on linux
+## KMonad
+if [ ! -d "$LOCAL_REPOS/kmonad" ]; then
+	cd $LOCAL_REPOS
+	git clone https://github.com/kmonad/kmonad
+	cd kmonad
+	stack install
+fi
+
+## EWW
+if [ ! -d "$LOCAL_REPOS/eww" ]; then
+	cd $LOCAL_REPOS
+	git clone https://github.com/elkowar/eww
+	cd eww
+	cargo build --release --no-default-features --features=wayland
+	cp "$LOCAL_REPOS/eww/target/release/eww" "$LOCAL_BIN"
+fi
+{{ end }}
