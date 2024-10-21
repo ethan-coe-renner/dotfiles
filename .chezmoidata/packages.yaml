@@ -31,6 +31,8 @@ packages:
         # dependencies
         - cmake
         - gcc-c++
+        - openssl
+        - openssl-devel
         ## EWW
         - glibc-devel
         - glib2-devel
@@ -55,6 +57,7 @@ packages:
       - ripgrep
       - topgrade
       - tealdeer
+      - cargo-update
 
   go:
     - github.com/sachaos/viddy@latest
