@@ -24,6 +24,7 @@ packages:
         - gimp
         - libreoffice
         - keepassxc
+        - qutebrowser
         - neovim
         - zsh
         - stack
