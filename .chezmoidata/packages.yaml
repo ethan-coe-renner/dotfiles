@@ -21,6 +21,9 @@ packages:
         - emacs
         - hut
         - kitty
+        - gimp
+        - libreoffice
+        - keepassxc
         - neovim
         - zsh
         - stack
