@@ -777,9 +777,9 @@ Set gui settings, theme, fonts, etc
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
 
-(set-frame-parameter nil 'alpha-background 70)
+(set-frame-parameter nil 'alpha-background 90)
 
-(add-to-list 'default-frame-alist '(alpha-background . 70))
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 
 
 (use-package all-the-icons
