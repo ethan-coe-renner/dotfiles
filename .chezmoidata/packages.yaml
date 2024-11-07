@@ -25,6 +25,8 @@ packages:
         - libreoffice
         - keepassxc
         - qutebrowser
+        - torbrowser-launcher
+        - qbittorrent
         - neovim
         - zsh
         - stack
@@ -62,6 +64,8 @@ packages:
       - topgrade
       - tealdeer
       - cargo-update
+      - nu
+      - vivid
 
   go:
     - github.com/sachaos/viddy@latest
