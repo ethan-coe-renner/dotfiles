@@ -27,6 +27,7 @@ packages:
         - qutebrowser
         - torbrowser-launcher
         - qbittorrent
+        - jc
         - neovim
         - zsh
         - stack
@@ -73,5 +74,6 @@ packages:
       - cargo-update
       - nu
       - vivid
+      - du-dust
 
   go:
