@@ -64,6 +64,10 @@ $env.PATH = (
 # I'm not sure if any are necessary
 # source ($nu.default-config-dir | path join 'login.nu')
 
+# carapace
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+
 # Starship prompt
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
