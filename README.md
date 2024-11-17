@@ -1,6 +1,5 @@
 # Dotfiles
 [![builds.sr.ht status](https://builds.sr.ht/~code-runner/dotfiles.svg)](https://builds.sr.ht/~code-runner/dotfiles?)
-[![github workflow](https://github.com/ethan-coe-renner/dotfiles/actions/workflows/deploy.yml/badge.svg)](https://github.com/ethan-coe-renner/dotfiles/actions)
 
 This repository contains my dotfiles and other configuration scripts, all managed with [chezmoi](https://www.chezmoi.io/).
 
