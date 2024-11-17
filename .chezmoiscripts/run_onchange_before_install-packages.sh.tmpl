@@ -38,8 +38,8 @@ cargo install --locked \
 	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end }}
 
 # Install go packages
-go install \
-   {{ range .packages.go -}} {{ . | quote }} {{ end }}
+#go install \
+   #{{ range .packages.go -}} {{ . | quote }} {{ end }}
 
 # Manual installations
 LOCAL_BIN="$HOME/.local/bin"
