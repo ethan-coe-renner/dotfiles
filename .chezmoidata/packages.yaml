@@ -9,6 +9,7 @@ packages:
       - coreutils
       - emacs
       - go
+      - carapace
     casks:
       - kitty
 
@@ -75,5 +76,3 @@ packages:
       - nu
       - vivid
       - du-dust
-
-  go:
