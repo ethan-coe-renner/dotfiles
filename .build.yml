@@ -13,8 +13,6 @@ tasks:
       sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles
   - emacs: |
       emacs --debug-init --batch -u $USER
-  # - zsh: |
-  #     $(chezmoi source-path)/ci/test_zsh.sh
   - mirror: |
       cd dotfiles
       git push --force --mirror git@codeberg.org:code-runner/dotfiles.git

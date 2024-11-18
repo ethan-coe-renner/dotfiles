@@ -32,11 +32,6 @@ While COSMIC is currently in alpha, I've found it stable enough for my use.
 The killer feature of COSMIC for me is native window tiling, which I haven't seen in any other full Desktop Environment.
 I am trying to find a clean way to include my COSMIC configuration files with this repository, however currently they are not included.
 
-### [Elkowars Wacky Widgets](https://github.com/elkowar/eww)
-I've begun developing some simple desktop widgets with the fantastic EWW.
-Currently this just includes a clock on the desktop overlaying the background.
-These are DE agnostic, so they can be used when I inevitably switch to another desktop environment.
-
 ## [KMonad](https://github.com/kmonad/kmonad)
 KMonad is "An advanced keyboard manager" which allows extreme customization of the keyboard.
 My (relatively simple) configuration does the following:
