@@ -27,6 +27,7 @@ source $HOME/.aliases
 [[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
 export TERM="xterm"
 
+export ZELLIJ_AUTO_ATTACH="true"
 if [[ -z "$ZELLIJ" ]]; then
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
         zellij attach -c
@@ -39,14 +40,13 @@ if [[ -z "$ZELLIJ" ]]; then
     fi
 fi
 
+source $HOME/.config/zsh/antigen.zsh
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle hlissner/zsh-autopair
 
-# source $HOME/.config/zsh/antigen.zsh
-# antigen bundle zsh-users/zsh-autosuggestions
-# antigen bundle jeffreytse/zsh-vi-mode
-# antigen bundle zsh-users/zsh-syntax-highlighting
-# antigen bundle hlissner/zsh-autopair
+antigen apply
 
-# antigen apply
-
-# eval "$(zoxide init zsh)"
-# eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
