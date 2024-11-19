@@ -46,8 +46,19 @@ if [ ! -d "$LOCAL_REPOS" ]; then
 	mkdir $LOCAL_REPOS
 fi
 
-{{ if (and (eq .chezmoi.os "linux") (eq .tag "personal")) }}
+{{ if (eq .chezmoi.os "linux") }}
 # Only build these on linux
+
+## Carapace
+if [ ! -f "$LOCAL_BIN/carapace" ]; then
+	cd /tmp
+	curl -OL "https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_386.tar.gz"
+	tar xvf carapace-bin_linux_386.tar.gz
+	mv carapace $LOCAL_BIN
+fi
+
+{{ if (eq .tag "personal") }}
+# Only build these on personal devices
 ## KMonad
 if [ ! -d "$LOCAL_REPOS/kmonad" ]; then
 	cd $LOCAL_REPOS
@@ -74,4 +85,4 @@ if [ ! -d "$FONTS/FiraCode" ]; then
 	tar -xvf FiraCode.tar
 fi
 {{ end }}
-	
+{{ end }}
