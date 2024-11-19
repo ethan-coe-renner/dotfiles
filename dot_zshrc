@@ -30,4 +30,4 @@ if [[ -z "$ZELLIJ" ]]; then
     fi
 fi
 
-nu
+nu && exit
