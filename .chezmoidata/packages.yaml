@@ -66,8 +66,8 @@ packages:
       - zoxide
       - bottom
       - zellij
+      - broot
     unlocked:
-      - eza
       - fd-find
       - ripgrep
       - topgrade
