@@ -1,33 +1,36 @@
-[[ -d $HOME/.cargo ]] && source $HOME/.cargo/env
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=1000
+setopt extendedglob nomatch
+# End of lines configured by zsh-newuser-install
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/ethan/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+bindkey '^ ' autosuggest-accept
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
+
+setopt HIST_IGNORE_SPACE
 
 source $HOME/.env
 source $HOME/.aliases
+source $HOME/.config/zsh/antigen.zsh
 
-# Don't continue if connected to tramp
-[[ $TERM == "tramp" ]] && unsetopt zle && PS1='$ ' && return
 export TERM="xterm"
 
-export ZELLIJ_AUTO_ATTACH="true"
-export ZELLIJ_AUTO_EXIT="true"
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle hlissner/zsh-autopair
 
-# Force nushell to check ~/.config
-export XDG_CONFIG_HOME="$HOME/.config"
+antigen apply
 
-if [[ $OSTYPE == *"darwin"* ]]; then
-   # Don't run zellij on macos
-   export ZELLIJ=1
-fi
-
-if [[ -z "$ZELLIJ" ]]; then
-    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
-        zellij attach -c
-    else
-        zellij
-    fi
-
-    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
-        exit
-    fi
-fi
-
-nu && exit
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+eval "$(thefuck --alias)"
