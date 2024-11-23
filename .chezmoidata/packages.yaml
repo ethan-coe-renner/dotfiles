@@ -67,12 +67,12 @@ packages:
       - bottom
       - zellij
       - broot
+      - nu
     unlocked:
       - fd-find
       - ripgrep
       - topgrade
       - tealdeer
       - cargo-update
-      - nu
       - vivid
       - du-dust
