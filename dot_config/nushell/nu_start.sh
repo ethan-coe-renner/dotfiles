@@ -1,19 +1,11 @@
-# If connected to by TRAMP, immediately return
-[[ $TERM == "tramp" ]] && PS1='$ ' && return
-
-source .env
-
-# If this is not an xterm, return immediately into default shell
-[[ ! $TERM =~ "xterm" ]] && return
-
 # If nushell isn't installed, return immediately into default shell
-command -v nu || return
+command -v nu &> /dev/null || return
 
-# Don't run zellij on macos
-[[ $OSTYPE == *"darwin"* ]] && export NO_ZELLIJ=1
+# Don't run zellij when connected via ssh
+[[ $SESSION_TYPE == remote/ssh ]] && export NO_ZELLIJ=1
 
 # Disable zellij if it isn't installed
-command -v zellij || export NO_ZELLIJ=1
+command -v zellij &> /dev/null || export NO_ZELLIJ=1
 
 export ZELLIJ_AUTO_ATTACH="true"
 export ZELLIJ_AUTO_EXIT="true"
