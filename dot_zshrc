@@ -8,6 +8,8 @@ source $HOME/.env
 # If this is not an xterm, return immediately into default shell
 [[ ! $TERM =~ "xterm" ]] && return
 
+export TERM="xterm"
+
 # If this is a default shell, start nushell instead
 [[ $SHLVL == "1" ]] && source ~/.config/nushell/nu_start.sh
 
@@ -35,8 +37,6 @@ setopt HIST_IGNORE_SPACE
 
 source $HOME/.aliases
 source $HOME/.config/zsh/antigen.zsh
-
-export TERM="xterm"
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle jeffreytse/zsh-vi-mode
