@@ -1,5 +1,5 @@
 #+TITLE: My Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d.archive/init.el
 
 * Straight
 #+begin_src emacs-lisp
