@@ -48,4 +48,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
+;; Prot
 (package! ef-themes)
+(package! denote)
+
+(package! literate-calc-mode)
+(package! elfeed)

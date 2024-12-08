@@ -75,3 +75,61 @@
 
 ;; Set splash image for dashboard
 (setq fancy-splash-image (concat doom-user-dir "emacs.png"))
+
+;; Setup some aliases for use in eshell
+(set-eshell-alias!
+ "g" "magit"
+ "gl" "magit-log"
+ "ch" "chezmoi"
+ )
+
+;; --- Package Configurations ---
+(use-package! denote
+  :custom
+  (denote-directory "~/notes")
+  (denote-dired-directories (list denote-directory))
+  (denote-dired-directories-include-subdirectories t)
+  (denote-rename-buffer-format "Denote:%t")
+
+  ;; TODO: consider more denote keywords
+  (denote-known-keywords '("emacs" "dev"))
+  (denote-sort-keywords t)
+
+  (denote-date-prompt-use-org-read-date t)
+
+  (denote-backlinks-show-context t)
+  :hook
+  (dired-mode . denote-dired-mode-in-directories)
+  :init
+  (map! :leader :desc "Open/create denote" "d" #'denote-open-or-create)
+
+  :config
+  (denote-rename-buffer-mode 1)
+  )
+
+(use-package! elfeed
+  :custom
+  (elfeed-feeds '(
+                  ;; Blogs
+                  ("http://nullprogram.com/feed/" blog)
+                  ("https://www.astralcodexten.com/feed" blog)
+                  ("https://thezvi.substack.com/feed" blog)
+                  ("https://feeds.feedburner.com/mrmoneymustache" blog)
+                  ("https://sourcehut.org/blog/index.xml" blog)
+                  ("https://drewdevault.com/blog/index.xml" blog)
+
+                  ;; Multi feeds
+                  "https://planet.emacslife.com/atom.xml"
+
+                  ;; Comics
+                  ("https://xkcd.com/atom.xml" comic)
+                  ))
+  :init
+  (map! :leader :desc "Open Elfeed" "r" #'elfeed)
+  )
+
+(use-package! ef-themes
+  :custom
+  (ef-themes-to-toggle '(ef-bio ef-spring))
+  )
+
