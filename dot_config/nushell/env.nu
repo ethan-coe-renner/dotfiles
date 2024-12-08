@@ -57,6 +57,7 @@ $env.PATH = (
   | append /usr/local/bin
   | append ($env.HOME | path join go bin)
   | append ($env.CARGO_HOME | path join bin)
+  | append ($env.Home | path join .config emacs bin)
   | append ($env.HOME | path join .local bin)
   | uniq # filter so the paths are unique
 )
