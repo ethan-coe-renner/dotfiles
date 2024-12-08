@@ -1,8 +1,8 @@
 # -*-sh-*-
 
 # Determine the session type
-if [[ $TERM == "tramp" ]]; then
-	SESSION_TYPE=remote/tramp
+if [[ $TERM == "dumb" ]]; then
+	SESSION_TYPE=dumb
 elif [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
 	SESSION_TYPE=remote/ssh
 else
