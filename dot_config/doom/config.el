@@ -67,10 +67,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; We keep configuration in chezmoi, so this keybinding is useless
-;; TODO: we could try to update the underlying function (doom/open-private-config)
-;; to use the correct path
-(assoc-delete-all "Open private configuration" +doom-dashboard-menu-sections)
+;; use a minimal dashboard
+(setq +doom-dashboard-functions '(doom-dashboard-widget-banner))
 
 ;; Set splash image for dashboard
 (setq fancy-splash-image (concat doom-user-dir "emacs.png"))
@@ -81,15 +79,18 @@
  "gl" "magit-log"
  "ch" "chezmoi")
 
-
 ;; Load my elisp snippets
 (load! "my")
+
 
 ;; --- Miscellaneous Keybindings ---
 (map!
  :leader
  (:prefix ("m" . "my")
-  :desc "Chezmoi apply" "c" #'my-chezmoi-apply))
+  :desc "Chezmoi apply" "c" #'my-chezmoi-apply)
+ (:prefix ("f")
+  :desc "Find file in chezmoi" "p" #'my-find-dotfile
+  :desc "Browse chezmoi" "P" #'my-open-dotfiles))
 
 
 ;; --- Package Configurations ---
