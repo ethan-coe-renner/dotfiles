@@ -79,18 +79,18 @@
 (set-eshell-alias!
  "g" "magit"
  "gl" "magit-log"
- "ch" "chezmoi"
- )
+ "ch" "chezmoi")
+
 
 ;; Load my elisp snippets
 (load! "my")
 
-;; --- Miscellaneous Keybindings
+;; --- Miscellaneous Keybindings ---
 (map!
  :leader
  (:prefix ("m" . "my")
-  :desc "Chezmoi apply" "c" #'my-chezmoi-apply)
- )
+  :desc "Chezmoi apply" "c" #'my-chezmoi-apply))
+
 
 ;; --- Package Configurations ---
 (use-package! denote
@@ -113,8 +113,8 @@
   (map! :leader :desc "Denote" "n d" #'denote-open-or-create)
 
   :config
-  (denote-rename-buffer-mode 1)
-  )
+  (denote-rename-buffer-mode 1))
+
 
 (use-package! elfeed
   :custom
@@ -131,15 +131,14 @@
                   "https://planet.emacslife.com/atom.xml"
 
                   ;; Comics
-                  ("https://xkcd.com/atom.xml" comic)
-                  ))
+                  ("https://xkcd.com/atom.xml" comic)))
+
   :init
-  (map! :leader :desc "Elfeed" "o r" #'elfeed)
-  )
+  (map! :leader :desc "Elfeed" "o r" #'elfeed))
+
 
 (use-package! ef-themes
   :custom
   (ef-themes-to-toggle '(ef-bio ef-spring))
   :init
-  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle)
-  )
+  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
