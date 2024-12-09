@@ -35,7 +35,6 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -83,6 +82,16 @@
  "ch" "chezmoi"
  )
 
+;; Load my elisp snippets
+(load! "my")
+
+;; --- Miscellaneous Keybindings
+(map!
+ :leader
+ (:prefix ("m" . "my")
+  :desc "Chezmoi apply" "c" #'my-chezmoi-apply)
+ )
+
 ;; --- Package Configurations ---
 (use-package! denote
   :custom
@@ -101,7 +110,7 @@
   :hook
   (dired-mode . denote-dired-mode-in-directories)
   :init
-  (map! :leader :desc "Open/create denote" "d" #'denote-open-or-create)
+  (map! :leader :desc "Denote" "n d" #'denote-open-or-create)
 
   :config
   (denote-rename-buffer-mode 1)
@@ -125,11 +134,12 @@
                   ("https://xkcd.com/atom.xml" comic)
                   ))
   :init
-  (map! :leader :desc "Open Elfeed" "r" #'elfeed)
+  (map! :leader :desc "Elfeed" "o r" #'elfeed)
   )
 
 (use-package! ef-themes
   :custom
   (ef-themes-to-toggle '(ef-bio ef-spring))
+  :init
+  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle)
   )
-
