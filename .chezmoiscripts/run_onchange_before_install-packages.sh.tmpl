@@ -17,8 +17,6 @@ EOF
 {{ else if eq .chezmoi.os "linux" }}
 # Install linux packages
 {{   if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf copr enable --assumeyes \
-	{{ range .packages.linux.fedora.copr -}} {{ . | quote }} {{ end }}
 sudo dnf install --assumeyes \
 	{{ range .packages.linux.fedora.dnf -}} {{ . | quote }} {{ end }}
 {{ end }}
@@ -32,7 +30,7 @@ if [ ! -d "$HOME"/.cargo ]; then
 fi
 
 # Install cargo crates only if not in a CI build
-if [ ! -z $CI_ENV ]; then
+if [ -n $CI_ENV ]; then
 	cargo install \
 		{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end }}
 

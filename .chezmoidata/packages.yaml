@@ -15,8 +15,6 @@ packages:
 
   linux:
     fedora:
-      copr:
-        - ryanabx/cosmic-epoch
       dnf:
         - difftastic
         - emacs
@@ -34,7 +32,6 @@ packages:
         - stack
         - golang
         - thefuck
-        - cosmic-desktop
         - fira-code-fonts
         ## Dependencies
         - cmake
