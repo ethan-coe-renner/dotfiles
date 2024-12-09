@@ -1,6 +1,5 @@
 image: fedora/latest
 packages:
-  - emacs
   - tar
 secrets:
   - 572eda84-1c09-4239-a0f3-0c8d1a8df472
