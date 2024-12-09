@@ -7,7 +7,7 @@ sources:
   - git@git.sr.ht:~code-runner/dotfiles
 environment:
   GIT_SSH_COMMAND: ssh -o StrictHostKeyChecking=no
-  CI_ENV: 1
+  CI: 1
 tasks:
   - chezmoi-init: |
       sh -c "$(curl -fsLS get.chezmoi.io)" -- init --promptDefaults --apply https://git.sr.ht/~code-runner/dotfiles

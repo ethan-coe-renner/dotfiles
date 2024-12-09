@@ -29,14 +29,14 @@ if [ ! -d "$HOME"/.cargo ]; then
 	source "$HOME"/.cargo/env
 fi
 
-# Install cargo crates only if not in a CI build
-if [ -n $CI_ENV ]; then
-	cargo install \
-		{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end }}
+# If this is a CI job, exitting here is fine
+[ -n $CI ] && exit
 
-	cargo install --locked \
-		{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end }}
-fi
+cargo install \
+	{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end }}
+
+cargo install --locked \
+	{{ range .packages.cargo.locked -}} {{ . | quote }} {{ end }}
 
 # Manual installations
 LOCAL_BIN="$HOME/.local/bin"
