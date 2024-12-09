@@ -1,16 +1,16 @@
-;;; my.el My miscellaneous elisp snippets -*- lexical-binding: t; -*-
+;;; my.el --- My miscellaneous elisp snippets -*- lexical-binding: t; -*-
 ;;
-;; Copyright (C) 2024 Ethan
+;; Copyright (C) 2024 Ethan Coe-Renner
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; Commentary:
-;;; This file contains miscellaneous elisp snippets for use in my emacs configuration.
+;;; This file contains miscellaneous elisp snippets for use in my Emacs configuration.
 ;;
 ;;; Code:
 
 (defun my-chezmoi-apply ()
-  "Apply chezmoi configuration"
+  "Apply chezmoi configuration."
   (interactive)
   (shell-command "chezmoi apply"))
 
