@@ -29,9 +29,6 @@ if [ ! -d "$HOME"/.cargo ]; then
 	source "$HOME"/.cargo/env
 fi
 
-# If this is a CI job, exitting here is fine
-[ -n $CI ] && exit
-
 cargo install \
 	{{ range .packages.cargo.unlocked -}} {{ . | quote }} {{ end }}
 
