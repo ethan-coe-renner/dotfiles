@@ -27,6 +27,9 @@
 
 (setq org-directory "~/org/")
 
+;; Automatically open read only buffers in view-mode
+(setq view-read-only t)
+
 ;; --- UI ---
 (setq doom-font (font-spec :family "Fira Code" :size 15))
 (setq doom-theme 'ef-bio)
@@ -40,11 +43,12 @@
 ;; --- Miscellaneous Keybindings ---
 (map!
  :leader
- (:prefix ("m" . "my")
-  :desc "Chezmoi apply" "c" #'my-chezmoi-apply)
  (:prefix ("f")
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
-  :desc "Browse chezmoi" "P" #'my-open-dotfiles))
+  :desc "Browse chezmoi" "P" #'my-open-dotfiles)
+ (:prefix ("h")
+          "h" #'helpful-at-point))
+
 
 
 ;; --- Package Configurations ---
