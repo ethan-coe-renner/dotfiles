@@ -54,3 +54,4 @@
 
 (package! literate-calc-mode)
 (package! elfeed)
+(package! dashboard)

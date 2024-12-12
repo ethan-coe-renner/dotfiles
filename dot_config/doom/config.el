@@ -52,6 +52,22 @@
 
 
 ;; --- Package Configurations ---
+
+(use-package! dashboard
+  :custom
+  ;; show dashboard in frames created with emacsclient -c
+  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+  (dashboard-center-content t)
+  (dashboard-show-shortcuts nil)
+
+  (dashboard-items '((bookmarks . 5)
+                     (agenda    . 5)))
+  :config
+  (dashboard-setup-startup-hook))
+
 (after! eshell
   (set-eshell-alias!
    "g" "magit"
@@ -100,7 +116,6 @@
 
   :init
   (map! :leader :desc "Elfeed" "o r" #'elfeed))
-
 
 (use-package! ef-themes
   :custom
