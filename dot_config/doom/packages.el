@@ -53,5 +53,7 @@
 (package! denote)
 
 (package! literate-calc-mode)
-(package! elfeed)
 (package! dashboard)
+
+(package! esh-autosuggest)
+(package! eshell-info-banner)

@@ -32,16 +32,31 @@
 
 ;; --- UI ---
 (setq doom-font (font-spec :family "Fira Code" :size 15))
-(setq doom-theme 'ef-bio)
+(setq doom-theme 'modus-vivendi)
+(after! modus-themes
+  (map! :leader :desc "Theme" "t t" #'modus-themes-toggle))
+
 (setq display-line-numbers-type t)
 
-;; Use a minimal dashboard with just a splash image
-(setq +doom-dashboard-functions '(doom-dashboard-widget-banner)
-      fancy-splash-image (concat doom-user-dir "emacs.png"))
-
+;; Open eshell at startup
+(setq initial-buffer-choice (lambda ()
+                              (eshell)
+                              ))
 
 ;; --- Miscellaneous Keybindings ---
 (map!
+ ;; window movement
+ (
+  "M-<up>" #'windmove-up
+  "M-<down>" #'windmove-down
+  "M-<left>" #'windmove-left
+  "M-<right>" #'windmove-right
+
+  "M-S-<up>" #'windmove-swap-states-up
+  "M-S-<down>" #'windmove-swap-states-down
+  "M-S-<left>" #'windmove-swap-states-left
+  "M-S-<right>" #'windmove-swap-states-right
+  )
  :leader
  (:prefix ("f")
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
@@ -49,30 +64,17 @@
  (:prefix ("h")
           "h" #'helpful-at-point))
 
-
-
 ;; --- Package Configurations ---
 
-(use-package! dashboard
-  :custom
-  ;; show dashboard in frames created with emacsclient -c
-  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
-
-  (dashboard-set-heading-icons t)
-  (dashboard-set-file-icons t)
-  (dashboard-center-content t)
-  (dashboard-show-shortcuts nil)
-
-  (dashboard-items '((bookmarks . 5)
-                     (agenda    . 5)))
-  :config
-  (dashboard-setup-startup-hook))
-
 (after! eshell
+  ;; TODO: figure out how to pass arguments to alias e.g. ls <dir>
   (set-eshell-alias!
    "g" "magit"
    "gl" "magit-log"
-   "ch" "chezmoi"))
+   "ff" "find-file-other-window $1"
+   "d" "dired-other-window $1"
+   )
+  )
 
 (use-package! denote
   :custom
@@ -96,29 +98,38 @@
   :config
   (denote-rename-buffer-mode 1))
 
+(after! eshell
+  (use-package! esh-autosuggest
+    :hook (eshell-mode . esh-autosuggest-mode))
 
-(use-package! elfeed
-  :custom
-  (elfeed-feeds '(
-                  ;; Blogs
-                  ("http://nullprogram.com/feed/" blog)
-                  ("https://www.astralcodexten.com/feed" blog)
-                  ("https://thezvi.substack.com/feed" blog)
-                  ("https://feeds.feedburner.com/mrmoneymustache" blog)
-                  ("https://sourcehut.org/blog/index.xml" blog)
-                  ("https://drewdevault.com/blog/index.xml" blog)
+  (use-package! eshell-info-banner
+    :hook (eshell-banner-load . eshell-info-banner-update-banner))
 
-                  ;; Multi feeds
-                  "https://planet.emacslife.com/atom.xml"
+  )
 
-                  ;; Comics
-                  ("https://xkcd.com/atom.xml" comic)))
+(after! elfeed
+  (setq elfeed-feeds '(
+                       ;; Blogs
+                       ("http://nullprogram.com/feed/" blog)
+                       ("https://www.astralcodexten.com/feed" blog)
+                       ("https://thezvi.substack.com/feed" blog)
+                       ("https://feeds.feedburner.com/mrmoneymustache" blog)
+                       ("https://sourcehut.org/blog/index.xml" blog)
+                       ("https://drewdevault.com/blog/index.xml" blog)
 
-  :init
-  (map! :leader :desc "Elfeed" "o r" #'elfeed))
+                       ;; Multi feeds
+                       "https://planet.emacslife.com/atom.xml"
 
-(use-package! ef-themes
-  :custom
-  (ef-themes-to-toggle '(ef-bio ef-spring))
-  :init
-  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
+                       ;; Comics
+                       ("https://xkcd.com/atom.xml" comic)))
+  )
+
+
+
+;; Disabled while I use modus themes
+;; TODO: find a way to nicely integrate these into an alternative set
+;; (use-package! ef-themes
+;;   :custom
+;;   (ef-themes-to-toggle '(ef-bio ef-spring))
+;;   :init
+;;   (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
