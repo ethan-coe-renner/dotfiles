@@ -103,6 +103,7 @@
    "ff" "find-file-other-window $1"
    "d" "dired-other-window $1"
    )
+
   (use-package! esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode))
 
