@@ -110,23 +110,6 @@
     :hook (eshell-banner-load . eshell-info-banner-update-banner))
   )
 
-(after! elfeed
-  (setq elfeed-feeds '(
-                       ;; Blogs
-                       ("http://nullprogram.com/feed/" blog)
-                       ("https://www.astralcodexten.com/feed" blog)
-                       ("https://thezvi.substack.com/feed" blog)
-                       ("https://feeds.feedburner.com/mrmoneymustache" blog)
-                       ("https://sourcehut.org/blog/index.xml" blog)
-                       ("https://drewdevault.com/blog/index.xml" blog)
-
-                       ;; Multi feeds
-                       "https://planet.emacslife.com/atom.xml"
-
-                       ;; Comics
-                       ("https://xkcd.com/atom.xml" comic)))
-  )
-
 (use-package! fontaine
   :config
   (setq fontaine-presets
