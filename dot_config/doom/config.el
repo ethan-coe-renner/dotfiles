@@ -94,7 +94,7 @@
   ;; keymap overrides
   (map!
    :map eshell-mode-map
-   "M-RET" #'my-switch-to-other-buffer
+   "M-RET" #'bury-buffer
    )
 
   (set-eshell-alias!

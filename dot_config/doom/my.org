@@ -29,12 +29,6 @@ I like to be able to quickly switch between a buffer and an ~eshell~ buffer.
 The following functions aid this workflow.
 
 #+begin_src emacs-lisp
-(defun my-switch-to-other-buffer ()
-  "Switch to the most recently opened buffer."
-  (interactive)
-  (switch-to-buffer (other-buffer))
-  )
-
 (defun my-switch-to-eshell ()
   "Switch to the existing *eshell* buffer or create one if it doesn't exist."
   (interactive)
