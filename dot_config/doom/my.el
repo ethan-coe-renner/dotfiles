@@ -26,5 +26,18 @@
   (interactive)
   (dired my-chezmoi-dir))
 
+(defun my-switch-to-other-buffer ()
+  "Switch to the most recently opened buffer."
+  (interactive)
+  (switch-to-buffer (other-buffer))
+  )
+
+(defun my-switch-to-eshell ()
+  "Switch to the existing *eshell* buffer or create one if it doesn't exist."
+  (interactive)
+  (if (get-buffer "*eshell*")
+      (switch-to-buffer "*eshell*")
+    (eshell)))
+
 (provide 'my)
 ;;; my.el ends here

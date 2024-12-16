@@ -42,6 +42,9 @@
 
 ;; --- Miscellaneous Keybindings ---
 (map!
+ (
+  "M-RET" #'my-switch-to-eshell
+  )
  ;; window movement
  (
   "M-<up>" #'windmove-up
@@ -85,6 +88,12 @@
   (denote-rename-buffer-mode 1))
 
 (after! eshell
+  ;; keymap overrides
+  (map!
+   :map eshell-mode-map
+   "M-RET" #'my-switch-to-other-buffer
+   )
+
   (set-eshell-alias!
    "g" "magit"
    "gl" "magit-log"
