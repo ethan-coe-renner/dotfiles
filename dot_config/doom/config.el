@@ -67,7 +67,7 @@
 ;; --- Package Configurations ---
 (use-package! denote
   :custom
-  (denote-directory "~/notes")
+  (denote-directory "~/org/denote")
   (denote-dired-directories (list denote-directory))
   (denote-dired-directories-include-subdirectories t)
   (denote-rename-buffer-format "Denote:%t")
