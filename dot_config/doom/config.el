@@ -57,7 +57,10 @@
   "M-S-<left>" #'windmove-swap-states-left
   "M-S-<right>" #'windmove-swap-states-right
   )
+
  :leader
+ ;; Alternate keybinding for my-switch-to-eshell
+ (:desc "Switch to eshell" "RET" #'my-switch-to-eshell)
  (:prefix ("f")
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
   :desc "Browse chezmoi" "P" #'my-open-dotfiles)
