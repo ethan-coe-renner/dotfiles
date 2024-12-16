@@ -31,17 +31,14 @@
 (setq view-read-only t)
 
 ;; --- UI ---
-(setq doom-font (font-spec :family "Fira Code" :size 15))
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'modus-operandi)
 (after! modus-themes
   (map! :leader :desc "Theme" "t t" #'modus-themes-toggle))
 
 (setq display-line-numbers-type t)
 
 ;; Open eshell at startup
-(setq initial-buffer-choice (lambda ()
-                              (eshell)
-                              ))
+(setq initial-buffer-choice (lambda () (eshell)))
 
 ;; --- Miscellaneous Keybindings ---
 (map!
@@ -65,17 +62,6 @@
           "h" #'helpful-at-point))
 
 ;; --- Package Configurations ---
-
-(after! eshell
-  ;; TODO: figure out how to pass arguments to alias e.g. ls <dir>
-  (set-eshell-alias!
-   "g" "magit"
-   "gl" "magit-log"
-   "ff" "find-file-other-window $1"
-   "d" "dired-other-window $1"
-   )
-  )
-
 (use-package! denote
   :custom
   (denote-directory "~/notes")
@@ -99,12 +85,17 @@
   (denote-rename-buffer-mode 1))
 
 (after! eshell
+  (set-eshell-alias!
+   "g" "magit"
+   "gl" "magit-log"
+   "ff" "find-file-other-window $1"
+   "d" "dired-other-window $1"
+   )
   (use-package! esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode))
 
   (use-package! eshell-info-banner
     :hook (eshell-banner-load . eshell-info-banner-update-banner))
-
   )
 
 (after! elfeed
@@ -124,7 +115,24 @@
                        ("https://xkcd.com/atom.xml" comic)))
   )
 
-
+(use-package! fontaine
+  :config
+  (setq fontaine-presets
+        '(
+          (small
+           :default-family "Iosevka Comfy"
+           :default-height 90)
+          (medium
+           :default-family "Iosevka Comfy Wide"
+           :default-height 120)
+          (large
+           :default-family "Iosevka Comfy Wide"
+           :default-height 140)))
+  (fontaine-set-preset 'medium)
+  :init
+  (fontaine-mode 1)
+  (map! :leader "t b" #'fontaine-set-preset)
+  )
 
 ;; Disabled while I use modus themes
 ;; TODO: find a way to nicely integrate these into an alternative set

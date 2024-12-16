@@ -51,6 +51,7 @@
 ;; Prot
 (package! ef-themes)
 (package! denote)
+(package! fontaine)
 
 (package! literate-calc-mode)
 (package! dashboard)
