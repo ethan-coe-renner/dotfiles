@@ -23,7 +23,7 @@
 ;; - `map!' for binding new keys
 
 ;; Load my elisp snippets
-(load! "my")
+(org-babel-load-file (concat doom-user-dir "my.org"))
 
 (setq org-directory "~/org/")
 

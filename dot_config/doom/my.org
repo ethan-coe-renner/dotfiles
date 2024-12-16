@@ -1,14 +1,11 @@
-;;; my.el --- My miscellaneous elisp snippets -*- lexical-binding: t; -*-
-;;
-;; Copyright (C) 2024 Ethan Coe-Renner
-;;
-;; This file is not part of GNU Emacs.
-;;
-;;; Commentary:
-;;; This file contains miscellaneous elisp snippets for use in my Emacs configuration.
-;;
-;;; Code:
+#+title: My Elisp Snippets
 
+This file contains a collection of elisp functions which are ~org-babel-load-file~'d into my Emacs configuration.
+
+* Dotfile Management
+Here are some functions used to aid in managing my dotfiles with [[https://www.chezmoi.io/][Chezmoi]].
+
+#+begin_src emacs-lisp
 (defun my-chezmoi-apply ()
   "Apply chezmoi configuration."
   (interactive)
@@ -25,7 +22,13 @@
   "Open chezmoi in Dired."
   (interactive)
   (dired my-chezmoi-dir))
+#+end_src
 
+* Eshell Switching
+I like to be able to quickly switch between a buffer and an ~eshell~ buffer.
+The following functions aid this workflow.
+
+#+begin_src emacs-lisp
 (defun my-switch-to-other-buffer ()
   "Switch to the most recently opened buffer."
   (interactive)
@@ -38,6 +41,4 @@
   (if (get-buffer "*eshell*")
       (switch-to-buffer "*eshell*")
     (eshell)))
-
-(provide 'my)
-;;; my.el ends here
+#+end_src
