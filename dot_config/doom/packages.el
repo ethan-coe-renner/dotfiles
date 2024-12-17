@@ -57,4 +57,3 @@
 (package! dashboard)
 
 (package! esh-autosuggest)
-(package! eshell-info-banner)

@@ -44,6 +44,7 @@
 (map!
  (
   "M-RET" #'my-switch-to-eshell
+  "C-/" #'consult-line
   )
  ;; window movement
  (
@@ -64,6 +65,9 @@
  (:prefix ("f")
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
   :desc "Browse chezmoi" "P" #'my-open-dotfiles)
+ (:prefix ("b")
+          :desc "Switch buffer" "b" #'consult-buffer
+          )
  (:prefix ("h")
           "h" #'helpful-at-point))
 
@@ -92,10 +96,10 @@
 
 (after! eshell
   ;; keymap overrides
-  (map!
-   :map eshell-mode-map
-   "M-RET" #'bury-buffer
-   )
+  (map! :map eshell-mode-map
+        "M-RET" #'bury-buffer
+        :i "M-r" #'consult-history
+        )
 
   (set-eshell-alias!
    "g" "magit"
@@ -106,9 +110,6 @@
 
   (use-package! esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode))
-
-  (use-package! eshell-info-banner
-    :hook (eshell-banner-load . eshell-info-banner-update-banner))
   )
 
 (use-package! fontaine
