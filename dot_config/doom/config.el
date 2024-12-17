@@ -22,23 +22,21 @@
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
 
-;; Load my elisp snippets
-(org-babel-load-file (concat doom-user-dir "my.org"))
+(use-package! emacs
+  :init
+  ;; Load my elisp snippets
+  (org-babel-load-file (concat doom-user-dir "my.org"))
 
-(setq org-directory "~/org/")
+  :custom
+  (doom-theme 'modus-operandi)
+  (display-line-numbers-type t)
 
-;; Automatically open read only buffers in view-mode
-(setq view-read-only t)
+  ;; Automatically open read only buffers in view-mode
+  (view-read-only t)
 
-;; --- UI ---
-(setq doom-theme 'modus-operandi)
-(after! modus-themes
-  (map! :leader :desc "Theme" "t t" #'modus-themes-toggle))
-
-(setq display-line-numbers-type t)
-
-;; Open eshell at startup
-(setq initial-buffer-choice (lambda () (eshell)))
+  ;; Open eshell at startup
+  (initial-buffer-choice (lambda () (eshell)))
+  )
 
 ;; --- Miscellaneous Keybindings ---
 (map!
@@ -46,6 +44,7 @@
   "M-RET" #'my-switch-to-eshell
   "C-/" #'consult-line
   )
+
  ;; window movement
  (
   "M-<up>" #'windmove-up
@@ -66,12 +65,17 @@
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
   :desc "Browse chezmoi" "P" #'my-open-dotfiles)
  (:prefix ("b")
-          :desc "Switch buffer" "b" #'consult-buffer
-          )
+  :desc "Switch buffer" "b" #'consult-buffer
+  )
  (:prefix ("h")
           "h" #'helpful-at-point))
 
 ;; --- Package Configurations ---
+(use-package! org
+  :custom
+  (org-directory "~/org/")
+  )
+
 (use-package! denote
   :custom
   (denote-directory "~/org/denote")
@@ -131,10 +135,12 @@
   (map! :leader "t b" #'fontaine-set-preset)
   )
 
-;; Disabled while I use modus themes
-;; TODO: find a way to nicely integrate these into an alternative set
-;; (use-package! ef-themes
-;;   :custom
-;;   (ef-themes-to-toggle '(ef-bio ef-spring))
-;;   :init
-;;   (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
+(after! modus-themes
+  (map! :leader :desc "Theme" "t t" #'modus-themes-toggle))
+
+;; Modus themes are my default, but ef are nice for some color
+(use-package! ef-themes
+  :custom
+  (ef-themes-to-toggle '(ef-bio ef-spring))
+  :init
+  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
