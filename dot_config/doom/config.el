@@ -118,13 +118,13 @@
         '(
           (small
            :default-family "Iosevka Comfy"
-           :default-height 90)
+           :default-height 100)
           (medium
            :default-family "Iosevka Comfy Wide"
-           :default-height 120)
+           :default-height 140)
           (large
            :default-family "Iosevka Comfy Wide"
-           :default-height 140)))
+           :default-height 150)))
   (fontaine-set-preset 'medium)
   :init
   (fontaine-mode 1)
