@@ -31,11 +31,14 @@
   (doom-theme 'modus-operandi)
   (display-line-numbers-type t)
 
+  ;; Open eshell at startup
+  (initial-buffer-choice (lambda () (eshell)))
+
   ;; Automatically open read only buffers in view-mode
   (view-read-only t)
 
-  ;; Open eshell at startup
-  (initial-buffer-choice (lambda () (eshell)))
+  ;; Focus follows mouse
+  (mouse-autoselect-window t)
   )
 
 ;; --- Miscellaneous Keybindings ---
@@ -45,7 +48,7 @@
   "C-/" #'consult-line
   )
 
- ;; window movement
+ ;; Window movement
  (
   "M-<up>" #'windmove-up
   "M-<down>" #'windmove-down
@@ -99,7 +102,7 @@
   (denote-rename-buffer-mode 1))
 
 (after! eshell
-  ;; keymap overrides
+  ;; Keymap overrides
   (map! :map eshell-mode-map
         "M-RET" #'bury-buffer
         :i "M-r" #'consult-history
@@ -142,5 +145,4 @@
 (use-package! ef-themes
   :custom
   (ef-themes-to-toggle '(ef-bio ef-spring))
-  :init
-  (map! :leader :desc "Theme" "t t" #'ef-themes-toggle))
+  )
