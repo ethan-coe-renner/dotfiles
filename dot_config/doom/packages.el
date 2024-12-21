@@ -57,3 +57,4 @@
 (package! dashboard)
 
 (package! esh-autosuggest)
+(package! buffer-terminator)

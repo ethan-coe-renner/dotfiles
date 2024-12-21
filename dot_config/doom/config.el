@@ -96,6 +96,12 @@
     :hook (eshell-mode . esh-autosuggest-mode))
   )
 
+(use-package! buffer-terminator
+  :custom
+  (buffer-terminator-verbose nil)
+  :config
+  (buffer-terminator-mode 1))
+
 (use-package! fontaine
   :config
   (setq fontaine-presets
