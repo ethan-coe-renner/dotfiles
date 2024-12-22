@@ -47,6 +47,8 @@
  (:prefix ("b")
   :desc "Switch buffer" "b" #'consult-buffer
   )
+ (:prefix ("o")
+  :desc "Elfeed" "n" #'elfeed)
  (:prefix ("h")
           "h" #'helpful-at-point))
 
