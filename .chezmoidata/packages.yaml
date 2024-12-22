@@ -1,75 +1,38 @@
 packages:
-  darwin:
-    brews:
-      - cmake
-      - difftastic
-      - git
-      - hut
-      - neovim
-      - coreutils
-      - go
-      - carapace
-    casks:
-      - kitty
-      - emacs
-
   linux:
     fedora:
-      dnf:
-        - difftastic
-        - emacs
-        - hut
-        - kitty
-        - gimp
-        - libreoffice
-        - keepassxc
-        - qutebrowser
-        - torbrowser-launcher
-        - qbittorrent
-        - jc
-        - neovim
-        - zsh
-        - stack
-        - golang
-        - thefuck
-        - fira-code-fonts
-        ## Dependencies
-        - cmake
-        - gcc-c++
-        - openssl
-        - openssl-devel
-        # zellij
-        - pkgconf
-        - perl-FindBin
-        - perl-IPC-Cmd
-        - perl-File-Compare
-        - perl-File-Copy
-        ## EWW
-        - glibc-devel
-        - glib2-devel
-        - atk-devel
-        - cairo-devel
-        - cairo-gobject-devel
-        - libdbusmenu-devel
-        - pango-devel
-        - gdk-pixbuf2-devel
-        - libdbusmenu-gtk3-devel
-        - gtk-layer-shell-devel
+      # core
+      - git
+      - stow
+      - zsh
+
+      # desktop
+      - emacs
+      - kitty
+      - gimp
+      - libreoffice
+      - keepassxc
+      - qutebrowser
+      - torbrowser-launcher
+      - qbittorrent
+
+      # cli
+      - difftastic
+      - hut
+      - neovim
+      - stack
+      - golang
+      - thefuck
+      - bat
+      - tealdeer
+      - ripgrep
+      - fd-find
+
+      # fonts
+      - fira-code-fonts
 
   cargo:
-    locked:
-      - bat
-      - starship
-      - zoxide
-      - bottom
-      - zellij
-      - broot
-      - nu
-    unlocked:
-      - fd-find
-      - ripgrep
-      - topgrade
-      - tealdeer
-      - cargo-update
-      - vivid
-      - du-dust
+    - topgrade
+    - cargo-update
+    - vivid
+    - du-dust

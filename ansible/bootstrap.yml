@@ -1,0 +1,83 @@
+- name: Bootstrap dotfiles
+  hosts: localhost
+
+  tasks:
+    - name: Install packages with dnf
+      become: yes
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: latest
+        update_cache: true
+      loop: "{{ packages.linux.fedora }}"
+
+    # --- Rust ---
+    - name: Install Rust toolchain
+      command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+      args:
+        creates: "/home/ethan/.cargo"
+
+    - name: Install packages with cargo
+      community.general.cargo:
+        name: "{{ item }}"
+      loop: "{{ packages.cargo }}"
+
+    # --- KMonad
+    - name: Download KMonad
+      ansible.builtin.git:
+        repo: https://github.com/kmonad/kmonad
+        dest: /home/ethan/.local/repos
+        depth: 1
+      register: download_kmonad
+
+    - name: Install Kmonad
+      ansible.builtin.command: stack install
+      args:
+        chdir: /home/ethan/.local/repos/kmonad
+      when: download_kmonad.changed
+
+    # --- Carapace ---
+    - name: Download Carapace
+      get_url:
+        url: https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_386.tar.gz
+        dest: /home/ethan/.local/repos
+      register: download_carapace
+
+    - name: Extract Carapace
+      unarchive:
+        src: /home/ethan/.local/repos/carapace-bin_linux_386.tar.gz
+        dest: /home/ethan/.local/bin
+      when: download_carapace.changed
+
+    # --- Fira Code Nerd Font ---
+    - name: Download Fira Code Nerd Font
+      get_url:
+        url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
+        dest: /home/ethan/.local/share/fonts
+      register: download_firacodenerd
+
+    - name: Extract Fira Code Nerd Font
+      unarchive:
+        src: /home/ethan/.local/share/fonts/FiraCode.tar
+        dest: /home/ethan/.local/share/fonts
+      when: download_firacodenerd.changed
+
+    # --- Doom Emacs ---
+    - name: Download Doom Emacs
+      ansible.builtin.git:
+        repo: https://github.com/doomemacs/doomemacs
+        dest: /home/ethan/.config/emacs
+        depth: 1
+      register: download_doom
+
+    - name: Install Doom Emacs
+      ansible.builtin.command: /home/ethan/.config/emacs/bin/doom install
+      when: download_doom.changed
+
+
+    # --- Services ---
+    - name: Enable Systemd Services
+      ansible.builtin.systemd_service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      loop: "{{ services }}"
