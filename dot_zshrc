@@ -10,11 +10,6 @@ source $HOME/.env
 
 export TERM="xterm"
 
-# If this is a default shell, start nushell instead
-[[ $SHLVL == "1" ]] && source ~/.config/nushell/nu_start.sh
-
-## ZSH CONFIG -- the following is only executed if this is a subshell
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -46,3 +41,5 @@ antigen bundle hlissner/zsh-autopair
 antigen apply
 
 eval "$(thefuck --alias)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
