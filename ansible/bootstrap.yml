@@ -2,6 +2,10 @@
   hosts: localhost
 
   tasks:
+    - name: Include package vars
+      ansible.builtin.include_vars:
+        file: packages.yaml
+
     - name: Install packages with dnf
       become: yes
       ansible.builtin.dnf:
@@ -21,7 +25,7 @@
         name: "{{ item }}"
       loop: "{{ packages.cargo }}"
 
-    # --- KMonad
+    # --- KMonad ---
     - name: Download KMonad
       ansible.builtin.git:
         repo: https://github.com/kmonad/kmonad
@@ -75,6 +79,10 @@
 
 
     # --- Services ---
+    - name: Include service vars
+      ansible.builtin.include_vars:
+        file: services.yaml
+
     - name: Enable Systemd Services
       ansible.builtin.systemd_service:
         name: "{{ item }}"
