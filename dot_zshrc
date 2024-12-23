@@ -45,6 +45,4 @@ antigen bundle hlissner/zsh-autopair
 
 antigen apply
 
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
 eval "$(thefuck --alias)"

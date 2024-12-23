@@ -34,7 +34,6 @@ alias la='ls -A'
 alias lal='la --long --grid --git'
 alias cat='bat --theme ansi'
 alias grep='rg'
-alias cd=z
 
 #=program shortcuts
 alias ch='chezmoi'
