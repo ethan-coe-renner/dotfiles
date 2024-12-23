@@ -3,8 +3,7 @@ README.*
 .gitignore
 .build.yml
 bookmarks
-.emacs.d/emacs.org
-ci/
+ansible/
 
 {{ if ne .chezmoi.os "darwin" }}
 .qutebrowser/
