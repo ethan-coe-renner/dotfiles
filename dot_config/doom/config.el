@@ -15,7 +15,7 @@
   (view-read-only t)
 
   ;; Focus follows mouse
-  (mouse-autoselect-window t)
+  ;; (mouse-autoselect-window t)
   )
 
 ;; --- Miscellaneous Keybindings ---
