@@ -1,38 +1,38 @@
 packages:
   linux:
     fedora:
-      core:
-        - git
-        - stow
-        - zsh
+      # core
+      - git
+      - stow
+      - zsh
 
-      desktop:
-        - emacs
-        - kitty
-        - gimp
-        - libreoffice
-        - keepassxc
-        - qutebrowser
-        - torbrowser-launcher
-        - qbittorrent
+      # desktop:
+      - emacs
+      - kitty
+      - gimp
+      - libreoffice
+      - keepassxc
+      - qutebrowser
+      - torbrowser-launcher
+      - qbittorrent
 
-      cli:
-        - difftastic
-        - hut
-        - neovim
-        - stack
-        - golang
-        - thefuck
-        - bat
-        - tealdeer
-        - ripgrep
-        - fd-find
+      # cli
+      - difftastic
+      - hut
+      - neovim
+      - stack
+      - golang
+      - thefuck
+      - bat
+      - tealdeer
+      - ripgrep
+      - fd-find
 
-      fonts:
-        - fira-code-fonts
+      # fonts
+      - fira-code-fonts
 
-cargo:
-  unlocked:
+  cargo:
+    # implicitly unlocked
     - topgrade
     - cargo-update
     - vivid
