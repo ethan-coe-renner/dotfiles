@@ -12,9 +12,25 @@
         name: "{{ item }}"
         state: latest
       loop: "{{ packages.linux.fedora }}"
+      when: ansible_distribution == 'Fedora'
+
+    - name: Install packages with homebrew
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+        force_formula: true
+      loop: "{{ packages.darwin.brew }}"
+      when: ansible_facts['os_family'] == "Darwin"
+
+    - name: Install packages with homebrew cask
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages.darwin.cask }}"
+      when: ansible_facts['os_family'] == "Darwin"
 
     # --- Rust ---
-    - name: check if cargo is installed
+    - name: Check if cargo is installed
       stat:
         path: /home/ethan/.cargo
       register: cargo_exists
@@ -36,7 +52,14 @@
     - name: Install packages with cargo
       community.general.cargo:
         name: "{{ item }}"
-      loop: "{{ packages.cargo }}"
+      loop: "{{ packages.cargo.unlocked }}"
+      tags: rust
+
+    - name: Install locked packages with cargo
+      community.general.cargo:
+        name: "{{ item }}"
+        locked: true
+      loop: "{{ packages.cargo.locked }}"
       tags: rust
 
     # --- KMonad ---
@@ -56,7 +79,14 @@
       when: download_kmonad.changed
       tags: kmonad
 
-    # --- Fira Code Nerd Font ---
+    # --- Fonts ---
+    - name: Install Iosevka Comfy Font
+      ansible.builtin.git:
+        repo: https://github.com/protesilaos/iosevka-comfy
+        dest: "$HOME/.local/share/fonts/iosevka-comfy"
+        depth: 1
+      tags: font
+
     - name: Install Fira Code Nerd Font
       unarchive:
         src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz

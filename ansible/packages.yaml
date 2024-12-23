@@ -27,13 +27,41 @@ packages:
       - tealdeer
       - ripgrep
       - fd-find
+      - zoxide
+      - fzf
 
       # fonts
       - fira-code-fonts
 
+  darwin:
+    brew:
+      # core
+      - git
+      - coreutils
+
+      # cli
+      - carapace
+      - difftastic
+      - hut
+      - bat
+      - tealdeer
+      - ripgrep
+      - fd
+      - zoxide
+      - fzf
+
+    cask:
+      - kitty
+      - emacs
+      - libreoffice
+      - keepassxc
+
   cargo:
     # implicitly unlocked
-    - topgrade
-    - cargo-update
-    - vivid
-    - du-dust
+    unlocked:
+      - topgrade
+      - cargo-update
+      - vivid
+      - du-dust
+    locked:
+      - starship
