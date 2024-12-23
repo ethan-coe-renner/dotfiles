@@ -40,15 +40,18 @@
     - name: Download KMonad
       ansible.builtin.git:
         repo: https://github.com/kmonad/kmonad
-        dest: /home/ethan/.local/repos
+        dest: /home/ethan/.local/repos/kmonad
         depth: 1
       register: download_kmonad
+      tags: kmonad
 
     - name: Install Kmonad
-      ansible.builtin.command: stack install
+      shell: stack install
       args:
         chdir: /home/ethan/.local/repos/kmonad
+        creates: /home/ethan/.local/bin/kmonad
       when: download_kmonad.changed
+      tags: kmonad
 
     # --- Carapace ---
     - name: Download Carapace
