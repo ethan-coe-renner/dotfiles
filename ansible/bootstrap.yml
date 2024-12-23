@@ -32,7 +32,7 @@
     # --- Rust ---
     - name: Check if cargo is installed
       stat:
-        path: /home/ethan/.cargo
+        path: $HOME/.cargo
       register: cargo_exists
       tags: rust
 
@@ -66,7 +66,7 @@
     - name: Download KMonad
       ansible.builtin.git:
         repo: https://github.com/kmonad/kmonad
-        dest: /home/ethan/.local/repos/kmonad
+        dest: $HOME/.local/repos/kmonad
         depth: 1
       register: download_kmonad
       tags: kmonad
@@ -74,8 +74,8 @@
     - name: Install Kmonad
       shell: stack install
       args:
-        chdir: /home/ethan/.local/repos/kmonad
-        creates: /home/ethan/.local/bin/kmonad
+        chdir: $HOME/.local/repos/kmonad
+        creates: $HOME/.local/bin/kmonad
       when: download_kmonad.changed
       tags: kmonad
 
@@ -83,14 +83,14 @@
     - name: Install Iosevka Comfy Font
       ansible.builtin.git:
         repo: https://github.com/protesilaos/iosevka-comfy
-        dest: "$HOME/.local/share/fonts/iosevka-comfy"
+        dest: $HOME/.local/share/fonts/iosevka-comfy
         depth: 1
       tags: font
 
     - name: Install Fira Code Nerd Font
       unarchive:
         src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
-        dest: /home/ethan/.local/share/fonts
+        dest: $HOME/.local/share/fonts
         remote_src: yes
       tags: font
 
@@ -98,13 +98,13 @@
     - name: Download Doom Emacs
       ansible.builtin.git:
         repo: https://github.com/doomemacs/doomemacs
-        dest: /home/ethan/.config/emacs
+        dest: $HOME/.config/emacs
         depth: 1
       register: download_doom
       tags: emacs
 
     - name: Install Doom Emacs
-      ansible.builtin.command: /home/ethan/.config/emacs/bin/doom install
+      ansible.builtin.command: $HOME/.config/emacs/bin/doom install
       when: download_doom.changed
       tags: emacs
 
