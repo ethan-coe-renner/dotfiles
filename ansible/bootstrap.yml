@@ -79,7 +79,6 @@
       when: download_doom.changed
       tags: emacs
 
-
     # --- Services ---
     - name: Include service vars
       ansible.builtin.include_vars:
