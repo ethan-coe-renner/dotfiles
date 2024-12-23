@@ -11,7 +11,7 @@
       ansible.builtin.dnf:
         name: "{{ item }}"
         state: latest
-        update_cache: true
+        # update_cache: true
       loop: "{{ packages.linux.fedora }}"
 
     # --- Rust ---
@@ -57,35 +57,13 @@
       when: download_kmonad.changed
       tags: kmonad
 
-    # --- Carapace ---
-    - name: Download Carapace
-      get_url:
-        url: https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_386.tar.gz
-        dest: /home/ethan/.local/repos
-      register: download_carapace
-      tags: carapace
-
-    - name: Extract Carapace
-      unarchive:
-        src: /home/ethan/.local/repos/carapace-bin_linux_386.tar.gz
-        dest: /home/ethan/.local/bin
-      when: download_carapace.changed
-      tags: carapace
-
     # --- Fira Code Nerd Font ---
-    - name: Download Fira Code Nerd Font
-      get_url:
-        url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
-        dest: /home/ethan/.local/share/fonts
-      register: download_firacodenerd
-      tags: firacodenerdfont
-
-    - name: Extract Fira Code Nerd Font
+    - name: Install Fira Code Nerd Font
       unarchive:
-        src: /home/ethan/.local/share/fonts/FiraCode.tar
+        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
         dest: /home/ethan/.local/share/fonts
-      when: download_firacodenerd.changed
-      tags: firacodenerdfont
+        remote_src: yes
+      tags: font
 
     # --- Doom Emacs ---
     - name: Download Doom Emacs
@@ -107,9 +85,10 @@
       ansible.builtin.include_vars:
         file: services.yaml
 
-    - name: Enable Systemd Services
+    - name: Enable Systemd User Services
       ansible.builtin.systemd_service:
         name: "{{ item }}"
         state: started
         enabled: true
-      loop: "{{ services }}"
+        scope: user
+      loop: "{{ services.user }}"
