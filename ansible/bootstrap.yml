@@ -19,6 +19,7 @@
       stat:
         path: /home/ethan/.cargo
       register: cargo_exists
+      tags: rust
 
     - name: Download Rustup
       when: cargo_exists is failed
@@ -26,15 +27,18 @@
         url: https://sh.rustup.rs
         dest: /tmp/sh.rustup.rs
         mode: '0755'
+      tags: rust
 
     - name: install rustup
       when: cargo_exists is failed
       shell: /tmp/sh.rustup.rs -y
+      tags: rust
 
     - name: Install packages with cargo
       community.general.cargo:
         name: "{{ item }}"
       loop: "{{ packages.cargo }}"
+      tags: rust
 
     # --- KMonad ---
     - name: Download KMonad
@@ -59,12 +63,14 @@
         url: https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_386.tar.gz
         dest: /home/ethan/.local/repos
       register: download_carapace
+      tags: carapace
 
     - name: Extract Carapace
       unarchive:
         src: /home/ethan/.local/repos/carapace-bin_linux_386.tar.gz
         dest: /home/ethan/.local/bin
       when: download_carapace.changed
+      tags: carapace
 
     # --- Fira Code Nerd Font ---
     - name: Download Fira Code Nerd Font
@@ -72,12 +78,14 @@
         url: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
         dest: /home/ethan/.local/share/fonts
       register: download_firacodenerd
+      tags: firacodenerdfont
 
     - name: Extract Fira Code Nerd Font
       unarchive:
         src: /home/ethan/.local/share/fonts/FiraCode.tar
         dest: /home/ethan/.local/share/fonts
       when: download_firacodenerd.changed
+      tags: firacodenerdfont
 
     # --- Doom Emacs ---
     - name: Download Doom Emacs
@@ -86,10 +94,12 @@
         dest: /home/ethan/.config/emacs
         depth: 1
       register: download_doom
+      tags: emacs
 
     - name: Install Doom Emacs
       ansible.builtin.command: /home/ethan/.config/emacs/bin/doom install
       when: download_doom.changed
+      tags: emacs
 
 
     # --- Services ---
