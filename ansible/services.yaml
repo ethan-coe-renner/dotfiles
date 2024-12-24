@@ -1,7 +1,0 @@
-# services to be enabled
-
-services:
-  user:
-    - kmonad@thinkpad.service
-    - kmonad@thinkpad_external.service
-    - emacs.service
