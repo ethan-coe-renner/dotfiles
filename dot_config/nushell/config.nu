@@ -901,5 +901,4 @@ source ~/.cache/carapace/init.nu
 source ($nu.default-config-dir | path join 'aliases.nu')
 source ($nu.default-config-dir | path join 'zoxide.nu')
 
-use ~/.cache/starship/init.nu
 use '~/.config/broot/launcher/nushell/br' *
