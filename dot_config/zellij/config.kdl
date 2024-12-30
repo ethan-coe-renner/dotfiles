@@ -253,7 +253,7 @@ ui {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "gruvbox-dark"
+theme "modus_operandi"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -263,7 +263,7 @@ default_mode "normal"
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 // 
-default_shell "nu"
+// default_shell "nu"
  
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
@@ -419,3 +419,21 @@ attach_to_session true
 // Default: true (if the host terminal supports it)
 // 
 // support_kitty_keyboard_protocol false
+
+themes {
+    // This is a sort of janky modus operandi, it takes colors from both
+    // modus operandi and modus vivendi
+    modus_operandi {
+        fg "#000000"
+        bg "#ffffff"
+        black "#000000"
+        red "#a60000"
+        green "#44bc44"
+        yellow "#6f5500"
+        blue "#0031a9"
+        magenta "#721045"
+        cyan "#005e8b"
+        white "#f0f0f0"
+        orange "#db7b5f"
+    }
+}
