@@ -421,19 +421,37 @@ attach_to_session true
 // support_kitty_keyboard_protocol false
 
 themes {
-    // This is a sort of janky modus operandi, it takes colors from both
-    // modus operandi and modus vivendi
+    // modus themes taken from https://github.com/miikanissi/modus-themes.nvim/tree/master/extras/zellij
     modus_operandi {
         fg "#000000"
-        bg "#ffffff"
-        black "#000000"
+        // The background color is used for text highlighting and should be different from the black value
+        bg "#d0d6ec"
+        // Black should match the terminal background color
+        // This ensures the top and bottom bars are transparent
+        black "#ffffff"
         red "#a60000"
-        green "#44bc44"
+        green "#006800"
         yellow "#6f5500"
         blue "#0031a9"
         magenta "#721045"
         cyan "#005e8b"
-        white "#f0f0f0"
-        orange "#db7b5f"
+        white "#000000"
+        orange "#884900"
+    }
+    modus_vivendi {
+        fg "#ffffff"
+        // The background color is used for text highlighting and should be different from the black value
+        bg "#2f3849"
+        // Black should match the terminal background color
+        // This ensures the top and bottom bars are transparent
+        black "#000000"
+        red "#ff5f59"
+        green "#44bc44"
+        yellow "#d0bc00"
+        blue "#2fafff"
+        magenta "#feacd0"
+        cyan "#00d3d0"
+        white "#ffffff"
+        orange "#fec43f"
     }
 }
