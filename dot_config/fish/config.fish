@@ -8,13 +8,15 @@ alias lal="la --long --grid --git"
 alias g="git"
 alias cp="cp -i"
 alias mv="mv -i"
-alias cat="bat"
+alias cat="bat --theme ansi"
 alias ch="chezmoi"
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -g fish_key_bindings fish_vi_key_bindings
     set fish_greeting
+
+    set -gx EDITOR nvim
 
     zoxide init fish | source
     starship init fish | source
