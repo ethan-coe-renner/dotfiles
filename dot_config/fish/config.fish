@@ -20,6 +20,12 @@ if status is-interactive
     set -Ux ZELLIJ_AUTO_ATTACH true
     set -Ux ZELLIJ_AUTO_EXIT true
 
+    # Carapace
+    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+    mkdir -p ~/.config/fish/completions
+    carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
+    carapace _carapace | source
+
     zoxide init fish | source
     starship init fish | source
     # TODO: We don't start zellij until I can figure out how to get vi
