@@ -34,6 +34,7 @@ My editor of choice is (and will always be) [GNU Emacs](https://www.gnu.org/soft
 I frequently switch between [Doom Emacs](https://github.com/doomemacs/doomemacs) and a vanilla configuration. Currently I am using a Doom Emacs based configuration at [doom](./dot_config/doom).
 
 ## Shell
+*This may be changing to fish*
 I use [`zsh`](https://www.zsh.org/) as my primary shell.
 My zsh-specific configuration is located at [`dot_zshrc`](./dot_zshrc).
 
