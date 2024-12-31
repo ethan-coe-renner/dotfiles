@@ -17,7 +17,12 @@ if status is-interactive
     set fish_greeting
 
     set -gx EDITOR nvim
+    set -Ux ZELLIJ_AUTO_ATTACH true
+    set -Ux ZELLIJ_AUTO_EXIT true
 
     zoxide init fish | source
     starship init fish | source
+    # TODO: We don't start zellij until I can figure out how to get vi
+    # cursors to work with fish in zellij
+    # eval (zellij setup --generate-auto-start fish | string collect)
 end
