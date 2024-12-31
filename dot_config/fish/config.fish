@@ -10,17 +10,6 @@ if test "$TERM" = "dumb"
     return 0
 end
 
-# --- Aliases ---
-alias ls="eza --group-directories-first"
-alias ll="ls --long --git"
-alias la="ls -A"
-alias lal="la --long --grid --git"
-alias g="git"
-alias cp="cp -i"
-alias mv="mv -i"
-alias cat="bat --theme ansi"
-alias ch="chezmoi"
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
@@ -30,6 +19,17 @@ if status is-interactive
     eval (zellij setup --generate-auto-start fish | string collect)
 
     set fish_greeting
+
+    # --- Aliases ---
+    alias ls="eza --group-directories-first"
+    alias ll="ls --long --git"
+    alias la="ls -A"
+    alias lal="la --long --grid --git"
+    alias g="git"
+    alias cp="cp -i"
+    alias mv="mv -i"
+    alias cat="bat --theme ansi"
+    alias ch="chezmoi"
 
     # --- VI Mode ---
     set -g fish_key_bindings fish_vi_key_bindings
