@@ -24,6 +24,11 @@ alias ch="chezmoi"
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
+    # Autostart zellij
+    set -Ux ZELLIJ_AUTO_ATTACH true
+    set -Ux ZELLIJ_AUTO_EXIT true
+    eval (zellij setup --generate-auto-start fish | string collect)
+
     set fish_greeting
 
     # --- VI Mode ---
@@ -44,8 +49,6 @@ if status is-interactive
     set fish_cursor_visual block
 
     set -gx EDITOR nvim
-    set -Ux ZELLIJ_AUTO_ATTACH true
-    set -Ux ZELLIJ_AUTO_EXIT true
 
     # Carapace
     set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
@@ -56,6 +59,4 @@ if status is-interactive
     zoxide init fish | source
     starship init fish | source
 
-    # Start zellij on startup
-    eval (zellij setup --generate-auto-start fish | string collect)
 end
