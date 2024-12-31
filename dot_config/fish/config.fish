@@ -1,5 +1,15 @@
 source "$HOME/.cargo/env.fish"
 
+# If this is a dumb terminal, short circuit
+if test "$TERM" = "dumb"
+    # Set a basic prompt
+    function fish_prompt
+        echo ">"
+    end
+    # Skip the rest of the configuration
+    return 0
+end
+
 # --- Aliases ---
 alias ls="eza --group-directories-first"
 alias ll="ls --long --git"
