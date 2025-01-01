@@ -1,9 +1,24 @@
 # -*-sh-*-
 
-source $HOME/.env
+# Determine the session type
+if [[ $TERM == "dumb" ]]; then
+    SESSION_TYPE=dumb
+elif [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+    SESSION_TYPE=remote/ssh
+else
+    SESSION_TYPE=local
+fi
 
-# If connected to by TRAMP, immediately return
-[[ $SESSION_TYPE == remote/tramp ]] && PS1='$ ' && return
+export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Set editor to neovim if it exists, otherwise vim
+command -v nvim &>/dev/null && export EDITOR="nvim" || export EDITOR="vim"
+
+[[ -d $HOME/.cargo ]] && source $HOME/.cargo/env
+
+# If connected to by dumb terminal, immediately return
+[[ $SESSION_TYPE == dumb ]] && PS1='$ ' && return
 
 # If this is not an xterm, return immediately into default shell
 [[ ! $TERM =~ "xterm" ]] && return
@@ -30,7 +45,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
 setopt HIST_IGNORE_SPACE
 
-source $HOME/.aliases
+source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/antigen.zsh
 
 antigen bundle zsh-users/zsh-autosuggestions
