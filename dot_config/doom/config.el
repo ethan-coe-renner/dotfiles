@@ -80,6 +80,12 @@
   :config
   (denote-rename-buffer-mode 1))
 
+(after! elfeed
+  (map! :map elfeed-search-mode-map
+        :n "r" #'elfeed-update
+        )
+  )
+
 (after! eshell
   ;; Keymap overrides
   (map! :map eshell-mode-map
