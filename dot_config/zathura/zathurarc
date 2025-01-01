@@ -1,47 +1,39 @@
+# Modus Operandi Theme for Zathura
+# Auto generated with https://github.com/miikanissi/modus-themes.nvim/blob/master/lua/modus-themes/extras/zathura.lua
 #
-# Modus color theme
-#
-
-set notification-error-bg       "#ff8059" # Red
-set notification-error-fg       "#ffffff" # Foreground
-set notification-warning-bg     "#d0bc00" # Orange
-set notification-warning-fg     "#595959" # Selection
-set notification-bg             "#000000" # Background
-set notification-fg             "#ffffff" # Foreground
-
-set completion-bg               "#000000" # Background
-set completion-fg               "#2fafff" # Comment
-set completion-group-bg         "#000000" # Background
-set completion-group-fg         "#2fafff" # Comment
-set completion-highlight-bg     "#44475a" # Selection
-set completion-highlight-fg     "#ffffff" # Foreground
-
-set index-bg                    "#000000" # Background
-set index-fg                    "#ffffff" # Foreground
-set index-active-bg             "#595959" # Current Line
-set index-active-fg             "#ffffff" # Foreground
-
-set inputbar-bg                 "#000000" # Background
-set inputbar-fg                 "#ffffff" # Foreground
-set statusbar-bg                "#000000" # Background
-set statusbar-fg                "#ffffff" # Foreground
-
-set highlight-color             "#d0bc00" # Orange
-set highlight-active-color      "#ff79c6" # Pink
-
-set default-bg                  "#000000" # Background
-set default-fg                  "#ffffff" # Foreground
-
-set render-loading              true
-set render-loading-fg           "#000000" # Background
-set render-loading-bg           "#ffffff" # Foreground
-
+set notification-error-bg "#ff8f88"
+set notification-error-fg "#000000"
+set notification-warning-bg "#f3d000"
+set notification-warning-fg "#000000"
+set notification-bg "#ffffff"
+set notification-fg "#000000"
+set completion-bg "#ffffff"
+set completion-fg "#595959"
+set completion-group-bg "#ffffff"
+set completion-group-fg "#595959"
+set completion-highlight-bg "#006800"
+set completion-highlight-fg "#ffffff"
+set index-bg "#ffffff"
+set index-fg "#000000"
+set index-active-bg "#0031a9"
+set index-active-fg "#ffffff"
+set inputbar-bg "#ffffff"
+set inputbar-fg "#000000"
+set statusbar-bg "#c8c8c8"
+set statusbar-fg "#0a0a0a"
+set highlight-color "#6f5500"
+set highlight-active-color "#006800"
+set default-bg "#ffffff"
+set default-fg "#000000"
+set render-loading true
+set render-loading-fg "#ffffff"
+set render-loading-bg "#000000"
 #
 # Recolor mode settings
+# <C-r> to switch modes
 #
-
-set recolor-lightcolor          "#000000" # Background
-set recolor-darkcolor           "#ffffff" # Foreground
+set recolor-lightcolor "#ffffff"
+set recolor-darkcolor "#000000"
 
 #
 # Startup options
@@ -49,6 +41,6 @@ set recolor-darkcolor           "#ffffff" # Foreground
 set adjust-open width
 # set recolor true
 
-set font	"Fira Code 9"
-set window-title-basename	"true"
+set font "Iosevka Comfy 9"
+set window-title-basename "true"
 set selection-clipboard "clipboard"
