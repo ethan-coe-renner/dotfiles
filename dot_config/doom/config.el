@@ -126,7 +126,7 @@
   (fontaine-set-preset 'medium)
   :init
   (fontaine-mode 1)
-  (map! :leader "t b" #'fontaine-set-preset)
+  (map! :leader :desc "Font size" "t b" #'fontaine-set-preset)
   )
 
 (after! modus-themes
