@@ -94,8 +94,10 @@
         )
 
   (set-eshell-alias!
+   "git" "git $1" ;; use pager for git
    "g" "magit"
    "gl" "magit-log"
+   "glc" "magit-log-current"
    "ff" "find-file-other-window $1"
    "d" "dired-other-window $1"
    )
