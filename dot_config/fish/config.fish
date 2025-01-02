@@ -1,4 +1,5 @@
 source "$HOME/.cargo/env.fish"
+fish_add_path /opt/homebrew/bin
 
 # If this is a dumb terminal, short circuit
 if test "$TERM" = "dumb"
