@@ -1,5 +1,6 @@
 source "$HOME/.cargo/env.fish"
 fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
 
 # If this is a dumb terminal, short circuit
 if test "$TERM" = "dumb"
@@ -59,5 +60,4 @@ if status is-interactive
 
     zoxide init fish | source
     starship init fish | source
-
 end
