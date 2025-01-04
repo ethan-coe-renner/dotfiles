@@ -3,6 +3,7 @@ README.*
 .gitignore
 .build.yml
 bookmarks
+other/
 
 {{ if ne .chezmoi.os "darwin" }}
 .qutebrowser/
