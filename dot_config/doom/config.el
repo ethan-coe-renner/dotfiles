@@ -131,6 +131,11 @@
   (map! :leader :desc "Font size" "t b" #'fontaine-set-preset)
   )
 
+(use-package! spacious-padding
+  :config
+  (spacious-padding-mode 1)
+  )
+
 (after! modus-themes
   (map! :leader :desc "Theme" "t t" #'modus-themes-toggle))
 

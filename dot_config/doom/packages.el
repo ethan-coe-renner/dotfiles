@@ -52,6 +52,7 @@
 (package! ef-themes)
 (package! denote)
 (package! fontaine)
+(package! spacious-padding)
 
 (package! literate-calc-mode)
 (package! dashboard)
