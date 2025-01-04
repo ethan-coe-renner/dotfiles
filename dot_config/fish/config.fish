@@ -1,6 +1,7 @@
 source "$HOME/.cargo/env.fish"
-fish_add_path ~/.local/share/bin
-fish_add_path ~/.local/share/bin/scripts
+fish_add_path ~/.local/bin
+fish_add_path ~/.local/bin/scripts
+fish_add_path ~/.config/emacs/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 
