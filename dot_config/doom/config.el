@@ -68,6 +68,9 @@
 
   (dashboard-week-agenda t)
 
+  ;; Allows dashboard to work in client frames
+  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+
   :config
   (dashboard-setup-startup-hook))
 
