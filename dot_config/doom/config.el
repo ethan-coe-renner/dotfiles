@@ -10,6 +10,8 @@
 
   ;; Open eshell at startup
   (initial-buffer-choice (lambda () (eshell)))
+  ;; Needed if $SHELL is a non-POSIX shell
+  (shell-file-name (executable-find "bash"))
 
   ;; Automatically open read only buffers in view-mode
   (view-read-only t)
