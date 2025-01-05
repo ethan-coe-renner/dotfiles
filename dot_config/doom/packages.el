@@ -51,6 +51,7 @@
 ;; Prot
 (package! ef-themes)
 (package! denote)
+(package! consult-denote)
 (package! fontaine)
 (package! spacious-padding)
 

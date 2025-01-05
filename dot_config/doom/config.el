@@ -101,6 +101,13 @@
   :config
   (denote-rename-buffer-mode 1))
 
+(use-package! consult-denote
+  :config
+  (consult-denote-mode 1)
+  (map! :leader :desc "Search denote" "s n" #'consult-denote-grep
+        :desc "Find denote" "f n" #'consult-denote-find)
+  )
+
 (after! elfeed
   (map! :map elfeed-search-mode-map
         :n "r" #'elfeed-update
