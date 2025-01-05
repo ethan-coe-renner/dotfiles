@@ -6,7 +6,7 @@
 
   :custom
   (doom-theme 'modus-operandi)
-  (display-line-numbers-type t)
+  (display-line-numbers-type nil)
 
   ;; Needed if $SHELL is a non-POSIX shell
   (shell-file-name (executable-find "bash"))
