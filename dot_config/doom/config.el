@@ -8,8 +8,6 @@
   (doom-theme 'modus-operandi)
   (display-line-numbers-type t)
 
-  ;; Open eshell at startup
-  (initial-buffer-choice (lambda () (eshell)))
   ;; Needed if $SHELL is a non-POSIX shell
   (shell-file-name (executable-find "bash"))
 
@@ -55,6 +53,24 @@
           "h" #'helpful-at-point))
 
 ;; --- Package Configurations ---
+(use-package! dashboard
+  :custom
+  (dashboard-items '((bookmarks . 5)
+                     (agenda . 5)))
+
+  (dashboard-startup-banner 3)
+
+  ;; Use icons
+  (dashboard-display-icons-p t)
+  (dashboard-icon-type 'nerd-icons)
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+
+  (dashboard-week-agenda t)
+
+  :config
+  (dashboard-setup-startup-hook))
+
 (use-package! org
   :custom
   (org-directory "~/org/")
