@@ -48,15 +48,15 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
+(package! dashboard)
+(package! literate-calc-mode)
+(package! esh-autosuggest)
+(package! buffer-terminator)
+(package! devdocs)
+
 ;; Prot
 (package! ef-themes)
 (package! denote)
 (package! consult-denote)
 (package! fontaine)
 (package! spacious-padding)
-
-(package! literate-calc-mode)
-(package! dashboard)
-
-(package! esh-autosuggest)
-(package! buffer-terminator)

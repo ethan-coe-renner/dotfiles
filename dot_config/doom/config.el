@@ -108,6 +108,11 @@
         :desc "Find denote" "f n" #'consult-denote-find)
   )
 
+(use-package! devdocs
+  :init
+  (map! "C-h D" #'devdocs-lookup)
+  )
+
 (after! elfeed
   (map! :map elfeed-search-mode-map
         :n "r" #'elfeed-update
