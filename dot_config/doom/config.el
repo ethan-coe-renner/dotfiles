@@ -113,10 +113,19 @@
   (map! "C-h D" #'devdocs-lookup)
   )
 
-(after! elfeed
+(use-package! elfeed
+  :config
   (map! :map elfeed-search-mode-map
         :n "r" #'elfeed-update
+        :n "q" #'elfeed-kill-buffer
         )
+  )
+
+(use-package! elfeed-org
+  :init
+  (elfeed-org)
+  :custom
+  (rmh-elfeed-org-files (list (concat org-directory "elfeed.org")))
   )
 
 (after! eshell

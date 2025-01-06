@@ -60,3 +60,9 @@
 (package! consult-denote)
 (package! fontaine)
 (package! spacious-padding)
+
+;; Elfeed
+;;; I manually install elfeed instead of using the doom module
+;;; because I don't want elfeed-goodies
+(package! elfeed)
+(package! elfeed-org)
