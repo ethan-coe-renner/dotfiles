@@ -1,42 +1,44 @@
 [user]
-	email = {{ .email | quote }}
-	name = Ethan Coe-Renner
+    email = {{ .email | quote }}
+    name = Ethan Coe-Renner
+
 [credential]
-	helper = store
+    helper = store
+
 [alias]
-	lg = log --oneline --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN <%ae>%Creset' --abbrev-commit
-	ci = commit --verbose
-	cia = commit --verbose --amend
-	dlog = log -p --ext-diff
-	sh = show --ext-diff
-	stsh = stash show --ext-diff
-	st = status
+    lg = log --oneline --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN <%ae>%Creset' --abbrev-commit
+    ci = commit --verbose
+    cia = commit --verbose --amend
+    dlog = log -p --ext-diff
+    sh = show --ext-diff
+    stsh = stash show --ext-diff
+    st = status
     pf = push --force-with-lease
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [init]
-	defaultBranch = "master"
+    defaultBranch = "master"
 
 [pull]
-	rebase = true
+    rebase = true
 
 [push]
-        autoSetupRemote = true
+    autoSetupRemote = true
 
 # Difftastic
 [diff]
-        external = difft
-        tool = difftastic
+    external = difft
+    tool = difftastic
 
 [difftool]
-        prompt = false
+    prompt = false
 
 [difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft "$LOCAL" "$REMOTE"
 
 [pager]
-        difftool = true
+    difftool = true
