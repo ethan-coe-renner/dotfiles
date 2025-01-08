@@ -53,6 +53,7 @@
 (package! esh-autosuggest)
 (package! buffer-terminator)
 (package! devdocs)
+(package! deadgrep)
 
 ;; Prot
 (package! ef-themes)

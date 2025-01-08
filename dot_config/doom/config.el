@@ -45,8 +45,9 @@
   :desc "Find file in chezmoi" "p" #'my-find-dotfile
   :desc "Browse chezmoi" "P" #'my-open-dotfiles)
  (:prefix ("b")
-  :desc "Switch buffer" "b" #'consult-buffer
-  )
+  :desc "Switch buffer" "b" #'consult-buffer)
+ (:prefix ("s")
+          "R" #'deadgrep)
  (:prefix ("o")
   :desc "Elfeed" "n" #'elfeed)
  (:prefix ("h")
@@ -128,6 +129,19 @@
   (rmh-elfeed-org-files (list (concat org-directory "elfeed.org")))
   )
 
+(use-package! deadgrep
+  :config
+  (map! :map deadgrep-mode-map
+        :n "j" #'deadgrep-forward
+        :n "k" #'deadgrep-backward
+        :n "/" #'deadgrep-search-term
+        :n "d" #'deadgrep-directory
+        :n "f" #'deadgrep-cycle-files
+        :n "t" #'deadgrep-cycle-search-type
+        :n "c" #'deadgrep-cycle-search-case
+        )
+  )
+
 (after! eshell
   ;; Keymap overrides
   (map! :map eshell-mode-map
@@ -146,6 +160,16 @@
 
   (use-package! esh-autosuggest
     :hook (eshell-mode . esh-autosuggest-mode))
+  )
+
+(use-package! dumb-jump
+  :custom
+  (dumb-jump-prefer-searcher 'rg)
+  (xref-show-definitionns-function #'xref-show-definitions-completing-read)
+
+  :hook
+  (xref-backend-functions . dumb-jump-xref-activate)
+
   )
 
 (use-package! buffer-terminator
