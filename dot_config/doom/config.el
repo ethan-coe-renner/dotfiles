@@ -57,7 +57,9 @@
 (use-package! dashboard
   :custom
   (dashboard-items '((bookmarks . 5)
-                     (agenda . 5)))
+                     (agenda . 5)
+                     (recents . 5)
+                     ))
 
   (dashboard-startup-banner 3)
 
