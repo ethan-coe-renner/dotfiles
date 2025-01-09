@@ -175,12 +175,10 @@
 
 (use-package! dumb-jump
   :custom
-  (dumb-jump-prefer-searcher 'rg)
-  (xref-show-definitionns-function #'xref-show-definitions-completing-read)
+  (dumb-jump-force-searcher 'rg)
 
   :hook
   (xref-backend-functions . dumb-jump-xref-activate)
-
   )
 
 (use-package! buffer-terminator
