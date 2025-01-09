@@ -6,22 +6,22 @@ This file contains a collection of elisp functions which are ~org-babel-load-fil
 Here are some functions used to aid in managing my dotfiles with [[https://www.chezmoi.io/][Chezmoi]].
 
 #+begin_src emacs-lisp
-(defun my-chezmoi-apply ()
+(defun my/chezmoi-apply ()
   "Apply chezmoi configuration."
   (interactive)
   (shell-command "chezmoi apply"))
 
-(defvar my-chezmoi-dir (expand-file-name "~/.local/share/chezmoi/"))
+(defvar my/chezmoi-dir (expand-file-name "~/.local/share/chezmoi/"))
 
-(defun my-find-dotfile ()
+(defun my/find-dotfile ()
   "Open a file somewhere in chezmoi via a fuzzy filename search."
   (interactive)
-  (doom-project-find-file my-chezmoi-dir))
+  (doom-project-find-file my/chezmoi-dir))
 
-(defun my-open-dotfiles ()
+(defun my/open-dotfiles ()
   "Open chezmoi in Dired."
   (interactive)
-  (dired my-chezmoi-dir))
+  (dired my/chezmoi-dir))
 #+end_src
 
 * Eshell Switching
@@ -29,7 +29,7 @@ I like to be able to quickly switch between a buffer and an ~eshell~ buffer.
 The following functions aid this workflow.
 
 #+begin_src emacs-lisp
-(defun my-switch-to-eshell ()
+(defun my/switch-to-eshell ()
   "Switch to the existing *eshell* buffer or create one if it doesn't exist."
   (interactive)
   (if (get-buffer "*eshell*")

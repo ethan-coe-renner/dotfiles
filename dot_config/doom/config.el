@@ -21,7 +21,7 @@
 ;; --- Miscellaneous Keybindings ---
 (map!
  (
-  "M-RET" #'my-switch-to-eshell
+  "M-RET" #'my/switch-to-eshell
   "C-/" #'consult-line
   )
 
@@ -39,11 +39,11 @@
   )
 
  :leader
- ;; Alternate keybinding for my-switch-to-eshell
- (:desc "Switch to eshell" "RET" #'my-switch-to-eshell)
+ ;; Alternate keybinding for my/switch-to-eshell
+ (:desc "Switch to eshell" "RET" #'my/switch-to-eshell)
  (:prefix ("f")
-  :desc "Find file in chezmoi" "p" #'my-find-dotfile
-  :desc "Browse chezmoi" "P" #'my-open-dotfiles)
+  :desc "Find file in chezmoi" "p" #'my/find-dotfile
+  :desc "Browse chezmoi" "P" #'my/open-dotfiles)
  (:prefix ("b")
   :desc "Switch buffer" "b" #'consult-buffer)
  (:prefix ("s")
