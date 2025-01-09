@@ -143,8 +143,8 @@
 (use-package! deadgrep
   :config
   (map! :map deadgrep-mode-map
-        :n "j" #'deadgrep-forward
-        :n "k" #'deadgrep-backward
+        :n "j" #'deadgrep-forward-match
+        :n "k" #'deadgrep-backward-match
         :n "/" #'deadgrep-search-term
         :n "d" #'deadgrep-directory
         :n "f" #'deadgrep-cycle-files
