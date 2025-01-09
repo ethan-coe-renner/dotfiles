@@ -63,6 +63,9 @@
 
   (dashboard-startup-banner 3)
 
+  ;; Center content
+  (dashboard-center-content t)
+
   ;; Use icons
   (dashboard-display-icons-p t)
   (dashboard-icon-type 'nerd-icons)
