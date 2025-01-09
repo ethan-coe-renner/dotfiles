@@ -85,6 +85,12 @@
   (org-directory "~/org/")
   )
 
+(use-package! tramp
+  :config
+  ;; Add rust programs to remote path
+  (add-to-list 'tramp-remote-path "~/.cargo/bin")
+  )
+
 (use-package! denote
   :custom
   (denote-directory "~/org/denote")
