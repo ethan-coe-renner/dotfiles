@@ -55,6 +55,14 @@
 (package! devdocs)
 (package! deadgrep)
 
+(package! dumb-jump
+  ;; For some reason, the next commit reverts a change which fixes xref over
+  ;; TRAMP in favor of the deprecated dumb-jump-go over TRAMP.
+  ;; This seems weird because the xref mechanism is the recommended approach, and
+  ;; dumb-jump-go is deprecated.
+  ;; So, I pin this to the previous commit until this is resolved.
+  :pin "3c2ab8dfff3a10d3c5f2efd69cfbc81fb5dbbd39")
+
 ;; Prot
 (package! ef-themes)
 (package! denote)
