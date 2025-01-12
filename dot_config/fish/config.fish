@@ -18,10 +18,12 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
-    # Autostart zellij
-    set -Ux ZELLIJ_AUTO_ATTACH true
-    set -Ux ZELLIJ_AUTO_EXIT true
-    eval (zellij setup --generate-auto-start fish | string collect)
+    # Autostart zellij in kitty
+    if test "$TERM" = "xterm-kitty"
+        set -Ux ZELLIJ_AUTO_ATTACH true
+        set -Ux ZELLIJ_AUTO_EXIT true
+        eval (zellij setup --generate-auto-start fish | string collect)
+    end
 
     set fish_greeting
 
