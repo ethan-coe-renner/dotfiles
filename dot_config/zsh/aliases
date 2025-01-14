@@ -34,8 +34,6 @@ alias ls='eza --group-directories-first'
 alias ll='ls --long --git'
 alias la='ls -A'
 alias lal='la --long --grid --git'
-alias cat='bat --theme ansi'
-alias grep='rg'
 
 #=program shortcuts
 alias ch='chezmoi'
