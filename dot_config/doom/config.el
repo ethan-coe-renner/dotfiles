@@ -145,7 +145,7 @@
   (map! :map deadgrep-mode-map
         :n "j" #'deadgrep-forward-match
         :n "k" #'deadgrep-backward-match
-        :n "/" #'deadgrep-search-term
+        :n "?" #'deadgrep-search-term
         :n "d" #'deadgrep-directory
         :n "f" #'deadgrep-cycle-files
         :n "t" #'deadgrep-cycle-search-type
