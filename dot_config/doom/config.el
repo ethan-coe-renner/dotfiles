@@ -150,6 +150,13 @@
         :n "f" #'deadgrep-cycle-files
         :n "t" #'deadgrep-cycle-search-type
         :n "c" #'deadgrep-cycle-search-case
+        :n "C" (defhydra deadgrep-context ()
+                 "context"
+                 ("B" deadgrep-increment-before-context "increment before context")
+                 ("b" deadgrep-decrement-before-context "decrement before context")
+                 ("A" deadgrep-increment-after-context "increment after context")
+                 ("a" deadgrep-decrement-after-context "decrement after context")
+                 )
         )
   )
 

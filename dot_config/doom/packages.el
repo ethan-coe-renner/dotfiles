@@ -53,7 +53,10 @@
 (package! esh-autosuggest)
 (package! buffer-terminator)
 (package! devdocs)
-(package! deadgrep)
+(package! deadgrep
+  :recipe (:host github
+           :repo "ethan-coe-renner/deadgrep"
+           :branch "update-context"))
 
 (package! dumb-jump
   ;; For some reason, the next commit reverts a change which fixes xref over
