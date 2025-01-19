@@ -225,4 +225,5 @@
 (use-package! ef-themes
   :custom
   (ef-themes-to-toggle '(ef-bio ef-spring))
-  )
+  :init
+  (map! :leader :desc "Ef theme" "t T" #'ef-themes-toggle))
