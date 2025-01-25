@@ -188,6 +188,10 @@
   (xref-backend-functions . dumb-jump-xref-activate)
   )
 
+(use-package! jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)))
+
 (use-package! buffer-terminator
   :custom
   (buffer-terminator-verbose nil)

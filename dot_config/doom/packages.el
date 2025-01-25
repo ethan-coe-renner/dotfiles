@@ -53,6 +53,7 @@
 (package! esh-autosuggest)
 (package! buffer-terminator)
 (package! devdocs)
+(package! jinx)
 (package! deadgrep
   :recipe (:host github
            :repo "ethan-coe-renner/deadgrep"
