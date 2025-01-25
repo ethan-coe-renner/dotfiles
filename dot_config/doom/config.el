@@ -56,9 +56,9 @@
 ;; --- Package Configurations ---
 (use-package! dashboard
   :custom
-  (dashboard-items '((bookmarks . 5)
-                     (agenda . 5)
-                     (recents . 5)
+  (dashboard-items '((bookmarks . 10)
+                     (agenda . 10)
+                     (recents . 3)
                      ))
 
   (dashboard-startup-banner 3)
