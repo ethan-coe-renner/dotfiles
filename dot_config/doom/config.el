@@ -83,6 +83,19 @@
 (use-package! org
   :custom
   (org-directory "~/org/")
+  (org-todo-keywords '((sequence "TODO" "DONE")))
+
+  (org-capture-templates
+   '(
+     ("s" "Scratch" entry
+      (file "scratch.org")
+      "* %?\n%i\n\n")
+
+     ("t" "Todo" entry
+      (file+headline "todo.org" "Inbox")
+      "* TODO %?\n\n")
+     )
+   )
   )
 
 (use-package! tramp
