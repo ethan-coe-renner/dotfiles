@@ -46,10 +46,6 @@
   :desc "Browse chezmoi" "P" #'my/open-dotfiles)
  (:prefix ("b")
   :desc "Switch buffer" "b" #'consult-buffer)
- (:prefix ("s")
-          "R" #'deadgrep)
- (:prefix ("o")
-  :desc "Elfeed" "n" #'elfeed)
  (:prefix ("h")
           "h" #'helpful-at-point))
 
@@ -141,6 +137,9 @@
   )
 
 (use-package! elfeed
+  :init
+  (map! :leader :desc "Elfeed" "o n" #'elfeed)
+
   :config
   (map! :map elfeed-search-mode-map
         :n "r" #'elfeed-update
@@ -157,7 +156,11 @@
 
 (use-package! deadgrep
   :config
-  (map! :map deadgrep-mode-map
+
+  (map!
+   (:leader "s R" #'deadgrep)
+
+   :map deadgrep-mode-map
         :n "j" #'deadgrep-forward-match
         :n "k" #'deadgrep-backward-match
         :n "?" #'deadgrep-search-term
