@@ -109,21 +109,23 @@
   (denote-directory "~/org/denote")
   (denote-dired-directories (list denote-directory))
   (denote-dired-directories-include-subdirectories t)
-  (denote-rename-buffer-format "Denote:%t")
+  (denote-rename-buffer-format "[D] %t : %k")
 
-  ;; TODO: consider more denote keywords
-  (denote-known-keywords '("emacs" "dev"))
+  (denote-known-keywords (list "dev" "devops" "emacs"))
   (denote-sort-keywords t)
 
   (denote-date-prompt-use-org-read-date t)
 
   (denote-backlinks-show-context t)
+
   :hook
-  (dired-mode . denote-dired-mode-in-directories)
+  (dired-mode-hook . denote-dired-mode)
+
   :init
   (map! :leader :desc "Denote" "n d" #'denote-open-or-create)
 
-  :config
+  ;; I only want the title in the front matter
+  (setq denote-org-front-matter "#+title: %1$s\n\n")
   (denote-rename-buffer-mode 1))
 
 (use-package! consult-denote
