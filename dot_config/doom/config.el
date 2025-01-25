@@ -129,7 +129,7 @@
   :config
   (map! :map elfeed-search-mode-map
         :n "r" #'elfeed-update
-        :n "q" #'elfeed-kill-buffer
+        ;; :n "q" #'elfeed-kill-buffer
         )
   )
 
