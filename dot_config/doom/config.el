@@ -8,7 +8,7 @@
   (doom-theme 'modus-operandi)
   (display-line-numbers-type nil)
 
-  ;; Needed if $SHELL is a non-POSIX shell
+  ;; Needed if $SHELL is a non-POSIX shell (e.g. fish)
   (shell-file-name (executable-find "bash"))
 
   ;; Automatically open read only buffers in view-mode
