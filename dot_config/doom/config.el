@@ -170,21 +170,21 @@
    (:leader "s R" #'deadgrep)
 
    :map deadgrep-mode-map
-        :n "j" #'deadgrep-forward-match
-        :n "k" #'deadgrep-backward-match
-        :n "?" #'deadgrep-search-term
-        :n "d" #'deadgrep-directory
-        :n "f" #'deadgrep-cycle-files
-        :n "t" #'deadgrep-cycle-search-type
-        :n "c" #'deadgrep-cycle-search-case
-        :n "C" (defhydra deadgrep-context ()
-                 "context"
-                 ("B" deadgrep-increment-before-context "increment before context")
-                 ("b" deadgrep-decrement-before-context "decrement before context")
-                 ("A" deadgrep-increment-after-context "increment after context")
-                 ("a" deadgrep-decrement-after-context "decrement after context")
-                 )
-        )
+   :n "j" #'deadgrep-forward-match
+   :n "k" #'deadgrep-backward-match
+   :n "?" #'deadgrep-search-term
+   :n "d" #'deadgrep-directory
+   :n "f" #'deadgrep-cycle-files
+   :n "t" #'deadgrep-cycle-search-type
+   :n "c" #'deadgrep-cycle-search-case
+   :n "C" (defhydra deadgrep-context ()
+            "context"
+            ("B" deadgrep-increment-before-context "increment before context")
+            ("b" deadgrep-decrement-before-context "decrement before context")
+            ("A" deadgrep-increment-after-context "increment after context")
+            ("a" deadgrep-decrement-after-context "decrement after context")
+            )
+   )
   )
 
 (after! eshell
