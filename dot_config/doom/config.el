@@ -136,6 +136,15 @@
   (map! "C-h D" #'devdocs-lookup)
   )
 
+(use-package! ledger-mode
+  :custom
+  ((ledger-binary-path "hledger")
+   (ledger-mode-should-check-version nil)
+   (ledger-report-auto-width nil)
+   (ledger-report-links-in-register nil)
+   (ledger-report-native-highlighting-arguments '("--color=always")))
+  :mode ("\\.journal\\'" "\\.ledger\\'" "\\.hledger\\'"))
+
 (use-package! elfeed
   :init
   (map! :leader :desc "Elfeed" "o n" #'elfeed)
