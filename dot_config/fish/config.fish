@@ -37,6 +37,7 @@ if status is-interactive
     alias mv="mv -i"
     alias cat="bat --theme ansi"
     alias ch="chezmoi"
+    alias hl="hledger --strict --auto"
 
     # --- VI Mode ---
     set -g fish_key_bindings fish_vi_key_bindings
@@ -56,6 +57,7 @@ if status is-interactive
     set fish_cursor_visual block
 
     set -gx EDITOR nvim
+    set -gx LEDGER_FILE ~/finance/current.journal
 
     # Carapace
     set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
