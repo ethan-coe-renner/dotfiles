@@ -50,6 +50,7 @@
 
 (package! dashboard)
 (package! literate-calc-mode)
+(package! ledger-mode)
 (package! esh-autosuggest)
 (package! buffer-terminator)
 (package! devdocs)
