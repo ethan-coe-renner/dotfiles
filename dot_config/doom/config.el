@@ -79,6 +79,7 @@
 (use-package! org
   :custom
   (org-directory "~/org/")
+  (org-agenda-span 15)
   (org-todo-keywords '((sequence "TODO" "DONE")))
 
   (org-capture-templates
