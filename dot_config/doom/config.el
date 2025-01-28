@@ -101,6 +101,11 @@
   (add-to-list 'tramp-remote-path "~/.cargo/bin")
   )
 
+(use-package! doom-modeline
+  :custom
+  (doom-modeline-buffer-file-name-style 'buffer-name)
+)
+
 (use-package! denote
   :custom
   (denote-directory "~/org/denote")
