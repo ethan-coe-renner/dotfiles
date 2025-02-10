@@ -45,8 +45,13 @@ General is used for creating keybindings in a nice way.
   :straight t
   :custom
   (org-directory "~/org/")
+  (org-agenda-files '("~/org"))
   (org-agenda-span 15)
+  (org-hide-emphasis-markers t)
   (org-todo-keywords '((sequence "TODO" "DONE")))
+
+  (org-pretty-entities t)
+  (org-ellipsis "…")
 
   (org-capture-templates
    '(
@@ -63,7 +68,8 @@ General is used for creating keybindings in a nice way.
   (org-edit-src-content-indentation 0)
   (org-startup-truncated nil)
   :hook
-  (org-mode . org-indent-mode))
+  (org-mode . org-indent-mode)
+  (org-mode . visual-line-mode))
 #+end_src
 
 * Emacs
@@ -113,13 +119,19 @@ Use =view-mode= for read only buffers.
   (fontaine-presets
    '(
      (small
-      :default-family "Aporetic"
+      :default-family "Aporetic Sans Mono"
+      :fixed-pitch-family nil
+      :variable-pitch-font "Aporetic Sans"
       :default-height 100)
      (medium
-      :default-family "Aporetic"
+      :default-family "Aporetic Sans Mono"
+      :fixed-pitch-family nil
+      :variable-pitch-font "Aporetic Sans"
       :default-height 140)
      (large
-      :default-family "Aporetic"
+      :default-family "Aporetic Sans Mono"
+      :fixed-pitch-family nil
+      :variable-pitch-font "Aporetic Sans"
       :default-height 150)))
   :init
   (fontaine-mode 1)
@@ -142,9 +154,13 @@ Use =view-mode= for read only buffers.
   :straight t
   :custom
   (dashboard-items '((bookmarks . 10)
+		     (projects . 5)
+		     (agenda . 5)
                      (recents . 3)))
 
   (dashboard-startup-banner 'official)
+
+  (dashboard-projects-backend 'projectile)
 
   ;; Center content
   (dashboard-center-content t)
@@ -241,6 +257,13 @@ Which key is likely to be included in emacs 30, but for now we install from melp
   :straight t
   :general
   ("C-h D" 'devdocs-lookup))
+#+end_src
+* Project Management
+#+begin_src emacs-lisp
+(use-package projectile
+  :straight t
+  :config
+  (projectile-mode +1))
 #+end_src
 
 * Modeline
@@ -401,6 +424,10 @@ Meow provides a modal editing framework for emacs.
      '("b B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
+     ;; Projectile
+     '("p" . projectile-command-map)
+     ;; Recentf
+     '("r" . recentf-open)
      ;; Notes
      '("n d" . denote-open-or-create)
      '("n s" . consult-denote-grep)
