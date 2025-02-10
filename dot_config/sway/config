@@ -6,12 +6,10 @@ set $down j
 set $up k
 set $right l
 # Your preferred applications
-set $term alacritty
+set $term kitty
 set $browser qutebrowser
 # Your preferred application launcher
-set $menu bemenu-run --fn 'Fira Code' -p 'run:' --tb '#000000' --tf '#44bc44' --fb '#000000' --ff '#44bc44' --nb '#000000' --nf '#ffffff' --hb '#252525' --hf '#44bc44' --sb '#595959' --sf '#44bc44' --scb '#000000' --scf '#feacd0'
-
-exec mako
+set $menu kickoff
 
 ### Output configuration
 #
