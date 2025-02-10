@@ -144,7 +144,7 @@ Use =view-mode= for read only buffers.
   (dashboard-items '((bookmarks . 10)
                      (recents . 3)))
 
-  (dashboard-startup-banner 3)
+  (dashboard-startup-banner 'official)
 
   ;; Center content
   (dashboard-center-content t)
@@ -159,8 +159,11 @@ Use =view-mode= for read only buffers.
 
   ;; Allows dashboard to work in client frames
   (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
-
-  :config
+  :general
+  (:keymaps 'dashboard-mode-map
+	    "n" 'widget-forward
+	    "p" 'widget-backward)
+  :init
   (dashboard-setup-startup-hook))
 #+end_src
 
@@ -231,6 +234,13 @@ Which key is likely to be included in emacs 30, but for now we install from melp
   :straight t
   :config
   (which-key-mode))
+#+end_src
+** Devdocs
+#+begin_src emacs-lisp
+(use-package devdocs
+  :straight t
+  :general
+  ("C-h D" 'devdocs-lookup))
 #+end_src
 
 * Modeline
@@ -544,7 +554,12 @@ Meow provides a modal editing framework for emacs.
 
 * Major Modes
 This is for programming language modes.
-** Ledger mode
+** Literate Calc Mode
+#+begin_src emacs-lisp
+(use-package literate-calc-mode
+  :straight t)
+#+end_src
+** Ledger Mode
 #+begin_src emacs-lisp
 (use-package ledger-mode
   :straight t
