@@ -296,8 +296,7 @@ Which key is likely to be included in emacs 30, but for now we install from melp
    "C-x i" 'consult-imenu
    "C-x B" 'consult-bookmark
    )
-  (:keymaps 'org-mode-map
-	    "C-x i" 'consult-org-heading))
+  )
 #+end_src
 
 * Dired
@@ -401,6 +400,8 @@ Meow provides a modal editing framework for emacs.
      '("t t" . magit)
      '("t l" . magit-log)
      '("t b" . magit-blame)
+     ;; Eshell
+     '("RET" . my/switch-to-eshell)
      )
     (meow-motion-overwrite-define-key
      ;; custom keybinding for motion state
@@ -474,16 +475,13 @@ Meow provides a modal editing framework for emacs.
 #+end_src
 
 * Git
-
 ** Magit
 #+begin_src emacs-lisp
 (use-package magit
   :straight t)
 #+end_src
 
-
 * Shell
-
 ** Eshell
 #+begin_src emacs-lisp
 (use-package esh-autosuggest
@@ -537,6 +535,7 @@ Meow provides a modal editing framework for emacs.
   :custom
   (rmh-elfeed-org-files (list "~/org/elfeed.org")))
 #+end_src
+
 * Formatting
 #+begin_src emacs-lisp
 (use-package format-all
