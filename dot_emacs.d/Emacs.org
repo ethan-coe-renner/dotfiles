@@ -1,0 +1,565 @@
+#+title: Emacs Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
+
+* Straight
+[[https://github.com/radian-software/straight.el][Straight.el]] is used to install and manage packages. The following code bootstraps straight so it can be used in the rest of the configuration.
+
+#+begin_src emacs-lisp
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
+#+end_src
+
+* General
+General is used for creating keybindings in a nice way.
+
+#+begin_src emacs-lisp
+(use-package general
+  :straight t
+  :init
+  (general-auto-unbind-keys))
+#+end_src
+
+* Hydra
+#+begin_src emacs-lisp
+(use-package hydra
+  :straight t)
+#+end_src
+
+* Org Mode
+#+begin_src emacs-lisp
+(use-package org
+  :straight t
+  :custom
+  (org-directory "~/org/")
+  (org-agenda-span 15)
+  (org-todo-keywords '((sequence "TODO" "DONE")))
+
+  (org-capture-templates
+   '(
+     ("s" "Scratch" entry
+      (file "scratch.org")
+      "* %?\n%i\n\n")
+
+     ("t" "Todo" entry
+      (file+headline "todo.org" "Inbox")
+      "* TODO %?\n\n")
+     )
+   )
+
+  (org-edit-src-content-indentation 0)
+  (org-startup-truncated nil)
+  :hook
+  (org-mode . org-indent-mode))
+#+end_src
+
+* Emacs
+This section contains basic configuration which does not depend on any packages.
+** Load my.org
+#+begin_src emacs-lisp
+(org-babel-load-file (locate-user-emacs-file "my.org"))
+#+end_src
+
+** Custom File
+Set custom file and load it.
+#+begin_src emacs-lisp
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file :no-error-if-file-is-missing)
+#+end_src
+
+** Basic UI
+Remove some ui elements.
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+#+end_src
+
+** Read only
+Use =view-mode= for read only buffers.
+#+begin_src emacs-lisp
+(setq view-read-only t)
+#+end_src
+
+* Aesthetics
+** Theme
+#+begin_src emacs-lisp
+(use-package ef-themes
+  :straight t
+  :init
+  (ef-themes-select 'ef-spring)
+  :custom
+  (ef-themes-to-toggle '(ef-bio ef-spring)))
+#+end_src
+
+** Fonts
+#+begin_src emacs-lisp
+(use-package fontaine
+  :straight t
+  :custom
+  (fontaine-presets
+   '(
+     (small
+      :default-family "Aporetic"
+      :default-height 100)
+     (medium
+      :default-family "Aporetic"
+      :default-height 140)
+     (large
+      :default-family "Aporetic"
+      :default-height 150)))
+  :init
+  (fontaine-mode 1)
+  :config
+  (fontaine-set-preset 'medium)
+  )
+#+end_src
+
+** Padding
+#+begin_src emacs-lisp
+(use-package spacious-padding
+  :straight t
+  :config
+  (spacious-padding-mode 1))
+#+end_src
+
+* Dashboard
+#+begin_src emacs-lisp
+(use-package dashboard
+  :straight t
+  :custom
+  (dashboard-items '((bookmarks . 10)
+                     (recents . 3)))
+
+  (dashboard-startup-banner 3)
+
+  ;; Center content
+  (dashboard-center-content t)
+
+  ;; Use icons
+  (dashboard-display-icons-p t)
+  (dashboard-icon-type 'nerd-icons)
+  (dashboard-set-heading-icons t)
+  (dashboard-set-file-icons t)
+
+  (dashboard-week-agenda t)
+
+  ;; Allows dashboard to work in client frames
+  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+
+  :config
+  (dashboard-setup-startup-hook))
+#+end_src
+
+* Icons
+#+begin_src emacs-lisp
+(use-package nerd-icons
+  :straight t)
+
+(use-package nerd-icons-completion
+  :straight t
+  :after marginalia
+  :config
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+(use-package nerd-icons-corfu
+  :straight t
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
+(use-package nerd-icons-dired
+  :straight t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+#+end_src
+
+* Navigation
+
+** Dumb Jump
+#+begin_src emacs-lisp
+(use-package dumb-jump
+  :straight t
+  :custom
+  (dumb-jump-force-searcher 'rg)
+
+  :hook
+  (xref-backend-functions . dumb-jump-xref-activate))
+#+end_src
+
+** Windows
+#+begin_src emacs-lisp
+(use-package ace-window
+  :straight t
+  :custom
+  (setq aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)))
+#+end_src
+
+* Help
+** Helpful
+#+begin_src emacs-lisp
+(use-package helpful
+  :straight t
+  :general
+  (
+   "C-h f" #'helpful-callable
+   "C-h v" #'helpful-variable
+   "C-h k" #'helpful-key
+   "C-h x" #'helpful-command
+
+   "C-c C-d" #'helpful-at-point
+   "C-h F" #'helpful-function
+   ))
+#+end_src
+** Which Key
+Which key is likely to be included in emacs 30, but for now we install from melpa.
+#+begin_src emacs-lisp
+(use-package which-key
+  :straight t
+  :config
+  (which-key-mode))
+#+end_src
+
+* Modeline
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :straight t
+  :init
+  (doom-modeline-mode 1))
+#+end_src
+
+* Minibuffer
+#+begin_src emacs-lisp
+(use-package vertico
+  :straight t
+  :hook (after-init . vertico-mode))
+
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+			  ("RET" . vertico-directory-enter)
+			  ("DEL" . vertico-directory-delete-char)
+			  ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package marginalia
+  :straight t
+  :hook (after-init . marginalia-mode))
+
+(use-package orderless
+  :straight t
+  :config
+  (setq completion-styles '(orderless basic))
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil))
+
+(use-package savehist
+  :hook (after-init . savehist-mode))
+
+(use-package corfu
+  :straight t
+  :hook (after-init . global-corfu-mode)
+  :bind (:map corfu-map ("<tab>" . corfu-complete))
+  :config
+  (setq tab-always-indent 'complete)
+  (setq corfu-preview-current nil)
+  (setq corfu-min-width 20)
+
+  (setq corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
+
+  ;; Sort by input history (no need to modify `corfu-sort-function').
+  (with-eval-after-load 'savehist
+    (corfu-history-mode 1)
+    (add-to-list 'savehist-additional-variables 'corfu-history)))
+
+(use-package consult
+  :straight t
+  :general
+  ("C-x b" 'consult-buffer
+   "C-x i" 'consult-imenu
+   "C-x B" 'consult-bookmark
+   )
+  (:keymaps 'org-mode-map
+	    "C-x i" 'consult-org-heading))
+#+end_src
+
+* Dired
+#+begin_src emacs-lisp
+(use-package dired
+  :commands (dired)
+  :hook
+  ((dired-mode . dired-hide-details-mode)
+   (dired-mode . hl-line-mode))
+  :config
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  (setq delete-by-moving-to-trash t)
+  (setq dired-dwim-target t))
+#+end_src
+
+* Check
+** Jinx
+#+begin_src emacs-lisp
+(use-package jinx
+  :straight t
+  :hook (emacs-startup . global-jinx-mode)
+  :general
+  ("M-$" 'jinx-correct))
+#+end_src
+
+* Search
+** Deadgrep
+#+begin_src emacs-lisp
+(use-package deadgrep
+  :straight (deadgrep :type git :host github
+		      :repo "ethan-coe-renner/deadgrep"
+		      :branch "update-context")
+
+  :general
+  (
+   :keymaps 'deadgrep-mode-map
+   "/" #'deadgrep-search-term
+   "d" #'deadgrep-directory
+   "f" #'deadgrep-cycle-files
+   "t" #'deadgrep-cycle-search-type
+   "c" #'deadgrep-cycle-search-case
+   "C" (defhydra deadgrep-context ()
+		 "context"
+		 ("B" deadgrep-increment-before-context "increment before context")
+		 ("b" deadgrep-decrement-before-context "decrement before context")
+		 ("A" deadgrep-increment-after-context "increment after context")
+		 ("a" deadgrep-decrement-after-context "decrement after context")
+		 )
+   )
+  )
+#+end_src
+
+* Editing
+#+begin_src emacs-lisp
+(use-package smartparens
+  :straight t
+  :hook (prog-mode text-mode markdown-mode)
+  :config
+  (require 'smartparens-config))
+#+end_src
+
+** Meow
+Meow provides a modal editing framework for emacs.
+#+begin_src emacs-lisp
+(use-package meow
+  :straight t
+  :config
+  (defun meow-setup ()
+    (setq meow-cheatsheet-layout meow-cheatsheet-layout-dvorak)
+    (meow-leader-define-key
+     '("1" . meow-digit-argument)
+     '("2" . meow-digit-argument)
+     '("3" . meow-digit-argument)
+     '("4" . meow-digit-argument)
+     '("5" . meow-digit-argument)
+     '("6" . meow-digit-argument)
+     '("7" . meow-digit-argument)
+     '("8" . meow-digit-argument)
+     '("9" . meow-digit-argument)
+     '("0" . meow-digit-argument)
+     '("/" . meow-keypad-describe-key)
+     '("?" . meow-cheatsheet)
+     ;; Window management
+     '("w w" . ace-window)
+     '("w s" . split-window-right)
+     '("w v" . split-window-below)
+     '("w q" . delete-window)
+     '("w O" . delete-other-windows)
+     ;; Buffers
+     '("b b" . consult-buffer)
+     '("b B" . consult-bookmark)
+     ;; Navigation
+     '("i" . consult-imenu)
+     ;; Notes
+     '("n d" . denote-open-or-create)
+     '("n s" . consult-denote-grep)
+     '("n f" . consult-denote-find)
+     '("n c" . org-capture)
+     ;; Magit
+     '("t t" . magit)
+     '("t l" . magit-log)
+     '("t b" . magit-blame)
+     )
+    (meow-motion-overwrite-define-key
+     ;; custom keybinding for motion state
+     '("<escape>" . ignore))
+    (meow-normal-define-key
+     '("0" . meow-expand-0)
+     '("9" . meow-expand-9)
+     '("8" . meow-expand-8)
+     '("7" . meow-expand-7)
+     '("6" . meow-expand-6)
+     '("5" . meow-expand-5)
+     '("4" . meow-expand-4)
+     '("3" . meow-expand-3)
+     '("2" . meow-expand-2)
+     '("1" . meow-expand-1)
+     '("-" . negative-argument)
+     '(";" . meow-reverse)
+     '("," . meow-inner-of-thing)
+     '("." . meow-bounds-of-thing)
+     '("<" . meow-beginning-of-thing)
+     '(">" . meow-end-of-thing)
+     '("a" . meow-append)
+     '("A" . meow-open-below)
+     '("b" . meow-back-word)
+     '("B" . meow-back-symbol)
+     '("c" . meow-change)
+     '("d" . meow-delete)
+     '("D" . meow-backward-delete)
+     '("e" . meow-line)
+     '("E" . meow-goto-line)
+     '("f" . meow-find)
+     '("g" . meow-cancel-selection)
+     '("G" . meow-grab)
+     '("h" . meow-left)
+     '("H" . meow-left-expand)
+     '("i" . meow-insert)
+     '("I" . meow-open-above)
+     '("j" . meow-join)
+     '("k" . meow-kill)
+     '("l" . meow-till)
+     '("m" . meow-mark-word)
+     '("M" . meow-mark-symbol)
+     '("n" . meow-next)
+     '("N" . meow-next-expand)
+     '("o" . meow-block)
+     '("O" . meow-to-block)
+     '("p" . meow-prev)
+     '("P" . meow-prev-expand)
+     '("q" . meow-quit)
+     '("Q" . meow-goto-line)
+     '("r" . meow-replace)
+     '("R" . meow-swap-grab)
+     '("s" . meow-search)
+     '("t" . meow-right)
+     '("T" . meow-right-expand)
+     '("u" . meow-undo)
+     '("U" . meow-undo-in-selection)
+     '("v" . meow-visit)
+     '("w" . meow-next-word)
+     '("W" . meow-next-symbol)
+     '("x" . meow-save)
+     '("X" . meow-sync-grab)
+     '("y" . meow-yank)
+     '("z" . meow-pop-selection)
+     '("'" . repeat)
+     '("<escape>" . ignore)))
+
+  (meow-setup)
+  (meow-global-mode 1)
+  )
+#+end_src
+
+* Git
+
+** Magit
+#+begin_src emacs-lisp
+(use-package magit
+  :straight t)
+#+end_src
+
+
+* Shell
+
+** Eshell
+#+begin_src emacs-lisp
+(use-package esh-autosuggest
+  :straight t
+  :hook (eshell-mode . esh-autosuggest-mode))
+#+end_src
+
+* Denote
+#+begin_src emacs-lisp
+(use-package denote
+  :straight t
+  :custom
+  (denote-directory "~/org/denote")
+  (denote-dired-directories (list denote-directory))
+  (denote-dired-directories-include-subdirectories t)
+  (denote-rename-buffer-format "[D] %t : %k")
+
+  (denote-known-keywords (list "dev" "devops" "emacs"))
+  (denote-sort-keywords t)
+
+  (denote-date-prompt-use-org-read-date t)
+
+  (denote-backlinks-show-context t)
+
+  :hook
+  (dired-mode-hook . denote-dired-mode)
+
+  :init
+  ;; I only want the title in the front matter
+  (setq denote-org-front-matter "#+title: %1$s\n\n")
+  (denote-rename-buffer-mode 1))
+
+(use-package consult-denote
+  :straight t
+  :config
+  (consult-denote-mode 1))
+#+end_src
+
+* RSS
+#+begin_src emacs-lisp
+(use-package elfeed
+  :straight t
+  :general
+  (:keymaps 'elfeed-search-mode-map
+	    "r" 'elfeed-update))
+
+(use-package elfeed-org
+  :straight t
+  :init
+  (elfeed-org)
+  :custom
+  (rmh-elfeed-org-files (list "~/org/elfeed.org")))
+#+end_src
+* Formatting
+#+begin_src emacs-lisp
+(use-package format-all
+  :straight t)
+#+end_src
+
+* Major Modes
+This is for programming language modes.
+** Ledger mode
+#+begin_src emacs-lisp
+(use-package ledger-mode
+  :straight t
+  :custom
+  ((ledger-binary-path "hledger")
+   (ledger-mode-should-check-version nil)
+   (ledger-report-auto-width nil)
+   (ledger-report-links-in-register nil)
+   (ledger-report-native-highlighting-arguments '("--color=always")))
+  :mode ("\\.journal\\'" "\\.hledger\\'" "\\.ledger\\'"))
+#+end_src
+
+
+# Local Variables:
+# eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)
+# End:
+
