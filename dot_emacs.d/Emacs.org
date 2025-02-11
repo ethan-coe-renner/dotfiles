@@ -515,7 +515,9 @@ Meow provides a modal editing framework for emacs.
 ** Magit
 #+begin_src emacs-lisp
 (use-package magit
-  :straight t)
+  :straight t
+  :custom
+  (magit-format-file-function #'magit-format-file-nerd-icons))
 #+end_src
 
 * Shell
