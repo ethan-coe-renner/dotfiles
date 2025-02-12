@@ -72,6 +72,12 @@ General is used for creating keybindings in a nice way.
   (org-mode . visual-line-mode))
 #+end_src
 
+In order to graph plots from org table, we install the =gnuplot= package.
+#+begin_src emacs-lisp
+(use-package gnuplot
+  :straight t)
+#+end_src
+
 * Emacs
 This section contains basic configuration which does not depend on any packages.
 ** Load my.org
@@ -207,16 +213,10 @@ Use =view-mode= for read only buffers.
 #+end_src
 
 * Navigation
-
-** Dumb Jump
+** Avy
 #+begin_src emacs-lisp
-(use-package dumb-jump
-  :straight t
-  :custom
-  (dumb-jump-force-searcher 'rg)
-
-  :hook
-  (xref-backend-functions . dumb-jump-xref-activate))
+(use-package avy
+  :straight t)
 #+end_src
 
 ** Windows
@@ -346,6 +346,27 @@ Which key is likely to be included in emacs 30, but for now we install from melp
   (setq dired-dwim-target t))
 #+end_src
 
+* Embark
+#+begin_src emacs-lisp
+(use-package embark
+  :straight t
+  :general
+  ("M-e" 'embark-act)
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+)
+
+(use-package embark-consult
+  :straight t
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
 * Check
 ** Jinx
 #+begin_src emacs-lisp
@@ -418,14 +439,16 @@ Meow provides a modal editing framework for emacs.
      '("w s" . split-window-right)
      '("w v" . split-window-below)
      '("w q" . delete-window)
-     '("w O" . delete-other-windows)
+     '("w o" . delete-other-windows)
      ;; Buffers
      '("b b" . consult-buffer)
      '("b B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
+     '("j" . avy-goto-char-timer)
      ;; Projectile
      '("p" . projectile-command-map)
+     '("SPC" . projectile-find-file)
      ;; Recentf
      '("r" . recentf-open)
      ;; Notes
@@ -583,6 +606,18 @@ Meow provides a modal editing framework for emacs.
 
 * Major Modes
 This is for programming language modes.
+** Python
+#+begin_src emacs-lisp
+(use-package elpy
+  :straight t
+  :init
+  (elpy-enable))
+#+end_src
+** Yaml Mode
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :straight t)
+#+end_src
 ** Literate Calc Mode
 #+begin_src emacs-lisp
 (use-package literate-calc-mode
