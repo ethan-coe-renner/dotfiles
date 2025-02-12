@@ -276,12 +276,20 @@ Which key is likely to be included in emacs 30, but for now we install from melp
   :init
   (doom-modeline-mode 1)
   :custom
+  (doom-modeline-time-icon nil)
   (doom-modeline-buffer-file-name-style 'buffer-name))
 #+end_src
 
-Display the current function in the modeline.
+Enable some modes to display data in modeline.
 #+begin_src emacs-lisp
+(setq
+ display-time-default-load-average nil
+ display-time-day-and-date t
+ display-time-24hr-format t)
+
 (which-function-mode 1)
+(display-battery-mode 1)
+(display-time-mode)
 #+end_src
 
 * Headerline
