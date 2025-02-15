@@ -67,6 +67,13 @@ General is used for creating keybindings in a nice way.
 
   (org-edit-src-content-indentation 0)
   (org-startup-truncated nil)
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (emacs-lisp . t)
+     (C . t)
+     ))
   :hook
   (org-mode . org-indent-mode)
   (org-mode . visual-line-mode))
@@ -671,6 +678,13 @@ This is for programming language modes.
   (elpy-enable))
 #+end_src
 
+** Gnu Guile Scheme
+#+begin_src emacs-lisp
+(use-package geiser-guile
+  :straight t
+  :custom
+  (geiser-guile-binary "guile3.0"))
+#+end_src
 ** Yaml Mode
 #+begin_src emacs-lisp
 (use-package yaml-mode
