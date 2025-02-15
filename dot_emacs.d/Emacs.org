@@ -130,20 +130,15 @@ Use =view-mode= for read only buffers.
   (fontaine-presets
    '(
      (small
-      :default-family "Aporetic Sans Mono"
-      :fixed-pitch-family nil
-      :variable-pitch-font "Aporetic Sans"
       :default-height 100)
      (medium
-      :default-family "Aporetic Sans Mono"
-      :fixed-pitch-family nil
-      :variable-pitch-font "Aporetic Sans"
       :default-height 140)
      (large
+      :default-height 150)
+     (t
       :default-family "Aporetic Sans Mono"
       :fixed-pitch-family nil
-      :variable-pitch-font "Aporetic Sans"
-      :default-height 150)))
+      :variable-pitch-family "Aporetic Sans")))
   :init
   (fontaine-mode 1)
   :config
