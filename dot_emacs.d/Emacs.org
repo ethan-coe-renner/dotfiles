@@ -92,12 +92,17 @@ Set custom file and load it.
 (load custom-file :no-error-if-file-is-missing)
 #+end_src
 
-** Basic UI
+** UI
 Remove some ui elements.
 #+begin_src emacs-lisp
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+#+end_src
+
+Enable other modes
+#+begin_src emacs-lisp
+(global-hl-line-mode 1)
 #+end_src
 
 ** Read only
@@ -142,8 +147,7 @@ Use =view-mode= for read only buffers.
   :init
   (fontaine-mode 1)
   :config
-  (fontaine-set-preset 'medium)
-  )
+  (fontaine-set-preset 'medium))
 #+end_src
 
 ** Padding
@@ -388,6 +392,15 @@ Use marginalia to show docstrings in the minibuffer.
   (setq dired-dwim-target t))
 #+end_src
 
+* Tramp
+#+begin_src emacs-lisp
+(use-package tramp
+  :config
+  ;; Add rust programs to remote path
+  (add-to-list 'tramp-remote-path "~/.cargo/bin")
+  )
+#+end_src
+
 * Embark
 #+begin_src emacs-lisp
 (use-package embark
@@ -440,10 +453,7 @@ Use marginalia to show docstrings in the minibuffer.
 		 ("B" deadgrep-increment-before-context "increment before context")
 		 ("b" deadgrep-decrement-before-context "decrement before context")
 		 ("A" deadgrep-increment-after-context "increment after context")
-		 ("a" deadgrep-decrement-after-context "decrement after context")
-		 )
-   )
-  )
+		 ("a" deadgrep-decrement-after-context "decrement after context"))))
 #+end_src
 
 * Editing
@@ -493,6 +503,8 @@ Meow provides a modal editing framework for emacs.
      '("SPC" . projectile-find-file)
      ;; Recentf
      '("r" . recentf-open)
+     ;; Searching
+     '("s" . deadgrep)
      ;; Notes
      '("n d" . denote-open-or-create)
      '("n s" . consult-denote-grep)
@@ -505,6 +517,8 @@ Meow provides a modal editing framework for emacs.
      '("t m" . git-timemachine)
      ;; Eshell
      '("RET" . my/switch-to-eshell)
+     ;; Toggles
+     '("l" . display-line-numbers-mode)
      )
     (meow-motion-overwrite-define-key
      ;; custom keybinding for motion state
@@ -573,8 +587,7 @@ Meow provides a modal editing framework for emacs.
      '("<escape>" . ignore)))
 
   (meow-setup)
-  (meow-global-mode 1)
-  )
+  (meow-global-mode 1))
 #+end_src
 
 * Git
@@ -662,16 +675,19 @@ This is for programming language modes.
   :init
   (elpy-enable))
 #+end_src
+
 ** Yaml Mode
 #+begin_src emacs-lisp
 (use-package yaml-mode
   :straight t)
 #+end_src
+
 ** Literate Calc Mode
 #+begin_src emacs-lisp
 (use-package literate-calc-mode
   :straight t)
 #+end_src
+
 ** Ledger Mode
 #+begin_src emacs-lisp
 (use-package ledger-mode
