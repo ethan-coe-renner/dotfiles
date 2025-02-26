@@ -2,13 +2,23 @@
     email = {{ .email | quote }}
     name = Ethan Coe-Renner
 
+[init]
+    defaultBranch = "master"
+
 [credential]
     helper = store
 
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
 [alias]
     lg = log --oneline --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN <%ae>%Creset' --abbrev-commit
-    ci = commit --verbose
-    cia = commit --verbose --amend
     dlog = log -p --ext-diff
     sh = show --ext-diff
     stsh = stash show --ext-diff
@@ -20,14 +30,44 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[init]
-    defaultBranch = "master"
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
 
 [pull]
     rebase = true
 
 [push]
+    default = simple
     autoSetupRemote = true
+    followTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[rerere]
+# see https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/#reuse-recorded-resolution
+    enabled = true
+    autoupdate = true
+
+[help]
+    autocorrect = prompt
+
+[commit]
+    verbose = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 # Difftastic
 [diff]
