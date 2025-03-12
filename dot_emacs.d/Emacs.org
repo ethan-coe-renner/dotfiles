@@ -468,6 +468,8 @@ Meow provides a modal editing framework for emacs.
 #+begin_src emacs-lisp
 (use-package meow
   :straight t
+  :custom
+  (meow-use-clipboard t)
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-dvorak)
