@@ -234,6 +234,11 @@ Use =view-mode= for read only buffers.
 #+end_src
 
 * Help
+** Emacs
+#+begin_src emacs-lisp
+(which-key-mode)
+#+end_src
+
 ** Helpful
 #+begin_src emacs-lisp
 (use-package helpful
@@ -248,15 +253,6 @@ Use =view-mode= for read only buffers.
    "C-c C-d" #'helpful-at-point
    "C-h F" #'helpful-function
    ))
-#+end_src
-
-** Which Key
-Which key is likely to be included in emacs 30, but for now we install from melpa.
-#+begin_src emacs-lisp
-(use-package which-key
-  :straight t
-  :config
-  (which-key-mode))
 #+end_src
 
 ** Devdocs
