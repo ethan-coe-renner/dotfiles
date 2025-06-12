@@ -118,6 +118,12 @@ Use =view-mode= for read only buffers.
 (setq view-read-only t)
 #+end_src
 
+** Tabbing
+#+begin_src emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+#+end_src
+
 * Aesthetics
 ** Theme
 #+begin_src emacs-lisp
@@ -706,6 +712,12 @@ This is for programming language modes.
    (ledger-report-links-in-register nil)
    (ledger-report-native-highlighting-arguments '("--color=always")))
   :mode ("\\.journal\\'" "\\.hledger\\'" "\\.ledger\\'"))
+#+end_src
+
+** Markdown Mode
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :straight t)
 #+end_src
 
 
