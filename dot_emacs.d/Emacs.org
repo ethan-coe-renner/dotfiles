@@ -30,7 +30,11 @@ General is used for creating keybindings in a nice way.
 (use-package general
   :straight t
   :init
-  (general-auto-unbind-keys))
+  (general-auto-unbind-keys)
+  :config
+  (general-define-key
+   "<up>" 'scroll-down-line
+   "<down>" 'scroll-up-line))
 #+end_src
 
 * Hydra
