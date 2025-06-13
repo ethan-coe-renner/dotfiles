@@ -605,6 +605,13 @@ Meow provides a modal editing framework for emacs.
   (magit-format-file-function #'magit-format-file-nerd-icons))
 #+end_src
 
+** Gutter
+#+begin_src emacs-lisp
+(use-package diff-hl
+  :straight t
+  :config
+  (global-diff-hl-mode))
+#+end_src
 ** Time Machine
 #+begin_src emacs-lisp
 (use-package git-timemachine
@@ -674,6 +681,15 @@ Meow provides a modal editing framework for emacs.
 
 * Major Modes
 This is for programming language modes.
+** Prog mode
+#+begin_src emacs-lisp
+(use-package prog-mode
+  :custom
+  (fill-column 80)
+  :hook
+  (prog-mode . display-fill-column-indicator-mode)
+  (prog-mode . display-line-numbers-mode))
+#+end_src
 ** Python
 #+begin_src emacs-lisp
 (use-package elpy
