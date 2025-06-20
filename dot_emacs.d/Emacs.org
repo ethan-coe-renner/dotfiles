@@ -247,6 +247,22 @@ Use =view-mode= for read only buffers.
   ("C-h D" 'devdocs-lookup))
 #+end_src
 
+** Casual
+#+begin_src emacs-lisp
+(use-package casual-suite
+  :straight t
+  :general
+  (:keymaps 'calc-mode-map "C-o" 'casual-calc-tmenu)
+  (:keymaps 'dired-mode-map "C-o" 'casual-dired-tmenu)
+  (:keymaps 'isearch-mode-map "C-o" 'casual-isearch-tmenu)
+  (:keymaps 'ibuffer-mode-map
+            "C-o" 'casual-ibuffer-tmenu
+            "F" 'casual-ibuffer-filter-tmenu
+            "s" 'casual-ibuffer-sortby-tmenu)
+  (:keymaps Info-mode-map "C-o" 'casual-info-tmenu)
+  (:keymaps org-agenda-mode-map "C-o" 'casual-agenda-tmenu))
+#+end_src
+
 * Project Management
 #+begin_src emacs-lisp
 (use-package projectile
