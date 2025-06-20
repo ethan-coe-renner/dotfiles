@@ -179,41 +179,6 @@ Use =view-mode= for read only buffers.
   (spacious-padding-mode 1))
 #+end_src
 
-* Dashboard
-#+begin_src emacs-lisp
-(use-package dashboard
-  :straight t
-  :custom
-  (dashboard-items '((bookmarks . 10)
-		     (projects . 5)
-		     (agenda . 5)
-                     (recents . 3)))
-
-  (dashboard-startup-banner 'official)
-
-  (dashboard-center-content t)
-  (dashboard-vertically-center-content t)
-  
-  (dashboard-projects-backend 'projectile)
-
-  ;; Use icons
-  (dashboard-display-icons-p t)
-  (dashboard-icon-type 'nerd-icons)
-  (dashboard-set-heading-icons t)
-  (dashboard-set-file-icons t)
-
-  (dashboard-week-agenda t)
-
-  ;; Allows dashboard to work in client frames
-  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
-  :general
-  (:keymaps 'dashboard-mode-map
-	    "n" 'widget-forward
-	    "p" 'widget-backward)
-  :init
-  (dashboard-setup-startup-hook))
-#+end_src
-
 * Icons
 #+begin_src emacs-lisp
 (use-package nerd-icons
