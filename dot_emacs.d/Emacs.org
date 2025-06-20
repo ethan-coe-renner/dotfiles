@@ -214,7 +214,7 @@ Use =view-mode= for read only buffers.
 (use-package ace-window
   :straight t
   :custom
-  (setq aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)))
+  (aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)))
 #+end_src
 
 * Help
@@ -271,7 +271,7 @@ Use =view-mode= for read only buffers.
   (projectile-mode +1))
 #+end_src
 
-* TODO Snippets
+* Snippets
 #+begin_src emacs-lisp
 (use-package yasnippet
   :straight t
