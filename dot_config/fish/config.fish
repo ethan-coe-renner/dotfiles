@@ -37,7 +37,7 @@ if status is-interactive
     alias mv="mv -i"
     alias cat="bat --theme ansi"
     alias ch="chezmoi"
-    alias hl="hledger --strict --auto"
+    alias hl="hledger --strict"
 
     # --- VI Mode ---
     set -g fish_key_bindings fish_vi_key_bindings
