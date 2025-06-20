@@ -52,22 +52,19 @@ General is used for creating keybindings in a nice way.
   (org-agenda-files '("~/org"))
   (org-agenda-span 15)
   (org-hide-emphasis-markers t)
-  (org-todo-keywords '((sequence "TODO" "DONE")))
+
+  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
+
+  (org-tag-alist '(("code" . ?c) ("review" . ?r) ("admin" . ?a)))
+
+  (org-agenda-custom-commands
+   '(("a" "Agenda and Active TODOs" ((todo "ACTV") (agenda "")))
+     ("t" "Inactive TODOs" tags-todo "TODO={TODO}+DEADLINE=\"\"+SCHEDULED=\"\"")
+     ("$" "To archive" todo "DONE|CANX|DELG")
+     ))
 
   (org-pretty-entities t)
   (org-ellipsis "…")
-
-  (org-capture-templates
-   '(
-     ("s" "Scratch" entry
-      (file "scratch.org")
-      "* %?\n%i\n\n")
-
-     ("t" "Todo" entry
-      (file+headline "todo.org" "Inbox")
-      "* TODO %?\n\n")
-     )
-   )
 
   (org-edit-src-content-indentation 0)
   (org-startup-truncated nil)
@@ -182,10 +179,10 @@ Use =view-mode= for read only buffers.
 
   (dashboard-startup-banner 'official)
 
-  (dashboard-projects-backend 'projectile)
-
-  ;; Center content
   (dashboard-center-content t)
+  (dashboard-vertically-center-content t)
+  
+  (dashboard-projects-backend 'projectile)
 
   ;; Use icons
   (dashboard-display-icons-p t)
@@ -629,7 +626,21 @@ Meow provides a modal editing framework for emacs.
   :straight t
   :hook (eshell-mode . esh-autosuggest-mode))
 #+end_src
-
+* AI
+** GPTel
+ #+begin_src emacs-lisp
+ (use-package gptel
+   :straight t
+   :custom
+   (gptel-default-mode 'org-mode)
+   :config
+   (setq
+    gptel-model 'gemini-2.5-pro-exp-03-25
+    gptel-backend (gptel-make-gemini "Gemini"
+ 		   :key #'gptel-api-key-from-auth-source
+ 		   :stream t)
+    ))
+ #+end_src
 * Denote
 #+begin_src emacs-lisp
 (use-package denote
@@ -667,6 +678,7 @@ Meow provides a modal editing framework for emacs.
   :straight t
   :general
   (:keymaps 'elfeed-search-mode-map
+	    "U" 'elfeed-search-untag-all-unread
 	    "r" 'elfeed-update))
 
 (use-package elfeed-org
@@ -718,6 +730,12 @@ This is for programming language modes.
 ** Literate Calc Mode
 #+begin_src emacs-lisp
 (use-package literate-calc-mode
+  :straight t)
+#+end_src
+
+** Markdown mode
+#+begin_src emacs-lisp
+(use-package markdown-mode
   :straight t)
 #+end_src
 
