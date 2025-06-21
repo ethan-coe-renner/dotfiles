@@ -63,12 +63,14 @@ General is used for creating keybindings in a nice way.
   (org-tag-alist '(("code" . ?c) ("review" . ?r) ("admin" . ?a)))
 
   (org-agenda-custom-commands
-   '(("u" "Super view"
+   '(("u" "Agenda and TODOs"
       (( agenda "")
        (todo "" ((org-super-agenda-groups
                   '(
                     (:name "Active"
                            :todo "ACTV"
+                           :scheduled t
+                           :deadline t
                            :order 0)
                     (:name "Inactive"
                            :todo "TODO"
@@ -258,9 +260,7 @@ Use =view-mode= for read only buffers.
   (:keymaps 'ibuffer-mode-map
             "C-o" 'casual-ibuffer-tmenu
             "F" 'casual-ibuffer-filter-tmenu
-            "s" 'casual-ibuffer-sortby-tmenu)
-  (:keymaps Info-mode-map "C-o" 'casual-info-tmenu)
-  (:keymaps org-agenda-mode-map "C-o" 'casual-agenda-tmenu))
+            "s" 'casual-ibuffer-sortby-tmenu))
 #+end_src
 
 * Project Management
@@ -493,7 +493,8 @@ Meow provides a modal editing framework for emacs.
      '("w q" . delete-window)
      '("w o" . delete-other-windows)
      ;; Buffers
-     '("b" . consult-buffer)
+     '("b b" . consult-buffer)
+     '("b i" . ibuffer)
      '("B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
@@ -505,11 +506,16 @@ Meow provides a modal editing framework for emacs.
      '("r" . recentf-open)
      ;; Searching
      '("s" . deadgrep)
+     ;; Agenda
+     '("a" . org-agenda)
      ;; Notes
      '("n d" . denote-open-or-create)
      '("n s" . consult-denote-grep)
      '("n f" . consult-denote-find)
      '("n c" . org-capture)
+     
+     ;; TODO: play around with this, decide if this should only list active tasks
+     '("n t" . consult-org-agenda)
      ;; Git
      '("t t" . magit)
      '("t l" . magit-log)
