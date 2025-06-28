@@ -35,6 +35,9 @@ alias ll='ls --long --git'
 alias la='ls -A'
 alias lal='la --long --grid --git'
 
+## ripgrep but ignore test directories
+alias rgt='rg -g "! **/test/**"'
+
 #=program shortcuts
 alias ch='chezmoi'
 alias v='nvim'
