@@ -37,6 +37,17 @@ General is used for creating keybindings in a nice way.
    "<down>" 'scroll-up-line))
 #+end_src
 
+* Snippets
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :straight t
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :straight t)
+#+end_src
+
 * Hydra
 #+begin_src emacs-lisp
 (use-package hydra
@@ -204,6 +215,7 @@ Use =view-mode= for read only buffers.
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
 
+
 * Navigation
 ** Avy
 #+begin_src emacs-lisp
@@ -271,16 +283,6 @@ Use =view-mode= for read only buffers.
   (projectile-mode +1))
 #+end_src
 
-* Snippets
-#+begin_src emacs-lisp
-(use-package yasnippet
-  :straight t
-  :config
-  (yas-global-mode 1))
-
-(use-package yasnippet-snippets
-  :straight t)
-#+end_src
 
 * Modeline
 #+begin_src emacs-lisp
@@ -393,7 +395,26 @@ Use marginalia to show docstrings in the minibuffer.
 * Tramp
 #+begin_src emacs-lisp
 (use-package tramp
+  :custom
+  ;; Some settings to speed up tramp, mostly from https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+  (remote-file-name-inhibit-locks t)
+  (tramp-use-scp-direct-remote-copying t)
+  (remote-file-name-inhibit-auto-save-visited t)
+  (tramp-copy-size-limit (* 1024 1024))
+  (tramp-verbose 2)
+  (magit-tramp-pipe-stty-settings 'pty)
   :config
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+
+  (connection-local-set-profiles
+   '(:application tramp :protocol "scp")
+   'remote-direct-async-process)
+
+  (with-eval-after-load 'tramp
+    (with-eval-after-load 'compile
+      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
   ;; Add rust programs to remote path
   (add-to-list 'tramp-remote-path "~/.cargo/bin")
   )
@@ -518,6 +539,7 @@ Meow provides a modal editing framework for emacs.
      '("n t" . consult-org-agenda)
      ;; Git
      '("t t" . magit)
+     '("t d" . magit-dispatch)
      '("t l" . magit-log)
      '("t b" . magit-blame)
      '("t m" . git-timemachine)
@@ -621,25 +643,31 @@ Meow provides a modal editing framework for emacs.
 * Shell
 ** Eshell
 #+begin_src emacs-lisp
+(use-package eshell
+  :general
+  (:keymaps 'eshell-mode-map
+            "<tab>" yas-maybe-expand))
 (use-package esh-autosuggest
   :straight t
   :hook (eshell-mode . esh-autosuggest-mode))
 #+end_src
+
 * AI
 ** GPTel
- #+begin_src emacs-lisp
- (use-package gptel
-   :straight t
-   :custom
-   (gptel-default-mode 'org-mode)
-   :config
-   (setq
-    gptel-model 'gemini-2.5-pro-exp-03-25
-    gptel-backend (gptel-make-gemini "Gemini"
- 		   :key #'gptel-api-key-from-auth-source
- 		   :stream t)
-    ))
- #+end_src
+#+begin_src emacs-lisp
+(use-package gptel
+  :straight t
+  :custom
+  (gptel-default-mode 'org-mode)
+  :config
+  (setq
+   gptel-model 'gemini-2.5-pro-exp-03-25
+   gptel-backend (gptel-make-gemini "Gemini"
+		   :key #'gptel-api-key-from-auth-source
+		   :stream t)
+   ))
+#+end_src
+ 
 * Denote
 #+begin_src emacs-lisp
 (use-package denote
@@ -716,10 +744,9 @@ This is for programming language modes.
 ** Gnu Guile Scheme
 #+begin_src emacs-lisp
 (use-package geiser-guile
-  :straight t
-  :custom
-  (geiser-guile-binary "guile3.0"))
+  :straight t)
 #+end_src
+
 ** Yaml Mode
 #+begin_src emacs-lisp
 (use-package yaml-mode
@@ -756,6 +783,7 @@ This is for programming language modes.
 (use-package markdown-mode
   :straight t)
 #+end_src
+
 
 
 # Local Variables:
