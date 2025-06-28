@@ -31,10 +31,7 @@ General is used for creating keybindings in a nice way.
   :straight t
   :init
   (general-auto-unbind-keys)
-  :config
-  (general-define-key
-   "<up>" 'scroll-down-line
-   "<down>" 'scroll-up-line))
+  )
 #+end_src
 
 * Snippets
@@ -370,10 +367,14 @@ Use marginalia to show docstrings in the minibuffer.
 
 (use-package consult
   :straight t
+  :custom
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref)
   :general
   ("C-x b" 'consult-buffer
    "C-x i" 'consult-imenu
    "C-x B" 'consult-bookmark
+   "M-g M-g" 'consult-goto-line
    )
   )
 #+end_src
@@ -562,6 +563,7 @@ Meow provides a modal editing framework for emacs.
      '("3" . meow-expand-3)
      '("2" . meow-expand-2)
      '("1" . meow-expand-1)
+     '("/" . consult-line)
      '("-" . negative-argument)
      '(";" . meow-reverse)
      '("," . meow-inner-of-thing)
@@ -783,8 +785,6 @@ This is for programming language modes.
 (use-package markdown-mode
   :straight t)
 #+end_src
-
-
 
 # Local Variables:
 # eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)
