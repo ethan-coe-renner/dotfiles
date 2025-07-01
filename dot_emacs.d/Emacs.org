@@ -660,6 +660,9 @@ Meow provides a modal editing framework for emacs.
   :straight t
   :hook (eshell-mode . esh-autosuggest-mode))
 
+(use-package pcmpl-args
+  :straight t)
+
 (use-package eshell-up
   :straight t)
 #+end_src
