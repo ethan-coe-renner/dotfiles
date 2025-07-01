@@ -652,6 +652,17 @@ Meow provides a modal editing framework for emacs.
 (use-package esh-autosuggest
   :straight t
   :hook (eshell-mode . esh-autosuggest-mode))
+
+(use-package eshell-up
+  :straight t)
+#+end_src
+
+#+begin_src text :tangle ~/.emacs.d/eshell/alias
+alias up eshell-up $1
+alias pk eshell-up-peek $1
+
+alias ff find-file $1
+alias dg deadgrep $1
 #+end_src
 
 * AI
