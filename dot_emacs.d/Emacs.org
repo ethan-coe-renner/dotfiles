@@ -128,6 +128,7 @@ Remove some ui elements.
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(setq inhibit-startup-screen t)
 #+end_src
 
 Enable other modes
@@ -495,6 +496,7 @@ Meow provides a modal editing framework for emacs.
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-dvorak)
+    (add-hook 'my/switch-to-eshell-hook 'meow-insert)
     (meow-leader-define-key
      '("1" . meow-digit-argument)
      '("2" . meow-digit-argument)
@@ -646,9 +648,14 @@ Meow provides a modal editing framework for emacs.
 ** Eshell
 #+begin_src emacs-lisp
 (use-package eshell
+  :custom
+  (eshell-banner-message "")
+  :hook
+  (emacs-startup . (lambda () (my/switch-to-eshell)))
   :general
   (:keymaps 'eshell-mode-map
             "<tab>" yas-maybe-expand))
+
 (use-package esh-autosuggest
   :straight t
   :hook (eshell-mode . esh-autosuggest-mode))
@@ -657,12 +664,15 @@ Meow provides a modal editing framework for emacs.
   :straight t)
 #+end_src
 
+*** Aliases
 #+begin_src text :tangle ~/.emacs.d/eshell/alias
 alias up eshell-up $1
 alias pk eshell-up-peek $1
 
-alias ff find-file $1
+alias e find-file $1
 alias dg deadgrep $1
+alias d dired $1
+alias g magit
 #+end_src
 
 * AI

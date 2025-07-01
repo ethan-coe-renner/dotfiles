@@ -24,12 +24,16 @@ I like to be able to quickly switch between a buffer and an ~eshell~ buffer.
 The following functions aid this workflow.
 
 #+begin_src emacs-lisp
+(defvar my/switch-to-eshell-hook nil
+  "Hook for `my/switch-to-eshell`. Hook functions are called after switching to eshell.")
+
 (defun my/switch-to-eshell ()
   "Switch to the existing *eshell* buffer or create one if it doesn't exist."
   (interactive)
   (if (get-buffer "*eshell*")
       (switch-to-buffer "*eshell*")
-    (eshell)))
+    (eshell))
+  (run-hooks 'my/switch-to-eshell-hook))
 #+end_src
 
 ** Eshell Commands
