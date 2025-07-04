@@ -486,6 +486,13 @@ Use marginalia to show docstrings in the minibuffer.
   (require 'smartparens-config))
 #+end_src
 
+** Compilation
+#+begin_src emacs-lisp
+(use-package compile
+  :custom
+  (compilation-scroll-output t))
+#+end_src
+
 ** Meow
 Meow provides a modal editing framework for emacs.
 #+begin_src emacs-lisp
