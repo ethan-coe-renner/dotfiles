@@ -156,12 +156,20 @@ Use =view-mode= for read only buffers.
 * Aesthetics
 ** Theme
 #+begin_src emacs-lisp
+(use-package modus-themes
+  :init
+  (modus-themes-select 'modus-operandi)
+  :straight t)
+
 (use-package ef-themes
   :straight t
-  :init
-  (ef-themes-select 'ef-spring)
   :custom
   (ef-themes-to-toggle '(ef-bio ef-spring)))
+
+(use-package doric-themes
+  :straight t
+  :custom
+  (doric-themes-to-toggle '(doric-wind doric-obsidian)))
 #+end_src
 
 ** Fonts
