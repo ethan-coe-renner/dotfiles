@@ -707,6 +707,7 @@ alias e find-file $1
 alias dg deadgrep $1
 alias d dired $1
 alias g magit
+alias hl hledger --strict $@*
 #+end_src
 
 * AI
@@ -826,6 +827,8 @@ This is for programming language modes.
 #+begin_src emacs-lisp
 (use-package ledger-mode
   :straight t
+  :init
+  (setenv "LEDGER_FILE" (expand-file-name "~/finance/current.journal"))
   :custom
   ((ledger-binary-path "hledger")
    (ledger-mode-should-check-version nil)
