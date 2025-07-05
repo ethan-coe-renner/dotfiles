@@ -110,6 +110,11 @@ In order to graph plots from org table, we install the =gnuplot= package.
 
 * Emacs
 This section contains basic configuration which does not depend on any packages.
+** Scratch Buffer
+#+begin_src emacs-lisp
+(setq initial-major-mode 'org-mode
+      initial-scratch-message "* Scratch\n")
+#+end_src
 ** Load my.org
 #+begin_src emacs-lisp
 (org-babel-load-file (locate-user-emacs-file "my.org"))
