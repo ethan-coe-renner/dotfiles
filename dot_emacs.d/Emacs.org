@@ -490,6 +490,17 @@ Use marginalia to show docstrings in the minibuffer.
 		 ("a" deadgrep-decrement-after-context "decrement after context"))))
 #+end_src
 
+* Music
+#+begin_src emacs-lisp
+(use-package emms
+  :straight t
+  :init
+  (emms-all)
+  :custom
+  (emms-player-list '(emms-player-vlc emms-player-mpv))
+  (emms-info-functions '(emms-info-native)))
+#+end_src
+
 * Editing
 #+begin_src emacs-lisp
 (use-package smartparens
