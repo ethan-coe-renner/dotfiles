@@ -30,8 +30,7 @@ General is used for creating keybindings in a nice way.
 (use-package general
   :straight t
   :init
-  (general-auto-unbind-keys)
-  )
+  (general-auto-unbind-keys))
 #+end_src
 
 * Snippets
@@ -226,7 +225,6 @@ Use =view-mode= for read only buffers.
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
 
-
 * Navigation
 ** Avy
 #+begin_src emacs-lisp
@@ -293,7 +291,6 @@ Use =view-mode= for read only buffers.
   :config
   (projectile-mode +1))
 #+end_src
-
 
 * Modeline
 #+begin_src emacs-lisp
