@@ -797,6 +797,13 @@ This is for programming language modes.
   (prog-mode . display-fill-column-indicator-mode)
   (prog-mode . display-line-numbers-mode))
 #+end_src
+
+** Rust
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :straight t)
+#+end_src
+
 ** Python
 #+begin_src emacs-lisp
 (use-package elpy
