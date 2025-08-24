@@ -689,6 +689,11 @@ Meow provides a modal editing framework for emacs.
   (eshell-banner-message "")
   :hook
   (emacs-startup . (lambda () (my/switch-to-eshell)))
+
+  ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
+  (eshell-mode . outline-minor-mode)
+  (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
+
   :general
   (:keymaps 'eshell-mode-map
             "<tab>" yas-maybe-expand))
