@@ -750,7 +750,7 @@ alias hl hledger --strict $@*
   (denote-directory "~/org/denote")
   (denote-dired-directories (list denote-directory))
   (denote-dired-directories-include-subdirectories t)
-  (denote-rename-buffer-format "[D] %t : %k")
+  (denote-rename-buffer-format "%t : %k")
 
   (denote-known-keywords (list "dev" "devops" "emacs"))
   (denote-sort-keywords t)
