@@ -52,11 +52,6 @@ General is used for creating keybindings in a nice way.
 
 * Org Mode
 #+begin_src emacs-lisp
-(use-package org-super-agenda
-  :straight t
-  :config
-  (org-super-agenda-mode 1))
-
 (use-package org
   :straight t
   :custom
@@ -64,6 +59,7 @@ General is used for creating keybindings in a nice way.
   (org-agenda-files '("~/org"))
   (org-agenda-span 10)
   (org-hide-emphasis-markers t)
+  (org-pretty-entities-include-sub-superscripts nil)
 
   (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
 
@@ -95,10 +91,16 @@ General is used for creating keybindings in a nice way.
    '((python . t)
      (emacs-lisp . t)
      (C . t)
+     (shell . t)
      ))
   :hook
   (org-mode . org-indent-mode)
   (org-mode . visual-line-mode))
+
+(use-package org-super-agenda
+  :straight t
+  :config
+  (org-super-agenda-mode 1))
 #+end_src
 
 In order to graph plots from org table, we install the =gnuplot= package.
