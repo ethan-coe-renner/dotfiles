@@ -30,6 +30,66 @@
 (straight-use-package 'use-package)
 #+end_src
 
+* Emacs
+This section contains basic configuration which does not depend on any packages.
+** Scratch Buffer
+#+begin_src emacs-lisp
+(setq initial-major-mode 'org-mode
+      initial-scratch-message "* Scratch\n")
+#+end_src
+** Load my.org
+#+begin_src emacs-lisp
+(org-babel-load-file (locate-user-emacs-file "my.org"))
+#+end_src
+
+** Custom File
+Set custom file and load it.
+#+begin_src emacs-lisp
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file :no-error-if-file-is-missing)
+#+end_src
+
+** UI
+Remove some ui elements.
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(setq inhibit-startup-screen t)
+#+end_src
+
+Enable other modes
+#+begin_src emacs-lisp
+(global-hl-line-mode 1)
+#+end_src
+
+** Read only
+Use =view-mode= for read only buffers.
+#+begin_src emacs-lisp
+(setq view-read-only t)
+#+end_src
+
+** Tabbing
+#+begin_src emacs-lisp
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+#+end_src
+
+** Backup files
+#+begin_src emacs-lisp
+;; Put all backups in .saves instead of the original directory
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+;; backup by copying is safer for e.g. links
+(setq backup-by-copying t)
+
+;; Keep some numbered versions in with version control
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+#+end_src
+
 * General
 General is used for creating keybindings in a nice way.
 
@@ -114,66 +174,6 @@ In order to graph plots from org table, we install the =gnuplot= package.
 #+begin_src emacs-lisp
 (use-package gnuplot
   :straight t)
-#+end_src
-
-* Emacs
-This section contains basic configuration which does not depend on any packages.
-** Scratch Buffer
-#+begin_src emacs-lisp
-(setq initial-major-mode 'org-mode
-      initial-scratch-message "* Scratch\n")
-#+end_src
-** Load my.org
-#+begin_src emacs-lisp
-(org-babel-load-file (locate-user-emacs-file "my.org"))
-#+end_src
-
-** Custom File
-Set custom file and load it.
-#+begin_src emacs-lisp
-(setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file :no-error-if-file-is-missing)
-#+end_src
-
-** UI
-Remove some ui elements.
-#+begin_src emacs-lisp
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq inhibit-startup-screen t)
-#+end_src
-
-Enable other modes
-#+begin_src emacs-lisp
-(global-hl-line-mode 1)
-#+end_src
-
-** Read only
-Use =view-mode= for read only buffers.
-#+begin_src emacs-lisp
-(setq view-read-only t)
-#+end_src
-
-** Tabbing
-#+begin_src emacs-lisp
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-#+end_src
-
-** Backup files
-#+begin_src emacs-lisp
-;; Put all backups in .saves instead of the original directory
-(setq backup-directory-alist `(("." . "~/.saves")))
-
-;; backup by copying is safer for e.g. links
-(setq backup-by-copying t)
-
-;; Keep some numbered versions in with version control
-(setq delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
 #+end_src
 
 * Aesthetics
