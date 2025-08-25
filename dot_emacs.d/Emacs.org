@@ -280,6 +280,9 @@ Use =view-mode= for read only buffers.
   (:keymaps 'calc-mode-map "C-o" 'casual-calc-tmenu)
   (:keymaps 'dired-mode-map "C-o" 'casual-dired-tmenu)
   (:keymaps 'isearch-mode-map "C-o" 'casual-isearch-tmenu)
+  (:keymaps 'eshell-mode-map "C-o" 'casual-eshell-tmenu)
+  (:keymaps 'compilation-mode-map "C-o" 'casual-compile-tmenu)
+  (:keymaps 'grep-mode-map "C-o" 'casual-compile-tmenu)
   (:keymaps 'ibuffer-mode-map
             "C-o" 'casual-ibuffer-tmenu
             "F" 'casual-ibuffer-filter-tmenu
