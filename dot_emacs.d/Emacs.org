@@ -509,6 +509,13 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   (emms-info-functions '(emms-info-native)))
 #+end_src
 
+* Compilation
+#+begin_src emacs-lisp
+(use-package compile
+  :custom
+  (compilation-scroll-output t))
+#+end_src
+
 * Editing
 #+begin_src emacs-lisp
 (use-package smartparens
@@ -516,13 +523,6 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   :hook (prog-mode text-mode markdown-mode)
   :config
   (require 'smartparens-config))
-#+end_src
-
-** Compilation
-#+begin_src emacs-lisp
-(use-package compile
-  :custom
-  (compilation-scroll-output t))
 #+end_src
 
 ** Meow
