@@ -30,6 +30,65 @@
 (straight-use-package 'use-package)
 #+end_src
 
+* Org Mode
+#+begin_src emacs-lisp
+(use-package org
+  :straight t
+  :custom
+  (org-directory "~/org/")
+  (org-agenda-files '("~/org"))
+  (org-agenda-span 10)
+  (org-hide-emphasis-markers t)
+  (org-pretty-entities-include-sub-superscripts nil)
+
+  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
+
+  (org-tag-alist '(("code" . ?c) ("review" . ?r) ("admin" . ?a)))
+
+  (org-agenda-custom-commands
+   '(("u" "Agenda and TODOs"
+      (( agenda "")
+       (todo "" ((org-super-agenda-groups
+                  '(
+                    (:name "Active"
+                           :todo "ACTV"
+                           :scheduled t
+                           :deadline t
+                           :order 0)
+                    (:name "Inactive"
+                           :todo "TODO"
+                           :and (:deadline nil :scheduled nil)
+                           :order 99)))))))))
+
+  (org-pretty-entities t)
+  (org-ellipsis "…")
+
+  (org-edit-src-content-indentation 0)
+  (org-startup-truncated nil)
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (emacs-lisp . t)
+     (C . t)
+     (shell . t)
+     ))
+  :hook
+  (org-mode . org-indent-mode)
+  (org-mode . visual-line-mode))
+
+(use-package org-super-agenda
+  :straight t
+  :config
+  (org-super-agenda-mode 1))
+#+end_src
+
+In order to graph plots from org table, we install the =gnuplot= package.
+#+begin_src emacs-lisp
+(use-package gnuplot
+  :straight t)
+#+end_src
+
 * Emacs
 This section contains basic configuration which does not depend on any packages.
 ** Scratch Buffer
@@ -114,65 +173,6 @@ General is used for creating keybindings in a nice way.
 * Hydra
 #+begin_src emacs-lisp
 (use-package hydra
-  :straight t)
-#+end_src
-
-* Org Mode
-#+begin_src emacs-lisp
-(use-package org
-  :straight t
-  :custom
-  (org-directory "~/org/")
-  (org-agenda-files '("~/org"))
-  (org-agenda-span 10)
-  (org-hide-emphasis-markers t)
-  (org-pretty-entities-include-sub-superscripts nil)
-
-  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
-
-  (org-tag-alist '(("code" . ?c) ("review" . ?r) ("admin" . ?a)))
-
-  (org-agenda-custom-commands
-   '(("u" "Agenda and TODOs"
-      (( agenda "")
-       (todo "" ((org-super-agenda-groups
-                  '(
-                    (:name "Active"
-                           :todo "ACTV"
-                           :scheduled t
-                           :deadline t
-                           :order 0)
-                    (:name "Inactive"
-                           :todo "TODO"
-                           :and (:deadline nil :scheduled nil)
-                           :order 99)))))))))
-
-  (org-pretty-entities t)
-  (org-ellipsis "…")
-
-  (org-edit-src-content-indentation 0)
-  (org-startup-truncated nil)
-  :config
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (emacs-lisp . t)
-     (C . t)
-     (shell . t)
-     ))
-  :hook
-  (org-mode . org-indent-mode)
-  (org-mode . visual-line-mode))
-
-(use-package org-super-agenda
-  :straight t
-  :config
-  (org-super-agenda-mode 1))
-#+end_src
-
-In order to graph plots from org table, we install the =gnuplot= package.
-#+begin_src emacs-lisp
-(use-package gnuplot
   :straight t)
 #+end_src
 
