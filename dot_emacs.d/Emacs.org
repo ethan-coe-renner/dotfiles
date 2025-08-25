@@ -1,6 +1,13 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
 
+* Early init
+
+#+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el
+;; Required for straight.el
+(setq package-enable-at-startup nil)
+#+end_src
+
 * Straight
 [[https://github.com/radian-software/straight.el][Straight.el]] is used to install and manage packages. The following code bootstraps straight so it can be used in the rest of the configuration.
 
