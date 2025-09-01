@@ -830,6 +830,13 @@ This is for programming language modes.
   (prog-mode . display-line-numbers-mode))
 #+end_src
 
+** Nix
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :straight t
+  )
+#+end_src
+
 ** Rust
 #+begin_src emacs-lisp
 (use-package rust-mode

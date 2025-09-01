@@ -38,6 +38,7 @@ if status is-interactive
     alias cat="bat --theme ansi"
     alias ch="chezmoi"
     alias hl="hledger --strict"
+    alias nrs="sudo nixos-rebuild switch --flake ~/.config/nixos"
 
     # --- VI Mode ---
     set -g fish_key_bindings fish_vi_key_bindings
