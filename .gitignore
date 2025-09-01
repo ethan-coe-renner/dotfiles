@@ -1,3 +1,6 @@
 **/*.log
 **/*.tex
 **/*.pdf
+
+
+dot_config/nixos/hardware-configuration.nix
