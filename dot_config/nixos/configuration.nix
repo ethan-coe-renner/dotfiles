@@ -109,6 +109,7 @@
     eza
     bat
     fd
+    just
     hledger
     alejandra
 

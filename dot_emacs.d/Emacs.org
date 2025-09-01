@@ -837,6 +837,12 @@ This is for programming language modes.
   )
 #+end_src
 
+** Just
+#+begin_src emacs-lisp
+(use-package just-mode
+  :straight t)
+#+end_src
+
 ** Rust
 #+begin_src emacs-lisp
 (use-package rust-mode
