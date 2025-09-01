@@ -76,6 +76,11 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  services.mullvad-vpn = {
+    package = pkgs.mullvad-vpn;
+    enable = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -87,6 +92,7 @@
     kitty
     libreoffice
     rhythmbox
+    qbittorrent
 
     # Shell
     git
