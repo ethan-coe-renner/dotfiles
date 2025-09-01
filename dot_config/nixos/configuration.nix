@@ -85,6 +85,7 @@
     # GUI
     emacs
     kitty
+    libreoffice
     rhythmbox
 
     # Shell
