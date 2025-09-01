@@ -1,9 +1,13 @@
-source "$HOME/.cargo/env.fish"
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/bin/scripts
 fish_add_path ~/.config/emacs/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
+
+set cargo_fish ~/.cargo/env.fish
+if test -f "$cargo_fish"
+   source "$cargo_fish"
+end
 
 # If this is a dumb terminal, short circuit
 if test "$TERM" = "dumb"
