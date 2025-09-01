@@ -126,7 +126,13 @@
     keyboards = {
       myKMonadOutput = {
         device = "/dev/input/by-id/usb-Lenovo_ThinkPad_Compact_USB_Keyboard_with_TrackPoint-event-kbd";
-        config = builtins.readFile ./kmonad/thinkpad_external.kbd;
+        config = builtins.readFile ./kmonad/kmonad.kbd;
+
+        defcfg = {
+          enable = true;
+          fallthrough = true;
+          allowCommands = false;
+        };
       };
     };
   };

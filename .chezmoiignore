@@ -4,6 +4,7 @@ README.*
 .build.yml
 bookmarks
 other/
+nixos/
 
 {{ if ne .chezmoi.os "darwin" }}
 .qutebrowser/
