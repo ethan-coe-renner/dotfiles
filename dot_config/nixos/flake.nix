@@ -10,7 +10,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, kmonad, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    kmonad,
+    ...
+  } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

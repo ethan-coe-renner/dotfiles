@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -60,15 +61,15 @@
   };
 
   programs.fish.enable = true;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ethan = {
     isNormalUser = true;
     description = "ethan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -78,8 +79,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   environment.systemPackages = with pkgs; [
     # GUI
     emacs
@@ -108,13 +109,13 @@
   ];
 
   services.kmonad = {
-   enable = true;
-     keyboards = {
-       myKMonadOutput = {
-         device = "/dev/input/by-id/usb-Lenovo_ThinkPad_Compact_USB_Keyboard_with_TrackPoint-event-kbd";
-         config = builtins.readFile ./kmonad/thinkpad_external.kbd;
-       };
-     };
+    enable = true;
+    keyboards = {
+      myKMonadOutput = {
+        device = "/dev/input/by-id/usb-Lenovo_ThinkPad_Compact_USB_Keyboard_with_TrackPoint-event-kbd";
+        config = builtins.readFile ./kmonad/thinkpad_external.kbd;
+      };
+    };
   };
 
   system.stateVersion = "25.05";
