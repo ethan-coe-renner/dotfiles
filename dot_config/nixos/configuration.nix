@@ -104,6 +104,10 @@
     hledger
     alejandra
 
+    # Emacs dependencies
+    emacsPackages.jinx
+    hunspellDicts.en_US
+
     # Fonts
     aporetic
   ];
