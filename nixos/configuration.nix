@@ -94,6 +94,7 @@
     libreoffice
     rhythmbox
     qbittorrent
+    qutebrowser
 
     # Shell
     git
