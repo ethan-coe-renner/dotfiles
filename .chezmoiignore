@@ -3,5 +3,4 @@ README.*
 .gitignore
 .build.yml
 bookmarks
-other/
 nixos/
