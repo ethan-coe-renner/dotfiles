@@ -319,6 +319,24 @@ General is used for creating keybindings in a nice way.
   (projectile-mode +1))
 #+end_src
 
+* Dashboard
+#+begin_src emacs-lisp
+(use-package dashboard
+  :straight t
+  :custom
+  (initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+  (dashboard-startupify-list '(dashboard-insert-banner
+                               dashboard-insert-newline
+                               dashboard-insert-banner-title
+                               dashboard-insert-newline
+                               dashboard-insert-init-info
+                               dashboard-insert-newline
+                               dashboard-insert-newline
+                               dashboard-insert-footer))
+  :config
+  (dashboard-setup-startup-hook))
+#+end_src
+
 * Modeline
 #+begin_src emacs-lisp
 (use-package doom-modeline
@@ -715,8 +733,6 @@ Meow provides a modal editing framework for emacs.
   :custom
   (eshell-banner-message "")
   :hook
-  (emacs-startup . (lambda () (my/switch-to-eshell)))
-
   ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
   (eshell-mode . outline-minor-mode)
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
