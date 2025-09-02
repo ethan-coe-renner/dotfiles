@@ -42,7 +42,7 @@ if status is-interactive
     alias cat="bat --theme ansi"
     alias ch="chezmoi"
     alias hl="hledger --strict"
-    alias jnix="just -f ~/.local/share/chezmoi/nixos/Justfile"
+    alias jnix="just -f ~/git/nixos-config/Justfile"
 
     # --- VI Mode ---
     set -g fish_key_bindings fish_vi_key_bindings
