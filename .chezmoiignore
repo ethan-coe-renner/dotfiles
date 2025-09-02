@@ -5,10 +5,3 @@ README.*
 bookmarks
 other/
 nixos/
-
-{{ if ne .chezmoi.os "darwin" }}
-.qutebrowser/
-{{ end }}
-{{ if ne .chezmoi.os "linux" }}
-.config/qutebrowser/
-{{ end }}
