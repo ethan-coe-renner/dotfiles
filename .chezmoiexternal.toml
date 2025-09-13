@@ -3,6 +3,7 @@
 	url = "https://git.io/antigen"
 	refreshPeriod = "672h"
 
+{{- if eq .tag "personal" }}
 ["git/nixos-config"]
     type = "git-repo"
     url = "git@git.sr.ht:~code-runner/nixos-config"
@@ -14,6 +15,7 @@
 ["git/finance-extras"]
     type = "git-repo"
     url = "git@git.sr.ht:~code-runner/finance-extras"
+{{ end }}
 
 ["git/ghostty-themes"]
     type = "git-repo"

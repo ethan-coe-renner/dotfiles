@@ -5,7 +5,7 @@
 
 [data]
 	tag = {{- $tag | quote -}}
-	{{- if eq $tag "work" }}
+	{{- if eq .tag "work" }}
 	email = "coerenner1@llnl.gov"
 	{{ else }}
 	email = "e.coerenner@gmail.com"
