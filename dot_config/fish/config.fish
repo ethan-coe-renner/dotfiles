@@ -15,11 +15,6 @@ if test "$TERM" = "dumb"
 end
 
 if status is-interactive
-    # Autostart tmux
-    if not set -q TMUX
-       exec tmux
-    end
-
     set fish_greeting
 
     # --- Aliases ---
