@@ -2,3 +2,20 @@
 	type = "file"
 	url = "https://git.io/antigen"
 	refreshPeriod = "672h"
+
+["git/nixos-config"]
+    type = "git-repo"
+    url = "git@git.sr.ht:~code-runner/nixos-config"
+
+["org"]
+    type = "git-repo"
+    url = "git@git.sr.ht:~code-runner/org"
+
+["git/finance-extras"]
+    type = "git-repo"
+    url = "git@git.sr.ht:~code-runner/finance-extras"
+
+["git/ghostty-themes"]
+    type = "git-repo"
+    url = "https://codeberg.org/anhsirk0/ghostty-themes.git"
+
