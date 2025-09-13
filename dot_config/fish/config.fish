@@ -4,11 +4,6 @@ fish_add_path ~/.config/emacs/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 
-set cargo_fish ~/.cargo/env.fish
-if test -f "$cargo_fish"
-   source "$cargo_fish"
-end
-
 # If this is a dumb terminal, short circuit
 if test "$TERM" = "dumb"
     # Set a basic prompt
@@ -20,13 +15,9 @@ if test "$TERM" = "dumb"
 end
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-
-    # Autostart zellij in kitty
-    if test "$TERM" = "xterm-kitty"
-        set -Ux ZELLIJ_AUTO_ATTACH true
-        set -Ux ZELLIJ_AUTO_EXIT true
-        eval (zellij setup --generate-auto-start fish | string collect)
+    # Autostart tmux
+    if not set -q TMUX
+       exec tmux
     end
 
     set fish_greeting
