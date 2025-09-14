@@ -56,6 +56,7 @@ if status is-interactive
     carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
     carapace _carapace | source
 
+    atuin init fish | source
     zoxide init fish | source
     starship init fish | source
 end
