@@ -180,8 +180,6 @@ General is used for creating keybindings in a nice way.
 ** Theme
 #+begin_src emacs-lisp
 (use-package modus-themes
-  :init
-  (modus-themes-select 'modus-operandi)
   :straight t)
 
 (use-package ef-themes
@@ -193,6 +191,14 @@ General is used for creating keybindings in a nice way.
   :straight t
   :custom
   (doric-themes-to-toggle '(doric-wind doric-obsidian)))
+
+(use-package auto-dark
+  :straight t
+  :custom
+  (auto-dark-themes '((ef-bio) (ef-cyprus)))
+  (custom-safe-themes t)
+  :init
+  (auto-dark-mode))
 #+end_src
 
 ** Fonts
