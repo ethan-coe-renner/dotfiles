@@ -2,4 +2,5 @@ theme = dark:ef-bio,light:ef-cyprus
 font-family = "Aporetic"
 font-size = 15
 
-command=~/.local/bin/scripts/ghostty-tmux.sh
+command=~/.local/bin/ghostty-tmux.sh
+title = "ghostty"
