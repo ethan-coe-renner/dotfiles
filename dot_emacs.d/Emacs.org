@@ -523,6 +523,31 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   ("M-$" 'jinx-correct))
 #+end_src
 
+** LSP
+#+begin_src emacs-lisp
+(use-package lsp-mode
+  :straight t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+         (python-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui
+  :straight t
+  :commands lsp-ui-mode)
+
+;; optional if you want which-key integration
+(use-package which-key
+  :straight t
+  :config
+  (which-key-mode))
+#+end_src
+
 * Search
 ** Deadgrep
 #+begin_src emacs-lisp
@@ -867,8 +892,11 @@ This is for programming language modes.
 
 ** Rust
 #+begin_src emacs-lisp
-(use-package rust-mode
-  :straight t)
+(use-package rustic
+  :straight t
+  :custom
+  (rustic-cargo-use-last-sored-arguments)
+  )
 #+end_src
 
 ** Python
