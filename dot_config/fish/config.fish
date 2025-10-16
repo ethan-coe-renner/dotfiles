@@ -56,7 +56,8 @@ if status is-interactive
     carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
     carapace _carapace | source
 
-    atuin init fish | source
+    # we can remove the sed part when atuin/pull/2902 is released
+    atuin init fish | sed "s/-k up/up/g" | source
     zoxide init fish | source
     starship init fish | source
 end
