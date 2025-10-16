@@ -179,26 +179,19 @@ General is used for creating keybindings in a nice way.
 * Aesthetics
 ** Theme
 #+begin_src emacs-lisp
-(use-package modus-themes
+(use-package ef-themes
   :straight t)
 
-(use-package ef-themes
-  :straight t
-  :custom
-  (ef-themes-to-toggle '(ef-bio ef-spring)))
-
 (use-package doric-themes
-  :straight t
-  :custom
-  (doric-themes-to-toggle '(doric-wind doric-obsidian)))
+  :straight t)
 
-(use-package auto-dark
+(use-package modus-themes
   :straight t
-  :custom
-  (auto-dark-themes '((ef-bio) (ef-cyprus)))
-  (custom-safe-themes t)
   :init
-  (auto-dark-mode))
+  (modus-themes-include-derivatives-mode 1)
+  :config
+  (modus-themes-load-theme 'ef-bio)
+  )
 #+end_src
 
 ** Fonts
