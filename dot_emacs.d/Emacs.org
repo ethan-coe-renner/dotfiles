@@ -586,6 +586,8 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 * Compilation
 #+begin_src emacs-lisp
 (use-package compile
+  :hook
+  (compilation-filter . ansi-color-compilation-filter)
   :custom
   (compilation-scroll-output t))
 #+end_src
