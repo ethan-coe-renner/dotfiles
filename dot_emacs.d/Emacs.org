@@ -936,7 +936,7 @@ This is for programming language modes.
 (use-package ledger-mode
   :straight t
   :init
-  (setenv "LEDGER_FILE" (expand-file-name "~/finance/current.journal"))
+  (setenv "LEDGER_FILE" (expand-file-name "~/git/finance/current.journal"))
   :custom
   ((ledger-binary-path "hledger")
    (ledger-mode-should-check-version nil)

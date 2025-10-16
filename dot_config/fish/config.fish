@@ -48,7 +48,7 @@ if status is-interactive
     set fish_cursor_visual block
 
     set -gx EDITOR nvim
-    set -gx LEDGER_FILE ~/finance/current.journal
+    set -gx LEDGER_FILE ~/git/finance/current.journal
 
     # Carapace
     set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
