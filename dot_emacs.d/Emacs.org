@@ -862,6 +862,7 @@ alias hl hledger --strict $@*
 
 * Major Modes
 This is for programming language modes.
+
 ** Prog mode
 #+begin_src emacs-lisp
 (use-package prog-mode
@@ -950,4 +951,5 @@ This is for programming language modes.
 # Local Variables:
 # eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)
 # End:
+
 
