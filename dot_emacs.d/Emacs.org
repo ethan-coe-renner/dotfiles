@@ -824,7 +824,7 @@ alias hl hledger --strict $@*
   (denote-backlinks-show-context t)
 
   :hook
-  (dired-mode-hook . denote-dired-mode)
+  (dired-mode . denote-dired-mode)
 
   :init
   ;; I only want the title in the front matter
