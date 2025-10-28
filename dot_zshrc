@@ -21,7 +21,7 @@ command -v nvim &>/dev/null && export EDITOR="nvim" || export EDITOR="vim"
 [[ $SESSION_TYPE == dumb ]] && PS1='$ ' && return
 
 # If this is not an xterm, return immediately into default shell
-[[ ! $TERM =~ "xterm" ]] && return
+[[ ! $TERM =~ "xterm|tmux|screen" ]] && return
 
 export TERM="xterm"
 
