@@ -139,10 +139,10 @@ Use =view-mode= for read only buffers.
 ;; Put all backups in .saves instead of the original directory
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-;; backup by copying is safer for e.g. links
+;; Backup by copying is safer for e.g. links
 (setq backup-by-copying t)
 
-;; Keep some numbered versions in with version control
+;; Keep some numbered versions with version control
 (setq delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
@@ -190,8 +190,7 @@ General is used for creating keybindings in a nice way.
   :init
   (modus-themes-include-derivatives-mode 1)
   :config
-  (modus-themes-load-theme 'ef-bio)
-  )
+  (modus-themes-load-theme 'ef-cyprus))
 #+end_src
 
 ** Fonts
@@ -200,8 +199,7 @@ General is used for creating keybindings in a nice way.
   :straight t
   :custom
   (fontaine-presets
-   '(
-     (small
+   '((small
       :default-height 100)
      (medium
       :default-height 140)
@@ -889,10 +887,7 @@ This is for programming language modes.
 ** Rust
 #+begin_src emacs-lisp
 (use-package rustic
-  :straight t
-  :custom
-  (rustic-cargo-use-last-sored-arguments)
-  )
+  :straight t)
 #+end_src
 
 ** Python
