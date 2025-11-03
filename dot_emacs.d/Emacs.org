@@ -907,7 +907,8 @@ This is for programming language modes.
 ** Yaml Mode
 #+begin_src emacs-lisp
 (use-package yaml-mode
-  :straight t)
+  :straight t
+  :mode ("\\.clang-format\\'"))
 #+end_src
 
 ** Literate Calc Mode
