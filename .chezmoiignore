@@ -3,4 +3,5 @@ README.*
 .gitignore
 .build.yml
 bookmarks
+straight_lock.el
 nixos/
