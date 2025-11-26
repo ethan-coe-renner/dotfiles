@@ -28,7 +28,7 @@ if status is-interactive
     alias cat="bat --theme ansi"
     alias ch="chezmoi"
     alias chcd="pushd $(chezmoi source-path)"
-    alias hl="hledger --strict"
+    alias hl="hledger"
     alias jnix="just -f ~/git/nixos-config/Justfile"
 
     # --- VI Mode ---
