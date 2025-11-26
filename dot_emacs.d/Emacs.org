@@ -32,11 +32,14 @@
 
 * Org Mode
 #+begin_src emacs-lisp
+(use-package org-contrib
+  :straight t)
+
 (use-package org
   :straight t
   :custom
   (org-directory "~/org/")
-  (org-agenda-files '("~/org"))
+  (org-agenda-files (list org-directory))
   (org-agenda-span 10)
   (org-hide-emphasis-markers t)
   (org-pretty-entities-include-sub-superscripts nil)
@@ -72,6 +75,8 @@
      (emacs-lisp . t)
      (C . t)
      (shell . t)
+     (hledger . t)
+     (gnuplot . t)
      ))
   :hook
   (org-mode . org-indent-mode)
@@ -81,6 +86,9 @@
   :straight t
   :config
   (org-super-agenda-mode 1))
+
+(use-package ox-pandoc
+  :straight t)
 #+end_src
 
 In order to graph plots from org table, we install the =gnuplot= package.
@@ -800,6 +808,7 @@ alias hl hledger --strict $@*
    gptel-model 'gemini-2.5-flash
    gptel-backend (gptel-make-gemini "Gemini"
 		   :key #'gptel-api-key-from-auth-source
+           ;; url in .authinfo file should be: generativelanguage.googleapis.com
 		   :stream t)
    ))
 #+end_src
@@ -941,6 +950,12 @@ This is for programming language modes.
 ** Markdown Mode
 #+begin_src emacs-lisp
 (use-package markdown-mode
+  :straight t)
+#+end_src
+
+** JSON Mode
+#+begin_src emacs-lisp
+(use-package json-mode
   :straight t)
 #+end_src
 
