@@ -68,6 +68,7 @@
 
   (org-edit-src-content-indentation 0)
   (org-startup-truncated nil)
+  (org-html-validation-link nil)
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
