@@ -336,9 +336,8 @@ General is used for creating keybindings in a nice way.
                                dashboard-insert-banner-title
                                dashboard-insert-newline
                                dashboard-insert-init-info
-                               dashboard-insert-newline
-                               dashboard-insert-newline
-                               dashboard-insert-footer))
+                               ))
+  (dashboard-banner-logo-title "Welcome home.")
   :config
   (dashboard-setup-startup-hook))
 #+end_src
