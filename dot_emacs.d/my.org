@@ -60,10 +60,22 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 #+end_src
 
 * Org Snippets
+** Copy Markdown to Org
+Yank markdown from the kill-ring in ~org-mode~ format. Stolen from [[http://yummymelon.com/devnull/import-markdown-to-org-with-the-clipboard-in-emacs.html][here]].
+
 #+begin_src emacs-lisp
-(defun my/org-imenu-narrow ()
-  "Prompt for headings with imenu, and narrow on selected heading"
+(defun my/yank-markdown-as-org ()
+  "Yank Markdown text as Org.
+
+This command will convert Markdown text in the top of the `kill-ring'
+and convert it to Org using the pandoc utility."
   (interactive)
-  ;; TODO
-  )
+  (save-excursion
+    (with-temp-buffer
+      (yank)
+      (shell-command-on-region
+       (point-min) (point-max)
+       "pandoc -f markdown -t org --wrap=preserve" t t)
+      (kill-region (point-min) (point-max)))
+    (yank)))
 #+end_src
