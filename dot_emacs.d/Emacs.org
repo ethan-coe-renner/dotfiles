@@ -292,6 +292,15 @@ General is used for creating keybindings in a nice way.
    ))
 #+end_src
 
+** Elisp Demos
+#+begin_src emacs-lisp
+(use-package elisp-demos
+  :straight t
+  :config
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
+  )
+#+end_src
+
 ** Devdocs
 #+begin_src emacs-lisp
 (use-package devdocs
@@ -444,6 +453,8 @@ Use marginalia to show docstrings in the minibuffer.
 #+begin_src emacs-lisp
 (use-package dired
   :commands (dired)
+  :custom
+  (dired-listing-switches "-alFh")
   :hook
   ((dired-mode . dired-hide-details-mode)
    (dired-mode . hl-line-mode))
@@ -741,6 +752,8 @@ Meow provides a modal editing framework for emacs.
 #+begin_src emacs-lisp
 (use-package magit
   :straight t
+  :hook
+  (magit-status-sections-hook . magit-insert-worktrees)
   :custom
   (magit-format-file-function #'magit-format-file-nerd-icons))
 #+end_src
@@ -865,6 +878,14 @@ alias hl hledger --strict $@*
 #+begin_src emacs-lisp
 (use-package format-all
   :straight t)
+#+end_src
+
+* Logs
+#+begin_src emacs-lisp
+(use-package vlf
+  :straight t)
+
+(use-package vlf-setup)
 #+end_src
 
 * Major Modes
