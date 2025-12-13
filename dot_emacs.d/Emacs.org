@@ -131,6 +131,11 @@ Enable other modes
 (global-hl-line-mode 1)
 #+end_src
 
+** Bell
+#+begin_src emacs-lisp
+(setq visible-bell t)
+#+end_src
+
 ** Read only
 Use =view-mode= for read only buffers.
 #+begin_src emacs-lisp
