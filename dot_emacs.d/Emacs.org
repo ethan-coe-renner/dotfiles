@@ -888,6 +888,17 @@ alias hl hledger --strict $@*
 (use-package vlf-setup)
 #+end_src
 
+* Tree Sitter
+#+begin_src emacs-lisp
+(use-package treesit-auto
+  :straight t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+#+end_src
+
 * Major Modes
 This is for programming language modes.
 
