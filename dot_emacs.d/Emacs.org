@@ -391,7 +391,12 @@ Enable some modes to display data in modeline.
 #+begin_src emacs-lisp
 (use-package vertico
   :straight t
-  :hook (after-init . vertico-mode))
+  :init
+  (vertico-mode))
+
+(use-package savehist
+  :init
+  (savehist-mode))
 
 (use-package vertico-directory
   :after vertico
@@ -403,43 +408,50 @@ Enable some modes to display data in modeline.
 	      ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
+(use-package emacs
+  :custom
+  (enable-recursive-minibuffers t)
+  (read-extended-command-predicate #'command-completion-default-include-p)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+   '(read-only t cursor-intangible t face minibuffer-prompt)))
 #+end_src
 
 Use marginalia to show docstrings in the minibuffer.
 #+begin_src emacs-lisp
 (use-package marginalia
   :straight t
-  :hook (after-init . marginalia-mode))
+  :init
+  (marginalia-mode))
 #+end_src
 
+Use orderless completion style.
 #+begin_src emacs-lisp
 (use-package orderless
   :straight t
-  :config
-  (setq completion-styles '(orderless basic))
-  (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
 
-(use-package savehist
-  :hook (after-init . savehist-mode))
-
+#+begin_src emacs-lisp
 (use-package corfu
   :straight t
-  :hook (after-init . global-corfu-mode)
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
   :bind (:map corfu-map ("<tab>" . corfu-complete))
-  :config
-  (setq tab-always-indent 'complete)
-  (setq corfu-preview-current nil)
-  (setq corfu-min-width 20)
+  :custom
+  (corfu-preview-current nil))
 
-  (setq corfu-popupinfo-delay '(1.25 . 0.5))
-  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
+(use-package emacs
+  :custom
+  (tab-always-indent 'complete))
+#+end_src
 
-  ;; Sort by input history (no need to modify `corfu-sort-function').
-  (with-eval-after-load 'savehist
-    (corfu-history-mode 1)
-    (add-to-list 'savehist-additional-variables 'corfu-history)))
-
+#+begin_src emacs-lisp
 (use-package consult
   :straight t
   :custom
