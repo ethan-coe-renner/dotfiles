@@ -774,6 +774,7 @@ Meow provides a modal editing framework for emacs.
      '("x" . meow-save)
      '("X" . meow-sync-grab)
      '("y" . meow-yank)
+     '("Y" . consult-yank-from-kill-ring)
      '("z" . meow-pop-selection)
      '("'" . repeat)
      '("<escape>" . ignore)))
