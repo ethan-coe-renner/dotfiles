@@ -574,6 +574,14 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   (search-whitespace-regexp ".*?"))
 #+end_src
 
+** Grep
+#+begin_src emacs-lisp
+(use-package wgrep
+  :straight t
+  :custom
+  (wgrep-auto-save-buffer t))
+#+end_src
+
 ** Deadgrep
 #+begin_src emacs-lisp
 (use-package deadgrep
