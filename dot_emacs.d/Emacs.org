@@ -103,7 +103,7 @@ This section contains basic configuration which does not depend on any packages.
 ** Scratch Buffer
 #+begin_src emacs-lisp
 (setq initial-major-mode 'org-mode
-      initial-scratch-message "* Scratch\n")
+      initial-scratch-message "")
 #+end_src
 ** Load my.org
 #+begin_src emacs-lisp
