@@ -166,6 +166,13 @@ Use =view-mode= for read only buffers.
       version-control t)
 #+end_src
 
+** Goal column
+Goal columns are annoying, disable the keybinding.
+
+#+begin_src emacs-lisp
+(global-unset-key (kbd "C-x C-n"))
+#+end_src
+
 * General
 General is used for creating keybindings in a nice way.
 
