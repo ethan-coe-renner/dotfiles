@@ -1,3 +1,4 @@
+# -*- eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t); -*-
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
 
@@ -113,6 +114,7 @@ This section contains basic configuration which does not depend on any packages.
 (setq initial-major-mode 'org-mode
       initial-scratch-message "")
 #+end_src
+
 ** Load my.org
 #+begin_src emacs-lisp
 (org-babel-load-file (locate-user-emacs-file "my.org"))
@@ -1103,9 +1105,3 @@ This is for programming language modes.
 (use-package json-mode
   :straight t)
 #+end_src
-
-# Local Variables:
-# eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t)
-# End:
-
-
