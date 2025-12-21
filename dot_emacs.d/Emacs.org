@@ -43,6 +43,7 @@
   (org-agenda-span 10)
   (org-hide-emphasis-markers t)
   (org-pretty-entities-include-sub-superscripts nil)
+  (org-insert-heading-respect-content t)
 
   (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
 
@@ -90,6 +91,13 @@
 
 (use-package ox-pandoc
   :straight t)
+
+(use-package org-modern
+  :straight t
+  :custom
+  (org-modern-block-name nil)
+  :config
+  (global-org-modern-mode))
 #+end_src
 
 In order to graph plots from org table, we install the =gnuplot= package.
@@ -124,11 +132,6 @@ Remove some ui elements.
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
-#+end_src
-
-Enable other modes
-#+begin_src emacs-lisp
-(global-hl-line-mode 1)
 #+end_src
 
 ** Bell
@@ -1011,7 +1014,8 @@ This is for programming language modes.
   (fill-column 80)
   :hook
   (prog-mode . display-fill-column-indicator-mode)
-  (prog-mode . display-line-numbers-mode))
+  (prog-mode . display-line-numbers-mode)
+  (prog-mode . hl-line-mode))
 #+end_src
 
 ** Nix
