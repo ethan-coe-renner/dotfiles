@@ -542,8 +542,8 @@ Use orderless completion style.
   :custom
   (dired-listing-switches "-alFh")
   :hook
-  ((dired-mode . dired-hide-details-mode)
-   (dired-mode . hl-line-mode))
+  (dired-mode . dired-hide-details-mode)
+  (dired-mode . hl-line-mode)
   :config
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
