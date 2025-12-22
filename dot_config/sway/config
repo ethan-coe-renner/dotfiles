@@ -14,8 +14,6 @@ set $right h
 set $term ghostty
 # Launcher
 set $menu wmenu-run
-# Browser
-set $browser firefox
 
 ### Output configuration
 #
@@ -65,7 +63,8 @@ output HDMI-A-2 resolution 1920x1080 position 1920,0
 #
     bindsym $mod+Return exec $term
     bindsym $mod+x exec emacs
-    bindsym $mod+u exec $browser
+    bindsym $mod+u exec firefox
+    bindsym $mod+q exec qutebrowser
     bindsym $mod+b exec $menu
 
     # Kill focused window
