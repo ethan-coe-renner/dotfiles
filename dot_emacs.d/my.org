@@ -60,7 +60,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 #+end_src
 
 * Org Snippets
-** Copy Markdown to Org
+** Org <-> Markdown
 Yank markdown from the kill-ring in ~org-mode~ format. Stolen from [[http://yummymelon.com/devnull/import-markdown-to-org-with-the-clipboard-in-emacs.html][here]].
 
 #+begin_src emacs-lisp
@@ -80,6 +80,20 @@ and convert it to Org using the pandoc utility."
     (yank)))
 #+end_src
 
+And, the inverse. Stolen (with slight modifications) from [[https://mbork.pl/2021-05-02_Org-mode_to_Markdown_via_the_clipboard][here]].
+#+begin_src emacs-lisp
+(defun my/copy-org-as-markdown ()
+  "Copy the region (in Org) to the system clipboard as Markdown."
+  (interactive)
+  (require 'ox-md)
+  (if (use-region-p)
+      (let* ((region (buffer-substring-no-properties
+		              (region-beginning)
+		              (region-end)))
+	         (markdown (org-export-string-as region 'md t '(:with-toc nil))))
+	    (gui-set-selection 'CLIPBOARD markdown))))
+#+end_src
+
 * Theme
 #+begin_src emacs-lisp
 (require 'solar)
@@ -87,7 +101,7 @@ and convert it to Org using the pandoc utility."
 (setq calendar-longitude -122)
 
 (defun my/sun-up-p ()
-  "Return t if the sun is currently up, otherwise nil"
+  "Return t if the sun is currently up, otherwise nil."
   (let* ((solar-data (solar-sunrise-sunset (calendar-current-date)))
          (sunrise-decimal (car (car solar-data)))
          (sunset-decimal (car (nth 1 solar-data)))
