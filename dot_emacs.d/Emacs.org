@@ -97,6 +97,7 @@
   :straight t
   :custom
   (org-modern-block-name nil)
+  (org-modern-star 'replace)
   :config
   (global-org-modern-mode))
 #+end_src
