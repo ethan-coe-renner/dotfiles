@@ -9,10 +9,10 @@
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+set $left d
+set $down m
+set $up g
+set $right h
 # Your preferred terminal emulator
 set $term ghostty
 # Your preferred application launcher
@@ -76,7 +76,10 @@ output HDMI-A-2 resolution 1920x1080 position 1920,0
     bindsym $mod+c kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+b exec $menu
+
+    # Lock screen
+    bindsym $mod+l exec swaylock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -144,9 +147,6 @@ output HDMI-A-2 resolution 1920x1080 position 1920,0
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
     bindsym $mod+v splith
     bindsym $mod+w splitv
 
