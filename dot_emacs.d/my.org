@@ -47,7 +47,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
   (pcomplete-here (bookmark-all-names)))
 
 (defun eshell/bm (&rest args)
-  "cd or open the given bookmark entry"
+  "Open a bookmark entry."
   (setq args (flatten-tree args))
   (let ((bookmark (car args)) filename)
     (if (setq filename (bookmark-get-filename bookmark))
