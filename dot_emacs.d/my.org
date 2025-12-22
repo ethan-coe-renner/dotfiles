@@ -38,7 +38,7 @@ The following functions aid this workflow.
 
 ** Eshell Commands
 *** Bookmarks
-Open a bookmark by cd'ing to it or find-file'ing it.
+Open a bookmark by ~cd~'ing to it or ~find-file~'ing it.
 
 stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 #+begin_src emacs-lisp
