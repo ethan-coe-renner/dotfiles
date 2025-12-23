@@ -1,6 +1,6 @@
 # -*- eval: (add-hook 'after-save-hook #'org-babel-tangle nil t); -*-
 #+title: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
 * Early init
 
