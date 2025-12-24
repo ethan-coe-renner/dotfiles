@@ -214,6 +214,8 @@ gaps {
      inner 2
 }
 
+font Aporetic Sans Mono 13
+
 #
 # Status Bar:
 #
