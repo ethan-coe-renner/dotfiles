@@ -225,9 +225,11 @@ bar {
     # The default just shows the current date and time.
     status_command i3status
 
+    font Aporetic Sans Mono 14
+
     colors {
         statusline #ffffff
-        background #111111
+        background #000000
         inactive_workspace #323232 #323232 #5c5c5c
     }
 }

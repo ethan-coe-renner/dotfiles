@@ -1,5 +1,5 @@
 theme = dark:modus-vivendi,light:modus-operandi
-font-family = "Aporetic"
+font-family = "Aporetic Sans Mono"
 font-size = 15
 
 command=~/.local/bin/ghostty-tmux.sh
