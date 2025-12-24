@@ -93,6 +93,9 @@
 (use-package ox-pandoc
   :straight t)
 
+(use-package htmlize
+  :straight t)
+
 (use-package org-modern
   :straight t
   :custom
