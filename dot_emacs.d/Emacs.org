@@ -217,7 +217,7 @@ General is used for creating keybindings in a nice way.
   :init
   (modus-themes-include-derivatives-mode 1)
   :config
-  (modus-themes-load-theme (my/select-theme-by-solar 'ef-cyprus 'ef-bio)))
+  (modus-themes-load-theme (my/select-theme-by-solar 'modus-operandi 'modus-vivendi)))
 #+end_src
 
 ** Fonts
