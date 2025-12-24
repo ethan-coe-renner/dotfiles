@@ -242,14 +242,6 @@ General is used for creating keybindings in a nice way.
   (fontaine-set-preset 'medium))
 #+end_src
 
-** Padding
-#+begin_src emacs-lisp
-(use-package spacious-padding
-  :straight t
-  :config
-  (spacious-padding-mode 1))
-#+end_src
-
 * Icons
 #+begin_src emacs-lisp
 (use-package nerd-icons
