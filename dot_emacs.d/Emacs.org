@@ -715,10 +715,7 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 ** TMR
 #+begin_src emacs-lisp
 (use-package tmr
-  :straight t
-  :config
-  (setq tmr-sound-file "/System/Library/Sounds/Blow.aiff")
-  )
+  :straight t)
 #+end_src
 
 ** RSS
