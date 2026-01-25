@@ -178,7 +178,6 @@ Goal columns are annoying, disable the keybinding.
 #+begin_src emacs-lisp
 (global-unset-key (kbd "C-x C-n"))
 #+end_src
-
 * General
 General is used for creating keybindings in a nice way.
 
@@ -281,6 +280,16 @@ General is used for creating keybindings in a nice way.
   :straight t
   :custom
   (aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)))
+#+end_src
+
+** Dumb Jump
+#+begin_src emacs-lisp :tangle no
+(use-package dumb-jump
+  :straight t
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  (setq dumb-jump-force-searcher 'rg)
+  (setq xref-show-definitions-function #'xref-show-definitions-completing-read))
 #+end_src
 
 * Help
@@ -529,8 +538,8 @@ Use orderless completion style.
 
   :custom
   ;; Use Consult to select xref locations with preview
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref)
+  ;; (xref-show-xrefs-function #'consult-xref)
+  ;; (xref-show-definitions-function #'consult-xref)
   (consult-narrow-key "<")
   
   :config
@@ -691,7 +700,8 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 		 ("a" deadgrep-decrement-after-context "decrement after context"))))
 #+end_src
 
-* Music
+* Tools
+** EMMS
 #+begin_src emacs-lisp
 (use-package emms
   :straight t
@@ -700,6 +710,32 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   :custom
   (emms-player-list '(emms-player-vlc emms-player-mpv))
   (emms-info-functions '(emms-info-native)))
+#+end_src
+
+** TMR
+#+begin_src emacs-lisp
+(use-package tmr
+  :straight t
+  :config
+  (setq tmr-sound-file "/System/Library/Sounds/Blow.aiff")
+  )
+#+end_src
+
+** RSS
+#+begin_src emacs-lisp
+(use-package elfeed
+  :straight t
+  :general
+  (:keymaps 'elfeed-search-mode-map
+	    "U" 'elfeed-search-untag-all-unread
+	    "r" 'elfeed-update))
+
+(use-package elfeed-org
+  :straight t
+  :init
+  (elfeed-org)
+  :custom
+  (rmh-elfeed-org-files (list "~/org/elfeed.org")))
 #+end_src
 
 * Compilation
@@ -921,7 +957,7 @@ alias hl hledger --strict $@*
 
 * AI
 ** GPTel
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package gptel
   :straight t
   :custom
@@ -932,8 +968,7 @@ alias hl hledger --strict $@*
    gptel-backend (gptel-make-gemini "Gemini"
 		   :key #'gptel-api-key-from-auth-source
            ;; url in .authinfo file should be: generativelanguage.googleapis.com
-		   :stream t)
-   ))
+		   :stream t)))
 #+end_src
  
 * Denote
@@ -967,23 +1002,6 @@ alias hl hledger --strict $@*
   (consult-denote-mode 1))
 #+end_src
 
-* RSS
-#+begin_src emacs-lisp
-(use-package elfeed
-  :straight t
-  :general
-  (:keymaps 'elfeed-search-mode-map
-	    "U" 'elfeed-search-untag-all-unread
-	    "r" 'elfeed-update))
-
-(use-package elfeed-org
-  :straight t
-  :init
-  (elfeed-org)
-  :custom
-  (rmh-elfeed-org-files (list "~/org/elfeed.org")))
-#+end_src
-
 * Formatting
 #+begin_src emacs-lisp
 (use-package format-all
@@ -991,7 +1009,7 @@ alias hl hledger --strict $@*
 #+end_src
 
 * Logs
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package vlf
   :straight t)
 
@@ -1101,3 +1119,17 @@ This is for programming language modes.
 (use-package json-mode
   :straight t)
 #+end_src
+
+* Load Machine Specific Configuration
+I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load that if it exists. Configuration for this should exist in a ~configuration.org~ in that directory. Use ~org-babel-load-file~ to load that as well.
+
+#+begin_src emacs-lisp
+(setq machine-specific-configuration-directory (expand-file-name "~/git/elisp"))
+(setq machine-specific-configuration-org (expand-file-name "configure.org" machine-specific-configuration-directory))
+
+(when (file-directory-p machine-specific-configuration-directory)
+    (add-to-list 'load-path machine-specific-configuration-directory)
+    (when (file-exists-p machine-specific-configuration-org)
+      (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
+#+end_src
+
