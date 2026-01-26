@@ -178,6 +178,7 @@ Goal columns are annoying, disable the keybinding.
 #+begin_src emacs-lisp
 (global-unset-key (kbd "C-x C-n"))
 #+end_src
+
 * General
 General is used for creating keybindings in a nice way.
 
@@ -374,7 +375,7 @@ General is used for creating keybindings in a nice way.
 #+end_src
 
 * Modeline
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package doom-modeline
   :straight t
   :init
@@ -382,6 +383,23 @@ General is used for creating keybindings in a nice way.
   :custom
   (doom-modeline-time-icon nil)
   (doom-modeline-buffer-file-name-style 'buffer-name))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package moody
+  :straight t
+  :config
+  (set-face-attribute 'mode-line-active nil :box 'unspecified)
+  (set-face-attribute 'mode-line-inactive nil :box 'unspecified)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package minions
+  :straight t
+  :config
+  (minions-mode 1))
 #+end_src
 
 Enable some modes to display data in modeline.
@@ -394,14 +412,6 @@ Enable some modes to display data in modeline.
 (which-function-mode 1)
 (display-battery-mode 1)
 (display-time-mode)
-#+end_src
-
-* Headerline
-#+begin_src emacs-lisp
-(use-package breadcrumb
-  :straight t
-  :config
-  (breadcrumb-mode 1))
 #+end_src
 
 * Minibuffer
