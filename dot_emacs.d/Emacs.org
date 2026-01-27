@@ -382,7 +382,9 @@ General is used for creating keybindings in a nice way.
   (doom-modeline-mode 1)
   :custom
   (doom-modeline-time-icon nil)
-  (doom-modeline-buffer-file-name-style 'buffer-name))
+  (doom-modeline-buffer-file-name-style 'buffer-name)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-modal-modern-icon nil))
 #+end_src
 
 Enable some modes to display data in modeline.
