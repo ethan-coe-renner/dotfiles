@@ -375,7 +375,7 @@ General is used for creating keybindings in a nice way.
 #+end_src
 
 * Modeline
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (use-package doom-modeline
   :straight t
   :init
@@ -383,23 +383,6 @@ General is used for creating keybindings in a nice way.
   :custom
   (doom-modeline-time-icon nil)
   (doom-modeline-buffer-file-name-style 'buffer-name))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package moody
-  :straight t
-  :config
-  (set-face-attribute 'mode-line-active nil :box 'unspecified)
-  (set-face-attribute 'mode-line-inactive nil :box 'unspecified)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package minions
-  :straight t
-  :config
-  (minions-mode 1))
 #+end_src
 
 Enable some modes to display data in modeline.
