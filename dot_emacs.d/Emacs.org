@@ -353,6 +353,8 @@ General is used for creating keybindings in a nice way.
 #+begin_src emacs-lisp
 (use-package projectile
   :straight t
+  :custom
+  (projectile-fd-executable "~/.cargo/bin/fd")
   :config
   (projectile-mode +1))
 #+end_src
@@ -583,8 +585,6 @@ Use orderless completion style.
   (with-eval-after-load 'tramp
     (with-eval-after-load 'compile
       (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options)))
-  ;; Add rust programs to remote path
-  (add-to-list 'tramp-remote-path "~/.cargo/bin")
   )
 #+end_src
 
