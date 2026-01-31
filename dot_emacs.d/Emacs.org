@@ -354,7 +354,7 @@ General is used for creating keybindings in a nice way.
 (use-package projectile
   :straight t
   :custom
-  (projectile-fd-executable "~/.cargo/bin/fd")
+  (projectile-fd-executable (if (file-exists-p "~/.cargo/bin/fd") "~/.cargo/bin/fd" "fd"))
   :config
   (projectile-mode +1))
 #+end_src
