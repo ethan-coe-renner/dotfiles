@@ -53,12 +53,9 @@ if status is-interactive
 
     # Carapace
     set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-    mkdir -p ~/.config/fish/completions
-    carapace --list | awk '{print $1}' | xargs -I{} touch ~/.config/fish/completions/{}.fish # disable auto-loaded completions (#185)
     carapace _carapace | source
 
-    # we can remove the sed part when atuin/pull/2902 is released
-    atuin init fish | sed "s/-k up/up/g" | source
+    atuin init fish | source
     zoxide init fish | source
     starship init fish | source
 end
