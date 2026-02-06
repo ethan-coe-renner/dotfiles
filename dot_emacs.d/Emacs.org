@@ -343,6 +343,8 @@ General is used for creating keybindings in a nice way.
   (:keymaps 'eshell-mode-map "C-o" 'casual-eshell-tmenu)
   (:keymaps 'compilation-mode-map "C-o" 'casual-compile-tmenu)
   (:keymaps 'grep-mode-map "C-o" 'casual-compile-tmenu)
+  (:keymaps 'reb-mode-map "C-o" 'casual-re-builder-tmenu)
+  (:keymaps 'reb-lisp-mode-map "C-o" 'casual-re-builder-tmenu)
   (:keymaps 'ibuffer-mode-map
             "C-o" 'casual-ibuffer-tmenu
             "F" 'casual-ibuffer-filter-tmenu
