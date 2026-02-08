@@ -45,6 +45,7 @@
   (org-hide-emphasis-markers t)
   (org-pretty-entities-include-sub-superscripts nil)
   (org-insert-heading-respect-content t)
+  (org-imenu-depth 7)
 
   (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
 
@@ -122,21 +123,24 @@ This section contains basic configuration which does not depend on any packages.
   (initial-scratch-message "")
   (inhibit-startup-screen t)
 
+  ;; Require confirmation when killing emacs
+  (confirm-kill-emacs 'y-or-n-p)
+
   ;; Set custom file location, this is loaded in :config
   (custom-file (locate-user-emacs-file "custom.el"))
 
   ;; Use visible bell instead of audible bell
   (visible-bell t)
 
+  ;; Scrolling
+  (scroll-error-top-bottom t)
+  (scroll-preserve-screen-position t)
+
   ;; Use view-mode for read-only buffers
   (view-read-only t)
 
-  ;; Use 4 spaces instead of tabs
-  (indent-tabs-mode nil)
-  (tab-width 4)
-
   ;; Put all backups in .saves instead of the original directory
-  (backup-directory-alist `(("." . "~/.saves")))
+  (backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
   ;; Backup by copying is safer for e.g. links
   (backup-by-copying t)
@@ -146,6 +150,11 @@ This section contains basic configuration which does not depend on any packages.
   (kept-new-versions 6)
   (kept-old-versions 2)
   (version-control t)
+
+  :init
+  ;; Use 4 spaces instead of tabs
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
 
   :config
   ;; Load ancillary configuration files
@@ -680,17 +689,6 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 #+end_src
 
 * Tools
-** EMMS
-#+begin_src emacs-lisp
-(use-package emms
-  :straight t
-  :init
-  (emms-all)
-  :custom
-  (emms-player-list '(emms-player-vlc emms-player-mpv))
-  (emms-info-functions '(emms-info-native)))
-#+end_src
-
 ** TMR
 #+begin_src emacs-lisp
 (use-package tmr
@@ -769,6 +767,7 @@ Meow provides a modal editing framework for emacs.
      ;; Navigation
      '("i" . consult-imenu)
      '("j" . avy-goto-char-timer)
+     '("J" . casual-avy-tmenu)
      ;; Projectile
      '("p" . projectile-command-map)
      '("SPC" . projectile-find-file)
