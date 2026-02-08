@@ -3,7 +3,6 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
 * Early init
-
 #+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el
 ;; Required for straight.el
 (setq package-enable-at-startup nil)
@@ -40,12 +39,17 @@
   :straight t
   :custom
   (org-directory "~/org/")
+  (org-default-notes-file (concat org-directory "notes.org"))
   (org-agenda-files (list org-directory))
   (org-agenda-span 10)
+  (org-enforce-todo-dependencies t)
+  (org-enforce-todo-checkbox-dependencies t)
   (org-hide-emphasis-markers t)
   (org-pretty-entities-include-sub-superscripts nil)
   (org-insert-heading-respect-content t)
   (org-imenu-depth 7)
+  (org-return-follows-link t)
+  (org-startup-indented t)
 
   (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
 
@@ -72,6 +76,7 @@
   (org-edit-src-content-indentation 0)
   (org-startup-truncated nil)
   (org-html-validation-link nil)
+
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -80,10 +85,9 @@
      (C . t)
      (shell . t)
      (hledger . t)
-     (gnuplot . t)
-     ))
+     (gnuplot . t)))
+
   :hook
-  (org-mode . org-indent-mode)
   (org-mode . visual-line-mode))
 
 (use-package org-super-agenda
@@ -158,6 +162,9 @@ This section contains basic configuration which does not depend on any packages.
   (display-time-default-load-average nil)
   (display-time-day-and-date t)
   (display-time-24hr-format t)
+
+  ;; Sentences can end with a single space
+  (sentence-end-double-space nil)
 
   :init
   ;; Use 4 spaces instead of tabs
@@ -394,7 +401,6 @@ General is used for creating keybindings in a nice way.
   (doom-modeline-buffer-encoding nil)
   (doom-modeline-modal-modern-icon nil))
 #+end_src
-
 
 * Minibuffer
 #+begin_src emacs-lisp
