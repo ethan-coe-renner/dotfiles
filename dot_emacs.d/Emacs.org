@@ -151,6 +151,11 @@ This section contains basic configuration which does not depend on any packages.
   (kept-old-versions 2)
   (version-control t)
 
+  ;; Determine how time is displayed
+  (display-time-default-load-average nil)
+  (display-time-day-and-date t)
+  (display-time-24hr-format t)
+
   :init
   ;; Use 4 spaces instead of tabs
   (setq-default indent-tabs-mode nil)
@@ -165,6 +170,11 @@ This section contains basic configuration which does not depend on any packages.
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
+
+  ;; Show misc info in modeline
+  (which-function-mode 1)
+  (display-battery-mode 1)
+  (display-time-mode)
 
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n")))
@@ -382,17 +392,6 @@ General is used for creating keybindings in a nice way.
   (doom-modeline-modal-modern-icon nil))
 #+end_src
 
-Enable some modes to display data in modeline.
-#+begin_src emacs-lisp
-(setq
- display-time-default-load-average nil
- display-time-day-and-date t
- display-time-24hr-format t)
-
-(which-function-mode 1)
-(display-battery-mode 1)
-(display-time-mode)
-#+end_src
 
 * Minibuffer
 #+begin_src emacs-lisp
