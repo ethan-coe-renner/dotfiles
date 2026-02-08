@@ -116,6 +116,8 @@ In order to graph plots from org table, we install the =gnuplot= package.
   :straight t)
 #+end_src
 
+Sometime, I should read [[https://howardabrams.com/hamacs/ha-capturing-notes.html][this]] configuration about capturing notes, esp from code files, to extend my developer log approach.
+
 * Emacs
 This section contains basic configuration which does not depend on any packages.
 
