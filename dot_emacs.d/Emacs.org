@@ -132,6 +132,9 @@ This section contains basic configuration which does not depend on any packages.
   ;; Use visible bell instead of audible bell
   (visible-bell t)
 
+  ;; Don't resize frame, let the WM do this
+  (frame-inhibit-implied-resize t)
+
   ;; Scrolling
   (scroll-error-top-bottom t)
   (scroll-preserve-screen-position t)
