@@ -933,11 +933,10 @@ Meow provides a modal editing framework for emacs.
 alias up eshell-up $1
 alias pk eshell-up-peek $1
 
-alias e find-file $1
+alias ff find-file $1
 alias dg deadgrep $1
 alias d dired $1
 alias g magit
-alias hl hledger --strict $@*
 #+end_src
 
 * AI
