@@ -188,6 +188,9 @@ This section contains basic configuration which does not depend on any packages.
   (display-battery-mode 1)
   (display-time-mode)
 
+  ;; Enable which-key-mode
+  (which-key-mode)
+
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n")))
 #+end_src
@@ -307,25 +310,18 @@ General is used for creating keybindings in a nice way.
 #+end_src
 
 * Help
-** Emacs
-#+begin_src emacs-lisp
-(which-key-mode)
-#+end_src
-
 ** Helpful
 #+begin_src emacs-lisp
 (use-package helpful
   :straight t
   :general
-  (
-   "C-h f" #'helpful-callable
+  ("C-h f" #'helpful-callable
    "C-h v" #'helpful-variable
    "C-h k" #'helpful-key
    "C-h x" #'helpful-command
 
    "C-c C-d" #'helpful-at-point
-   "C-h F" #'helpful-function
-   ))
+   "C-h F" #'helpful-function))
 #+end_src
 
 ** Elisp Demos
@@ -333,8 +329,7 @@ General is used for creating keybindings in a nice way.
 (use-package elisp-demos
   :straight t
   :config
-  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)
-  )
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 #+end_src
 
 ** Devdocs
