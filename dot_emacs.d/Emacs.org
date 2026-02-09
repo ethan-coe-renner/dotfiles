@@ -577,8 +577,6 @@ Use orderless completion style.
   (tramp-verbose 2)
   (magit-tramp-pipe-stty-settings 'pty)
   :config
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-
   (connection-local-set-profile-variables
    'remote-direct-async-process
    '((tramp-direct-async-process . t)))
