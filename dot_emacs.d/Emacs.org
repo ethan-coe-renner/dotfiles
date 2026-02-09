@@ -577,6 +577,8 @@ Use orderless completion style.
   (tramp-verbose 2)
   (magit-tramp-pipe-stty-settings 'pty)
   :config
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+
   (connection-local-set-profile-variables
    'remote-direct-async-process
    '((tramp-direct-async-process . t)))
@@ -908,6 +910,13 @@ Meow provides a modal editing framework for emacs.
 (use-package eshell
   :custom
   (eshell-banner-message "")
+  (eshell-error-if-no-glob t)
+  (eshell-scroll-to-bottom-on-input t)
+
+  :config
+  (setenv "PAGER" "cat")
+  (add-to-list 'eshell-modules-list 'eshell-smart)
+
   :hook
   ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
   (eshell-mode . outline-minor-mode)
