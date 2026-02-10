@@ -549,15 +549,24 @@ Use orderless completion style.
 (use-package dired
   :commands (dired)
   :custom
-  (dired-listing-switches "-alFh")
+  (dired-listing-switches "-AlFh")
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'always)
+  (delete-by-moving-to-trash t)
+  (dired-dwim-target t)
+
   :hook
   (dired-mode . dired-hide-details-mode)
-  (dired-mode . hl-line-mode)
-  :config
-  (setq dired-recursive-copies 'always)
-  (setq dired-recursive-deletes 'always)
-  (setq delete-by-moving-to-trash t)
-  (setq dired-dwim-target t))
+  (dired-mode . hl-line-mode))
+
+(use-package dired-subtree
+  :straight t
+  :after dired
+  :custom
+  (dired-subtree-use-backgrounds nil)
+  :general
+  (:keymaps 'dired-mode-map
+            "<tab>" 'dired-subtree-toggle))
 #+end_src
 
 * Tramp
