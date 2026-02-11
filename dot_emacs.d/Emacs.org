@@ -904,6 +904,7 @@ Meow provides a modal editing framework for emacs.
   (eshell-banner-message "")
   (eshell-error-if-no-glob t)
   (eshell-scroll-to-bottom-on-input t)
+  (eshell-hist-ignoredups t)
 
   :config
   (setenv "PAGER" "cat")
@@ -916,7 +917,8 @@ Meow provides a modal editing framework for emacs.
 
   :general
   (:keymaps 'eshell-mode-map
-            "<tab>" yas-maybe-expand))
+            "<tab>" yas-maybe-expand
+            "M-r"  'my/eshell-insert-history))
 
 (use-package esh-autosuggest
   :straight t

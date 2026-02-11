@@ -59,6 +59,16 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
       (error "%s is not a bookmark" bookmark))))
 #+end_src
 
+** History
+#+begin_src emacs-lisp
+  (defun my/eshell-insert-history ()
+    "Displays the eshell history to select and insert back into your eshell."
+    (interactive)
+    (insert (completing-read "Eshell history: "
+                             (delete-dups
+                              (ring-elements eshell-history-ring)))))
+
+#+end_src
 * Org Snippets
 ** Org <-> Markdown
 Yank markdown from the kill-ring in ~org-mode~ format. Stolen from [[http://yummymelon.com/devnull/import-markdown-to-org-with-the-clipboard-in-emacs.html][here]].
