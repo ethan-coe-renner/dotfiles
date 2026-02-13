@@ -917,7 +917,8 @@ Meow provides a modal editing framework for emacs.
 
   :general
   (:keymaps 'eshell-mode-map
-            "<tab>" yas-maybe-expand
+            "<tab>" yas-maybe-expand)
+  (:keymaps 'eshell-hist-mode-map
             "M-r"  'my/eshell-insert-history))
 
 (use-package esh-autosuggest
