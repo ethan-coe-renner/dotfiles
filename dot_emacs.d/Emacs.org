@@ -38,23 +38,31 @@
 (use-package org
   :straight t
   :custom
+  ;; Files
   (org-directory "~/org/")
   (org-default-notes-file (concat org-directory "notes.org"))
   (org-agenda-files (list org-directory))
-  (org-agenda-span 10)
-  (org-enforce-todo-dependencies t)
-  (org-enforce-todo-checkbox-dependencies t)
+
+  ;; Aesthetic
+  (org-pretty-entities t)
+  (org-ellipsis "…")
   (org-pretty-entities-include-sub-superscripts nil)
+  (org-startup-truncated nil)
+  (org-startup-indented t)
+
+  ;; Behavior
   (org-catch-invisible-edits 'show-and-error)
   (org-insert-heading-respect-content t)
   (org-imenu-depth 7)
   (org-return-follows-link t)
-  (org-startup-indented t)
-
-  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
-
+  (org-edit-src-content-indentation 0)
   (org-tag-alist '(("code" . ?c) ("review" . ?r) ("admin" . ?a)))
 
+    ;; Agenda
+  (org-agenda-span 10)
+  (org-enforce-todo-dependencies t)
+  (org-enforce-todo-checkbox-dependencies t)
+  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
   (org-agenda-custom-commands
    '(("u" "Agenda and TODOs"
       (( agenda "")
@@ -70,11 +78,7 @@
                            :and (:deadline nil :scheduled nil)
                            :order 99)))))))))
 
-  (org-pretty-entities t)
-  (org-ellipsis "…")
-
-  (org-edit-src-content-indentation 0)
-  (org-startup-truncated nil)
+  ;; Export
   (org-html-validation-link nil)
 
   :config
