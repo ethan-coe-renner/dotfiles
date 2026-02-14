@@ -506,8 +506,6 @@ Use orderless completion style.
          ;; M-s bindings in `search-map'
          ("M-s d" . consult-find)                  ;; Alternative: consult-fd
          ("M-s c" . consult-locate)
-         ("M-s g" . consult-grep)
-         ("M-s G" . consult-git-grep)
          ("M-s r" . consult-ripgrep)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
@@ -678,12 +676,29 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 #+begin_src emacs-lisp
 (use-package rg
   :straight t
+  :init
+  (defun eshell/rg (&rest args)
+    "Search using rg.el from eshell."
+    (let*
+        ((args (flatten-tree args))
+         (query (car args)))
+      (rg query "everything" default-directory)))
+
   :config
-  (rg-enable-default-bindings))
+  (rg-enable-default-bindings)
+
+  :general
+  ("M-s g" 'rg-dwim
+   "M-s G" 'rg))
+
+(use-package rg-isearch
+  :general
+  (:keymaps 'isearch-mode-map
+           "M-s g" 'rg-isearch-menu))
 #+end_src
 
 ** Deadgrep
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package deadgrep
   :straight (deadgrep :type git :host github
 		      :repo "ethan-coe-renner/deadgrep"
@@ -789,8 +804,6 @@ Meow provides a modal editing framework for emacs.
      '("SPC" . projectile-find-file)
      ;; Recentf
      '("r" . recentf-open)
-     ;; Searching
-     '("s" . deadgrep)
      ;; Agenda
      '("a" . org-agenda)
      ;; Notes
@@ -799,8 +812,6 @@ Meow provides a modal editing framework for emacs.
      '("n f" . consult-denote-find)
      '("n c" . org-capture)
      
-     ;; TODO: play around with this, decide if this should only list active tasks
-     '("n t" . consult-org-agenda)
      ;; Git
      '("t t" . magit)
      '("t d" . magit-dispatch)
@@ -917,6 +928,7 @@ Meow provides a modal editing framework for emacs.
   (eshell-error-if-no-glob t)
   (eshell-scroll-to-bottom-on-input t)
   (eshell-hist-ignoredups t)
+  (eshell-prefer-lisp-functions t)
 
   :config
   (setenv "PAGER" "cat")
