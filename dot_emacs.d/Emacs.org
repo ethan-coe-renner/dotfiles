@@ -677,7 +677,7 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 		      :repo "ethan-coe-renner/deadgrep"
 		      :branch "update-context")
 
-  :general
+  :general-config
   (:keymaps 'deadgrep-mode-map
    "/" #'deadgrep-search-term
    "d" #'deadgrep-directory
@@ -703,7 +703,7 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 #+begin_src emacs-lisp
 (use-package elfeed
   :straight t
-  :general
+  :general-config
   (:keymaps 'elfeed-search-mode-map
 	    "U" 'elfeed-search-untag-all-unread
 	    "r" 'elfeed-update))
@@ -915,7 +915,7 @@ Meow provides a modal editing framework for emacs.
   (eshell-mode . outline-minor-mode)
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
 
-  :general
+  :general-config
   (:keymaps 'eshell-mode-map
             "<tab>" yas-maybe-expand)
   (:keymaps 'eshell-hist-mode-map
