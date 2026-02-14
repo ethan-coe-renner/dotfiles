@@ -674,6 +674,14 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   (wgrep-auto-save-buffer t))
 #+end_src
 
+** rg.el
+#+begin_src emacs-lisp
+(use-package rg
+  :straight t
+  :config
+  (rg-enable-default-bindings))
+#+end_src
+
 ** Deadgrep
 #+begin_src emacs-lisp
 (use-package deadgrep
@@ -726,7 +734,7 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   :hook
   (compilation-filter . ansi-color-compilation-filter)
   :custom
-  (compilation-scroll-output t))
+  (compilation-scroll-output 'first-error))
 #+end_src
 
 * Editing
