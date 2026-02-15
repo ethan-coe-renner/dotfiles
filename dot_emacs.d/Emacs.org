@@ -859,7 +859,7 @@ Meow provides a modal editing framework for emacs.
      '("t b" . magit-blame)
      '("t m" . git-timemachine)
      ;; Eshell
-     '("RET" . my/switch-to-eshell)
+     '("RET" . projectile-run-eshell)
      ;; Toggles
      '("l" . display-line-numbers-mode))
     (meow-motion-overwrite-define-key
@@ -973,6 +973,13 @@ Meow provides a modal editing framework for emacs.
   :config
   (setenv "PAGER" "cat")
   (add-to-list 'eshell-modules-list 'eshell-smart)
+
+  (add-to-list 'display-buffer-alist
+               '("\\*.*eshell.*\\*"
+                 (display-buffer-at-bottom)
+                 (dedicated . t)
+                 (side . left)
+                 (window-height . 0.3)))
 
   :hook
   ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
