@@ -854,12 +854,6 @@ Meow provides a modal editing framework for emacs.
      '("n f" . consult-denote-find)
      '("n c" . org-capture)
      
-     ;; Git
-     '("t t" . magit)
-     '("t d" . magit-dispatch)
-     '("t l" . magit-log)
-     '("t b" . magit-blame)
-     '("t m" . git-timemachine)
      ;; Toggles
      '("l" . display-line-numbers-mode))
     (meow-motion-overwrite-define-key
@@ -942,7 +936,12 @@ Meow provides a modal editing framework for emacs.
   :hook
   (magit-status-sections-hook . magit-insert-worktrees)
   :custom
-  (magit-format-file-function #'magit-format-file-nerd-icons))
+  (magit-format-file-function #'magit-format-file-nerd-icons)
+  :general
+  ("C-c t t" 'magit
+   "C-c t d" 'magit-dispatch
+   "C-c t l" 'magit-log
+   "C-c t b" 'magit-blame))
 #+end_src
 
 ** Gutter
@@ -956,7 +955,9 @@ Meow provides a modal editing framework for emacs.
 ** Time Machine
 #+begin_src emacs-lisp
 (use-package git-timemachine
-  :straight t)
+  :straight t
+  :general
+  ("C-c t m" 'git-timemachine))
 #+end_src
 
 * Shell
