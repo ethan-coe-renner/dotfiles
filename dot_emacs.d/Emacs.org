@@ -314,7 +314,10 @@ General is used for creating keybindings in a nice way.
 ** Avy
 #+begin_src emacs-lisp
 (use-package avy
-  :straight t)
+  :straight t
+  :general
+  ("C-c j" 'avy-goto-char-timer
+   "C-c J" 'casual-avy-tmenu))
 #+end_src
 
 ** Windows
@@ -844,8 +847,6 @@ Meow provides a modal editing framework for emacs.
      '("B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
-     '("j" . avy-goto-char-timer)
-     '("J" . casual-avy-tmenu)
      ;; Recentf
      '("r" . recentf-open)
      ;; Agenda
