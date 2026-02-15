@@ -976,7 +976,7 @@ Meow provides a modal editing framework for emacs.
   (add-to-list 'eshell-modules-list 'eshell-smart)
 
   (add-to-list 'display-buffer-alist
-               '("\\*.*eshell.*\\*"
+               '("\\*eshell.*\\*"
                  (display-buffer-at-bottom)
                  (dedicated . t)
                  (side . left)
