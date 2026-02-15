@@ -557,21 +557,28 @@ Use orderless completion style.
 (use-package dired
   :commands (dired)
   :custom
-  (dired-listing-switches "-AlFh")
+  (dired-listing-switches "-lAGFhv --group-directories-first --time-style=iso")
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
   (delete-by-moving-to-trash t)
   (dired-dwim-target t)
+  (dired-auto-revert-buffer #'dired-directory-changed-p)
+  (dired-do-revert-buffer t)
+  (dired-free-space nil)
+
+  (dired-isearch-filenames 'dwim)
+  (dired-create-destination-dirs 'ask)
+  (dired-vc-rename-file t)
 
   :hook
   (dired-mode . dired-hide-details-mode)
   (dired-mode . hl-line-mode))
 
+(use-package dired-x)
+
 (use-package dired-subtree
   :straight t
   :after dired
-  :custom
-  (dired-subtree-use-backgrounds nil)
   :general
   (:keymaps 'dired-mode-map
             "<tab>" 'dired-subtree-toggle))
