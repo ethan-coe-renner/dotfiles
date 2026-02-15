@@ -817,7 +817,9 @@ Meow provides a modal editing framework for emacs.
   :config
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-dvorak)
-    (add-hook 'my/switch-to-eshell-hook 'meow-insert)
+    ;; Go to insert mode when eshell is opened
+    (add-hook 'my/eshell-open 'meow-insert)
+
     (meow-leader-define-key
      '("1" . meow-digit-argument)
      '("2" . meow-digit-argument)
@@ -858,8 +860,6 @@ Meow provides a modal editing framework for emacs.
      '("t l" . magit-log)
      '("t b" . magit-blame)
      '("t m" . git-timemachine)
-     ;; Eshell
-     '("RET" . projectile-run-eshell)
      ;; Toggles
      '("l" . display-line-numbers-mode))
     (meow-motion-overwrite-define-key
@@ -981,16 +981,39 @@ Meow provides a modal editing framework for emacs.
                  (side . left)
                  (window-height . 0.3)))
 
+  (defun eshell-insert-history ()
+    "Displays the eshell history to select and insert back into your eshell."
+    (interactive)
+    (insert (completing-read "Eshell history: "
+                             (delete-dups
+                              (ring-elements eshell-history-ring)))))
+
+  (defvar my/eshell-open-dwim-hook nil
+    "Hook for `eshell-open-dwim`. Hook functions are called after switching to eshell.")
+
+  (defun eshell-open-dwim (&optional generic)
+    "If we are in a project, run the project's eshell, otherwise use a generic eshell.
+
+With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardless of whether we are in a project."
+    (interactive "P")
+    (if (and (projectile-project-p) (not generic))
+        (projectile-run-eshell)
+      (eshell))
+    (run-hooks 'my/eshell-open))
+
   :hook
   ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
   (eshell-mode . outline-minor-mode)
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
 
+  :general
+  ("C-c RET" 'eshell-open-dwim)
+
   :general-config
   (:keymaps 'eshell-mode-map
             "<tab>" yas-maybe-expand)
   (:keymaps 'eshell-hist-mode-map
-            "M-r"  'my/eshell-insert-history))
+            "M-r"  'eshell-insert-history))
 
 (use-package esh-autosuggest
   :straight t
@@ -1012,6 +1035,29 @@ alias ff find-file $1
 alias dg deadgrep $1
 alias d dired $1
 alias g magit
+#+end_src
+
+*** Commands
+**** Open bookmark
+Open a bookmark by ~cd~'ing to it or ~find-file~'ing it.
+
+stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
+#+begin_src emacs-lisp
+(defun pcomplete/eshell-mode/bm ()
+  "Completion for `bm'"
+  (pcomplete-here (bookmark-all-names)))
+
+(defun eshell/bm (&rest args)
+  "Open a bookmark entry."
+  (setq args (flatten-tree args))
+  (let ((bookmark (car args)) filename)
+    (if (setq filename (bookmark-get-filename bookmark))
+        ;; If it points to a directory, change to it.
+        (if (file-directory-p filename)
+            (eshell/cd filename)
+          ;; otherwise, just jump to the bookmark
+          (bookmark-jump bookmark))
+      (error "%s is not a bookmark" bookmark))))
 #+end_src
 
 * AI

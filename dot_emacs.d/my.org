@@ -19,56 +19,6 @@ Here are some functions used to aid in managing my dotfiles with [[https://www.c
   (dired my/chezmoi-dir))
 #+end_src
 
-* Eshell
-I like to be able to quickly switch between a buffer and an ~eshell~ buffer.
-The following functions aid this workflow.
-
-#+begin_src emacs-lisp
-(defvar my/switch-to-eshell-hook nil
-  "Hook for `my/switch-to-eshell`. Hook functions are called after switching to eshell.")
-
-(defun my/switch-to-eshell ()
-  "Switch to the existing *eshell* buffer or create one if it doesn't exist."
-  (interactive)
-  (if (get-buffer "*eshell*")
-      (switch-to-buffer "*eshell*")
-    (eshell))
-  (run-hooks 'my/switch-to-eshell-hook))
-#+end_src
-
-** Eshell Commands
-*** Bookmarks
-Open a bookmark by ~cd~'ing to it or ~find-file~'ing it.
-
-stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
-#+begin_src emacs-lisp
-(defun pcomplete/eshell-mode/bm ()
-  "Completion for `bm'"
-  (pcomplete-here (bookmark-all-names)))
-
-(defun eshell/bm (&rest args)
-  "Open a bookmark entry."
-  (setq args (flatten-tree args))
-  (let ((bookmark (car args)) filename)
-    (if (setq filename (bookmark-get-filename bookmark))
-        ;; If it points to a directory, change to it.
-        (if (file-directory-p filename)
-            (eshell/cd filename)
-          ;; otherwise, just jump to the bookmark
-          (bookmark-jump bookmark))
-      (error "%s is not a bookmark" bookmark))))
-#+end_src
-
-** History
-#+begin_src emacs-lisp
-  (defun my/eshell-insert-history ()
-    "Displays the eshell history to select and insert back into your eshell."
-    (interactive)
-    (insert (completing-read "Eshell history: "
-                             (delete-dups
-                              (ring-elements eshell-history-ring)))))
-
-#+end_src
 * Org Snippets
 ** Org <-> Markdown
 Yank markdown from the kill-ring in ~org-mode~ format. Stolen from [[http://yummymelon.com/devnull/import-markdown-to-org-with-the-clipboard-in-emacs.html][here]].
