@@ -319,21 +319,27 @@ General is used for creating keybindings in a nice way.
 
 ** Windows
 #+begin_src emacs-lisp
-(use-package windmove
+(use-package emacs
   :general-config
-  ("C-M-<up>" #'windmove-up
-   "C-M-<right>" #'windmove-right
-   "C-M-<down>" #'windmove-down
-   "C-M-<left>" #'windmove-left
-   "C-M-S-<up>" #'windmove-swap-states-up
-   "C-M-S-<right>" #'windmove-swap-states-right
-   "C-M-S-<down>" #'windmove-swap-states-down
-   "C-M-S-<left>" #'windmove-swap-states-left))
+  ("C-c w v" #'split-window-right
+   "C-c w s" #'split-window-below
+   "C-c w q" #'delete-window
+   "C-c w o" #'delete-other-windows
+   "C-c w p" #'windmove-up
+   "C-c w l" #'windmove-right
+   "C-c w n" #'windmove-down
+   "C-c w h" #'windmove-left
+   "C-c w P" #'windmove-swap-states-up
+   "C-c w N" #'windmove-swap-states-right
+   "C-c w J" #'windmove-swap-states-down
+   "C-c w H" #'windmove-swap-states-left))
 
 (use-package ace-window
   :straight t
   :custom
-  (aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)))
+  (aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+  :general
+  ("C-c w w" #'ace-window))
 #+end_src
 
 ** Dumb Jump
@@ -825,12 +831,6 @@ Meow provides a modal editing framework for emacs.
      '("0" . meow-digit-argument)
      '("/" . meow-keypad-describe-key)
      '("?" . meow-cheatsheet)
-     ;; Window management
-     '("w w" . ace-window)
-     '("w v" . split-window-right)
-     '("w s" . split-window-below)
-     '("w q" . delete-window)
-     '("w o" . delete-other-windows)
      ;; Buffers
      '("b b" . consult-buffer)
      '("b i" . ibuffer)
