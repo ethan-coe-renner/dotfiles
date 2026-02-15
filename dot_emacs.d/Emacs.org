@@ -408,6 +408,10 @@ General is used for creating keybindings in a nice way.
   :straight t
   :custom
   (projectile-fd-executable (if (file-exists-p "~/.cargo/bin/fd") "~/.cargo/bin/fd" "fd"))
+
+  ;; auto discovery
+  (projectile-auto-discover t)
+  (projectile-project-search-path '("~/git/"))
   :config
   (projectile-mode +1)
   :general
