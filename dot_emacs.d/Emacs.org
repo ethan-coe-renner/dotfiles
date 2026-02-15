@@ -103,7 +103,8 @@ General is used for creating keybindings in a nice way.
   :hook
   (org-mode . visual-line-mode)
   :general
-  ("C-c a" 'org-agenda))
+  ("C-c a" 'org-agenda
+   "C-c n c" 'org-capture))
 
 (use-package org-super-agenda
   :straight t
@@ -230,7 +231,9 @@ This section contains basic configuration which does not depend on any packages.
   (which-key-mode)
 
   ;; Disable keybinding for goal columns
-  (global-unset-key (kbd "C-x C-n")))
+  (global-unset-key (kbd "C-x C-n"))
+  :general-config
+  ("C-c b i" 'ibuffer))
 #+end_src
 
 * Snippets
@@ -845,17 +848,9 @@ Meow provides a modal editing framework for emacs.
      '("?" . meow-cheatsheet)
      ;; Buffers
      '("b b" . consult-buffer)
-     '("b i" . ibuffer)
      '("B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
-     ;; Recentf
-     '("r" . recentf-open)
-     ;; Notes
-     '("n d" . denote-open-or-create)
-     '("n s" . consult-denote-grep)
-     '("n f" . consult-denote-find)
-     '("n c" . org-capture)
      
      ;; Toggles
      '("l" . display-line-numbers-mode))
@@ -1103,12 +1098,17 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
   :init
   ;; I only want the title in the front matter
   (setq denote-org-front-matter "#+title: %1$s\n\n")
-  (denote-rename-buffer-mode 1))
+  (denote-rename-buffer-mode 1)
+  :general
+  ("C-c n d" 'denote-open-or-create))
 
 (use-package consult-denote
   :straight t
   :config
-  (consult-denote-mode 1))
+  (consult-denote-mode 1)
+  :general
+  ("C-c n s" 'consult-denote-grep
+   "C-c n f" 'consult-denote-find))
 #+end_src
 
 * Formatting
