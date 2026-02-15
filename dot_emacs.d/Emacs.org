@@ -409,14 +409,12 @@ General is used for creating keybindings in a nice way.
   :custom
   (projectile-fd-executable (if (file-exists-p "~/.cargo/bin/fd") "~/.cargo/bin/fd" "fd"))
 
-  ;; auto discovery
-  (projectile-auto-discover t)
   (projectile-project-search-path '("~/git/"))
+
   :config
   (projectile-mode +1)
   :general
-  ("C-c p" 'projectile-command-map
-   "C-c SPC" 'projectile-find-file))
+  ("C-c p" 'projectile-command-map))
 #+end_src
 
 * Dashboard
