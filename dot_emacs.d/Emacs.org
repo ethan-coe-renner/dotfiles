@@ -29,6 +29,16 @@
 (straight-use-package 'use-package)
 #+end_src
 
+* General
+General is used for creating keybindings in a nice way.
+
+#+begin_src emacs-lisp
+(use-package general
+  :straight t
+  :init
+  (general-auto-unbind-keys))
+#+end_src
+
 * Org Mode
 #+begin_src emacs-lisp
 (use-package org-contrib
@@ -91,7 +101,9 @@
      (gnuplot . t)))
 
   :hook
-  (org-mode . visual-line-mode))
+  (org-mode . visual-line-mode)
+  :general
+  ("C-c a" 'org-agenda))
 
 (use-package org-super-agenda
   :straight t
@@ -219,16 +231,6 @@ This section contains basic configuration which does not depend on any packages.
 
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n")))
-#+end_src
-
-* General
-General is used for creating keybindings in a nice way.
-
-#+begin_src emacs-lisp
-(use-package general
-  :straight t
-  :init
-  (general-auto-unbind-keys))
 #+end_src
 
 * Snippets
@@ -849,8 +851,6 @@ Meow provides a modal editing framework for emacs.
      '("i" . consult-imenu)
      ;; Recentf
      '("r" . recentf-open)
-     ;; Agenda
-     '("a" . org-agenda)
      ;; Notes
      '("n d" . denote-open-or-create)
      '("n s" . consult-denote-grep)
