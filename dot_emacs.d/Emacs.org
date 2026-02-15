@@ -132,6 +132,9 @@ This section contains basic configuration which does not depend on any packages.
   (initial-scratch-message "")
   (inhibit-startup-screen t)
 
+  ;; Don't use mouse
+  (use-dialog-box nil)
+
   ;; Require confirmation when killing emacs
   (confirm-kill-emacs 'y-or-n-p)
 
@@ -142,6 +145,7 @@ This section contains basic configuration which does not depend on any packages.
   (visible-bell t)
 
   ;; Don't resize frame, let the WM do this
+  (frame-resize-pixelwise t)
   (frame-inhibit-implied-resize t)
 
   ;; Scrolling
@@ -177,6 +181,10 @@ This section contains basic configuration which does not depend on any packages.
   (setq-default tab-width 4)
 
   :config
+  ;; Make native compilation silent.
+  (when (native-comp-available-p)
+    (setq native-comp-async-report-warnings-errors 'silent))
+
   ;; Load ancillary configuration files
   (org-babel-load-file (locate-user-emacs-file "my.org"))
 
@@ -1142,3 +1150,4 @@ I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load
       (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
 #+end_src
 
+** TODO Use ~user-lisp-directory~ to implement the above
