@@ -185,6 +185,9 @@ This section contains basic configuration which does not depend on any packages.
   ;; Don't put hl-line on every window with buffer
   (hl-line-sticky-flag nil)
 
+  ;; Diffs should be read only
+  (diff-default-read-only t)
+
   :init
   ;; Use 4 spaces instead of tabs
   (setq-default indent-tabs-mode nil)
