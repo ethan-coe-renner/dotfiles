@@ -175,6 +175,10 @@ This section contains basic configuration which does not depend on any packages.
   ;; Sentences can end with a single space
   (sentence-end-double-space nil)
 
+  ;; Tab bar
+  (tab-bar-new-button-show nil)
+  (tab-bar-close-button-show nil)
+
   :init
   ;; Use 4 spaces instead of tabs
   (setq-default indent-tabs-mode nil)
