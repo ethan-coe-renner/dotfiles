@@ -409,7 +409,10 @@ General is used for creating keybindings in a nice way.
   :custom
   (projectile-fd-executable (if (file-exists-p "~/.cargo/bin/fd") "~/.cargo/bin/fd" "fd"))
   :config
-  (projectile-mode +1))
+  (projectile-mode +1)
+  :general
+  ("C-c p" 'projectile-command-map
+   "C-c SPC" 'projectile-find-file))
 #+end_src
 
 * Dashboard
@@ -841,9 +844,6 @@ Meow provides a modal editing framework for emacs.
      '("i" . consult-imenu)
      '("j" . avy-goto-char-timer)
      '("J" . casual-avy-tmenu)
-     ;; Projectile
-     '("p" . projectile-command-map)
-     '("SPC" . projectile-find-file)
      ;; Recentf
      '("r" . recentf-open)
      ;; Agenda
