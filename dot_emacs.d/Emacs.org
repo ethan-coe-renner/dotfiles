@@ -233,7 +233,8 @@ This section contains basic configuration which does not depend on any packages.
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n"))
   :general-config
-  ("C-c b i" 'ibuffer))
+  ("C-c b i" 'ibuffer
+   "C-c l" 'display-line-numbers-mode))
 #+end_src
 
 * Snippets
@@ -851,9 +852,6 @@ Meow provides a modal editing framework for emacs.
      '("B" . consult-bookmark)
      ;; Navigation
      '("i" . consult-imenu)
-     
-     ;; Toggles
-     '("l" . display-line-numbers-mode))
     (meow-motion-overwrite-define-key
      ;; custom keybinding for motion state
      '("<escape>" . ignore))
