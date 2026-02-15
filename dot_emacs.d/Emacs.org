@@ -524,6 +524,10 @@ Use orderless completion style.
 #+begin_src emacs-lisp
 (use-package consult
   :straight t
+  :general
+  ("C-c b b" 'consult-buffer
+   "C-c B" 'consult-bookmark
+   "C-c i" 'consult-imenu)
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c h" . consult-history)
@@ -846,12 +850,7 @@ Meow provides a modal editing framework for emacs.
      '("9" . meow-digit-argument)
      '("0" . meow-digit-argument)
      '("/" . meow-keypad-describe-key)
-     '("?" . meow-cheatsheet)
-     ;; Buffers
-     '("b b" . consult-buffer)
-     '("B" . consult-bookmark)
-     ;; Navigation
-     '("i" . consult-imenu)
+     '("?" . meow-cheatsheet))
     (meow-motion-overwrite-define-key
      ;; custom keybinding for motion state
      '("<escape>" . ignore))
