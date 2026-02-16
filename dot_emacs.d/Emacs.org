@@ -69,7 +69,7 @@ General is used for creating keybindings in a nice way.
   (org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
   (org-src-window-setup 'current-window)
 
-    ;; Agenda
+  ;; Agenda
   (org-agenda-span 10)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
@@ -118,7 +118,10 @@ General is used for creating keybindings in a nice way.
 
 (use-package htmlize
   :straight t)
+#+end_src
 
+Use org-modern to add some nice aesthetic enhancements to org mode.
+#+begin_src emacs-lisp
 (use-package org-modern
   :straight t
   :custom
@@ -274,6 +277,12 @@ This section contains basic configuration which does not depend on any packages.
   (modus-themes-prompts '(extrabold italic))
   (modus-themes-completions '((matches . (extrabold underline))
                               (selection . (semibold italic))))
+
+  (modus-themes-common-palette-overrides
+   '(
+     ;; Distinguish org block delimiters from content
+     (bg-prose-block-delimiter bg-inactive)))
+
   :init
   (modus-themes-include-derivatives-mode 1)
   :config
