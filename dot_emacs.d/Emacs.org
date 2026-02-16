@@ -344,6 +344,7 @@ This section contains basic configuration which does not depend on any packages.
   ("C-c j" 'avy-goto-char-timer
    "C-c J" 'casual-avy-tmenu))
 #+end_src
+*** TODO Should read [[https://karthinks.com/software/avy-can-do-anything/][this]] to get better at using avy
 
 ** Windows
 #+begin_src emacs-lisp
