@@ -1227,12 +1227,6 @@ This is for programming language modes.
   :straight t)
 #+end_src
 
-** Markdown mode
-#+begin_src emacs-lisp
-(use-package markdown-mode
-  :straight t)
-#+end_src
-
 ** Ledger Mode
 #+begin_src emacs-lisp
 (use-package ledger-mode
@@ -1251,7 +1245,9 @@ This is for programming language modes.
 ** Markdown Mode
 #+begin_src emacs-lisp
 (use-package markdown-mode
-  :straight t)
+  :straight t
+  :custom
+  (markdown-fontify-code-blocks-natively t))
 #+end_src
 
 ** JSON Mode
