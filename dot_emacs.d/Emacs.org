@@ -434,8 +434,8 @@ This section contains basic configuration which does not depend on any packages.
 * Project Management
 #+begin_src emacs-lisp
 (use-package project
-  :bind-keymap
-  ("C-c p" . project-prefix-map)
+  :general
+  ("C-c p" '(:keymap project-prefix-map))
   :general-config
   ("C-c SPC" 'project-find-file))
 #+end_src
