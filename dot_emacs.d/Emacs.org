@@ -433,17 +433,11 @@ This section contains basic configuration which does not depend on any packages.
 
 * Project Management
 #+begin_src emacs-lisp
-(use-package projectile
-  :straight t
-  :custom
-  (projectile-fd-executable (if (file-exists-p "~/.cargo/bin/fd") "~/.cargo/bin/fd" "fd"))
-
-  (projectile-project-search-path '("~/git/"))
-
-  :config
-  (projectile-mode +1)
-  :general
-  ("C-c p" 'projectile-command-map))
+(use-package project
+  :bind-keymap
+  ("C-c p" . project-prefix-map)
+  :general-config
+  ("C-c SPC" 'project-find-file))
 #+end_src
 
 * Dashboard
@@ -1009,7 +1003,7 @@ Meow provides a modal editing framework for emacs.
   (add-to-list 'eshell-modules-list 'eshell-smart)
 
   (add-to-list 'display-buffer-alist
-               '("\\*eshell.*\\*"
+               '("\\*.*eshell\\*"
                  (display-buffer-at-bottom)
                  (dedicated . t)
                  (side . left)
@@ -1030,8 +1024,8 @@ Meow provides a modal editing framework for emacs.
 
 With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardless of whether we are in a project."
     (interactive "P")
-    (if (and (projectile-project-p) (not generic))
-        (projectile-run-eshell)
+    (if (and (project-current) (not generic))
+        (project-eshell)
       (eshell))
     (run-hooks 'my/eshell-open))
 
