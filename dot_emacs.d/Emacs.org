@@ -847,6 +847,12 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 
 * Editing
 #+begin_src emacs-lisp
+(use-package paren
+  :custom
+  (show-paren-context-when-offscreen 'overlay))
+#+end_src
+
+#+begin_src emacs-lisp
 (use-package smartparens
   :straight t
   :hook (prog-mode text-mode markdown-mode)
