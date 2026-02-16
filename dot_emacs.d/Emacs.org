@@ -725,6 +725,8 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   :commands lsp-ui-mode)
 #+end_src
 
+** TODO Eglot
+
 * Search
 ** Isearch
 #+begin_src emacs-lisp
