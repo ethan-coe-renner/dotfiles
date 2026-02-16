@@ -265,10 +265,12 @@ This section contains basic configuration which does not depend on any packages.
 
 (use-package modus-themes
   :straight t
+  :after solar
   :init
   (modus-themes-include-derivatives-mode 1)
   :config
-  (modus-themes-load-theme (my/select-theme-by-solar 'modus-operandi 'modus-vivendi)))
+  ;; If the sun is up, use a light theme, otherwise use a dark theme
+  (modus-themes-load-theme (if (sun-up-p) 'modus-operandi 'modus-vivendi)))
 #+end_src
 
 ** Fonts
@@ -783,6 +785,33 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 #+end_src
 
 * Tools
+
+** Calendar
+#+begin_src emacs-lisp
+(use-package calendar
+  :custom
+  (calendar-week-start-day 1)
+  (calendar-date-style 'iso)
+  (calendar-time-zone-style 'numeric))
+
+(use-package solar
+  :init
+  (defun sun-up-p ()
+    "Return t if the sun is currently up, otherwise nil."
+    (let* ((solar-data (solar-sunrise-sunset (calendar-current-date)))
+           (sunrise-decimal (car (car solar-data)))
+           (sunset-decimal (car (nth 1 solar-data)))
+           (current-time-decimal (+ (string-to-number (format-time-string "%H"))
+                                    (/ (string-to-number (format-time-string "%M"))
+                                       60.0))))
+      (and (> current-time-decimal sunrise-decimal)
+           (< current-time-decimal sunset-decimal))))
+
+  :custom
+  (calendar-latitude 37)
+  (calendar-longitude -122))
+#+end_src
+
 ** TMR
 #+begin_src emacs-lisp
 (use-package tmr

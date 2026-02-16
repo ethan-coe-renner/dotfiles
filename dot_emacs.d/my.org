@@ -54,26 +54,3 @@ And, the inverse. Stolen (with slight modifications) from [[https://mbork.pl/202
 	    (gui-set-selection 'CLIPBOARD markdown))))
 #+end_src
 
-* Theme
-#+begin_src emacs-lisp
-(require 'solar)
-(setq calendar-latitude 37)
-(setq calendar-longitude -122)
-
-(defun my/sun-up-p ()
-  "Return t if the sun is currently up, otherwise nil."
-  (let* ((solar-data (solar-sunrise-sunset (calendar-current-date)))
-         (sunrise-decimal (car (car solar-data)))
-         (sunset-decimal (car (nth 1 solar-data)))
-         (current-time-decimal (+ (string-to-number (format-time-string "%H"))
-                                  (/ (string-to-number (format-time-string "%M"))
-                                     60.0))))
-    (and (> current-time-decimal sunrise-decimal)
-         (< current-time-decimal sunset-decimal))))
-
-(defun my/select-theme-by-solar (light-theme dark-theme)
-  "Return LIGHT-THEME if the sun is up, otherwise DARK-THEME."
-  (if (my/sun-up-p)
-      light-theme
-    dark-theme))
-#+end_src
