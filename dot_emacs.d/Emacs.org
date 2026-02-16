@@ -1149,6 +1149,10 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 
 * Tree Sitter
 #+begin_src emacs-lisp
+(use-package treesit
+  :custom
+  (treesit-font-lock-level 4))
+
 (use-package treesit-auto
   :straight t
   :custom
@@ -1174,8 +1178,9 @@ This is for programming language modes.
 
 ** Nix
 #+begin_src emacs-lisp
-(use-package nix-mode
-  :straight t)
+(use-package nix-ts-mode
+  :straight t
+  :mode "\\.nix\\'")
 #+end_src
 
 ** Just
@@ -1187,7 +1192,9 @@ This is for programming language modes.
 ** Rust
 #+begin_src emacs-lisp
 (use-package rust-mode
-  :straight t)
+  :straight t
+  :custom
+  (rust-mode-treesitter-derive t))
 #+end_src
 
 ** Gnu Guile Scheme
