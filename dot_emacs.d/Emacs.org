@@ -1186,16 +1186,8 @@ This is for programming language modes.
 
 ** Rust
 #+begin_src emacs-lisp
-(use-package rustic
+(use-package rust-mode
   :straight t)
-#+end_src
-
-** Python
-#+begin_src emacs-lisp
-(use-package elpy
-  :straight t
-  :init
-  (elpy-enable))
 #+end_src
 
 ** Gnu Guile Scheme
