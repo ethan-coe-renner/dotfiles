@@ -1,4 +1,4 @@
-theme = dark:modus-vivendi,light:modus-operandi
+theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
 font-family = "Aporetic Sans Mono"
 font-size = 15
 
