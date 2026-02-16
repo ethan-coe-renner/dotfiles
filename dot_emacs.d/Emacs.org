@@ -708,6 +708,9 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
 #+end_src
 
 ** TODO Eglot
+#+begin_src emacs-lisp
+(use-package eglot)
+#+end_src
 
 * Search
 ** Isearch
