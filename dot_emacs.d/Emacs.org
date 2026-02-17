@@ -241,7 +241,7 @@ This section contains basic configuration which does not depend on any packages.
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n"))
   :general-config
-  ("C-c b i" 'ibuffer
+  ("C-c B" 'ibuffer
    "C-c l" 'display-line-numbers-mode))
 #+end_src
 
