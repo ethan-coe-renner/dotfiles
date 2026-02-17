@@ -542,8 +542,7 @@ Use orderless completion style.
 (use-package consult
   :straight t
   :general
-  ("C-c b b" 'consult-buffer
-   "C-c B" 'consult-bookmark)
+  ("C-c b" 'consult-buffer)
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
          ("C-c h" . consult-history)
