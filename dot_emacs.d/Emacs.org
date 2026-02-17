@@ -5,6 +5,14 @@
 #+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el
 ;; Required for straight.el
 (setq package-enable-at-startup nil)
+
+;; Set frame title
+(setq frame-title-format '("emacs@" system-name))
+
+;; Remove some ui elements
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
 #+end_src
 
 * Straight
@@ -221,11 +229,6 @@ This section contains basic configuration which does not depend on any packages.
 
   ;; Load ancillary configuration files
   (org-babel-load-file (locate-user-emacs-file "my.org"))
-
-  ;; Remove unnecessary ui elements
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
 
   ;; Show misc info in modeline
   (which-function-mode 1)
@@ -1256,4 +1259,4 @@ I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load
       (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
 #+end_src
 
-** TODO Use ~user-lisp-directory~ to implement the above
+** TODO When we upgrade to emacs 31, use ~user-lisp-directory~ to implement the above
