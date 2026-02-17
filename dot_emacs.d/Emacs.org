@@ -693,15 +693,6 @@ Use orderless completion style.
 #+end_src
 
 * Check
-** TODO Harper
-Sometime we should look into setting [[https://writewithharper.com/docs/integrations/emacs][harper]] up. Also, set up eglot.
-
-#+begin_src emacs-lisp :tangle no
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '(org-mode . ("harper-ls" "--stdio"))))
-#+end_src
-
 ** Jinx
 #+begin_src emacs-lisp
 (use-package jinx
@@ -711,7 +702,7 @@ Sometime we should look into setting [[https://writewithharper.com/docs/integrat
   ("M-$" 'jinx-correct))
 #+end_src
 
-** TODO Eglot
+** Eglot
 #+begin_src emacs-lisp
 (use-package eglot)
 #+end_src
