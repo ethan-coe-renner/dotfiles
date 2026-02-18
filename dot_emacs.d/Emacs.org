@@ -431,7 +431,12 @@ This section contains basic configuration which does not depend on any packages.
 (use-package devdocs
   :straight t
   :general
-  ("C-h D" 'devdocs-lookup))
+  ("C-h D" 'devdocs-lookup)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\*devdocs\\*"
+                 (display-buffer-pop-up-window)
+                 (dedicated . t))))
 #+end_src
 
 ** Casual
