@@ -1017,7 +1017,6 @@ Meow provides a modal editing framework for emacs.
                '("\\*.*eshell\\*"
                  (display-buffer-at-bottom)
                  (dedicated . t)
-                 (side . left)
                  (window-height . 0.3)))
 
   (defun eshell-insert-history ()
