@@ -318,6 +318,21 @@ This section contains basic configuration which does not depend on any packages.
   (fontaine-set-preset 'medium))
 #+end_src
 
+** Pulsar
+#+begin_src emacs-lisp
+(use-package pulsar
+  :straight t
+  :init
+  (pulsar-global-mode 1))
+#+end_src
+
+
+** Winpulse
+#+begin_src emacs-lisp
+(use-package winpulse
+  :straight (winpulse :type git :host github :repo "xenodium/winpulse"))
+#+end_src
+
 * Icons
 #+begin_src emacs-lisp
 (use-package nerd-icons
