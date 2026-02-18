@@ -245,7 +245,8 @@ This section contains basic configuration which does not depend on any packages.
    "C-c l" 'display-line-numbers-mode
    "M-o" 'other-window
    "M-p" 'scroll-down-line
-   "M-n" 'scroll-up-line))
+   "M-n" 'scroll-up-line
+   "C-M-S-v" 'scroll-other-window-down))
 #+end_src
 
 * Snippets
