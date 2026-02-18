@@ -994,8 +994,10 @@ Meow provides a modal editing framework for emacs.
   :straight t
   :init
   (global-diff-hl-mode)
+  (diff-hl-flydiff-mode)
   :hook
-  (magit-post-refresh . diff-hl-magit-post-refresh))
+  (magit-post-refresh . diff-hl-magit-post-refresh)
+  (dired-mode . diff-hl-dired-mode))
 #+end_src
 
 ** Time Machine
