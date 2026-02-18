@@ -242,7 +242,10 @@ This section contains basic configuration which does not depend on any packages.
   (global-unset-key (kbd "C-x C-n"))
   :general-config
   ("C-c B" 'ibuffer
-   "C-c l" 'display-line-numbers-mode))
+   "C-c l" 'display-line-numbers-mode
+   "M-o" 'other-window
+   "M-p" 'scroll-down-line
+   "M-n" 'scroll-up-line))
 #+end_src
 
 * Snippets
