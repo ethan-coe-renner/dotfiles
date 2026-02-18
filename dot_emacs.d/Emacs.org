@@ -331,7 +331,9 @@ This section contains basic configuration which does not depend on any packages.
 ** Winpulse
 #+begin_src emacs-lisp
 (use-package winpulse
-  :straight (winpulse :type git :host github :repo "xenodium/winpulse"))
+  :straight (winpulse :type git :host github :repo "xenodium/winpulse")
+  :config
+  (winpulse-mode +1))
 #+end_src
 
 * Icons
