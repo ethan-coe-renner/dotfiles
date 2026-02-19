@@ -677,6 +677,7 @@ Use orderless completion style.
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-do-revert-buffer t)
   (dired-free-space nil)
+  (dired-hide-details-hide-symlink-targets nil)
 
   (dired-isearch-filenames 'dwim)
   (dired-create-destination-dirs 'ask)
