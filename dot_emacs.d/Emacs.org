@@ -359,16 +359,29 @@ This section contains basic configuration which does not depend on any packages.
   (dired-mode . nerd-icons-dired-mode))
 #+end_src
 
-* Popper
+* Window Management
+** Popper
 #+begin_src emacs-lisp
 (use-package popper
   :straight t
   :custom
   (popper-reference-buffers '("\\*Messages\\*"
+                              "\\*.*eshell\\*"
+                              "\\*rg\\*"
+                              "\\*devdocs\\*"
+                              occur-mode
+                              helpful-mode
                               compilation-mode))
+  (popper-mode-line "P")
+  (popper-display-control nil)
+
   :init
   (popper-mode +1)
-  (popper-echo-mode +1))
+  (popper-echo-mode +1)
+  :general
+  ("C-`" 'popper-toggle
+   "M-`" 'popper-cycle
+   "C-M-`" 'popper-toggle-type))
 #+end_src
 
 * Navigation
@@ -445,12 +458,7 @@ This section contains basic configuration which does not depend on any packages.
 (use-package devdocs
   :straight t
   :general
-  ("C-h D" 'devdocs-lookup)
-  :config
-  (add-to-list 'display-buffer-alist
-               '("\\*devdocs\\*"
-                 (display-buffer-pop-up-window)
-                 (dedicated . t))))
+  ("C-h D" 'devdocs-lookup))
 #+end_src
 
 ** Casual
@@ -1039,7 +1047,7 @@ Meow provides a modal editing framework for emacs.
 
   (add-to-list 'display-buffer-alist
                '("\\*.*eshell\\*"
-                 (display-buffer-at-bottom)
+                 (display-buffer-reuse-mode-window display-buffer-at-bottom)
                  (dedicated . t)
                  (window-height . 0.3)))
 
