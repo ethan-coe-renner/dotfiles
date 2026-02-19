@@ -369,6 +369,7 @@ This section contains basic configuration which does not depend on any packages.
                               "\\*.*eshell\\*"
                               "\\*rg\\*"
                               "\\*devdocs\\*"
+                              "\\*xref\\*"
                               occur-mode
                               helpful-mode
                               compilation-mode))
