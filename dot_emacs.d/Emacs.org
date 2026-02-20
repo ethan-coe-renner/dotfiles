@@ -472,6 +472,7 @@ This section contains basic configuration which does not depend on any packages.
   :straight t
   :general
   (:keymaps 'calc-mode-map "C-o" 'casual-calc-tmenu)
+  (:keymaps 'org-mode-map "C-o" 'casual-org-tmenu)
   (:keymaps 'dired-mode-map "C-o" 'casual-dired-tmenu)
   (:keymaps 'isearch-mode-map "C-o" 'casual-isearch-tmenu)
   (:keymaps 'eshell-mode-map "C-o" 'casual-eshell-tmenu)
