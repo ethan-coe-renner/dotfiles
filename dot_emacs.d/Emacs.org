@@ -531,8 +531,13 @@ This section contains basic configuration which does not depend on any packages.
 #+begin_src emacs-lisp
 (use-package vertico
   :straight t
+  :custom
+  (vertico-count 20)
+  (vertico-resize t)
   :init
-  (vertico-mode))
+  (vertico-mode)
+  :config
+  (vertico-reverse-mode 1))
 
 (use-package savehist
   :init
@@ -566,6 +571,7 @@ Use marginalia to show docstrings in the minibuffer.
   (marginalia-mode))
 #+end_src
 
+* Completion
 Use orderless completion style.
 #+begin_src emacs-lisp
 (use-package orderless
