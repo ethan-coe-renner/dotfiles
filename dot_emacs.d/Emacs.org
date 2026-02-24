@@ -1303,6 +1303,12 @@ This is for programming language modes.
   (markdown-fontify-code-blocks-natively t))
 #+end_src
 
+** Asciidoc Mode
+#+begin_src emacs-lisp
+(use-package asciidoc-mode
+  :straight t)
+#+end_src
+
 ** JSON Mode
 #+begin_src emacs-lisp
 (use-package json-mode
