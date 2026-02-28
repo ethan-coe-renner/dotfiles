@@ -672,8 +672,8 @@ Use orderless completion style.
 
   :custom
   ;; Use Consult to select xref locations with preview
-  ;; (xref-show-xrefs-function #'consult-xref)
-  ;; (xref-show-definitions-function #'consult-xref)
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref)
   (consult-narrow-key "<")
 
   :config
