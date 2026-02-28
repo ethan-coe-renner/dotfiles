@@ -682,8 +682,6 @@ Use orderless completion style.
   (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help))
 #+end_src
 
-** TODO Use remap bindings for consult, and pare down to the commands I use
-
 * Dired
 #+begin_src emacs-lisp
 (use-package dired
