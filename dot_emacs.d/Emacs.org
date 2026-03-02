@@ -110,6 +110,8 @@ General is used for creating keybindings in a nice way.
      (hledger . t)
      (gnuplot . t)))
 
+  (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
+
   :hook
   (org-mode . visual-line-mode)
   :general
