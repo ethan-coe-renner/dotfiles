@@ -116,6 +116,8 @@ General is used for creating keybindings in a nice way.
   ("C-c a" 'org-agenda
    "C-c n c" 'org-capture))
 
+(use-package org-tempo)
+
 (use-package org-super-agenda
   :straight t
   :config
