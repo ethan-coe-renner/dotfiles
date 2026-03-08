@@ -875,14 +875,17 @@ Use orderless completion style.
   :straight t)
 #+end_src
 
-** RSS
+** Elfeed
 #+begin_src emacs-lisp
 (use-package elfeed
   :straight t
   :general-config
   (:keymaps 'elfeed-search-mode-map
 	    "U" 'elfeed-search-untag-all-unread
-	    "r" 'elfeed-update))
+	    "r" 'elfeed-update)
+  (:keymaps 'elfeed-show-mode-map
+            "p" 'scroll-down-line
+            "n" 'scroll-up-line))
 
 (use-package elfeed-org
   :straight t
