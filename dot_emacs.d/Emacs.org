@@ -1255,6 +1255,12 @@ This is for programming language modes.
   :mode "\\.nix\\'")
 #+end_src
 
+** KDL
+#+begin_src emacs-lisp
+(use-package kdl-mode
+  :straight t)
+#+end_src
+
 ** Just
 #+begin_src emacs-lisp
 (use-package just-mode
