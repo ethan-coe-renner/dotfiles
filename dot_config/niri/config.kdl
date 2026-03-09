@@ -111,6 +111,13 @@ animations {
     // off
 }
 
+// --- Window Rules ---
+window-rule {
+    match app-id="emacs"
+    match app-id="firefox"
+    open-maximized true
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
