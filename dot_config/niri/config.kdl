@@ -115,6 +115,7 @@ animations {
 window-rule {
     match app-id="emacs"
     match app-id="firefox"
+    match app-id="mpv"
     open-maximized true
 }
 
