@@ -43,23 +43,6 @@ layout {
         // Color of the ring on inactive monitors.
         inactive-color "#505050"
     }
-
-    border {
-        off
-
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-
-        urgent-color "#9b0000"
-    }
-
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
 }
 
 hotkey-overlay {
