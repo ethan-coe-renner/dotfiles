@@ -430,8 +430,8 @@ This section contains basic configuration which does not depend on any packages.
    "C-c w n" #'windmove-down
    "C-c w h" #'windmove-left
    "C-c w P" #'windmove-swap-states-up
-   "C-c w N" #'windmove-swap-states-right
-   "C-c w J" #'windmove-swap-states-down
+   "C-c w L" #'windmove-swap-states-right
+   "C-c w N" #'windmove-swap-states-down
    "C-c w H" #'windmove-swap-states-left))
 
 (use-package ace-window
