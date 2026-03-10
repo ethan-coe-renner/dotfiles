@@ -399,11 +399,23 @@ This section contains basic configuration which does not depend on any packages.
 #+begin_src emacs-lisp
 (use-package avy
   :straight t
+  :config
+  (defun avy-action-embark (pt)
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
+
+  (setf (alist-get ?e avy-dispatch-alist) 'avy-action-embark)
+
   :general
-  ("C-c j" 'avy-goto-char-timer
-   "C-c J" 'casual-avy-tmenu))
+  ([remap goto-char] 'avy-goto-char-timer
+   "C-c J" 'casual-avy-tmenu)
+  (:keymaps 'isearch-mode-map "M-j" 'avy-isearch))
 #+end_src
-*** TODO Should read [[https://karthinks.com/software/avy-can-do-anything/][this]] to get better at using avy
 
 ** Windows
 #+begin_src emacs-lisp
