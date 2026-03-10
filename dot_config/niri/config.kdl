@@ -21,6 +21,9 @@ output "HDMI-A-2" {
 
 spawn-sh-at-startup "swaybg -i ~/Pictures/wallpapers/current"
 
+spawn-at-startup "waybar"
+spawn-at-startup "nm-applet"
+
 // Settings that influence how windows are positioned and sized.
 layout {
     gaps 8
