@@ -1038,8 +1038,9 @@ Meow provides a modal editing framework for emacs.
 #+begin_src emacs-lisp
 (use-package magit
   :straight t
-  :hook
-  (magit-status-sections-hook . magit-insert-worktrees)
+  :config
+  (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-worktrees nil t)
+  (add-to-list 'magit-section-initial-visibility-alist '(worktrees . hide))
   :custom
   (magit-format-file-function #'magit-format-file-nerd-icons)
   :general
