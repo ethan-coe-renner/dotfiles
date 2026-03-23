@@ -920,6 +920,7 @@ Use orderless completion style.
 #+end_src
 
 * Editing
+** Pairs
 #+begin_src emacs-lisp
 (use-package paren
   :custom
@@ -927,11 +928,16 @@ Use orderless completion style.
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package smartparens
-  :straight t
-  :hook (prog-mode text-mode markdown-mode)
+(use-package electric
   :config
-  (require 'smartparens-config))
+  (electric-pair-mode +1))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package surround
+  :straight t
+  :general
+  ("M-'" '(:keymap surround-keymap)))
 #+end_src
 
 ** Meow
