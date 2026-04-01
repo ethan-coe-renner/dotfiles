@@ -1270,6 +1270,14 @@ This is for programming language modes.
   (prog-mode . hl-line-mode))
 #+end_src
 
+** C
+#+begin_src emacs-lisp
+(use-package c-ts-mode
+  :custom
+  (c-ts-mode-indent-style 'bsd)
+  (c-ts-mode-indent-offset 4))
+#+end_src
+
 ** Nix
 #+begin_src emacs-lisp
 (use-package nix-ts-mode
