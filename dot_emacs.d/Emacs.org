@@ -331,7 +331,6 @@ This section contains basic configuration which does not depend on any packages.
   (pulsar-global-mode 1))
 #+end_src
 
-
 ** Winpulse
 #+begin_src emacs-lisp
 (use-package winpulse
@@ -856,7 +855,6 @@ Use orderless completion style.
 #+end_src
 
 * Tools
-
 ** Calendar
 #+begin_src emacs-lisp
 (use-package calendar
