@@ -218,12 +218,43 @@ This section contains basic configuration which does not depend on any packages.
   ;; Diffs should be read only
   (diff-default-read-only t)
 
+  ;; For performance, inhibit the bidirectional parenthesis algorithm
+  (bidi-inhibit-bpa t)
+
+  ;; For performance, defer fontification until I stop typing
+  (redisplay-skip-fontification-on-input t)
+
+  ;; Accept larger responses from subprocesses so we don't need to make as many read calls
+  (read-process-output-max (* 4 1024 1024)) ; 4MB
+
+  ;; Save clipboard text to kill ring before replacing it
+  (save-interprogram-paste-before-kill t)
+
+  ;; Deduplicate kill ring
+  (kill-do-not-save-duplicates t)
+
+  ;; Persist some other variables with savehist
+  (savehist-additional-variables
+      '(search-ring regexp-search-ring kill-ring))
+
+  ;; Don't ping remotes with find-file-at-point
+  (ffap-machine-p-known 'reject)
+
+  ;; Resize all windows when opening a new one
+  (window-combination-resize t)
+
   :init
   ;; Use 4 spaces instead of tabs
   (setq-default indent-tabs-mode nil)
 
   ;; Disregard narrowing for line numbers
   (setq-default display-line-numbers-widen t)
+
+  ;; For performance, force directionality of text in the buffer
+  (setq-default bidi-paragraph-direction 'left-to-right)
+
+  ;; Don't show cursor in non-selected windows
+  (setq-default cursor-in-non-selected-windows nil)
 
   :config
   ;; Make native compilation silent.
@@ -243,6 +274,11 @@ This section contains basic configuration which does not depend on any packages.
 
   ;; Disable keybinding for goal columns
   (global-unset-key (kbd "C-x C-n"))
+
+  :hook
+  ;; Automatically chmod +x scripts
+  (after-save . executable-make-buffer-file-executable-if-script-p)
+
   :general-config
   ("C-c B" 'ibuffer
    "C-c l" 'display-line-numbers-mode
