@@ -356,7 +356,9 @@ This section contains basic configuration which does not depend on any packages.
   :init
   (fontaine-mode 1)
   :config
-  (fontaine-set-preset 'medium))
+  (fontaine-set-preset 'large)
+  :general
+  ("C-c f" 'fontaine-set-preset))
 #+end_src
 
 ** Pulsar
