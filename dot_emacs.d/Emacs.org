@@ -253,9 +253,6 @@ This section contains basic configuration which does not depend on any packages.
   ;; For performance, force directionality of text in the buffer
   (setq-default bidi-paragraph-direction 'left-to-right)
 
-  ;; Don't show cursor in non-selected windows
-  (setq-default cursor-in-non-selected-windows nil)
-
   :config
   ;; Make native compilation silent.
   (when (native-comp-available-p)
