@@ -244,7 +244,7 @@ This section contains basic configuration which does not depend on any packages.
   (window-combination-resize t)
 
   :init
-  ;; Use 4 spaces instead of tabs
+  ;; Use spaces instead of tabs
   (setq-default indent-tabs-mode nil)
 
   ;; Disregard narrowing for line numbers
