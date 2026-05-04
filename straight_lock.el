@@ -42,6 +42,7 @@
  ("git-timemachine" . "d1346a76122595aeeb7ebb292765841c6cfd417b")
  ("gnu-elpa-mirror" . "c8d38eb3023cbca6e88d56d52c75af2dfdfcbbb6")
  ("gnuplot" . "1a1481109b53a21429f3b919721464dbf3a0b814")
+ ("gptel" . "f915a8bba57fcd4fe7d92bf2bbcec17e5bbfa25b")
  ("guile" . "a0f111f8dedd31c593c4ed12c0b99745f3c1340f")
  ("helpful" . "03756fa6ad4dcca5e0920622b1ee3f70abfc4e39")
  ("ht.el" . "1c49aad1c820c86f7ee35bf9fff8429502f60fef")
