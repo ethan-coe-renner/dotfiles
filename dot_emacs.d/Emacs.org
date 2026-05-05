@@ -1209,7 +1209,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 
 * AI
 ** GPTel
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle (if (bound-and-true-p my/work-machine) nil user-init-file)
 (use-package gptel
   :straight t
   :custom
@@ -1219,7 +1219,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
    gptel-model 'gemini-2.5-flash
    gptel-backend (gptel-make-gemini "Gemini"
 		   :key #'gptel-api-key-from-auth-source
-           ;; url in .authinfo file should be: generativelanguage.googleapis.com
+                   ;; url in .authinfo file should be: generativelanguage.googleapis.com
 		   :stream t)))
 #+end_src
  
