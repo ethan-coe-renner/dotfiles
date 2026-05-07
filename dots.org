@@ -1,3 +1,235 @@
+# -*- org-confirm-babel-evaluate:nil; -*-
+#+title: Dotfiles
+#+author: Ethan Coe-Renner
+#+PROPERTY: header-args :mkdirp yes :comments link :tangle-mode o444
+
+* Variables
+These define some variables to be used via noweb in some snippets.
+
+#+name: get-email
+#+begin_src emacs-lisp
+user-email
+#+end_src
+
+* Ghostty
+#+begin_src conf :tangle ~/.config/ghostty/config
+theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
+font-family = "Aporetic Sans Mono"
+font-size = 15
+
+command=~/.local/bin/ghostty-tmux.sh
+title = "ghostty"
+
+confirm-close-surface = false
+#+end_src
+
+* Fish
+#+begin_src fish :tangle ~/.config/fish/config.fish
+fish_add_path ~/.local/bin
+fish_add_path ~/.local/bin/scripts
+fish_add_path ~/.config/emacs/bin
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
+
+# If this is a dumb terminal, short circuit
+if test "$TERM" = "dumb"
+    # Set a basic prompt
+    function fish_prompt
+        echo ">"
+    end
+    # Skip the rest of the configuration
+    return 0
+end
+
+if status is-interactive
+    set fish_greeting
+
+    # --- Aliases ---
+    alias ls="eza --group-directories-first"
+    alias ll="ls --long --git"
+    alias la="ls -A"
+    alias lal="la --long --grid --git"
+    alias g="git"
+    alias cp="cp -i"
+    alias mv="mv -i"
+    alias cat="bat --theme ansi"
+    alias ch="chezmoi"
+    alias chcd="pushd $(chezmoi source-path)"
+    alias hl="hledger"
+    alias jnix="just -f ~/git/nixos-config/Justfile"
+
+    # --- VI Mode ---
+    set -g fish_key_bindings fish_vi_key_bindings
+    # Emulates vim's cursor shape behavior
+    # Set the normal and visual mode cursors to a block
+    set fish_cursor_default block
+    # Set the insert mode cursor to a line
+    set fish_cursor_insert line
+    # Set the replace mode cursors to an underscore
+    set fish_cursor_replace_one underscore
+    set fish_cursor_replace underscore
+    # Set the external cursor to a line. The external cursor appears when a command is started.
+    # The cursor shape takes the value of fish_cursor_default when fish_cursor_external is not specified.
+    set fish_cursor_external line
+    # The following variable can be used to configure cursor shape in
+    # visual mode, but due to fish_cursor_default, is redundant here
+    set fish_cursor_visual block
+
+    set -gx EDITOR nvim
+    set -gx LEDGER_FILE ~/git/finance/current.journal
+
+    # Carapace
+    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+    carapace _carapace | source
+
+    atuin init fish | source
+    zoxide init fish | source
+    starship init fish | source
+end
+#+end_src
+
+#+begin_src conf :tangle ~/.config/fish/fish_plugins
+jorgebucaran/fisher
+jorgebucaran/autopair.fish
+nickeb96/puffer-fish
+#+end_src
+
+* Git
+#+begin_src conf :tangle ~/.config/git/config :noweb yes
+[user]
+    email = <<get-email()>>
+    name = Ethan Coe-Renner
+
+[init]
+    defaultBranch = "master"
+
+[credential]
+    helper = store
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[alias]
+    lg = log --oneline --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%aN <%ae>%Creset' --abbrev-commit
+    dlog = log -p --ext-diff
+    sh = show --ext-diff
+    stsh = stash show --ext-diff
+    st = status
+    pf = push --force-with-lease
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[rerere]
+# see https://blog.gitbutler.com/git-tips-1-theres-a-git-config-for-that/#reuse-recorded-resolution
+    enabled = true
+    autoupdate = true
+
+[help]
+    autocorrect = prompt
+
+[commit]
+    verbose = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[safe]
+    bareRepository = explicit
+
+# Difftastic
+[diff]
+    external = difft
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+
+[pager]
+    difftool = true
+#+end_src
+
+* Tmux
+#+begin_src conf :tangle ~/.tmux.conf
+set-option -g history-limit 30000
+
+# If this is a local terminal (not an ssh connection) set the prefix
+# to C-a and move the status bar to the top. This way, we can run
+# tmux in ssh connections without conflict.
+if-shell "test -z $SSH_CONNECTION" "unbind C-b"
+if-shell "test -z $SSH_CONNECTION" "set-option -g prefix C-a"
+if-shell "test -z $SSH_CONNECTION" "set-option -g status-position top"
+#+end_src
+
+* Atuin
+#+begin_src toml :tangle ~/.config/atuin/config.toml
+style = "compact"
+inline_height = 20
+inline_height_shell_up_key_binding = 5
+auto_sync = false
+update_check = false
+enter_accept = true
+command_chaining = true
+#+end_src
+
+* Hledger
+#+begin_src conf :tangle ~/.config/hledger/hledger.conf
+--pretty
+--strict
+#+end_src
+
+* Tealdeer
+#+begin_src toml :tangle ~/.config/tealdeer/config.toml
+[display]
+compact = true
+
+[updates]
+auto_update = true
+#+end_src
+
+* Yt-dlp
+#+begin_src conf :tangle ~/.config/yt-dlp/config
+-o %(title)s.%(ext)s
+#+end_src
+
+* Niri
+#+begin_src kdl :tangle ~/.config/niri/config.kdl
 input {
     keyboard {
         xkb {
@@ -269,3 +501,4 @@ binds {
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 }
+#+end_src

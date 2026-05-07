@@ -1,7 +1,0 @@
-style = "compact"
-inline_height = 20
-inline_height_shell_up_key_binding = 5
-auto_sync = false
-update_check = false
-enter_accept = true
-command_chaining = true

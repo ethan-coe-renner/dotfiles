@@ -13,6 +13,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+
+;; Custom variables
+(setq user-email "e.coerenner@gmail.com")
 #+end_src
 
 * Straight
@@ -1337,6 +1340,12 @@ This is for programming language modes.
   (rust-mode-treesitter-derive t))
 #+end_src
 
+** Fish
+#+begin_src emacs-lisp
+(use-package fish-mode
+  :straight t)
+#+end_src
+
 ** Gnu Guile Scheme
 #+begin_src emacs-lisp
 (use-package geiser-guile
@@ -1403,5 +1412,7 @@ I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load
     (when (file-exists-p machine-specific-configuration-org)
       (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
 #+end_src
+
+
 
 ** TODO When we upgrade to emacs 31, use ~user-lisp-directory~ to implement the above
