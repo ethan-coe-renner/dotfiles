@@ -12,6 +12,7 @@ user-email
 #+end_src
 
 * Ghostty
+#+name: ghostty-config
 #+begin_src conf :tangle ~/.config/ghostty/config
 theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
 font-family = "Aporetic Sans Mono"
@@ -24,6 +25,7 @@ confirm-close-surface = false
 #+end_src
 
 * Fish
+#+name: fish-config
 #+begin_src fish :tangle ~/.config/fish/config.fish
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/bin/scripts
@@ -88,6 +90,7 @@ if status is-interactive
 end
 #+end_src
 
+#+name: fish-plugins
 #+begin_src conf :tangle ~/.config/fish/fish_plugins
 jorgebucaran/fisher
 jorgebucaran/autopair.fish
@@ -95,6 +98,7 @@ nickeb96/puffer-fish
 #+end_src
 
 * Git
+#+name: git-config
 #+begin_src conf :tangle ~/.config/git/config :noweb yes
 [user]
     email = <<get-email()>>
@@ -186,6 +190,7 @@ nickeb96/puffer-fish
 #+end_src
 
 * Tmux
+#+name: tmux-config
 #+begin_src conf :tangle ~/.tmux.conf
 set-option -g history-limit 30000
 
@@ -198,6 +203,7 @@ if-shell "test -z $SSH_CONNECTION" "set-option -g status-position top"
 #+end_src
 
 * Atuin
+#+name: atuin-config
 #+begin_src toml :tangle ~/.config/atuin/config.toml
 style = "compact"
 inline_height = 20
@@ -209,12 +215,14 @@ command_chaining = true
 #+end_src
 
 * Hledger
+#+name: hledger-config
 #+begin_src conf :tangle ~/.config/hledger/hledger.conf
 --pretty
 --strict
 #+end_src
 
 * Tealdeer
+#+name: tealdeer-config
 #+begin_src toml :tangle ~/.config/tealdeer/config.toml
 [display]
 compact = true
@@ -224,11 +232,13 @@ auto_update = true
 #+end_src
 
 * Yt-dlp
+#+name: yt-dlp-config
 #+begin_src conf :tangle ~/.config/yt-dlp/config
 -o %(title)s.%(ext)s
 #+end_src
 
 * Niri
+#+name: niri-config
 #+begin_src kdl :tangle ~/.config/niri/config.kdl
 input {
     keyboard {
