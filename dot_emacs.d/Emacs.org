@@ -246,6 +246,10 @@ This section contains basic configuration which does not depend on any packages.
   ;; Resize all windows when opening a new one
   (window-combination-resize t)
 
+  ;; Allow babel to evaluate without confirming
+  ;; XXX: maybe this is dangerous...
+  (safe-local-variable-values '((org-confirm-babel-evaluate)))
+
   :init
   ;; Use spaces instead of tabs
   (setq-default indent-tabs-mode nil)
