@@ -1364,6 +1364,12 @@ This is for programming language modes.
   :straight t)
 #+end_src
 
+** Conf
+#+begin_src emacs-lisp
+(use-package conf-mode
+  :mode "CODEOWNERS")
+#+end_src
+
 ** Fish
 #+begin_src emacs-lisp
 (use-package fish-mode
