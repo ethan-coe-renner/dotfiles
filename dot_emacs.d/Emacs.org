@@ -1344,6 +1344,12 @@ This is for programming language modes.
   (rust-mode-treesitter-derive t))
 #+end_src
 
+** Nushell
+#+begin_src emacs-lisp
+(use-package nushell-mode
+  :straight t)
+#+end_src
+
 ** Fish
 #+begin_src emacs-lisp
 (use-package fish-mode

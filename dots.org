@@ -97,6 +97,11 @@ jorgebucaran/autopair.fish
 nickeb96/puffer-fish
 #+end_src
 
+* Nushell
+#+begin_src nushell :tangle ~/.config/nushell/config.nu
+$env.config.show_banner = false
+#+end_src
+
 * Git
 #+name: git-config
 #+begin_src conf :tangle ~/.config/git/config :noweb yes
