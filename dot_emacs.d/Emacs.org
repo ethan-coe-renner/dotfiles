@@ -421,7 +421,8 @@ This section contains basic configuration which does not depend on any packages.
                               occur-mode
                               help-mode
                               helpful-mode
-                              compilation-mode))
+                              compilation-mode
+                              ghostel-mode))
   (popper-mode-line "POP")
   (popper-display-control nil)
 
@@ -1212,6 +1213,12 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
           ;; otherwise, just jump to the bookmark
           (bookmark-jump bookmark))
       (error "%s is not a bookmark" bookmark))))
+#+end_src
+
+** Ghostel
+#+begin_src emacs-lisp
+(use-package ghostel
+  :straight t)
 #+end_src
 
 * AI
