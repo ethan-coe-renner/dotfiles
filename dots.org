@@ -27,6 +27,13 @@ confirm-close-surface = false
 * Fish
 #+name: fish-config
 #+begin_src fish :tangle ~/.config/fish/config.fish
+# If we are in tmux or emacs, just start nushell
+if set -q TMUX; or set -q INSIDE_EMACS
+    if command -v nu > /dev/null
+        exec nu
+    end
+end
+
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/bin/scripts
 fish_add_path ~/.config/emacs/bin
@@ -100,6 +107,13 @@ nickeb96/puffer-fish
 * Nushell
 #+begin_src nushell :tangle ~/.config/nushell/config.nu
 $env.config.show_banner = false
+$env.LEDGER_FILE = "~/git/finance/current.journal"
+
+alias hl = hledger
+
+# Enable starship prompt
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 #+end_src
 
 * Git
