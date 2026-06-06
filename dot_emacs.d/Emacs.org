@@ -13,9 +13,6 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
-
-;; Custom variables
-(setq user-email "e.coerenner@gmail.com")
 #+end_src
 
 * Straight
@@ -160,6 +157,9 @@ This section contains basic configuration which does not depend on any packages.
 #+begin_src emacs-lisp
 (use-package emacs
   :custom
+  ;; User variables
+  (user-mail-address "e.coerenner@gmail.com")
+
   ;; Scratch Buffer
   (initial-major-mode 'org-mode)
   (initial-scratch-message "")

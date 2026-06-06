@@ -8,7 +8,7 @@ These define some variables to be used via noweb in some snippets.
 
 #+name: get-email
 #+begin_src emacs-lisp
-user-email
+user-mail-address
 #+end_src
 
 * Ghostty
