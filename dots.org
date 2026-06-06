@@ -27,13 +27,6 @@ confirm-close-surface = false
 * Fish
 #+name: fish-config
 #+begin_src fish :tangle ~/.config/fish/config.fish
-# If we are in tmux or emacs, just start nushell
-if set -q TMUX; or set -q INSIDE_EMACS
-    if command -v nu > /dev/null
-        exec nu
-    end
-end
-
 fish_add_path ~/.local/bin
 fish_add_path ~/.local/bin/scripts
 fish_add_path ~/.config/emacs/bin
