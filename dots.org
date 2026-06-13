@@ -368,7 +368,7 @@ binds {
     XF86AudioPrev        allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
+    // Bindings to open frequently used programs
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     Mod+X hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
