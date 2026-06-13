@@ -356,6 +356,11 @@ binds {
     // Core Noctalia binds
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Shift+E { spawn-sh "noctalia msg panel-toggle session"; }
+    Mod+Delete { spawn-sh "noctalia msg session lock"; }
+
+    Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
+    Ctrl+Print { spawn-sh "noctalia msg screenshot-region"; }
 
     // Audio & Brightness
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
@@ -369,8 +374,6 @@ binds {
     Mod+X hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
     Mod+Shift+B hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
-    Mod+M hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Example media keys mapping using playerctl.
     XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
@@ -540,13 +543,6 @@ binds {
     // Toggle tabbed column display mode.
     Mod+W { toggle-column-tabbed-display; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
 }
 #+end_src
