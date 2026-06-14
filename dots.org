@@ -372,10 +372,10 @@ binds {
     XF86AudioNext allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
     // Bindings to open frequently used programs
-    Mod+Return hotkey-overlay-title="Open Ghostty" { spawn "ghostty"; }
-    Mod+X hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
-    Mod+B hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
-    Mod+Shift+B hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
+    Mod+Return repeat=false hotkey-overlay-title="Open Ghostty" { spawn "ghostty"; }
+    Mod+X repeat=false hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
+    Mod+B repeat=false hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
+    Mod+Shift+B repeat=false hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
