@@ -1079,6 +1079,13 @@ Meow provides a modal editing framework for emacs.
 #+end_src
 
 * Git
+** VC
+#+begin_src emacs-lisp
+(use-package vc
+  :general
+  ("C-c t B" 'vc-annotate))
+#+end_src
+
 ** Magit
 #+begin_src emacs-lisp
 (use-package magit
