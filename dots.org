@@ -289,7 +289,7 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 4
+        width 2
 
         // Color of the ring on the active monitor.
         active-color "#7fc8ff"
