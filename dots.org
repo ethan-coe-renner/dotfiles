@@ -347,9 +347,11 @@ binds {
     // Noctalia keybinds
     // Core Noctalia binds
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    XF86Search { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
     Mod+Shift+E { spawn-sh "noctalia msg panel-toggle session"; }
     Mod+Delete { spawn-sh "noctalia msg session lock"; }
+    XF86Tools { spawn-sh "noctalia msg panel-toggle control-center"; }
 
     Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
     Ctrl+Print { spawn-sh "noctalia msg screenshot-region"; }
@@ -362,14 +364,14 @@ binds {
     XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
     XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
-    // Example media keys mapping using playerctl.
-    XF86AudioPlay        allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
-    XF86AudioStop        allow-when-locked=true { spawn-sh "noctalia msg media stop"; }
-    XF86AudioPrev        allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
-    XF86AudioNext        allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+    // Media keys
+    XF86AudioPlay allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+    XF86AudioStop allow-when-locked=true { spawn-sh "noctalia msg media stop"; }
+    XF86AudioPrev allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
+    XF86AudioNext allow-when-locked=true { spawn-sh "noctalia msg media next"; }
 
     // Bindings to open frequently used programs
-    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+Return hotkey-overlay-title="Open Ghostty" { spawn "ghostty"; }
     Mod+X hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
     Mod+Shift+B hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
