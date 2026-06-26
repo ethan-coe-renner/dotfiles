@@ -352,7 +352,7 @@ This section contains basic configuration which does not depend on any packages.
      (medium
       :default-height 140)
      (large
-      :default-height 150)
+      :default-height 180)
      (t
       :default-family "Aporetic Sans Mono"
       :fixed-pitch-family nil
