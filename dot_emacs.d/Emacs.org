@@ -1443,6 +1443,11 @@ I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load
       (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
 #+end_src
 
+* Emacs 31
+Some notes for things to enable when I start running emacs 31
 
+** TODO When we upgrade to emacs 31, use ~user-lisp-directory~ to implement the Machine specific configuration
 
-** TODO When we upgrade to emacs 31, use ~user-lisp-directory~ to implement the above
+** Some articles
+
+https://www.rahuljuliato.com/posts/emacs-31-around-the-corner
