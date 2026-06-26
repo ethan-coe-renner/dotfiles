@@ -1434,7 +1434,7 @@ This is for programming language modes.
 I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load that if it exists. Configuration for this should exist in a ~configuration.org~ in that directory. Use ~org-babel-load-file~ to load that as well.
 
 #+begin_src emacs-lisp
-(setq machine-specific-configuration-directory (expand-file-name "~/git/elisp"))
+(setq machine-specific-configuration-directory (expand-file-name "~/git/config/elisp"))
 (setq machine-specific-configuration-org (expand-file-name "configure.org" machine-specific-configuration-directory))
 
 (when (file-directory-p machine-specific-configuration-directory)
