@@ -271,8 +271,6 @@ input {
             variant "dvorak"
             options "ctrl:swapcaps"
         }
-
-        numlock
     }
 
     // Other input than keyboard? Why?
