@@ -268,6 +268,8 @@ input {
     keyboard {
         xkb {
             layout "us"
+            variant "dvorak"
+            options "ctrl:swapcaps"
         }
 
         numlock
