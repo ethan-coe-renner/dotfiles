@@ -216,6 +216,8 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 #+begin_src conf :tangle ~/.tmux.conf
 set-option -g history-limit 30000
 
+set -g mouse on
+
 # If this is a local terminal (not an ssh connection) set the prefix
 # to C-a and move the status bar to the top. This way, we can run
 # tmux in ssh connections without conflict.
