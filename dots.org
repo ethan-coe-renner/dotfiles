@@ -17,7 +17,7 @@ user-mail-address
 theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
 font-family = "Aporetic Sans Mono"
 font-size = 18
-cursor-style = bar
+cursor-style = block
 
 command=~/.local/bin/ghostty-tmux.sh
 title = "ghostty"
