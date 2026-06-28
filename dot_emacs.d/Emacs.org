@@ -657,8 +657,7 @@ Use orderless completion style.
 (use-package consult
   :straight t
   :general
-  ("C-c b" 'consult-buffer
-   ;; C-x bindings in `ctl-x-map'
+  (;; C-x bindings in `ctl-x-map'
    [remap switch-to-buffer] 'consult-buffer
    [remap repeat-complex-command] 'consult-complex-command
    [remap switch-to-buffer-other-window] 'consult-buffer-other-window
@@ -801,7 +800,7 @@ Use orderless completion style.
 (use-package embark
   :straight t
   :general
-  ("M-e" 'embark-act)
+  ("C-." 'embark-act)
   :config
 
   ;; Hide the mode line of the Embark live/completions buffers
