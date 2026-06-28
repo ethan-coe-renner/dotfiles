@@ -205,7 +205,9 @@ This section contains basic configuration which does not depend on any packages.
   ;; Sentences can end with a single space
   (sentence-end-double-space nil)
 
-  ;; Tab bar
+  ;; - Tab bar -
+  ;; Only show the tab bar when there are more than one tab
+  (tab-bar-show 1)
   (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)
 
@@ -939,8 +941,17 @@ Use orderless completion style.
   :config
   (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-worktrees nil t)
   (add-to-list 'magit-section-initial-visibility-alist '(worktrees . hide))
+
+  ;; Display magit status buffer in new tab
+  (add-to-list 'display-buffer-alist
+               '((derived-mode . magit-status-mode)
+                 (display-buffer-reuse-mode-window display-buffer-in-tab)
+                 (tab-name . (lambda (buffer _alist) (buffer-name buffer)))
+                 (reusable-frames . :just-the-selected-frame)
+                 (inhibit-switch-frame . t)))
   :custom
-  (magit-format-file-function #'magit-format-file-nerd-icons))
+  (magit-format-file-function #'magit-format-file-nerd-icons)
+  (magit-log-auto-more t))
 #+end_src
 
 ** Gutter
