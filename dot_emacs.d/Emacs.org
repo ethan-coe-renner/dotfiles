@@ -1061,7 +1061,24 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 ** Ghostel
 #+begin_src emacs-lisp
 (use-package ghostel
-  :straight t)
+  :straight t
+  :config
+  (add-to-list 'display-buffer-alist
+               '((derived-mode . ghostel-mode)
+                 (display-buffer-reuse-window
+                  display-buffer-pop-up-window)
+                 (dedicated . t)))
+
+  (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
+  :general
+  ("C-x c" 'ghostel)
+  (:keymaps 'project-prefix-map
+            "s" 'ghostel-project
+            "S" 'ghostel-project-list-buffers))
+
+(use-package ghostel-compile
+  :hook (after-init . ghostel-compile-global-mode))
 #+end_src
 
 * AI
