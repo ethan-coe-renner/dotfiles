@@ -16,7 +16,7 @@ user-mail-address
 #+begin_src conf :tangle ~/.config/ghostty/config
 theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
 font-family = "Aporetic Sans Mono"
-font-size = 18
+font-size = 15
 cursor-style = block
 
 command=~/.local/bin/ghostty-tmux.sh
