@@ -980,12 +980,7 @@ Use orderless completion style.
   (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-worktrees nil t)
   (add-to-list 'magit-section-initial-visibility-alist '(worktrees . hide))
   :custom
-  (magit-format-file-function #'magit-format-file-nerd-icons)
-  :general
-  ("C-c t t" 'magit
-   "C-c t d" 'magit-dispatch
-   "C-c t l" 'magit-log
-   "C-c t b" 'magit-blame))
+  (magit-format-file-function #'magit-format-file-nerd-icons))
 #+end_src
 
 ** Gutter
