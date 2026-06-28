@@ -350,9 +350,9 @@ This section contains basic configuration which does not depend on any packages.
    '((small
       :default-height 100)
      (medium
-      :default-height 140)
+      :default-height 150)
      (large
-      :default-height 180)
+      :default-height 170)
      (t
       :default-family "Aporetic Sans Mono"
       :fixed-pitch-family nil
@@ -360,7 +360,7 @@ This section contains basic configuration which does not depend on any packages.
   :init
   (fontaine-mode 1)
   :config
-  (fontaine-set-preset 'large)
+  (fontaine-set-preset 'medium)
   :general
   ("C-c f" 'fontaine-set-preset))
 #+end_src
