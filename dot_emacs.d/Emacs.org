@@ -113,10 +113,7 @@ General is used for creating keybindings in a nice way.
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
 
   :hook
-  (org-mode . visual-line-mode)
-  :general
-  ("C-c a" 'org-agenda
-   "C-c n c" 'org-capture))
+  (org-mode . visual-line-mode))
 
 (use-package org-tempo)
 
@@ -284,11 +281,7 @@ This section contains basic configuration which does not depend on any packages.
   (after-save . executable-make-buffer-file-executable-if-script-p)
 
   :general-config
-  ("C-c B" 'ibuffer
-   "C-c l" 'display-line-numbers-mode
-   "M-o" 'other-window
-   "M-O" 'other-frame
-   "M-p" 'scroll-down-line
+  ("M-p" 'scroll-down-line
    "M-n" 'scroll-up-line
    "C-M-S-v" 'scroll-other-window-down))
 #+end_src
@@ -360,9 +353,7 @@ This section contains basic configuration which does not depend on any packages.
   :init
   (fontaine-mode 1)
   :config
-  (fontaine-set-preset 'medium)
-  :general
-  ("C-c f" 'fontaine-set-preset))
+  (fontaine-set-preset 'medium))
 #+end_src
 
 ** Pulsar
@@ -423,33 +414,18 @@ This section contains basic configuration which does not depend on any packages.
 
   :general
   ([remap goto-char] 'avy-goto-char-timer
-   "C-c J" 'casual-avy-tmenu)
+   "M-g a" 'casual-avy-tmenu)
   (:keymaps 'isearch-mode-map "M-j" 'avy-isearch))
 #+end_src
 
 ** Windows
 #+begin_src emacs-lisp
-(use-package emacs
-  :general-config
-  ("C-c w v" #'split-window-right
-   "C-c w s" #'split-window-below
-   "C-c w q" #'delete-window
-   "C-c w o" #'delete-other-windows
-   "C-c w p" #'windmove-up
-   "C-c w l" #'windmove-right
-   "C-c w n" #'windmove-down
-   "C-c w h" #'windmove-left
-   "C-c w P" #'windmove-swap-states-up
-   "C-c w L" #'windmove-swap-states-right
-   "C-c w N" #'windmove-swap-states-down
-   "C-c w H" #'windmove-swap-states-left))
-
 (use-package ace-window
   :straight t
   :custom
   (aw-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
   :general
-  ("C-c w w" #'ace-window))
+  ("C-x w w" #'ace-window))
 #+end_src
 
 ** Dumb Jump
@@ -473,7 +449,7 @@ This section contains basic configuration which does not depend on any packages.
    "C-h k" #'helpful-key
    "C-h x" #'helpful-command
 
-   "C-c C-d" #'helpful-at-point
+   "C-h j" #'helpful-at-point
    "C-h F" #'helpful-function))
 #+end_src
 
@@ -513,15 +489,6 @@ This section contains basic configuration which does not depend on any packages.
             "C-o" 'casual-ibuffer-tmenu
             "F" 'casual-ibuffer-filter-tmenu
             "s" 'casual-ibuffer-sortby-tmenu))
-#+end_src
-
-* Project Management
-#+begin_src emacs-lisp
-(use-package project
-  :general
-  ("C-c p" '(:keymap project-prefix-map))
-  :general-config
-  ("C-c SPC" 'project-find-file))
 #+end_src
 
 * Dashboard
@@ -965,13 +932,6 @@ Use orderless completion style.
 #+end_src
 
 * Git
-** VC
-#+begin_src emacs-lisp
-(use-package vc
-  :general
-  ("C-c t B" 'vc-annotate))
-#+end_src
-
 ** Magit
 #+begin_src emacs-lisp
 (use-package magit
@@ -998,9 +958,7 @@ Use orderless completion style.
 ** Time Machine
 #+begin_src emacs-lisp
 (use-package git-timemachine
-  :straight t
-  :general
-  ("C-c t m" 'git-timemachine))
+  :straight t)
 #+end_src
 
 * Shell
@@ -1048,9 +1006,6 @@ With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardl
   ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
   (eshell-mode . outline-minor-mode)
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
-
-  :general
-  ("C-c RET" 'eshell-open-dwim)
 
   :general-config
   (:keymaps 'eshell-mode-map
@@ -1150,15 +1105,12 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
   (setq denote-org-front-matter "#+title: %1$s\n\n")
   (denote-rename-buffer-mode 1)
   :general
-  ("C-c n d" 'denote-open-or-create))
+  ("C-x D" 'denote-open-or-create))
 
 (use-package consult-denote
   :straight t
   :config
-  (consult-denote-mode 1)
-  :general
-  ("C-c n s" 'consult-denote-grep
-   "C-c n f" 'consult-denote-find))
+  (consult-denote-mode 1))
 #+end_src
 
 * Formatting
