@@ -269,7 +269,7 @@ input {
         xkb {
             layout "us"
             variant "dvorak"
-            options "ctrl:swapcaps"
+            options "ctrl:nocaps"
         }
     }
 
