@@ -185,7 +185,7 @@ This section contains basic configuration which does not depend on any packages.
   ;; Use view-mode for read-only buffers
   (view-read-only t)
 
-  ;; Put all backups in .saves instead of the original directory
+  ;; Put all backups in .emacs.d/backups/ instead of the original directory
   (backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
 
   ;; Backup by copying is safer for e.g. links
