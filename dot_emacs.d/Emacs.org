@@ -271,6 +271,8 @@ This section contains basic configuration which does not depend on any packages.
   (which-function-mode 1)
   (display-battery-mode 1)
   (display-time-mode)
+  (line-number-mode)
+  (column-number-mode)
 
   ;; Enable which-key-mode
   (which-key-mode)
