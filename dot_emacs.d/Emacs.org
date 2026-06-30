@@ -1091,6 +1091,8 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
             "S" 'ghostel-project-list-buffers))
 
 (use-package ghostel-compile
+  :config
+  (add-to-list 'ghostel-compile-global-mode-excluded-modes 'rg-mode)
   :hook (after-init . ghostel-compile-global-mode))
 #+end_src
 
