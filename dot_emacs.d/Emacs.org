@@ -103,7 +103,8 @@ General is used for creating keybindings in a nice way.
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)
+   '((org . t)
+     (python . t)
      (emacs-lisp . t)
      (C . t)
      (shell . t)
@@ -111,6 +112,7 @@ General is used for creating keybindings in a nice way.
      (gnuplot . t)))
 
   (add-to-list 'org-structure-template-alist '("se" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
 
   :hook
   (org-mode . visual-line-mode))
