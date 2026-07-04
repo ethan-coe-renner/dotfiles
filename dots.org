@@ -52,6 +52,13 @@ else
 fi
 #+end_src
 
+* Zathura
+#+begin_src conf :tangle ~/.config/zathura/zathurarc
+set adjust-open "width"
+set selection-clipboard "clipboard"
+set font "Aporetic 12"
+#+end_src
+
 * Fish
 #+name: fish-config
 #+begin_src fish :tangle ~/.config/fish/config.fish
