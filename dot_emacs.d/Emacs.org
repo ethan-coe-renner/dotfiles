@@ -289,7 +289,12 @@ This section contains basic configuration which does not depend on any packages.
   :general-config
   ("M-p" 'scroll-down-line
    "M-n" 'scroll-up-line
-   "C-M-S-v" 'scroll-other-window-down))
+   "C-M-S-v" 'scroll-other-window-down
+   ;; Unbind some unused bindings
+   "C-x C-b" 'nil
+   "C-x m" 'nil
+   "C-z" 'nil
+   "C-x C-z" 'nil))
 #+end_src
 
 * Snippets
@@ -455,7 +460,7 @@ This section contains basic configuration which does not depend on any packages.
    "C-h k" #'helpful-key
    "C-h x" #'helpful-command
 
-   "C-h j" #'helpful-at-point
+   "C-h h" #'helpful-at-point
    "C-h F" #'helpful-function))
 #+end_src
 
