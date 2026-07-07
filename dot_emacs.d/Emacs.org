@@ -213,6 +213,7 @@ This section contains basic configuration which does not depend on any packages.
   (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)
 
+  (show-trailing-whitespace t)
   ;; Uniquification
   (uniquify-buffer-name-style 'forward)
 
