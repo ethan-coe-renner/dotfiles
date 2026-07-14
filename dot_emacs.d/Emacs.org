@@ -303,7 +303,14 @@ This section contains basic configuration which does not depend on any packages.
 (use-package yasnippet
   :straight t
   :config
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  :general-config
+  (:keymaps 'yas-minor-mode-map
+            ;; Use space instead of tab to expand snippets
+            "<tab>" nil
+            "TAB" nil
+            "SPC" yas-maybe-expand
+            "C-c y" 'yas-expand))
 
 (use-package yasnippet-snippets
   :straight t)
@@ -591,13 +598,18 @@ Use orderless completion style.
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
-  :bind (:map corfu-map ("<tab>" . corfu-complete))
   :custom
   (corfu-preview-current nil))
 
 (use-package emacs
   :custom
   (tab-always-indent 'complete))
+
+(use-package dabbrev
+  :general
+  ;; Swap M-/ and C-M-/
+  ("M-/" 'dabbrev-completion
+   "C-M-/" 'dabbrev-expand))
 #+end_src
 
 * Consult
