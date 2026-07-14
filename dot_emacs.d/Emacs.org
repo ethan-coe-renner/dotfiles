@@ -786,7 +786,8 @@ Use orderless completion style.
   ;; Show match count in minibuffer
   (isearch-lazy-count t)
   ;; Interpret whitespace as any number of any (non-newline) character
-  (search-whitespace-regexp ".*?"))
+  (search-whitespace-regexp ".*?")
+  (replace-lax-whitespace t))
 #+end_src
 
 ** Grep
