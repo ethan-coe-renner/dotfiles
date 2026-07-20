@@ -586,6 +586,7 @@ Use orderless completion style.
   (completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
+Setup Corfu
 #+begin_src emacs-lisp
 (use-package corfu
   :straight t
