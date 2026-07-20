@@ -605,6 +605,16 @@ Use orderless completion style.
    "C-M-/" 'dabbrev-expand))
 #+end_src
 
+Use cape for completion at point
+#+begin_src emacs-lisp
+(use-package cape
+  :straight t
+  :general
+  ("C-c p" 'cape-prefix-map)
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev))
+#+end_src
+
 * Consult
 #+begin_src emacs-lisp
 (use-package consult
