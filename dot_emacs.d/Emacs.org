@@ -303,14 +303,7 @@ This section contains basic configuration which does not depend on any packages.
 (use-package yasnippet
   :straight t
   :config
-  (yas-global-mode 1)
-  :general-config
-  (:keymaps 'yas-minor-mode-map
-            ;; Use space instead of tab to expand snippets
-            "<tab>" nil
-            "TAB" nil
-            "SPC" yas-maybe-expand
-            "C-c y" 'yas-expand))
+  (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :straight t)
