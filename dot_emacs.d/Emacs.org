@@ -811,7 +811,7 @@ Use orderless completion style.
 #+end_src
 
 ** rg.el
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package rg
   :straight t
   :init
@@ -836,12 +836,11 @@ Use orderless completion style.
 #+end_src
 
 ** Deadgrep
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (use-package deadgrep
-  :straight (deadgrep :type git :host github
-		      :repo "ethan-coe-renner/deadgrep"
-		      :branch "update-context")
-
+  :straight t
+  :general
+  ("M-s g" 'deadgrep)
   :general-config
   (:keymaps 'deadgrep-mode-map
    "/" #'deadgrep-search-term
