@@ -844,8 +844,12 @@ Use cape for completion at point
 #+begin_src emacs-lisp
 (use-package deadgrep
   :straight t
+  :init
+  (add-to-list 'project-switch-commands '(deadgrep "Deadgrep") t)
   :general
   ("M-s g" 'deadgrep)
+  (:keymaps 'project-prefix-map
+            "G" 'deadgrep)
   :general-config
   (:keymaps 'deadgrep-mode-map
    "/" #'deadgrep-search-term
@@ -1136,7 +1140,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
                    ;; url in .authinfo file should be: generativelanguage.googleapis.com
 		   :stream t)))
 #+end_src
- 
+
 * Denote
 #+begin_src emacs-lisp
 (use-package denote
