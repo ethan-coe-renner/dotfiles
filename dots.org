@@ -200,6 +200,7 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
     mnemonicPrefix = true
     renames = true
 
+# This breaks magit-commit using git < 2.45 (before commit 30b7c4bdcac27ac08a6caf2c70aff55763b9b3ab)
 [safe]
     bareRepository = explicit
 
