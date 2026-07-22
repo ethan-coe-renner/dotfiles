@@ -819,20 +819,8 @@ Use cape for completion at point
 #+begin_src emacs-lisp :tangle no
 (use-package rg
   :straight t
-  :init
-  (defun eshell/rg (&rest args)
-    "Search using rg.el from eshell."
-    (let*
-        ((args (flatten-tree args))
-         (query (car args)))
-      (rg query "everything" default-directory)))
-
   :config
-  (rg-enable-default-bindings)
-
-  :general
-  ("M-s g" 'rg-dwim
-   "M-s G" 'rg))
+  (rg-enable-default-bindings))
 
 (use-package rg-isearch
   :general
