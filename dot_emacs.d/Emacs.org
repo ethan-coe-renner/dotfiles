@@ -957,6 +957,9 @@ Use cape for completion at point
 #+begin_src emacs-lisp
 (use-package magit
   :straight t
+  :init
+  (add-to-list 'project-switch-commands '(magit-project-status "Magit") t)
+
   :config
   (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-worktrees nil t)
   (add-to-list 'magit-section-initial-visibility-alist '(worktrees . hide))
@@ -970,7 +973,10 @@ Use cape for completion at point
                  (inhibit-switch-frame . t)))
   :custom
   (magit-format-file-function #'magit-format-file-nerd-icons)
-  (magit-log-auto-more t))
+  (magit-log-auto-more t)
+  :general
+  (:keymaps 'project-prefix-map
+            "m" 'magit-project-status))
 #+end_src
 
 ** Gutter
