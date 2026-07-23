@@ -1108,6 +1108,8 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
   (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
+  :hook
+  (ghostel-mode . (lambda () (setq-local show-trailing-whitespace nil)))
   :general
   ("C-x c" 'ghostel)
   (:keymaps 'project-prefix-map
