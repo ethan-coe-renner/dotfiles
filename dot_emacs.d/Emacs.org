@@ -976,8 +976,8 @@ Use cape for completion at point
   (magit-log-auto-more t)
   :general
   (:keymaps 'project-prefix-map
-            "m m" 'magit-project-status
-            "m d" 'magit-dispatch))
+            "M" 'magit-project-status
+            "m" 'magit-dispatch))
 #+end_src
 
 ** Gutter
