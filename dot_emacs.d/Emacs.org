@@ -299,14 +299,27 @@ This section contains basic configuration which does not depend on any packages.
    "C-x C-z" 'nil))
 #+end_src
 
-* Snippets
+* Templates
+** Tempel
 #+begin_src emacs-lisp
-(use-package yasnippet
+(use-package tempel
   :straight t
-  :config
-  (yas-global-mode 1))
+  :general
+  ("M-+" 'tempel-complete)
+  :init
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.  `tempel-expand'
+    ;; only triggers on exact matches. We add `tempel-expand' *before* the main
+    ;; programming mode Capf, such that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-expand completion-at-point-functions)))
+  :hook
+  (prog-mode . tempel-setup-capf)
+  (text-mode . tempel-setup-capf)
+  (eshell-mode . tempel-setup-capf))
 
-(use-package yasnippet-snippets
+(use-package tempel-collection
   :straight t)
 #+end_src
 
@@ -1045,8 +1058,6 @@ With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardl
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
 
   :general-config
-  (:keymaps 'eshell-mode-map
-            "<tab>" yas-maybe-expand)
   (:keymaps 'eshell-hist-mode-map
             "M-r"  'eshell-insert-history))
 
