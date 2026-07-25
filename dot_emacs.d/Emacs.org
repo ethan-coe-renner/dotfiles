@@ -299,8 +299,7 @@ This section contains basic configuration which does not depend on any packages.
    "C-x C-z" 'nil))
 #+end_src
 
-* Templates
-** Tempel
+* Tempel
 #+begin_src emacs-lisp
 (use-package tempel
   :straight t
@@ -323,7 +322,7 @@ This section contains basic configuration which does not depend on any packages.
   :straight t)
 #+end_src
 
-Custom templates
+** Templates
 #+begin_src lisp-data :tangle ~/.emacs.d/templates
 ledger-mode
 
