@@ -1288,8 +1288,9 @@ This is for programming language modes.
   (c-ts-mode-indent-style 'bsd)
   (c-ts-mode-indent-offset 4)
   :hook
-  ((c-mode c-ts-base-mode) . (lambda () (setq-local comment-start "// "
-                                                    comment-end ""))))
+  ((c-mode c-ts-base-mode) . (lambda ()
+                               (setq-local comment-start "// "
+                                           comment-end ""))))
 #+end_src
 
 ** Nix
