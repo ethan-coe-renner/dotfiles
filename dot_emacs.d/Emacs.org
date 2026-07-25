@@ -1242,7 +1242,10 @@ This is for programming language modes.
 (use-package c-ts-mode
   :custom
   (c-ts-mode-indent-style 'bsd)
-  (c-ts-mode-indent-offset 4))
+  (c-ts-mode-indent-offset 4)
+  :hook
+  ((c-mode c-ts-base-mode) . (lambda () (setq-local comment-start "// "
+                                                    comment-end ""))))
 #+end_src
 
 ** Nix
