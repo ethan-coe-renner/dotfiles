@@ -1057,6 +1057,9 @@ With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardl
   (eshell-mode . outline-minor-mode)
   (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
 
+  ;; Disable show trailing whitespace in eshell
+  (eshell-mode . (lambda () (setq-local show-trailing-whitespace nil)))
+
   :general-config
   (:keymaps 'eshell-hist-mode-map
             "M-r"  'eshell-insert-history))
