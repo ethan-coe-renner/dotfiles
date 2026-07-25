@@ -368,6 +368,14 @@ cc-mode c-ts-mode
 (printf "printf(\"" p "\"" q ");")
 #+end_src
 
+* Project
+#+begin_src emacs-lisp
+(use-package project
+  :general
+  (:keymaps 'project-prefix-map
+            "RET" 'project-find-file))
+#+end_src
+
 * Hydra
 #+begin_src emacs-lisp
 (use-package hydra
