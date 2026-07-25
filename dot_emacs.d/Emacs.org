@@ -323,13 +323,49 @@ This section contains basic configuration which does not depend on any packages.
 #+end_src
 
 ** Templates
-#+begin_src lisp-data :tangle ~/.emacs.d/templates
+:PROPERTIES:
+:header-args: :tangle ~/.emacs.d/templates
+:END:
+
+#+begin_src lisp-data
 ledger-mode
 
 (tx (s (require 'org))
     (p (org-read-date)) " * " (p "Payee")
     n> (p "expenses:category") "    $" p
     n> (p "liabilities:cc") n q)
+#+end_src
+
+#+begin_src lisp-data
+cc-mode c-ts-mode
+
+(if "if (" p ")"
+    n> "{"
+    n> q
+    n "}" >)
+
+(ife "if (" p ")"
+     n> "{"
+     n> p
+     n "}" >
+     n> "else"
+     n> "{"
+     n> q
+     n "}" >)
+
+(while "while (" p ")"
+    n> "{"
+    n> q
+    n "}" >)
+
+(do "do"
+    n> "{"
+    n> p
+    n "} while (" q ");" >)
+
+(trn p " ? " p " : " q)
+
+(printf "printf(\"" p "\"" q ");")
 #+end_src
 
 * Hydra
