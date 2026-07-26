@@ -676,7 +676,8 @@ Use cape for completion at point
   :general
   ("C-c p" 'cape-prefix-map)
   :init
-  (add-hook 'completion-at-point-functions #'cape-dabbrev))
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file))
 #+end_src
 
 * Consult
