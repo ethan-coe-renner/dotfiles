@@ -1058,7 +1058,7 @@ Use marginalia to show docstrings in the minibuffer.
             "m" 'magit-dispatch))
 #+end_src
 
-** Gutter
+** Diff-hl
 #+begin_src emacs-lisp
 (use-package diff-hl
   :straight t
