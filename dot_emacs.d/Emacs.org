@@ -953,6 +953,8 @@ Use cape for completion at point
 #+begin_src emacs-lisp
 (use-package elfeed
   :straight t
+  :hook
+  (elfeed-show-mode . (lambda () (setq-local show-trailing-whitespace nil)))
   :general-config
   (:keymaps 'elfeed-search-mode-map
 	    "U" 'elfeed-search-untag-all-unread
