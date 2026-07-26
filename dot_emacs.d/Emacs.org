@@ -1050,6 +1050,8 @@ Use marginalia to show docstrings in the minibuffer.
   :custom
   (magit-format-file-function #'magit-format-file-nerd-icons)
   (magit-log-auto-more t)
+  (git-commit-style-convention-checks '(overlong-summary-line
+                                        non-empty-second-line))
   :general
   (:keymaps 'project-prefix-map
             "M" 'magit-project-status
