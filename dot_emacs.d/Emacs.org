@@ -332,8 +332,10 @@ ledger-mode
 
 (tx (s (require 'org))
     (p (org-read-date)) " * " (p "Payee")
-    n> (p "expenses:category") "    $" p
-    n> (p "liabilities:cc") n q)
+    n> (p "expenses:category") "    $" (p "0.00") >
+    n> (p "liabilities:cc")
+    n q
+    :post (ledger-post-align-dwim))
 #+end_src
 
 #+begin_src lisp-data
