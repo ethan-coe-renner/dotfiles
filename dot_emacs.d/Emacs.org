@@ -667,12 +667,6 @@ Setup Corfu
 (use-package emacs
   :custom
   (tab-always-indent 'complete))
-
-(use-package dabbrev
-  :general
-  ;; Swap M-/ and C-M-/
-  ("M-/" 'dabbrev-completion
-   "C-M-/" 'dabbrev-expand))
 #+end_src
 
 Use cape for completion at point
