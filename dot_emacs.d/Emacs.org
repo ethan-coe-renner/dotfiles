@@ -828,7 +828,10 @@ Use cape for completion at point
 (use-package embark
   :straight t
   :general
-  ("C-." 'embark-act)
+  ("C-." 'embark-act
+   "C-;" 'embark-dwim)
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
   :config
 
   ;; Hide the mode line of the Embark live/completions buffers
