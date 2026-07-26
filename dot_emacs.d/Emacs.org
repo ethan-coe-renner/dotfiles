@@ -644,7 +644,7 @@ Use marginalia to show docstrings in the minibuffer.
 #+end_src
 
 * Completion
-Use orderless completion style.
+** Orderless
 #+begin_src emacs-lisp
 (use-package orderless
   :straight t
@@ -654,7 +654,7 @@ Use orderless completion style.
   (completion-category-overrides '((file (styles partial-completion)))))
 #+end_src
 
-Setup Corfu
+** Corfu
 #+begin_src emacs-lisp
 (use-package corfu
   :straight t
@@ -669,7 +669,7 @@ Setup Corfu
   (tab-always-indent 'complete))
 #+end_src
 
-Use cape for completion at point
+** Cape
 #+begin_src emacs-lisp
 (use-package cape
   :straight t
