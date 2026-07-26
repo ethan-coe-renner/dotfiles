@@ -919,6 +919,14 @@ Use marginalia to show docstrings in the minibuffer.
 		 ("a" deadgrep-decrement-after-context "decrement after context"))))
 #+end_src
 
+** Substitute
+#+begin_src emacs-lisp
+(use-package substitute
+  :straight t
+  :general
+  ("C-c s" 'substitute-prefix-map))
+#+end_src
+
 * Tools
 ** Calendar
 #+begin_src emacs-lisp
