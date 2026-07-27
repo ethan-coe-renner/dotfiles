@@ -81,7 +81,9 @@ General is used for creating keybindings in a nice way.
   (org-agenda-span 10)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
-  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)" "DELG(g)")))
+  (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)"
+                                 "|"
+                                 "DONE(d)" "CANX(c)" "DELG(g)")))
   (org-agenda-custom-commands
    '(("u" "Agenda and TODOs"
       (( agenda "")
@@ -229,7 +231,8 @@ This section contains basic configuration which does not depend on any packages.
   ;; For performance, defer fontification until I stop typing
   (redisplay-skip-fontification-on-input t)
 
-  ;; Accept larger responses from subprocesses so we don't need to make as many read calls
+  ;; Accept larger responses from subprocesses so we don't need to make as many
+  ;; read calls
   (read-process-output-max (* 4 1024 1024)) ; 4MB
 
   ;; Save clipboard text to kill ring before replacing it
@@ -412,7 +415,9 @@ cc-mode c-ts-mode
   (modus-themes-include-derivatives-mode 1)
   :config
   ;; If the sun is up, use a light theme, otherwise use a dark theme
-  (modus-themes-load-theme (if (sun-up-p) 'modus-operandi-tinted 'modus-vivendi-tinted)))
+  (modus-themes-load-theme (if (sun-up-p)
+                               'modus-operandi-tinted
+                             'modus-vivendi-tinted)))
 #+end_src
 
 ** Fonts
@@ -762,7 +767,8 @@ Use marginalia to show docstrings in the minibuffer.
   :config
   ;; Optionally make narrowing help available in the minibuffer.
   ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  (keymap-set consult-narrow-map (concat consult-narrow-key " ?") #'consult-narrow-help))
+  (keymap-set consult-narrow-map (concat consult-narrow-key " ?")
+              #'consult-narrow-help))
 #+end_src
 
 * Dired
@@ -802,7 +808,8 @@ Use marginalia to show docstrings in the minibuffer.
 #+begin_src emacs-lisp
 (use-package tramp
   :custom
-  ;; Some settings to speed up tramp, mostly from https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
+  ;; Some settings to speed up tramp, mostly from
+  ;; https://coredumped.dev/2025/06/18/making-tramp-go-brrrr./
   (remote-file-name-inhibit-locks t)
   (tramp-use-scp-direct-remote-copying t)
   (remote-file-name-inhibit-auto-save-visited t)
@@ -820,7 +827,8 @@ Use marginalia to show docstrings in the minibuffer.
 
   (with-eval-after-load 'tramp
     (with-eval-after-load 'compile
-      (remove-hook 'compilation-mode-hook #'tramp-compile-disable-ssh-controlmaster-options))))
+      (remove-hook 'compilation-mode-hook
+                   #'tramp-compile-disable-ssh-controlmaster-options))))
 #+end_src
 
 * Embark
@@ -944,7 +952,8 @@ Use marginalia to show docstrings in the minibuffer.
            (sunrise-decimal (car (car solar-data)))
            (sunset-decimal (car (nth 1 solar-data)))
            (current-time-decimal (+ (string-to-number (format-time-string "%H"))
-                                    (/ (string-to-number (format-time-string "%M"))
+                                    (/ (string-to-number
+                                        (format-time-string "%M"))
                                        60.0))))
       (and (> current-time-decimal sunrise-decimal)
            (< current-time-decimal sunset-decimal))))
@@ -1037,7 +1046,8 @@ Use marginalia to show docstrings in the minibuffer.
   (add-to-list 'project-switch-commands '(magit-project-status "Magit") t)
 
   :config
-  (magit-add-section-hook 'magit-status-sections-hook 'magit-insert-worktrees nil t)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-worktrees nil t)
   (add-to-list 'magit-section-initial-visibility-alist '(worktrees . hide))
 
   ;; Display magit status buffer in new tab
@@ -1118,9 +1128,11 @@ With \\[universal-argument] prefix (GENERIC), a generic eshell is opened regardl
     (run-hooks 'my/eshell-open))
 
   :hook
-  ;; Enable outline mode in eshell. Stolen from https://www.youtube.com/watch?v=f9mqPsQEwGM
+  ;; Enable outline mode in eshell. Stolen from
+  ;; https://www.youtube.com/watch?v=f9mqPsQEwGM
   (eshell-mode . outline-minor-mode)
-  (eshell-mode . (lambda () (setq-local outline-regexp (concat eshell-prompt-regexp ".*"))))
+  (eshell-mode . (lambda () (setq-local outline-regexp
+                                        (concat eshell-prompt-regexp ".*"))))
 
   ;; Disable show trailing whitespace in eshell
   (eshell-mode . (lambda () (setq-local show-trailing-whitespace nil)))
@@ -1186,7 +1198,8 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
                  (dedicated . t)))
 
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
-  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers "Ghostel buffers") t)
+  (add-to-list 'project-switch-commands '(ghostel-project-list-buffers
+                                          "Ghostel buffers") t)
   :hook
   (ghostel-mode . (lambda () (setq-local show-trailing-whitespace nil)))
   :general
@@ -1213,7 +1226,8 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
    gptel-model 'gemini-2.5-flash
    gptel-backend (gptel-make-gemini "Gemini"
 		   :key #'gptel-api-key-from-auth-source
-                   ;; url in .authinfo file should be: generativelanguage.googleapis.com
+                   ;; url in .authinfo file should be:
+                   ;; generativelanguage.googleapis.com
 		   :stream t)))
 #+end_src
 
@@ -1408,13 +1422,17 @@ This is for programming language modes.
 I put machine specific configuration (work vs personal) into ~~/git/elisp~. Load that if it exists. Configuration for this should exist in a ~configuration.org~ in that directory. Use ~org-babel-load-file~ to load that as well.
 
 #+begin_src emacs-lisp
-(setq machine-specific-configuration-directory (expand-file-name "~/git/config/elisp"))
-(setq machine-specific-configuration-org (expand-file-name "configure.org" machine-specific-configuration-directory))
+(setq machine-specific-configuration-directory
+      (expand-file-name "~/git/config/elisp"))
+(setq machine-specific-configuration-org
+      (expand-file-name "configure.org"
+                        machine-specific-configuration-directory))
 
 (when (file-directory-p machine-specific-configuration-directory)
     (add-to-list 'load-path machine-specific-configuration-directory)
     (when (file-exists-p machine-specific-configuration-org)
-      (org-babel-load-file (expand-file-name machine-specific-configuration-org))))
+      (org-babel-load-file (expand-file-name
+                            machine-specific-configuration-org))))
 #+end_src
 
 * Emacs 31
