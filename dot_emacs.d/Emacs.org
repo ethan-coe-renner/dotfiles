@@ -743,6 +743,9 @@ Use marginalia to show docstrings in the minibuffer.
             [remap next-matching-history-element] 'consult-history
             [remap previous-matching-history-element] 'consult-history)
 
+  (:keymaps 'org-mode-map
+            "M-g i" 'consult-org-heading)
+
   :init
 
   ;; Tweak the register preview for `consult-register-load',
