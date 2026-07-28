@@ -344,29 +344,24 @@ ledger-mode
 #+begin_src lisp-data
 cc-mode c-ts-mode
 
-(if "if (" p ")"
-    n> "{"
+(if "if (" (p "condition") ")"
+    n "{" >
     n> q
     n "}" >)
 
-(ife "if (" p ")"
-     n> "{"
+(ife "if (" (p "condition") ")"
+     n "{" >
      n> p
      n "}" >
      n> "else"
-     n> "{"
+     n "{" >
      n> q
      n "}" >)
 
-(while "while (" p ")"
-    n> "{"
+(while "while (" (p "condition") ")"
+    n "{" >
     n> q
     n "}" >)
-
-(do "do"
-    n> "{"
-    n> p
-    n "} while (" q ");" >)
 
 (trn p " ? " p " : " q)
 
