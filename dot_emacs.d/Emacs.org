@@ -308,6 +308,10 @@ This section contains basic configuration which does not depend on any packages.
   :straight t
   :general
   ("M-+" 'tempel-complete)
+  :custom
+  ;; Use a templates directory instead of a single file so templates can be
+  ;; added from elsewhere (e.g. work emacs config)
+  (tempel-path (expand-file-name "templates/*.eld" user-emacs-directory))
   :init
   ;; Setup completion at point
   (defun tempel-setup-capf ()
@@ -327,7 +331,7 @@ This section contains basic configuration which does not depend on any packages.
 
 ** Templates
 :PROPERTIES:
-:header-args: :tangle ~/.emacs.d/templates
+:header-args: :tangle ~/.emacs.d/templates/custom.eld :mkdirp yes
 :END:
 
 #+begin_src lisp-data
