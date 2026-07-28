@@ -57,7 +57,7 @@ General is used for creating keybindings in a nice way.
   :custom
   ;; Files
   (org-directory "~/org/")
-  (org-default-notes-file (concat org-directory "notes.org"))
+  (org-default-notes-file (expand-file-name "notes.org" org-directory))
   (org-agenda-files (list org-directory))
 
   ;; Aesthetic
@@ -190,7 +190,7 @@ This section contains basic configuration which does not depend on any packages.
   (view-read-only t)
 
   ;; Put all backups in .emacs.d/backups/ instead of the original directory
-  (backup-directory-alist `(("." . ,(concat user-emacs-directory "backups"))))
+  (backup-directory-alist `(("." . ,(expand-file-name "backups" user-emacs-directory))))
 
   ;; Backup by copying is safer for e.g. links
   (backup-by-copying t)
