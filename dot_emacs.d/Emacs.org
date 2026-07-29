@@ -525,13 +525,12 @@ cc-mode c-ts-mode
 (use-package helpful
   :straight t
   :general
-  ("C-h f" #'helpful-callable
-   "C-h v" #'helpful-variable
-   "C-h k" #'helpful-key
-   "C-h x" #'helpful-command
-
-   "C-h h" #'helpful-at-point
-   "C-h F" #'helpful-function))
+  ([remap describe-function] #'helpful-callable
+   [remap describe-variable] #'helpful-variable
+   [remap describe-key] #'helpful-key
+   [remap describe-command] #'helpful-command
+   [remap describe-symbol] #'helpful-symbol
+   "C-h ." #'helpful-at-point))
 #+end_src
 
 ** Elisp Demos
