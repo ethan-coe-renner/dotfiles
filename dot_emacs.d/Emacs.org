@@ -406,13 +406,14 @@ cc-mode c-ts-mode
      ;; Distinguish org block delimiters from content
      (bg-prose-block-delimiter bg-inactive)))
 
+  (modus-themes-to-toggle '(modus-operandi modus-vivendi))
   :init
   (modus-themes-include-derivatives-mode 1)
   :config
   ;; If the sun is up, use a light theme, otherwise use a dark theme
   (modus-themes-load-theme (if (sun-up-p)
-                               'modus-operandi-tinted
-                             'modus-vivendi-tinted)))
+                               (car modus-themes-to-toggle)
+                             (cadr modus-themes-to-toggle))))
 #+end_src
 
 ** Fonts
