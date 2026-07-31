@@ -299,6 +299,7 @@ This section contains basic configuration which does not depend on any packages.
    "C-x 9" 'bury-buffer
    "<f6>" 'display-line-numbers-mode
    ;; Unbind some unused bindings
+   "C-x h" 'nil
    "C-x C-b" 'nil
    "C-x m" 'nil
    "C-z" 'nil
@@ -859,6 +860,22 @@ Use marginalia to show docstrings in the minibuffer.
   :straight t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
+
+* Hyperbole
+#+begin_src emacs-lisp
+(use-package hyperbole
+  :straight t
+  :after consult
+  :custom
+  (hywiki-directory "~/org/hywiki/")
+  :config
+  (hywiki-mode :all)
+
+  ;; Rebind `hkey-either' from `M-RET' to `C-x h'
+  (dolist (k '("M-RET" "M-<return>" "ESC RET" "ESC <return>"))
+    (define-key hyperbole-mode-map (kbd k) nil))
+  (hkey-set-key (kbd "C-x h") #'hkey-either))
 #+end_src
 
 * Check
