@@ -14,7 +14,7 @@ user-mail-address
 * Ghostty
 #+name: ghostty-config
 #+begin_src conf :tangle ~/.config/ghostty/config
-theme = dark:modus-vivendi-tinted,light:modus-operandi-tinted
+theme = dark:modus-vivendi,light:modus-operandi
 font-family = "Aporetic Sans Mono"
 font-size = 15
 cursor-style = block
