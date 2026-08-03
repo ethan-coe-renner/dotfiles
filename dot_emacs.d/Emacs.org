@@ -371,6 +371,11 @@ cc-mode c-ts-mode
     n> q
     n "}" >)
 
+(for "for (" (p "int i = 0") "; " (p "i < max") "; " (p "i++") ")"
+     n "{" >
+     n> q
+     n "}" >)
+
 (trn p " ? " p " : " q)
 
 (printf "printf(\"" p "\"" q ");")
