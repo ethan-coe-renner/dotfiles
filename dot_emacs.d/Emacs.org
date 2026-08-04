@@ -966,7 +966,9 @@ Use marginalia to show docstrings in the minibuffer.
   :custom
   (calendar-week-start-day 1)
   (calendar-date-style 'iso)
-  (calendar-time-zone-style 'numeric))
+  (calendar-time-zone-style 'numeric)
+  :hook
+  (calendar-mode . (lambda () (setq-local show-trailing-whitespace nil))))
 
 (use-package solar
   :init
