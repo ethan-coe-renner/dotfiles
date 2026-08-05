@@ -325,9 +325,7 @@ This section contains basic configuration which does not depend on any packages.
     (setq-local completion-at-point-functions
                 (cons #'tempel-expand completion-at-point-functions)))
   :hook
-  (prog-mode . tempel-setup-capf)
-  (text-mode . tempel-setup-capf)
-  (eshell-mode . tempel-setup-capf))
+  ((prog-mode text-mode eshell-mode) . tempel-setup-capf))
 
 (use-package tempel-collection
   :straight t)
