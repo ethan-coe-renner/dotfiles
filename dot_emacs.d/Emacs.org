@@ -215,9 +215,6 @@ This section contains basic configuration which does not depend on any packages.
   (tab-bar-new-button-show nil)
   (tab-bar-close-button-show nil)
 
-  ;; Highlight trailing whitespace in an ugly way so I can avoid it
-  (show-trailing-whitespace t)
-
   ;; Uniquification
   (uniquify-buffer-name-style 'forward)
 
@@ -291,6 +288,9 @@ This section contains basic configuration which does not depend on any packages.
   :hook
   ;; Automatically chmod +x scripts
   (after-save . executable-make-buffer-file-executable-if-script-p)
+
+  ;; Highlight trailing whitespace in an ugly way so I can avoid it
+  ((prog-mode text-mode) . (lambda () (setq-local show-trailing-whitespace t)))
 
   :general-config
   ("M-p" 'scroll-down-line
@@ -971,9 +971,7 @@ Use marginalia to show docstrings in the minibuffer.
   :custom
   (calendar-week-start-day 1)
   (calendar-date-style 'iso)
-  (calendar-time-zone-style 'numeric)
-  :hook
-  (calendar-mode . (lambda () (setq-local show-trailing-whitespace nil))))
+  (calendar-time-zone-style 'numeric))
 
 (use-package solar
   :init
@@ -1004,8 +1002,6 @@ Use marginalia to show docstrings in the minibuffer.
 #+begin_src emacs-lisp
 (use-package elfeed
   :straight t
-  :hook
-  (elfeed-show-mode . (lambda () (setq-local show-trailing-whitespace nil)))
   :general-config
   (:keymaps 'elfeed-search-mode-map
 	    "U" 'elfeed-search-untag-all-unread
@@ -1152,9 +1148,6 @@ Use marginalia to show docstrings in the minibuffer.
   (eshell-mode . (lambda () (setq-local outline-regexp
                                         (concat eshell-prompt-regexp ".*"))))
 
-  ;; Disable show trailing whitespace in eshell
-  (eshell-mode . (lambda () (setq-local show-trailing-whitespace nil)))
-
   :general-config
   (:keymaps 'eshell-hist-mode-map
             "M-r"  'eshell-insert-history))
@@ -1218,8 +1211,6 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
   (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)
   (add-to-list 'project-switch-commands '(ghostel-project-list-buffers
                                           "Ghostel buffers") t)
-  :hook
-  (ghostel-mode . (lambda () (setq-local show-trailing-whitespace nil)))
   :general
   ("C-x c" 'ghostel)
   (:keymaps 'project-prefix-map
