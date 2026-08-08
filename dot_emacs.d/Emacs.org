@@ -55,10 +55,8 @@ General is used for creating keybindings in a nice way.
 (use-package org
   :straight t
   :custom
-  ;; Files
   (org-directory "~/org/")
   (org-default-notes-file (expand-file-name "notes.org" org-directory))
-  (org-agenda-files (list org-directory))
 
   ;; Aesthetic
   (org-pretty-entities t)
@@ -78,26 +76,21 @@ General is used for creating keybindings in a nice way.
   (org-src-window-setup 'current-window)
 
   ;; Agenda
+  (org-agenda-files (list "todo.org"))
   (org-agenda-span 10)
   (org-enforce-todo-dependencies t)
   (org-enforce-todo-checkbox-dependencies t)
+  (org-agenda-time-grid '((daily today require-timed)
+                          (800 1000 1200 1400 1600 1800 2000)
+                          "......"
+                          "------------------"))
   (org-todo-keywords '((sequence "ACTV(a)" "TODO(t)" "WAIT(w)"
                                  "|"
                                  "DONE(d)" "CANX(c)" "DELG(g)")))
   (org-agenda-custom-commands
-   '(("u" "Agenda and TODOs"
-      (( agenda "")
-       (todo "" ((org-super-agenda-groups
-                  '(
-                    (:name "Active"
-                           :todo "ACTV"
-                           :scheduled t
-                           :deadline t
-                           :order 0)
-                    (:name "Inactive"
-                           :todo "TODO"
-                           :and (:deadline nil :scheduled nil)
-                           :order 99)))))))))
+   '(("A" "Agenda and Active Tasks"
+      ((agenda "")
+       (todo "ACTV")))))
 
   ;; Capture
   (org-capture-templates
@@ -131,11 +124,6 @@ General is used for creating keybindings in a nice way.
   (org-mode . visual-line-mode))
 
 (use-package org-tempo)
-
-(use-package org-super-agenda
-  :straight t
-  :config
-  (org-super-agenda-mode 1))
 
 (use-package ox-pandoc
   :straight t)
