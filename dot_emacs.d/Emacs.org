@@ -99,6 +99,17 @@ General is used for creating keybindings in a nice way.
                            :and (:deadline nil :scheduled nil)
                            :order 99)))))))))
 
+  ;; Capture
+  (org-capture-templates
+   '(("t" "Todo" entry (file+headline "todo.org" "Inbox")
+      "* TODO %?\n %i\n  %a")))
+
+  ;; Archive
+  (org-archive-location (concat
+                         (expand-file-name "archive.org" org-directory)
+                         "::* From %s"))
+  (org-archive-subtree-save-file-p t)
+
   ;; Export
   (org-html-validation-link nil)
 
