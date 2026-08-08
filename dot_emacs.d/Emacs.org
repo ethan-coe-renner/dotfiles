@@ -1456,3 +1456,11 @@ Some notes for things to enable when I start running emacs 31
 ** Some articles
 
 https://www.rahuljuliato.com/posts/emacs-31-around-the-corner
+
+** Speedbar
+#+begin_src emacs-lisp
+(use-package speedbar
+  :custom
+  ;; (speedbar-prefer-window t) ; Requires emacs 31
+  (speedbar-use-images nil))
+#+end_src
