@@ -886,6 +886,15 @@ Use marginalia to show docstrings in the minibuffer.
   (hkey-set-key (kbd "C-x h") #'hkey-either))
 #+end_src
 
+* EWW
+#+begin_src emacs-lisp
+(use-package eww
+  :custom
+  (eww-auto-rename-buffer 'title)
+  (eww-bookmarks-directory (locate-user-emacs-file "eww-bookmarks/"))
+  (eww-history-limit 150))
+#+end_src
+
 * Check
 ** Jinx
 #+begin_src emacs-lisp
