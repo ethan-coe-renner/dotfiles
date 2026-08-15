@@ -2,7 +2,7 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
 * Early Init
-#+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el
+#+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el :mkdirp yes
 ;; Required for straight.el
 (setq package-enable-at-startup nil)
 
