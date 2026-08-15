@@ -223,6 +223,9 @@ This section contains basic configuration which does not depend on any packages.
   ;; Diffs should be read only
   (diff-default-read-only t)
 
+  ;; Increase fill column to 80
+  (fill-column 80)
+
   ;; For performance, inhibit the bidirectional parenthesis algorithm
   (bidi-inhibit-bpa t)
 
@@ -1305,8 +1308,6 @@ This is for programming language modes.
 ** Prog mode
 #+begin_src emacs-lisp
 (use-package prog-mode
-  :custom
-  (fill-column 80)
   :hook
   (prog-mode . display-fill-column-indicator-mode)
   (prog-mode . display-line-numbers-mode)
