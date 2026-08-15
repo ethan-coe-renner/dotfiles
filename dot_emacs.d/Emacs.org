@@ -385,9 +385,11 @@ cc-mode c-ts-mode
 * Project
 #+begin_src emacs-lisp
 (use-package project
+  :init
+  (add-to-list 'project-switch-commands '(project-dired "Dired") t)
   :general
   (:keymaps 'project-prefix-map
-            "RET" 'project-find-file))
+            "RET" 'project-dired))
 #+end_src
 
 * Hydra
