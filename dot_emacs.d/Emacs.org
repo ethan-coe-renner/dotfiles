@@ -1327,6 +1327,14 @@ This is for programming language modes.
   (prog-mode . hl-line-mode))
 #+end_src
 
+** SLIME
+#+begin_src emacs-lisp
+(use-package slime
+  :straight t
+  :init
+  (setq inferior-lisp-program "sbcl"))
+#+end_src
+
 ** C
 #+begin_src emacs-lisp
 (use-package c-ts-mode
