@@ -438,6 +438,7 @@ cc-mode c-ts-mode
 #+begin_src emacs-lisp
 (use-package fontaine
   :straight t
+  :if (display-graphic-p)
   :custom
   (fontaine-presets
    '((small
