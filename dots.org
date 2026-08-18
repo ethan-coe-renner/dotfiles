@@ -272,6 +272,44 @@ auto_update = true
 -o %(title)s.%(ext)s
 #+end_src
 
+* Kanata
+#+begin_src kbd :tangle ~/.config/kanata/kanata.kbd
+(defcfg
+ process-unmapped-keys yes
+ concurrent-tap-hold yes)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prtsc rctl
+)
+
+(defvar
+tt 200
+bm 70)
+
+(defalias
+  uc (tap-hold-order $tt $bm u lctl)
+  hc (tap-hold-order $tt $bm h rctl)
+  ea (tap-hold-order $tt $bm e lalt)
+  ta (tap-hold-order $tt $bm t ralt)
+  os (tap-hold-order $tt $bm o lsft)
+  ns (tap-hold-order $tt $bm n rsft)
+  am (tap-hold-order $tt $bm a lmet)
+  sm (tap-hold-order $tt $bm s rmet)
+  cw (caps-word 2000))
+
+(deflayer dvorak
+  grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+  @cw  @am  @os  @ea  @uc   i    d   @hc  @ta  @ns @sm   -    ret
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft
+  lctl lmet lalt           spc            ralt prtsc rctl
+)
+#+end_src
+
 * Niri
 #+name: niri-config
 #+begin_src kdl :tangle ~/.config/niri/config.kdl
@@ -279,8 +317,8 @@ input {
     keyboard {
         xkb {
             layout "us"
-            variant "dvorak"
-            options "ctrl:nocaps"
+            // variant "dvorak"
+            // options "ctrl:nocaps"
         }
     }
 
@@ -297,6 +335,7 @@ output "HDMI-A-2" {
 }
 
 spawn-at-startup "noctalia"
+spawn-at-startup "kanata"
 
 // Settings that influence how windows are positioned and sized.
 layout {
