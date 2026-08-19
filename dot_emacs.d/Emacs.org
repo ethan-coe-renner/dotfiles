@@ -398,6 +398,33 @@ cc-mode c-ts-mode
   :straight t)
 #+end_src
 
+* Calendar
+#+begin_src emacs-lisp
+(use-package calendar
+  :custom
+  (calendar-week-start-day 1)
+  (calendar-date-style 'iso)
+  (calendar-time-zone-style 'numeric))
+
+(use-package solar
+  :init
+  (defun sun-up-p ()
+    "Return t if the sun is currently up, otherwise nil."
+    (let* ((solar-data (solar-sunrise-sunset (calendar-current-date)))
+           (sunrise-decimal (car (car solar-data)))
+           (sunset-decimal (car (nth 1 solar-data)))
+           (current-time-decimal (+ (string-to-number (format-time-string "%H"))
+                                    (/ (string-to-number
+                                        (format-time-string "%M"))
+                                       60.0))))
+      (and (> current-time-decimal sunrise-decimal)
+           (< current-time-decimal sunset-decimal))))
+
+  :custom
+  (calendar-latitude 37)
+  (calendar-longitude -122))
+#+end_src
+
 * Aesthetics
 ** Theme
 #+begin_src emacs-lisp
@@ -978,33 +1005,6 @@ Use marginalia to show docstrings in the minibuffer.
 #+end_src
 
 * Tools
-** Calendar
-#+begin_src emacs-lisp
-(use-package calendar
-  :custom
-  (calendar-week-start-day 1)
-  (calendar-date-style 'iso)
-  (calendar-time-zone-style 'numeric))
-
-(use-package solar
-  :init
-  (defun sun-up-p ()
-    "Return t if the sun is currently up, otherwise nil."
-    (let* ((solar-data (solar-sunrise-sunset (calendar-current-date)))
-           (sunrise-decimal (car (car solar-data)))
-           (sunset-decimal (car (nth 1 solar-data)))
-           (current-time-decimal (+ (string-to-number (format-time-string "%H"))
-                                    (/ (string-to-number
-                                        (format-time-string "%M"))
-                                       60.0))))
-      (and (> current-time-decimal sunrise-decimal)
-           (< current-time-decimal sunset-decimal))))
-
-  :custom
-  (calendar-latitude 37)
-  (calendar-longitude -122))
-#+end_src
-
 ** TMR
 #+begin_src emacs-lisp
 (use-package tmr
