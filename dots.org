@@ -273,7 +273,7 @@ auto_update = true
 #+end_src
 
 * Kanata
-#+begin_src kbd :tangle ~/.config/kanata/kanata.kbd
+#+begin_src kbd :tangle ~/.config/kanata/kanata.kbd :comments no
 (defcfg
  process-unmapped-keys yes
  concurrent-tap-hold yes)
