@@ -436,7 +436,7 @@ cc-mode c-ts-mode
 
 (use-package modus-themes
   :straight t
-  :after solar
+  :after (solar ef-themes)
   :custom
   (modus-themes-bold-constructs t)
   (modus-themes-italic-constructs t)
