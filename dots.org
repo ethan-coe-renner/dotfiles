@@ -298,14 +298,23 @@ bm 70)
   ns (tap-hold-order $tt $bm n rsft)
   am (tap-hold-order $tt $bm a lmet)
   sm (tap-hold-order $tt $bm s rmet)
-  cw (caps-word 2000))
+  cw (caps-word 2000)
+  us (layer-switch us)
+  dv (layer-switch dvorak))
 
 (deflayer dvorak
   grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc
   tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
   @cw  @am  @os  @ea  @uc   i    d   @hc  @ta  @ns @sm   -    ret
   lsft ;    q    j    k    x    b    m    w    v    z    rsft
-  lctl lmet lalt           spc            ralt prtsc rctl)
+  lctl lmet lalt           spc            ralt prtsc @us)
+
+(deflayer us
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prtsc @dv)
 #+end_src
 
 * Niri
