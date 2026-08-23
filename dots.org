@@ -381,6 +381,7 @@ window-rule {
     match app-id="emacs"
     match app-id="firefox"
     match app-id="mpv"
+    match app-id="freetube"
     open-maximized true
 }
 
@@ -438,6 +439,7 @@ binds {
     Mod+X repeat=false hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B repeat=false hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
     Mod+Shift+B repeat=false hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
+    Mod+Y repeat=false hotkey-overlay-title="Open Freetube" { spawn "freetube"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
