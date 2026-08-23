@@ -283,8 +283,7 @@ auto_update = true
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt prtsc rctl
-)
+  lctl lmet lalt           spc            ralt prtsc rctl)
 
 (defvar
 tt 200
@@ -306,8 +305,7 @@ bm 70)
   tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
   @cw  @am  @os  @ea  @uc   i    d   @hc  @ta  @ns @sm   -    ret
   lsft ;    q    j    k    x    b    m    w    v    z    rsft
-  lctl lmet lalt           spc            ralt prtsc rctl
-)
+  lctl lmet lalt           spc            ralt prtsc rctl)
 #+end_src
 
 * Niri
