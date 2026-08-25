@@ -806,7 +806,7 @@ Use marginalia to show docstrings in the minibuffer.
 (use-package dired
   :commands (dired)
   :custom
-  (dired-listing-switches "-lv --almost-all --no-group --classify --human-readable --group-directories-first --time-style=iso")
+  (dired-listing-switches "-lv --almost-all --no-group --classify --escape --human-readable --group-directories-first --time-style=iso")
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
   (delete-by-moving-to-trash t)
