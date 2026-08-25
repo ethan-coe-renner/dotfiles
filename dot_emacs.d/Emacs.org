@@ -541,9 +541,27 @@ cc-mode c-ts-mode
   (setf (alist-get ?e avy-dispatch-alist) 'avy-action-embark)
 
   :general
-  ([remap goto-char] 'avy-goto-char-timer
+  (
+   ; [remap goto-char] 'avy-goto-char-timer
    "M-g a" 'casual-avy-tmenu)
-  (:keymaps 'isearch-mode-map "M-j" 'avy-isearch))
+   ;(:keymaps 'isearch-mode-map "M-j" 'avy-isearch)
+  )
+#+end_src
+
+** Flash
+#+begin_src emacs-lisp
+(use-package flash
+  :straight t
+  :general
+  ([remap goto-char] 'flash-jump)
+  :custom
+  (flash-multi-window t)
+  (flash-autojump t))
+
+(use-package flash-isearch
+  :after flash
+  :init
+  (flash-isearch-mode 1))
 #+end_src
 
 ** Windows
