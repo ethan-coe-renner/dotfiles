@@ -1,6 +1,6 @@
 LICENSE
 README.*
-**/*.org
+*.org
 .gitignore
 .build.yml
 bookmarks
