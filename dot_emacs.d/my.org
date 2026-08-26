@@ -2,6 +2,10 @@
 
 This file contains a collection of elisp functions which are ~org-babel-load-file~'d into my Emacs configuration.
 
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
+
 * Dotfile Management
 Here are some functions used to aid in managing my dotfiles with [[https://www.chezmoi.io/][Chezmoi]].
 

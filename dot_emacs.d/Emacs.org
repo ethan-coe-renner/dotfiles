@@ -1,8 +1,15 @@
 #+title: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.emacs.d/init.el :mkdirp yes
 
+* Lexical Binding
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
+
 * Early Init
 #+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el :mkdirp yes
+;; -*- lexical-binding: t; -*-
+
 ;; Required for straight.el
 (setq package-enable-at-startup nil)
 
