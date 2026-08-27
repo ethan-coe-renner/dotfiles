@@ -495,7 +495,7 @@ cc-mode c-ts-mode
 ** Winpulse
 #+begin_src emacs-lisp
 (use-package winpulse
-  :straight (winpulse :type git :host github :repo "xenodium/winpulse")
+  :straight t
   :config
   (winpulse-mode +1))
 #+end_src
