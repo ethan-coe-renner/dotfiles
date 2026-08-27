@@ -544,8 +544,7 @@ cc-mode c-ts-mode
   (
    ; [remap goto-char] 'avy-goto-char-timer
    "M-g a" 'casual-avy-tmenu)
-   ;(:keymaps 'isearch-mode-map "M-j" 'avy-isearch)
-  )
+   (:keymaps 'isearch-mode-map "M-j" 'avy-isearch))
 #+end_src
 
 ** Flash
@@ -557,11 +556,6 @@ cc-mode c-ts-mode
   :custom
   (flash-multi-window t)
   (flash-autojump t))
-
-(use-package flash-isearch
-  :after flash
-  :init
-  (flash-isearch-mode 1))
 #+end_src
 
 ** Windows
