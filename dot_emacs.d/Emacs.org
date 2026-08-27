@@ -1015,7 +1015,7 @@ Use marginalia to show docstrings in the minibuffer.
   :straight t
   :general-config
   (:keymaps 'elfeed-search-mode-map
-	    "U" 'elfeed-search-untag-all-unread
+	    "U" 'elfeed-search-untag-unread
 	    "r" 'elfeed-update)
   (:keymaps 'elfeed-show-mode-map
             "p" 'scroll-down-line
