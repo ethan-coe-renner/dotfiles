@@ -1016,6 +1016,12 @@ Use marginalia to show docstrings in the minibuffer.
   :straight t)
 #+end_src
 
+** Buku
+#+begin_src emacs-lisp
+(use-package ebuku
+  :straight t)
+#+end_src
+
 ** Elfeed
 #+begin_src emacs-lisp
 (use-package elfeed
