@@ -97,6 +97,7 @@ if status is-interactive
 
     set -gx EDITOR nvim
     set -gx LEDGER_FILE ~/git/finance/current.journal
+    set -gx RESTIC_REPOSITORY ~/.backup
 
     # Carapace
     set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
