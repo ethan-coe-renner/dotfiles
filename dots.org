@@ -352,7 +352,6 @@ output "HDMI-A-2" {
 }
 
 spawn-at-startup "noctalia"
-spawn-at-startup "kanata"
 
 // Settings that influence how windows are positioned and sized.
 layout {
