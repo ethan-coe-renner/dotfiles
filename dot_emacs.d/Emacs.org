@@ -829,6 +829,9 @@ Use marginalia to show docstrings in the minibuffer.
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
   (delete-by-moving-to-trash t)
+  (dired-deletion-confirmer 'y-or-no-p)
+  (dired-clean-confirm-killing-deleted-buffers nil)
+  (dired-kill-when-opening-new-dired-buffer t)
   (dired-dwim-target t)
   (dired-auto-revert-buffer #'dired-directory-changed-p)
   (dired-do-revert-buffer t)
@@ -838,6 +841,8 @@ Use marginalia to show docstrings in the minibuffer.
   (dired-isearch-filenames 'dwim)
   (dired-create-destination-dirs 'ask)
   (dired-vc-rename-file t)
+
+  (dired-movement-style 'bounded-files)
 
   :hook
   (dired-mode . dired-hide-details-mode)
