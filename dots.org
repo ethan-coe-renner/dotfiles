@@ -455,7 +455,7 @@ binds {
     Mod+X repeat=false hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B repeat=false hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
     Mod+Shift+B repeat=false hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
-    Mod+Ctrl+B repeat=false hotkey-overlay-title="Buku Open" { spawn "buku-dmenu.sh"; }
+    Mod+Ctrl+B repeat=false hotkey-overlay-title="Buku Open" { spawn "buku-dmenu-open.sh"; }
     Mod+Y repeat=false hotkey-overlay-title="Open Freetube" { spawn "freetube"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
@@ -642,10 +642,11 @@ fi
 #+end_src
 
 ** Buku Dmenu
-#+begin_src sh :tangle ~/.local/bin/buku-dmenu.sh :tangle-mode o544
+#+begin_src sh :tangle ~/.local/bin/buku-dmenu-open.sh :tangle-mode o544
 #!/usr/bin/env bash
 
-dmenu="noctalia dmenu"
+dmenu="noctalia dmenu -p buku:"
+
 # Run your command once and save the full output
 list="$(buku --nostdin -p -f 4 | cut -f 1-3)"
 
