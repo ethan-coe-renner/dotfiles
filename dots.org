@@ -455,6 +455,7 @@ binds {
     Mod+X repeat=false hotkey-overlay-title="Open Emacs" { spawn "emacs"; }
     Mod+B repeat=false hotkey-overlay-title="Open Qutebrowser" { spawn "qutebrowser"; }
     Mod+Shift+B repeat=false hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
+    Mod+Ctrl+B repeat=false hotkey-overlay-title="Buku Open" { spawn "buku-dmenu.sh"; }
     Mod+Y repeat=false hotkey-overlay-title="Open Freetube" { spawn "freetube"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
@@ -638,4 +639,30 @@ else
     # Switch to Dark
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 fi
+#+end_src
+
+** Buku Dmenu
+#+begin_src sh :tangle ~/.local/bin/buku-dmenu.sh :tangle-mode o544
+#!/usr/bin/env bash
+
+dmenu="noctalia dmenu"
+# Run your command once and save the full output
+list="$(buku --nostdin -p -f 4 | cut -f 1-3)"
+
+# Show only columns 2+ (url, title) in noctalia dmenu, keep the number hidden
+choice=$(printf '%s\n' "$list" | cut -f2- | $dmenu)
+
+# Exit if nothing was selected (user hit Esc)
+[ -z "$choice" ] && exit 1
+
+# Find the matching original line and extract its number
+number=$(printf '%s\n' "$list" | awk -F'\t' -v c="$choice" '
+{
+    rest = $2
+    for (i = 3; i <= NF; i++) rest = rest "\t" $i
+    if (rest == c) { print $1; exit }
+}')
+
+# Now do whatever you want with the number
+buku --nostdin -o "$number"
 #+end_src
