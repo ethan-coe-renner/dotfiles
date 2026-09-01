@@ -624,6 +624,40 @@ binds {
 }
 #+end_src
 
+* Qutebrowser
+** Userscripts
+:PROPERTIES:
+:header-args: :comments no
+:END:
+
+*** Buku Add
+#+begin_src sh :tangle ~/.local/share/qutebrowser/userscripts/buku-add :tangle-mode o755
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Sanity check: make sure we're actually being run by qutebrowser
+if [ -z "${QUTE_URL:-}" ]; then
+    echo "Error: QUTE_URL not set. Run this as a qutebrowser userscript." >&2
+    exit 1
+fi
+
+# Function to send a message back to qutebrowser's status bar, if FIFO is available
+notify() {
+    local msg="$1"
+    local level="${2:-info}"  # info, error, warning
+    if [ -n "${QUTE_FIFO:-}" ]; then
+        echo "message-${level} \"${msg//\"/\\\"}\"" >> "$QUTE_FIFO"
+    fi
+}
+
+# Try to add the URL to buku
+if output=$(buku --add "$QUTE_URL" --title "$QUTE_TITLE" --tag untagged 2>&1); then
+    notify "buku: added ${QUTE_TITLE:-$QUTE_URL}"
+else
+    notify "buku: failed to add URL — $output" error
+fi
+#+end_src
+
 * Bin
 ** Toggle Theme
 #+begin_src sh :tangle ~/.local/bin/toggle-theme.sh :tangle-mode o544

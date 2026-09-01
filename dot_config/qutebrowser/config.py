@@ -34,3 +34,6 @@ c.url.searchengines = {
 }
 
 config.source("modustheme.py")
+
+
+config.bind('M', 'spawn --userscript buku-add')
