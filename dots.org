@@ -351,6 +351,10 @@ output "HDMI-A-2" {
     focus-at-startup
 }
 
+cursor {
+        hide-when-typing
+}
+
 environment {
     DMENU_PROGRAM "noctalia dmenu"
 }
