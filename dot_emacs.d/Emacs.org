@@ -10,6 +10,11 @@
 #+begin_src emacs-lisp :tangle ~/.emacs.d/early-init.el :mkdirp yes
 ;; -*- lexical-binding: t; -*-
 
+;; Some security settings from https://www.jamescherti.com/emacs-security-settings/
+(setq gnutls-verify-error t)
+(setq tls-checktrust t)
+(setq gnutls-min-prime-bits 3072)
+
 ;; Required for straight.el
 (setq package-enable-at-startup nil)
 
