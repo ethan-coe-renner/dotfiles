@@ -351,6 +351,10 @@ output "HDMI-A-2" {
     focus-at-startup
 }
 
+environment {
+    DMENU_PROGRAM "noctalia dmenu"
+}
+
 spawn-at-startup "noctalia"
 
 // Settings that influence how windows are positioned and sized.
@@ -721,7 +725,7 @@ fi
 #+begin_src sh :tangle ~/.local/bin/buku-dmenu-open.sh :tangle-mode o544
 #!/usr/bin/env bash
 
-dmenu="noctalia dmenu -p buku:"
+dmenu="${DMENU_PROGRAM:-dmenu} -p buku:"
 
 # Run your command once and save the full output
 list="$(buku --nostdin -p -f 4 | cut -f 1-3)"
