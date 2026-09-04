@@ -671,9 +671,7 @@ c.url.searchengines = {
 
 config.source("modustheme.py")
 
-
 config.bind('M', 'spawn --userscript buku-add')
-
 #+end_src
 ** Userscripts
 :PROPERTIES:
@@ -691,6 +689,20 @@ if [ -z "${QUTE_URL:-}" ]; then
     exit 1
 fi
 
+if [ -z "$DMENU_PROGRAM" ]; then
+    tags="untagged"
+else
+    taglist=$(buku --nostdin -t --np | sed -E 's/^\s*[0-9]+\.\s*//; s/\s*\([0-9]+\)$//')
+
+    selected_tags=$(printf '%s\n' "$taglist" | $DMENU_PROGRAM) || true
+
+    if [ -z "$selected_tags" ]; then
+        tags="untagged"
+    else
+        tags=$(printf '%s\n' "$selected_tags" | paste -sd, -)
+    fi
+fi
+
 # Function to send a message back to qutebrowser's status bar, if FIFO is available
 notify() {
     local msg="$1"
@@ -701,7 +713,7 @@ notify() {
 }
 
 # Try to add the URL to buku
-if output=$(buku --add "$QUTE_URL" --title "$QUTE_TITLE" --tag untagged 2>&1); then
+if output=$(buku --add "$QUTE_URL" --title "$QUTE_TITLE" --tag "$tags" 2>&1); then
     notify "buku: added ${QUTE_TITLE:-$QUTE_URL}"
 else
     notify "buku: failed to add URL — $output" error
