@@ -434,7 +434,7 @@ binds {
 
     // Noctalia keybinds
     // Core Noctalia binds
-    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
     XF86Search { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
     Mod+Shift+E { spawn-sh "noctalia msg panel-toggle session"; }
