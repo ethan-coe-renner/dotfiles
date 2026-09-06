@@ -669,6 +669,8 @@ c.url.searchengines = {
     "http://libgen.rs/search.php?req={}"
 }
 
+c.scrolling.bar = "when-searching"
+
 config.source("modustheme.py")
 
 config.bind('M', 'spawn --userscript buku-add')
