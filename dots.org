@@ -674,13 +674,14 @@ config.source("modustheme.py")
 config.bind('M', 'spawn --userscript buku-add')
 config.bind('gb', 'spawn --userscript buku-open')
 #+end_src
+
 ** Userscripts
 :PROPERTIES:
 :header-args: :comments no :tangle-mode o755
 :END:
 
 *** Buku Add
-#+begin_src sh :tangle ~/.local/share/qutebrowser/userscripts/buku-add :tangle-mode o755
+#+begin_src sh :tangle ~/.local/share/qutebrowser/userscripts/buku-add
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -715,7 +716,7 @@ notify() {
 
 # Try to add the URL to buku
 if output=$(buku --add "$QUTE_URL" --title "$QUTE_TITLE" --tag "$tags" 2>&1); then
-    notify "buku: added ${QUTE_TITLE:-$QUTE_URL}"
+    notify "buku: added ${QUTE_TITLE:-$QUTE_URL} with tags $tags"
 else
     notify "buku: failed to add URL — $output" error
 fi
