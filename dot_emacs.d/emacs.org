@@ -834,7 +834,7 @@ Use marginalia to show docstrings in the minibuffer.
   (dired-recursive-copies 'always)
   (dired-recursive-deletes 'always)
   (delete-by-moving-to-trash t)
-  (dired-deletion-confirmer 'y-or-no-p)
+  (dired-deletion-confirmer 'y-or-n-p)
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-kill-when-opening-new-dired-buffer t)
   (dired-dwim-target t)
