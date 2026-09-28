@@ -461,7 +461,7 @@ cc-mode c-ts-mode
      ;; Distinguish org block delimiters from content
      (bg-prose-block-delimiter bg-inactive)))
 
-  (modus-themes-to-toggle '(modus-operandi modus-vivendi))
+  (modus-themes-to-toggle '(ef-day ef-autumn))
   :general
   ("<f5>" 'modus-themes-toggle)
   :init
