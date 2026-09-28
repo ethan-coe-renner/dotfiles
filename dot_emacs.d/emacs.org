@@ -1066,6 +1066,11 @@ Use marginalia to show docstrings in the minibuffer.
 #+end_src
 
 #+begin_src emacs-lisp
+(use-package paredit
+  :straight t)
+#+end_src
+
+#+begin_src emacs-lisp
 (use-package electric
   :config
   (electric-pair-mode +1))
