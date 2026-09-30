@@ -946,7 +946,19 @@ Use marginalia to show docstrings in the minibuffer.
 
 ** Eglot
 #+begin_src emacs-lisp
-(use-package eglot)
+(use-package eglot
+  :config
+  (add-to-list
+   'eglot-server-programs
+   '((c-mode c-ts-mode c++-mode c++-ts-mode)
+     . (lambda (&optional _interactive)
+         (if (file-remote-p default-directory)
+             ;; TRAMP: disable terminal processing and echo for LSP.
+             ;; Only adjust terminal stdin; exec replaces the shell.
+             '("sh" "-c"
+               "if test -t 0; then stty raw -echo; fi; exec clangd")
+           ;; Local: launch clangd directly.
+           '("clangd"))))))
 #+end_src
 
 * Search
