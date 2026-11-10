@@ -960,7 +960,7 @@ Use marginalia to show docstrings in the minibuffer.
              ;; TRAMP: disable terminal processing and echo for LSP.
              ;; Only adjust terminal stdin; exec replaces the shell.
              '("sh" "-c"
-               "if test -t 0; then stty raw -echo; fi; exec clangd")
+               "if test -t 0; then stty raw -echo; fi; exec clangd --header-insertion-decorators=0")
            ;; Local: launch clangd directly.
            '("clangd"))))))
 #+end_src
