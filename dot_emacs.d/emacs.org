@@ -947,6 +947,10 @@ Use marginalia to show docstrings in the minibuffer.
 ** Eglot
 #+begin_src emacs-lisp
 (use-package eglot
+  :after project
+  :bind
+  (:map eglot-mode-map
+        ("C-h ." . 'eldoc-doc-buffer))
   :config
   (add-to-list
    'eglot-server-programs
