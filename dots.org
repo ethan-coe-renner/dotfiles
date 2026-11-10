@@ -245,9 +245,6 @@ auto_sync = false
 update_check = false
 enter_accept = true
 command_chaining = true
-
-[tmux]
-enabled = true
 #+end_src
 
 * Hledger
