@@ -547,6 +547,7 @@ cc-mode c-ts-mode
   (ibuffer-default-sorting-mode 'filename/process)
   (ibuffer-show-empty-filter-groups nil)
   (ibuffer-display-summary nil)
+  (ibuffer-title-face 'font-lock-doc-face)
   (ibuffer-saved-filter-groups
         '(("Main"
            ("Directories" (mode . dired-mode))
