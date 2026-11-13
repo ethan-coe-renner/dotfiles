@@ -531,6 +531,11 @@ cc-mode c-ts-mode
   :straight t
   :hook
   (dired-mode . nerd-icons-dired-mode))
+
+(use-package nerd-icons-ibuffer
+  :straight t
+  :hook
+  (ibuffer-mode . nerd-icons-ibuffer-mode))
 #+end_src
 
 * Buffers
@@ -607,12 +612,6 @@ cc-mode c-ts-mode
   :hook
   (ibuffer-mode . (lambda ()
                     (ibuffer-switch-to-saved-filter-groups "Main"))))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package nerd-icons-ibuffer
-  :straight t
-  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 #+end_src
 
 * Navigation
