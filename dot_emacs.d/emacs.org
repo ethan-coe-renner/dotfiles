@@ -173,8 +173,6 @@ This section contains basic configuration which does not depend on any packages.
   (user-mail-address "e.coerenner@gmail.com")
 
   ;; Scratch Buffer
-  (initial-major-mode 'org-mode)
-  (initial-scratch-message "")
   (inhibit-startup-screen t)
 
   ;; Don't use mouse
@@ -533,6 +531,88 @@ cc-mode c-ts-mode
   :straight t
   :hook
   (dired-mode . nerd-icons-dired-mode))
+#+end_src
+
+* Buffers
+** IBuffer
+#+begin_src emacs-lisp
+(use-package ibuffer
+  :custom
+  (ibuffer-human-readable-size t)
+  (ibuffer-default-sorting-mode 'filename/process)
+  (ibuffer-show-empty-filter-groups nil)
+  (ibuffer-display-summary nil)
+  (ibuffer-saved-filter-groups
+        '(("Main"
+           ("Directories" (mode . dired-mode))
+           ("C/C++" (or
+                   (mode . c-mode)
+                   (mode . c-ts-mode)
+                   (mode . c++-mode)
+                   (mode . c++-ts-mode)
+                   (mode . c-or-c++-ts-mode)))
+           ("Python" (or
+                      (mode . python-ts-mode)
+                      (mode . c-mode)
+                      (mode . python-mode)))
+           ("Build" (or
+                     (mode . make-mode)
+                     (mode . makefile-gmake-mode)
+                     (name . "^Makefile$")
+                     (mode . change-log-mode)))
+           ("Scripts" (or
+                       (mode . shell-script-mode)
+                       (mode . shell-mode)
+                       (mode . sh-mode)
+                       (mode . lua-mode)
+                       (mode . bat-mode)))
+           ("Config" (or
+                      (mode . conf-mode)
+                      (mode . conf-toml-mode)
+                      (mode . toml-ts-mode)
+                      (mode . conf-windows-mode)
+                      (name . "^\\.clangd$")
+                      (name . "^\\.gitignore$")
+                      (name . "^Doxyfile$")
+                      (name . "^config\\.toml$")
+                      (mode . yaml-mode)))
+           ("Markup" (or
+                   (mode . markdown-mode)
+                   (mode . adoc-mode)))
+           ("Org" (mode . org-mode))
+           ("Magit" (or
+                     (mode . magit-blame-mode)
+                     (mode . magit-cherry-mode)
+                     (mode . magit-diff-mode)
+                     (mode . magit-log-mode)
+                     (mode . magit-process-mode)
+                     (mode . magit-status-mode)))
+           ("Fundamental" (or
+                           (mode . fundamental-mode)
+                           (mode . text-mode)))
+           ("Emacs" (or
+                     (mode . emacs-lisp-mode)
+                     (mode . lisp-data-mode)
+                     (mode . lisp-interaction-mode)
+                     (mode . helpful-mode)
+                     (mode . help-mode)
+                     (mode . dashboard-mode)
+                     (mode . messages-buffer-mode)
+                     (mode . elisp-compile)
+                     (mode . Info-mode)
+                     (name . "^\\*Custom.*")
+                     (name . "^\\*Org Agenda\\*$")
+                     (name . "^\\*straight-process\\*$")
+                     (name . "^\\*Backtrace\\*$"))))))
+  :hook
+  (ibuffer-mode . (lambda ()
+                    (ibuffer-switch-to-saved-filter-groups "Main"))))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package nerd-icons-ibuffer
+  :straight t
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 #+end_src
 
 * Navigation
