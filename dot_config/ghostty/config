@@ -1,0 +1,9 @@
+theme = dark:modus-vivendi,light:modus-operandi
+font-family = "Aporetic Sans Mono"
+font-size = 15
+cursor-style = block
+
+command=~/.local/bin/ghostty-tmux.sh
+title = "ghostty"
+
+confirm-close-surface = false

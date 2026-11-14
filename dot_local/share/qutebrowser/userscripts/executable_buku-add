@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Sanity check: make sure we're actually being run by qutebrowser
+if [ -z "${QUTE_URL:-}" ]; then
+    echo "Error: QUTE_URL not set. Run this as a qutebrowser userscript." >&2
+    exit 1
+fi
+
+if [ -z "$DMENU_PROGRAM" ]; then
+    tags="untagged"
+else
+    taglist=$(buku --nostdin -t --np | sed -E 's/^\s*[0-9]+\.\s*//; s/\s*\([0-9]+\)$//')
+
+    selected_tags=$(printf '%s\n' "$taglist" | $DMENU_PROGRAM) || true
+
+    if [ -z "$selected_tags" ]; then
+        tags="untagged"
+    else
+        tags=$(printf '%s\n' "$selected_tags" | paste -sd, -)
+    fi
+fi
+
+# Function to send a message back to qutebrowser's status bar, if FIFO is available
+notify() {
+    local msg="$1"
+    local level="${2:-info}"  # info, error, warning
+    if [ -n "${QUTE_FIFO:-}" ]; then
+        echo "message-${level} \"${msg//\"/\\\"}\"" >> "$QUTE_FIFO"
+    fi
+}
+
+# Try to add the URL to buku
+if output=$(buku --add "$QUTE_URL" --title "$QUTE_TITLE" --tag "$tags" 2>&1); then
+    notify "buku: added ${QUTE_TITLE:-$QUTE_URL} with tags $tags"
+else
+    notify "buku: failed to add URL — $output" error
+fi

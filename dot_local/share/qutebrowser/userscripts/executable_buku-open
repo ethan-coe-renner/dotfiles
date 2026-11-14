@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+dmenu=${DMENU_PROGRAM:-dmenu}
+
+# Select a buku bookmark using dmenu
+choice=$(buku --nostdin -p --json \
+         | jq -r '.[] | "\(.title // "" | gsub("\n";" ")) \(.uri // .url)"' \
+         | $dmenu -p "Open:")
+
+[ -n "$choice" ] || exit 0
+url=${choice##* }
+echo "open $url" >> "$QUTE_FIFO"
