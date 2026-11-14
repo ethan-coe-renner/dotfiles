@@ -610,6 +610,7 @@ cc-mode c-ts-mode
                      (name . "^\\*Custom.*")
                      (name . "^\\*Org Agenda\\*$")
                      (name . "^\\*straight-process\\*$")
+                     (name . "^\\*Warnings\\*$")
                      (name . "^\\*Backtrace\\*$"))))))
   :hook
   (ibuffer-mode . (lambda ()
