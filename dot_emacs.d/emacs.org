@@ -998,7 +998,6 @@ Use marginalia to show docstrings in the minibuffer.
 #+begin_src emacs-lisp
 (use-package hyperbole
   :straight t
-  :after consult
   :custom
   (hywiki-directory "~/org/hywiki/")
   (hsys-org-enable-smart-keys 'buttons)
