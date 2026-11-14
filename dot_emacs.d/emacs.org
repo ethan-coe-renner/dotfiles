@@ -605,7 +605,7 @@ cc-mode c-ts-mode
                      (mode . help-mode)
                      (mode . dashboard-mode)
                      (mode . messages-buffer-mode)
-                     (mode . elisp-compile)
+                     (mode . emacs-lisp-compilation-mode)
                      (mode . Info-mode)
                      (name . "^\\*Custom.*")
                      (name . "^\\*Org Agenda\\*$")
