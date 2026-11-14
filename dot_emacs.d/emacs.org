@@ -571,10 +571,12 @@ cc-mode c-ts-mode
                        (mode . shell-script-mode)
                        (mode . shell-mode)
                        (mode . sh-mode)
+                       (mode . bash-ts-mode)
                        (mode . lua-mode)
                        (mode . bat-mode)))
            ("Config" (or
                       (mode . conf-mode)
+                      (mode . conf-unix-mode)
                       (mode . conf-toml-mode)
                       (mode . toml-ts-mode)
                       (mode . conf-windows-mode)
@@ -593,7 +595,11 @@ cc-mode c-ts-mode
                      (mode . magit-diff-mode)
                      (mode . magit-log-mode)
                      (mode . magit-process-mode)
+                     (mode . magit-revision-mode)
                      (mode . magit-status-mode)))
+           ("Elfeed" (or
+                      (mode . elfeed-search-mode)
+                      (mode . elfeed-show-mode)))
            ("Fundamental" (or
                            (mode . fundamental-mode)
                            (mode . text-mode)))
