@@ -565,12 +565,18 @@ cc-mode c-ts-mode
            ("Build" (or
                      (mode . make-mode)
                      (mode . makefile-gmake-mode)
+                     (mode . ghostel-compile-view-mode)
                      (name . "^Makefile$")
                      (mode . change-log-mode)))
+           ("Shell" (or
+                     (mode . ghostel-mode)
+                     (mode . eshell-mode)
+                     ))
            ("Scripts" (or
                        (mode . shell-script-mode)
                        (mode . shell-mode)
                        (mode . sh-mode)
+                       (mode . nushell-mode)
                        (mode . bash-ts-mode)
                        (mode . lua-mode)
                        (mode . bat-mode)))
@@ -578,7 +584,9 @@ cc-mode c-ts-mode
                       (mode . conf-mode)
                       (mode . conf-unix-mode)
                       (mode . conf-toml-mode)
+                      (mode . conf-space-mode)
                       (mode . toml-ts-mode)
+                      (mode . nix-ts-mode)
                       (mode . conf-windows-mode)
                       (name . "^\\.clangd$")
                       (name . "^\\.gitignore$")
@@ -589,6 +597,8 @@ cc-mode c-ts-mode
                    (mode . markdown-mode)
                    (mode . adoc-mode)))
            ("Org" (mode . org-mode))
+           ("Finance" (or
+                       (mode . ledger-mode)))
            ("Magit" (or
                      (mode . magit-blame-mode)
                      (mode . magit-cherry-mode)
@@ -614,7 +624,10 @@ cc-mode c-ts-mode
                      (mode . emacs-lisp-compilation-mode)
                      (mode . Info-mode)
                      (name . "^\\*Custom.*")
+                     (name . "^\\*EGLOT.*")
+                     (name . "^\\*Flymake log\\*$")
                      (name . "^\\*Org Agenda\\*$")
+                     (mode . calendar-mode)
                      (name . "^\\*straight-process\\*$")
                      (name . "^\\*Warnings\\*$")
                      (name . "^\\*Backtrace\\*$"))))))
