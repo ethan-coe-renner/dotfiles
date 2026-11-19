@@ -7,3 +7,4 @@ command=~/.local/bin/ghostty-tmux.sh
 title = "ghostty"
 
 confirm-close-surface = false
+macos-option-as-alt = true
