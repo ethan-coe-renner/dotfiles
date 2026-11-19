@@ -1408,7 +1408,7 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 
 * AI
 ** GPTel
-#+begin_src emacs-lisp :tangle (if (bound-and-true-p my/work-machine) nil user-init-file)
+#+begin_src emacs-lisp :tangle (if (bound-and-true-p my/work-machine-p) nil user-init-file)
 (use-package gptel
   :straight t
   :custom
