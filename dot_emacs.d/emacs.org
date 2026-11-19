@@ -1022,7 +1022,39 @@ Use marginalia to show docstrings in the minibuffer.
   (hywiki-directory "~/org/hywiki/")
   (hsys-org-enable-smart-keys 'buttons)
   :config
-  (hywiki-mode :all))
+  (hywiki-mode :all)
+#+end_src
+
+Define an implicit link for GitLab references (issues/merge requests).
+The base url defined at =my/gitlab-base-url= is defined here mostly as a demonstrative placeholder, I only use this at work and the url is overridden in my work config.
+#+begin_src emacs-lisp
+(defvar my/gitlab-base-url "https://gitlab.com/gitlab-org"
+  "GitLab host and namespace, without a trailing slash.")
+
+(defun my/gitlab-open-reference (text)
+  "Open a GitLab work item or merge request referenced by TEXT."
+  (let ((parts (split-string text (rx (any "#!"))))
+        (ref-type (if (string-match-p "!" text)
+                      "merge_requests"
+                    "work_items")))
+    (browse-url
+     (format "%s/%s/-/%s/%s"
+             my/gitlab-base-url (car parts) ref-type (cadr parts)))))
+
+(defil gitlab-reference
+       (rx (or line-start space))
+       (rx (or space line-end))
+       (rx string-start
+           (+ (any alnum "_.-"))
+           (any "#!")
+           (+ digit)
+           string-end)
+       #'my/gitlab-open-reference
+       t t)
+#+end_src
+
+#+begin_src emacs-lisp
+)
 #+end_src
 
 * EWW
