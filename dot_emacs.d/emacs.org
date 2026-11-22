@@ -1391,6 +1391,9 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
 
 (use-package ghostel-compile
   :hook (after-init . ghostel-compile-global-mode))
+
+(use-package ghostel-shell-command
+  :hook (after-init . ghostel-shell-command-global-mode))
 #+end_src
 
 * AI
