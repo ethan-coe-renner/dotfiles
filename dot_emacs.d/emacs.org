@@ -1117,19 +1117,6 @@ The base url defined at =my/gitlab-base-url= is defined here mostly as a demonst
   (wgrep-auto-save-buffer t))
 #+end_src
 
-** rg.el
-#+begin_src emacs-lisp :tangle no
-(use-package rg
-  :straight t
-  :config
-  (rg-enable-default-bindings))
-
-(use-package rg-isearch
-  :general
-  (:keymaps 'isearch-mode-map
-           "M-s g" 'rg-isearch-menu))
-#+end_src
-
 ** Deadgrep
 #+begin_src emacs-lisp
 (use-package deadgrep
@@ -1403,8 +1390,6 @@ stolen from https://gist.github.com/kkatsuyuki/fa930411a86169c3bb1f03337d4af280
             "S" 'ghostel-project-list-buffers))
 
 (use-package ghostel-compile
-  :config
-  (add-to-list 'ghostel-compile-global-mode-excluded-modes 'rg-mode)
   :hook (after-init . ghostel-compile-global-mode))
 #+end_src
 
