@@ -12,3 +12,6 @@ source ~/.atuin/init.nu
 # Setup starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# Setup zoxide
+source $"($nu.cache-dir)/zoxide.nu"
