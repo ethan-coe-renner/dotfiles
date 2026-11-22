@@ -1,5 +1,8 @@
 $env.config.show_banner = false
 
+# Setup carapace
+source $"($nu.cache-dir)/carapace.nu"
+
 # Setup atuin
 source ~/.atuin/init.nu
 
