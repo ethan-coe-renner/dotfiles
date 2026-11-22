@@ -1,3 +1,8 @@
+[jobs]
+disabled = true
+
+# --- Nerd Font Preset ---
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [aws]
