@@ -1,5 +1,8 @@
 $env.config.show_banner = false
 
+# Aliases
+alias ch = chezmoi
+
 # Setup carapace
 source $"($nu.cache-dir)/carapace.nu"
 
