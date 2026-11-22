@@ -1,8 +1,8 @@
 # -*- mode: toml-ts -*-
 
-[jobs]
-disabled = true
-
 {{ if lookPath "starship" }}
 {{ output "starship" "preset" "nerd-font-symbols" }}
 {{- end }}
+
+[jobs]
+disabled = true
