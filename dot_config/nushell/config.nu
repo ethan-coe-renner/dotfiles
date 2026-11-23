@@ -4,6 +4,7 @@ $env.LEDGER_FILE = "~/git/finance/current.journal"
 
 # Aliases
 alias ch = chezmoi
+alias hl = hledger
 
 # Setup carapace
 source $"($nu.cache-dir)/carapace.nu"
