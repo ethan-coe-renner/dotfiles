@@ -1,4 +1,6 @@
+# Environment
 $env.config.show_banner = false
+$env.LEDGER_FILE = "~/git/finance/current.journal"
 
 # Aliases
 alias ch = chezmoi
