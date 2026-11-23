@@ -2,6 +2,10 @@ set-option -g history-limit 30000
 
 set -g mouse on
 
+{{ if eq .chezmoi.os "darwin" }}
+set -g default-shell /opt/homebrew/bin/nu
+{{ end }}
+
 # If this is a local terminal (not an ssh connection) set the prefix
 # to C-a and move the status bar to the top. This way, we can run
 # tmux in ssh connections without conflicting with the local tmux.
